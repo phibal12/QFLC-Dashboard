@@ -12,15 +12,10 @@ html, body {
 }
 
 /* 1. EXPAND WIDTH (Critical for Slate) */
-.inner, .container {
-  max-width: 95% !important; /* Uses 95% of the screen width */
+/* Add this if the web version is still narrow */
+.inner {
+  max-width: 95% !important;
   width: 95% !important;
-  margin: 0 auto !important;
-}
-
-/* Ensure the main wrap doesn't limit the inner container */
-#main_content_wrap, #header_wrap, #footer_wrap {
-  width: 100% !important;
 }
 
 /* 2. BRIGHTEN TITLES */
