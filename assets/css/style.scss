@@ -99,7 +99,7 @@ a:hover { color: #00ffff !important; text-shadow: 0 0 8px rgba(0, 255, 255, 0.8)
 }
 
 #forkme_banner::before {
-  content: "\f09b"; 
+  content: "😊"; 
   /* Ensure this matches exactly the name in your loaded library */
   font-family: "Font Awesome 6 Brands"; 
   font-weight: 400; /* Mandatory for Brand icons */
