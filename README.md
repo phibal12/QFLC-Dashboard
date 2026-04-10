@@ -51,7 +51,7 @@ Based on the Post-Ph.D. Defense Seminar and the accompanying transcript, this co
 The theoretical concepts discussed in the seminar have been synthesized into the following interactive dashboards and simulators. 
 
 ### 1. QF-LC Hypercube Hardware Synthesis Engine and Phase Simulator
-<a href="#1-qf-lca-quantum-hardware-synthesis-engine-and-phase-simulator" target="_blank"><img src="./assets/QFLCH_Poster.png" alt="QF-LC Hardware Synthesis Engine (Hypercube)" style="width: 100% !important; max-width: none !important; border-radius: 8px; border: 2px solid #8b5cf6; position: relative; left: 50%; transform: translateX(-50%);"></a><br> 
+<a href="#1-qf-lca-quantum-hardware-synthesis-engine-and-phase-simulator" target="_blank"><img src="/assets/QFLCH_Poster.png" alt="QF-LC Hardware Synthesis Engine (Hypercube)" style="width: 100% !important; max-width: none !important; border-radius: 8px; border: 2px solid #8b5cf6; position: relative; left: 50%; transform: translateX(-50%);"></a><br> 
 
 
 
@@ -59,7 +59,7 @@ This is the flagship of the hardware engineering dashboard. It bypasses the visu
 
 **Key Features:**
 * Live $N$-Dimensional Hypercube wave collapse visualization.
-* Equation 53 thermodynamic phase simulation (SF $\to$ QDF $\to$ Target).
+* Equation (53) thermodynamic phase simulation (SF $\to$ QDF $\to$ Target)  from Ref. [1].
 * Dual-compilation engine outputting both FPGA-ready VHDL and QPU-ready OpenQASM 2.0.
 
 ### 2. QDF Phase and Game Theory Simulator
