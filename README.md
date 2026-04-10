@@ -7,7 +7,7 @@
 
 <div align="center">
   <!-- Use the image above by right-clicking it to 'Copy Image Address' and pasting it below -->
-  <img src="./assets/QFLC_Banner00.png" alt="Quantum Entanglement Banner" height="400" width="400" style="border-radius: 10px; box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);">
+  <img src="./assets/QFLC_Banner00.png" alt="Quantum Entanglement Banner" height="100%" width="100%" style="border-radius: 10px; box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);">
   <h1>🚀 QFLC Dashboard <span class="live-dot">🔵</span>Live</h1>
   <p><i>Real-time Quantum State Monitoring & Entanglement Visualization</i></p>
 </div>
@@ -71,7 +71,7 @@ This widget translates the QDF model into a game theory environment. As discusse
 This dashboard provides a robust, granular look into the mathematical engine of the Quantum Field Lens Coding system. It allows users to manipulate the baseline metrics of the complex field and observe the optimized hardware routing in real-time. It acts as a direct visualizer for the transition probabilities and error rates discussed in the seminar's "Energy Paths" section.
 
 ### 4. QDF Lens Geometry Lab & Particle Trap
-<a href="#4-qdf-lens-geometry-lab--particle-trap"><img src="./assets/QDF_Lens_Screenshot00.JPG" alt="Geometry Lab" width="350" style="border-radius:8px; border:2px solid #8b5cf6;"></a> 
+<a href="#4-qdf-lens-geometry-lab--particle-trap"><img src="./assets/QDF_Lens_Screenshot00.JPG" alt="Geometry Lab" height="100%" width="350" style="border-radius:8px; border:2px solid #8b5cf6;"></a> 
 *(Live verification of Spatial Density and Lens Distance)*
 
 Directly correlating with the "Measurement" and "Lens Focus" sections of the seminar, this Geometry Lab visualizes the physical interaction length between the source and the target state. 
