@@ -10,6 +10,6 @@ theme: jekyll-theme-tactile
 @import "{{ site.theme }}";
 
 body {
-  background-color: #1a1a1a; /* Replace with your desired color hex */
+  background-color: black; /* Replace with your desired color hex */
   background-image: none;    /* Some themes like 'Midnight' use gradients; this removes them */
 }
