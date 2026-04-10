@@ -38,6 +38,36 @@ a:hover {
   transition: all 0.3s ease; /* Makes the glow fade in smoothly */
 }
 
+/* --- Floating Back to Top Button --- */
+.back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: teal !important;
+  color: white !important;
+  padding: 10px 15px;
+  border-radius: 50px;
+  text-decoration: none !important;
+  font-weight: bold;
+  font-size: 14px;
+  box-shadow: 0 4px 15px rgba(0, 128, 128, 0.4);
+  z-index: 999;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.back-to-top:hover {
+  background-color: #00ffff !important;
+  transform: translateY(-5px); /* Lift effect on hover */
+  color: #000 !important;
+}
+
+/* --- Header Polish --- */
+h1 {
+  border-bottom: 2px solid teal !important;
+  padding-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
 
 @media print {
   body, #main_content, h1, h2, h3, a {
