@@ -11,6 +11,33 @@ html, body {
   padding: 0;
 }
 
+/* Force titles to be bright and clear */
+h1, h2, h3, h4, h5, h6 {
+  color: #ffffff !important; /* Pure white */
+  font-weight: bold !important;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.2); /* Subtle glow for clarity */
+}
+
+/* Optional: Make the very top title (H1) stand out in teal */
+h1 {
+  color: #00ffff !important; /* Bright Teal/Cyan */
+}
+
+
+/* Overrides Slate's narrow container */
+#main_content_wrap .container, 
+#header_wrap .container, 
+#footer_wrap .container {
+  width: 95% !important;   /* Uses 95% of the screen width */
+  max-width: 1400px !important; /* Limits it just enough for huge monitors */
+  margin: 0 auto !important;
+}
+
+#main_content {
+  width: 100% !important;
+}
+
+
 /* Expand the main container width */
 .container {
   max-width: 90% !important;
