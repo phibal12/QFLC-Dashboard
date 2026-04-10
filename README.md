@@ -28,7 +28,7 @@ This collection serves as a unified portfolio, translating the theoretical frame
 ## 🧭 Clickable Visual Directory
 *Click on any module below to jump to its detailed description and links.*
 
-| <a href="#1-qf-lca-unified-quantum-hardware-synthesis-engine--phase-simulator"><img src="QFLCH_Poster.jpg" alt="Synthesis Engine" width="350" style="border-radius:8px; border:2px solid #3b82f6;"></a> | <a href="#2-qdf-phase--game-theory-simulator"><img src="Screenshot_8-4-2026_215657_.jpeg" alt="Game Theory Simulator" width="350" style="border-radius:8px; border:2px solid #10b981;"></a> |
+| <a href="#1-qf-lca-unified-quantum-hardware-synthesis-engine--phase-simulator"><img src="./assets/QFLCH_Poster.png" alt="Synthesis Engine" width="350" style="border-radius:8px; border:2px solid #3b82f6;"></a> | <a href="#2-qdf-phase--game-theory-simulator"><img src="Screenshot_8-4-2026_215657_.jpeg" alt="Game Theory Simulator" width="350" style="border-radius:8px; border:2px solid #10b981;"></a> |
 |:---:|:---:|
 | **[1. Hardware Synthesis Engine (Hypercube)](#1-qf-lca-unified-quantum-hardware-synthesis-engine--phase-simulator)** | **[2. QDF Phase & Game Theory Simulator](#2-qdf-phase--game-theory-simulator)** |
 
