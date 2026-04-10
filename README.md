@@ -26,9 +26,9 @@ This collection serves as a unified portfolio, translating the theoretical frame
 ## 🧭 Clickable Visual Directory
 *Click on any module below to jump to its detailed description and links.*
 
-| <a href="#1-qf-lca-unified-quantum-hardware-synthesis-engine--phase-simulator"><img src="./assets/QFLCH_Poster.png" alt="Synthesis Engine" width="350" style="border-radius:8px; border:2px solid #3b82f6;"></a> | <a href="#2-qdf-phase--game-theory-simulator"><img src="Screenshot_8-4-2026_215657_.jpeg" alt="Game Theory Simulator" width="350" style="border-radius:8px; border:2px solid #10b981;"></a> |
+| <a href="#1-qf-lca-quantum-hardware-synthesis-engine-and-phase-simulator"><img src="./assets/QFLCH_Poster.png" alt="Synthesis Engine" width="350" style="border-radius:8px; border:2px solid #3b82f6;"></a> | <a href="#2-qdf-phase--game-theory-simulator"><img src="Screenshot_8-4-2026_215657_.jpeg" alt="Game Theory Simulator" width="350" style="border-radius:8px; border:2px solid #10b981;"></a> |
 |:---:|:---:|
-| **[1. QF-LC Hardware Synthesis Engine (Hypercube)](#1-qf-lca-unified-quantum-hardware-synthesis-engine--phase-simulator)** | **[2. QDF Phase & Game Theory Simulator](#2-qdf-phase--game-theory-simulator)** |
+| **[1. QF-LC Hardware Synthesis Engine (Hypercube)](#1-qf-lca-unified-quantum-hardware-synthesis-engine-and-phase-simulator)** | **[2. QDF Phase and Game Theory Simulator](#2-qdf-phase-and-game-theory-simulator)** |
 
 | <a href="#3-qf-lcs-system-state-predictions--lens-coding-simulator"><img src="Screenshot_8-4-2026_22257_.jpeg" alt="Prediction Simulator" width="350" style="border-radius:8px; border:2px solid #f59e0b;"></a> | <a href="#4-qdf-lens-geometry-lab-and-particle-trap"><img src="./assets/QDF_Lens_Screenshot00.JPG" alt="Geometry Lab" width="350" style="border-radius:8px; border:2px solid #8b5cf6;"></a> |
 |:---:|:---:|
@@ -50,22 +50,24 @@ Based on the Post-Ph.D. Defense Seminar and the accompanying transcript, this co
 
 The theoretical concepts discussed in the seminar have been synthesized into the following interactive dashboards and simulators. 
 
-### 1. QF-LCA Unified Quantum-Hardware Synthesis Engine & Phase Simulator
-This is the flagship hardware engineering dashboard. It bypasses the visual intractability of traditional Karnaugh maps (scaling up to 12D/4096 nodes) by applying global field evaluations. 
+### 1. QF-LCA Quantum Hardware Synthesis Engine and Phase Simulator
+<a href="#1-qf-lca-quantum-hardware-synthesis-engine-and-phase-simulator"><img src="./assets/QFLCH_Poster.png" alt="QF-LC Hardware Synthesis Engine (Hypercube)" height="70%" width="70%" style="border-radius:8px; border:2px solid #8b5cf6;"></a><br> 
+
+This is the flagship of the hardware engineering dashboard. It bypasses the visual intractability of traditional Karnaugh maps (scaling up to 12D/4096 nodes) by applying global field evaluations. 
 
 **Key Features:**
 * Live $N$-Dimensional Hypercube wave collapse visualization.
 * Equation 53 thermodynamic phase simulation (SF $\to$ QDF $\to$ Target).
 * Dual-compilation engine outputting both FPGA-ready VHDL and QPU-ready OpenQASM 2.0.
 
-### 2. QDF Phase & Game Theory Simulator
+### 2. QDF Phase and Game Theory Simulator
 *(Demonstrating Quantum Phase Transitions and Participant Decisions)*
 
 This widget translates the QDF model into a game theory environment. As discussed in the seminar's exploration of entanglement and Quantum Key Distribution (QKD), this simulator models scenarios where four or more participants interact on a quantum level. 
 * **Mechanics:** Users can observe how a "guest participant" (acting as the Ancilla/Eve) influences the network to force a Quantum Phase Transition (QPT). 
 * **Outcome:** It visualizes the probability doubling mechanism where information is safely received, and a decision state (the "prize") is resolved.
 
-### 3. QF-LCS: System State Predictions & Lens Coding Simulator
+### 3. QF-LCS: System State Predictions and Lens Coding Simulator
 *(The core simulation engine for strong predictions)*
 
 This dashboard provides a robust, granular look into the mathematical engine of the Quantum Field Lens Coding system. It allows users to manipulate the baseline metrics of the complex field and observe the optimized hardware routing in real-time. It acts as a direct visualizer for the transition probabilities and error rates discussed in the seminar's "Energy Paths" section.
