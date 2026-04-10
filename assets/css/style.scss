@@ -81,15 +81,13 @@ a:hover {
 
 /* 6. FLOATING BACK TO TOP BUTTON */
 .back-to-top {
-  position: fixed;
+  position: fixed !important; /* Keeps it locked to the screen, not the page content */
   bottom: 20px;
   right: 20px;
-  background-color: teal !important;
-  color: white !important;
-  padding: 10px 15px;
-  border-radius: 50px;
-  z-index: 999;
-  font-weight: bold;
+  z-index: 9999 !important; /* Ensures it stays on top of everything */
+  
+  /* Reset any inherited margins that might be pushing the page width */
+  margin: 0 !important;
 }
 
 /* --- COMPLETE PRINT OVERRIDE --- */
