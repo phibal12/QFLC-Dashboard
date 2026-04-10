@@ -2,24 +2,32 @@
 ---
 @import "{{ site.theme }}";
 
-/* Slate-specific override */
+/* 1. Force the main background for the entire page */
 html, body {
-  background: #0d1117 !important; /* Force the background color */
+  background: #0d1117 !important; /* GitHub dark blue-black */
   background-image: none !important;
+  color: #c9d1d9 !important; /* Light grey text for readability */
 }
 
-/* Optional: If the header is still a different color, use this: */
-/* #header {
+/* 2. Remove the white box/container Slate often uses */
+#main_content_wrap, #main_content, .container, section {
   background: transparent !important;
-} */
+  background-color: transparent !important;
+  border: none !important;
+  color: #c9d1d9 !important; /* Force text color inside containers */
+}
 
-/* Optional: Ensure text remains visible */
-/* body {
-  color: #c9d1d9 !important;
-} */
+/* 3. Style your links and headers to match the dark theme */
+h1, h2, h3, h4, h5, h6 {
+  color: #58a6ff !important; /* Blue headers */
+}
 
+a {
+  color: teal !important; /* Your preferred teal color */
+}
 
-/* Optional: Change link colors to pop against the dark background */
- a {
-  color: teal;
-} 
+/* 4. Fix for black text that won't change */
+* {
+  text-shadow: none !important;
+}
+
