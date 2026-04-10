@@ -8,7 +8,7 @@ html, body,
 #header_wrap, #main_content_wrap, #footer_wrap, 
 .inner, #main_content {
   background: #0d1117 !important; /* Forces dark color everywhere */
-  background-color: gray !important;
+  background-color: #0d1117 !important;
   background-image: none !important; /* Removes any default theme gradients */
   color: #c9d1d9 !important;
 }
@@ -16,8 +16,8 @@ html, body,
 
 /* 2. EXPAND WRAPPERS (Crucial for Slate) */
 #header_wrap, #main_content_wrap, #footer_wrap {
-  width: 100% !important;
-  max-width: 100% !important;
+  width: 80% !important;
+  max-width: 80% !important;
   padding: 0 !important;
 }
 
@@ -96,8 +96,8 @@ a:hover {
   }
   /* 7. Force Modern Font and Full Width */
   html, body, .inner, .container, #main_content {
-    width: 100% !important;
-    max-width: 100% !important;
+    width: 90% !important;
+    max-width: 90% !important;
     margin: 0 !important;
     padding: 0 !important;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif !important;
