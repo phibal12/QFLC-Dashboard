@@ -3,201 +3,93 @@
 @import "{{ site.theme }}";
 @import url("https://cloudflare.com");
 
-/* 1. FORCE DARK THEME & FULL WIDTH */
-html, body, 
-#header_wrap, #main_content_wrap, #footer_wrap, 
-.inner, #main_content {
-  background: #0d1117 !important; /* Forces dark color everywhere */
-  background-color: #0d1117 !important;
-  background-image: none !important; /* Removes any default theme gradients */
-  color: #c9d1d9 !important;
-  overflow-x: hidden !important; /* Forces the browser to stay within the viewport */
-  width: 100% !important;
-}
-
+/* 1. GLOBAL RESET & DARK THEME */
 html, body {
-  overflow-x: hidden !important; /* Clips any elements that stick out on the right */
-  width: 100% !important;
-  position: relative;
-}
-
-/* Add padding to the top of the content so it's not hidden under the fixed menu */
-body {
-  padding-top: 60px !important; 
-}
-
-/* 1. RESET ALL WRAPPERS */
-#header_wrap, #main_content_wrap, #footer_wrap {
-  width: 100% !important;
-  max-width: 100% !important;
-  padding: 0 !important;
-  display: block !important;
-  float: none !important;
-}
-
-/* 2. THE NUCLEAR FIX FOR THE GAP */
-/* We target the ID and the CLASS to override Slate's hardcoded float:left */
-section#main_content, .inner {
-  float: none !important;         /* This kills the float causing the gap */
-  display: block !important;
-  width: 90% !important;          /* Your desired page width */
-  max-width: 1400px !important;   /* Prevents it from getting too wide */
-  margin: 0 auto !important;      /* Now this will actually center the page */
-  padding: 20px 0 !important;
-}
-
-/* 3. REMOVE GHOST SIDEBAR */
-aside#sidebar {
-  display: none !important;      /* Completely removes the reserved sidebar area */
-  width: 0 !important;
-}
-
-/* 4. PREVENT SIDE-SCROLLING */
-html, body {
-  overflow-x: hidden !important; /* Clips any stray pixels causing the gap */
-  width: 100% !important;
-}
-
-
-/* 2. EXPAND WRAPPERS (Crucial for Slate) */
-#header_wrap, #main_content_wrap, #footer_wrap {
-  width: 80% !important;
-  max-width: 80% !important;
-  padding: 0 !important;
-}
-
-#main_content_wrap {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important; /* Forces all children to the horizontal center */
-  width: 100% !important;
   background: #0d1117 !important;
+  color: #c9d1d9 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow-x: hidden !important; /* Forces removal of the right-side gap */
+  width: 100% !important;
+  scroll-behavior: smooth !important;
 }
 
-/* .inner, #main_content {
-  width: 95% !important;
-  display: block !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-  max-width: 1400px !important; 
-  margin: 0 auto !important;
-} */
-
-.inner, #main_content {
-  /* Slate uses floats that break centering; this turns them off */
-  float: none !important; 
-  position: relative !important;
-  
-  width: 90% !important;
-  max-width: 1400px !important;
-  
-  /* Standard centering as a backup */
-  margin-left: auto !important;
-  margin-right: auto !important;
-  
-  /* Keeps your dashboard text left-aligned inside the centered box */
-  text-align: left !important;
+body {
+  padding-top: 80px !important;    /* Space for Top Nav */
+  padding-bottom: 80px !important; /* Space for Bottom Nav */
 }
 
-#header_wrap .inner {
+/* 2. THE NUCLEAR CENTERING FIX (Removes Slate's Floats/Gaps) */
+#header_wrap, #main_content_wrap, #footer_wrap {
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+  background: #0d1117 !important;
   float: none !important;
-  margin: 0 auto !important;
-  width: 90% !important;
-  text-align: center; /* Centers your Title and Banner */
 }
 
-/* 3. BRIGHTEN TITLES */
-h1, h2, h3, h4, h5, h6 {
-  color: #01F9C6 !important; /* Pure bright teal */
-  font-weight: 800 !important;
-  opacity: 1 !important;     /* Removes any theme-level dimming */
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3); /* Subtle glow for extra pop */
+.inner, #main_content, section#main_content {
+  float: none !important;      /* Kills Slate's left-pinning */
+  display: block !important;
+  width: 90% !important;       /* Your desired page width */
+  max-width: 1400px !important; 
+  margin: 0 auto !important;   /* Centers the block */
+  text-align: left !important; /* Keeps text inside aligned left */
+  background: transparent !important;
 }
 
-
-/* Optional: Make the very top title (H1) stand out in teal */
-h1 {
-  color: #00ffff !important; /* Bright Teal//Neon Teal/Cyan */
+aside#sidebar {
+  display: none !important;    /* Deletes the ghost column on the right */
 }
 
-/* 4. STICKY TOP NAVIGATION */
-.top-nav {
-  position: fixed !important; /* Changed from sticky to fixed */
-  top: 0;
+/* 3. NAVIGATION BARS (Top & Bottom) */
+.top-nav, .bottom-nav {
+  position: fixed !important;
   left: 0;
   width: 100% !important;
   background: #161b22 !important;
-  border-bottom: 2px solid teal;
-  padding: 15px 0;
-  text-align: center;
-  z-index: 9999 !important; /* Ensure it stays above everything */
-  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-}
-
-.top-nav a {
-  margin: 0 20px;
-  font-weight: bold;
-  color: #c9d1d9 !important;
-  text-decoration: none !important;
-  transition: all 0.3s ease;
-}
-
-.top-nav a:hover {
-  color: #00ffff !important;
-  text-shadow: 0 0 8px rgba(0, 255, 255, 0.8);
-}
-
-/* 5. HOVER GLOW & LINKS */
-a { color: teal !important; }
-
-a:hover {
-  color: #00ffff !important;
-  text-shadow: 0 0 8px rgba(0, 255, 255, 0.8);
-  text-decoration: none !important;
-}
-
-/* 6. FLOATING BACK TO TOP BUTTON */
-/* --- FIXED BOTTOM NAVIGATION BAR --- */
-.bottom-nav {
-  position: fixed !important;
-  bottom: 0;
-  left: 0;
-  width: 100% !important;
-  background: #161b22 !important; /* Matches your top menu */
-  border-top: 2px solid teal;
-  padding: 10px 0;
   text-align: center;
   z-index: 9999 !important;
-  box-shadow: 0 -4px 10px rgba(0,0,0,0.5);
+  box-shadow: 0 0 15px rgba(0,0,0,0.5);
 }
 
-.bottom-nav a {
-  margin: 0 20px;
+.top-nav { top: 0; border-bottom: 2px solid teal; padding: 15px 0; }
+.bottom-nav { bottom: 0; border-top: 2px solid teal; padding: 12px 0; }
+
+.top-nav a, .bottom-nav a {
+  margin: 0 15px;
   font-weight: bold;
   color: #c9d1d9 !important;
   text-decoration: none !important;
-  font-size: 14px;
+  transition: 0.3s;
 }
 
-.bottom-nav a:hover {
+.top-nav a:hover, .bottom-nav a:hover {
   color: #00ffff !important;
   text-shadow: 0 0 8px rgba(0, 255, 255, 0.8);
 }
 
-/* Add padding to the bottom of the page so content isn't hidden by the bar */
-body {
-  padding-bottom: 60px !important;
+/* 4. TITLES & LINKS */
+h1, h2, h3, h4, h5, h6 {
+  color: #01F9C6 !important; /* Bright Teal */
+  opacity: 1 !important;
+  text-shadow: 0 0 10px rgba(1, 249, 198, 0.2);
+  margin-top: 1.5em !important;
 }
 
-/* Remove the old floating button style since we are replacing it */
-.back-to-top { display: none !important; }
+h1 { color: #00ffff !important; text-align: center !important; }
 
-/* --- COMPLETE PRINT OVERRIDE --- */
+a { color: teal !important; transition: 0.3s; }
+a:hover { color: #00ffff !important; text-shadow: 0 0 8px rgba(0, 255, 255, 0.8); }
+
+/* 5. PRINT OVERRIDE (Force Arial and Full Width) */
 @media print {
   *, html, body, h1, h2, h3, h4, h5, h6, p, a, li, span, div {
-    font-family: Arial, Helvetica, sans-serif !important;
+    font-family: Arial, sans-serif !important;
     color: black !important;
     background: transparent !important;
   }
+  .inner, #main_content { width: 100% !important; margin: 0 !important; }
+  .top-nav, .bottom-nav { display: none !important; }
+  .page-break { display: block; page-break-before: always; }
 }
-
