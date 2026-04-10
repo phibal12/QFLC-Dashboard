@@ -1,25 +1,18 @@
-<div align="center">
-  <img src="https://placeholder.com" alt="Banner" width="100%">
-  <br>
-  <h1>🚀 QFLC Dashboard</h1>
-</div>
-
-<!-- Sidebar Menu -->
-<div class="sidebar">
-  <h3 style="color: teal;">Navigation</h3>
-  <a href="#introduction">🏠 Intro</a>
-  <a href="#installation">⚙️ Installation</a>
-  <a href="#usage">📊 Usage</a>
+<div class="top-nav">
+  <a href="#qflc-dashboard">🏠 Home</a>
+  <a href="#features">📊 Features</a>
+  <a href="#installation">⚙️ Setup</a>
   <a href="#contact">📩 Contact</a>
 </div>
 
-<!-- Contact Icons Section -->
-## Contact Me
-<p>
-  <a href="https://github.com"><i class="fab fa-github fa-2x"></i></a> &nbsp;
-  <a href="mailto:your-email@example.com"><i class="fas fa-envelope fa-2x"></i></a> &nbsp;
-  <a href="https://yourwebsite.com"><i class="fas fa-link fa-2x"></i></a>
-</p>
+<div align="center">
+  <br>
+  <h1>🚀 QFLC Dashboard</h1>
+  <p>Live Monitoring and Data Visualization</p>
+</div>
+
+---
+
 
 
 # QF-LCD: Quantum Field Lens Coding Dashboard
@@ -122,6 +115,14 @@ How does this relate to the QF-LCA Hypercube? This Geometry Lab visualizes the f
 * Email: [philipbaback_orbsix@msn.com](mailto:philipbaback_orbsix@msn.com)
 * Email: [philipbaback66@gmail.com](mailto:philipbaback66@gmail.com)
 * Personal Web: [studentweb.uvic.ca/~phibal12/](https://studentweb.uvic.ca/~phibal12/)
+
+<br>
+
+## Contact
+<div align="center">
+  <a href="https://github.com"><i class="fab fa-github fa-2x"></i></a> &nbsp;&nbsp;
+  <a href="mailto:your-email@example.com"><i class="fas fa-envelope fa-2x"></i></a>
+</div>
 
 <a href="#" class="back-to-top">↑ Back to Top</a>
 
