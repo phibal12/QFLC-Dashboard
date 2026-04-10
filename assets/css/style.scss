@@ -1,5 +1,6 @@
 ---
 ---
+@import url("https://cloudflare.com");
 @import "{{ site.theme }}";
 
 /* 1. Force the main background for the entire page */
@@ -67,6 +68,31 @@ h1 {
   padding-bottom: 10px;
   text-transform: uppercase;
   letter-spacing: 2px;
+}
+
+/* --- Sidebar Styling --- */
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 100px;
+  width: 200px;
+  background: #161b22 !important; /* Slightly lighter than background */
+  padding: 20px;
+  border-right: 1px solid teal;
+  height: 100%;
+  display: none; /* Hidden on small screens */
+}
+
+@media screen and (min-width: 1000px) {
+  .sidebar { display: block; }
+  #main_content_wrap { margin-left: 220px !important; }
+}
+
+.sidebar a {
+  display: block;
+  padding: 10px 0;
+  font-size: 14px;
+  border-bottom: 1px solid #30363d;
 }
 
 @media print {
