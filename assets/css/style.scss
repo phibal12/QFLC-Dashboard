@@ -11,21 +11,19 @@ html, body {
   padding: 0;
 }
 
-/* 1. EXPAND WIDTH (Critical for Slate) */
-/* Add this if the web version is still narrow */
-/* 1. EXPAND WIDTH (Fixed typo and added ID override) */
-.inner {
-  max-width: 95% !important;
-  width: 95% !important;
-  margin: 0 auto !important; /* Fixed typo from 'manual' to 'auto' */
-}
 
-/* Slate specifically sets a fixed width on this ID that blocks widening */
-#main_content {
+/* 1. EXPAND WRAPPERS (Crucial for Slate) */
+#header_wrap, #main_content_wrap, #footer_wrap {
   width: 100% !important;
   max-width: 100% !important;
+  padding: 0 !important;
 }
 
+.inner, #main_content {
+  width: 95% !important;
+  max-width: 1400px !important; /* Limits width just enough for ultra-wide screens */
+  margin: 0 auto !important;
+}
 
 /* 2. BRIGHTEN TITLES */
 h1, h2, h3, h4, h5, h6 {
@@ -103,5 +101,6 @@ a:hover {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif !important;
     background: white !important; /* White background saves ink when printing */
     color: black !important;      /* Black text for best print contrast */
-  }
+  } 
+}
 
