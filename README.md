@@ -3,7 +3,7 @@
   <a href="#features">📊 Features</a>
   <a href="#installation">⚙️ Setup</a>
   <a href="#contact">📩 Contact</a>
-</div>
+</div><br>
 
 <div align="center">
   <!-- Use the image above by right-clicking it to 'Copy Image Address' and pasting it below -->
@@ -28,7 +28,7 @@ This collection serves as a unified portfolio, translating the theoretical frame
 
 | <a href="#1-qf-lca-unified-quantum-hardware-synthesis-engine--phase-simulator"><img src="./assets/QFLCH_Poster.png" alt="Synthesis Engine" width="350" style="border-radius:8px; border:2px solid #3b82f6;"></a> | <a href="#2-qdf-phase--game-theory-simulator"><img src="Screenshot_8-4-2026_215657_.jpeg" alt="Game Theory Simulator" width="350" style="border-radius:8px; border:2px solid #10b981;"></a> |
 |:---:|:---:|
-| **[1. Hardware Synthesis Engine (Hypercube)](#1-qf-lca-unified-quantum-hardware-synthesis-engine--phase-simulator)** | **[2. QDF Phase & Game Theory Simulator](#2-qdf-phase--game-theory-simulator)** |
+| **[1. QF-LC Hardware Synthesis Engine (Hypercube)](#1-qf-lca-unified-quantum-hardware-synthesis-engine--phase-simulator)** | **[2. QDF Phase & Game Theory Simulator](#2-qdf-phase--game-theory-simulator)** |
 
 | <a href="#3-qf-lcs-system-state-predictions--lens-coding-simulator"><img src="Screenshot_8-4-2026_22257_.jpeg" alt="Prediction Simulator" width="350" style="border-radius:8px; border:2px solid #f59e0b;"></a> | <a href="#4-qdf-lens-geometry-lab--particle-trap"><img src="./assets/QDF_Lens_Screenshot00.JPG" alt="Geometry Lab" width="350" style="border-radius:8px; border:2px solid #8b5cf6;"></a> |
 |:---:|:---:|
