@@ -18,6 +18,11 @@ html, body {
   width: 95% !important;
 }
 
+/* 2. REMOVE FIXED WRAPPER LIMITS */
+#header_wrap, #main_content_wrap, #footer_wrap {
+  width: 100% !important;
+}
+
 /* 2. BRIGHTEN TITLES */
 h1, h2, h3, h4, h5, h6 {
   color: #ffffff !important; /* Pure bright white */
