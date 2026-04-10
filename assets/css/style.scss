@@ -99,14 +99,17 @@ a:hover { color: #00ffff !important; text-shadow: 0 0 8px rgba(0, 255, 255, 0.8)
 }
 
 #forkme_banner::before {
-  content: "\f09b"; /* Font Awesome GitHub icon */
-  font-family: "Font Awesome 6 Brands";
-  font-weight: 400; /* Mandatory for Brand icons */
+content: "";
   position: absolute;
   left: 15px;
-  font-size: 22px;
   top: 50%;
   transform: translateY(-50%);
+  width: 22px;
+  height: 22px;
+  background-color: white;
+  /* Use an official GitHub SVG as a mask to keep it color-changeable */
+  -webkit-mask: url("https://simpleicons.org") no-repeat center;
+  mask: url("https://simpleicons.org") no-repeat center;
 }
 
 #forkme_banner:hover {
