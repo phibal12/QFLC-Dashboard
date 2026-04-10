@@ -84,8 +84,6 @@ a:hover { color: #00ffff !important; text-shadow: 0 0 8px rgba(0, 255, 255, 0.8)
 
 
 /*5. --- STYLE THE GITHUB BUTTON --- */
-
-/* --- STYLE THE FORK ME BANNER --- */
 #forkme_banner {
   background: teal !important;               /* Change background color */
   background-color: #008080 !important;      /* Backup for solid teal */
@@ -96,6 +94,17 @@ a:hover { color: #00ffff !important; text-shadow: 0 0 8px rgba(0, 255, 255, 0.8)
   text-shadow: none !important;
   opacity: 1 !important;
   z-index: 1000 !important;                  /* Ensure it stays above everything */
+}
+
+#forkme_banner::before {
+  content: "\f09b";             /* Font Awesome GitHub icon code */
+  font-family: "Font Awesome 6 Brands";
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: #fff;                  /* Icon color */
 }
 
 #forkme_banner:hover {
