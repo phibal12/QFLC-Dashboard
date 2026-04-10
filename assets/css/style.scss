@@ -11,12 +11,6 @@ html, body {
   padding: 0;
 }
 
-/* Optional: Make the very top title (H1) stand out in teal */
-h1 {
-  color: #00ffff !important; /* Bright Teal/Cyan */
-}
-
-
 /* 1. EXPAND WIDTH (Critical for Slate) */
 .inner, .container {
   max-width: 95% !important; /* Uses 95% of the screen width */
@@ -37,6 +31,11 @@ h1, h2, h3, h4, h5, h6 {
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.3); /* Subtle glow for extra pop */
 }
 
+
+/* Optional: Make the very top title (H1) stand out in teal */
+h1 {
+  color: #00ffff !important; /* Bright Teal/Cyan */
+}
 
 /* Expand the main container width */
 .container {
