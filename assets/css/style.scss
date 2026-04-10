@@ -155,6 +155,12 @@ h1 img[alt="Live Status"] {
   display: block !important; /* Makes sure it stays visible */
 }
 
+.large-poster {
+  width: 150% !important;
+  max-width: none !important; /* This breaks the theme's 100% limit */
+  height: auto !important;
+  display: block;
+}
 
 
 /* 6. PRINT OVERRIDE (Force Arial and Full Width) */
