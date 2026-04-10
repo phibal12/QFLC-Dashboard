@@ -15,6 +15,11 @@ html, body,
   width: 100% !important;
 }
 
+/* Add padding to the top of the content so it's not hidden under the fixed menu */
+body {
+  padding-top: 60px !important; 
+}
+
 
 /* 2. EXPAND WRAPPERS (Crucial for Slate) */
 #header_wrap, #main_content_wrap, #footer_wrap {
@@ -55,13 +60,15 @@ h1 {
 
 /* 4. STICKY TOP NAVIGATION */
 .top-nav {
-  position: sticky;
+  position: fixed !important; /* Changed from sticky to fixed */
   top: 0;
+  left: 0;
+  width: 100% !important;
   background: #161b22 !important;
   border-bottom: 2px solid teal;
   padding: 15px 0;
   text-align: center;
-  z-index: 9999;
+  z-index: 9999 !important; /* Ensure it stays above everything */
   box-shadow: 0 4px 10px rgba(0,0,0,0.5);
 }
 
@@ -89,13 +96,15 @@ a:hover {
 
 /* 6. FLOATING BACK TO TOP BUTTON */
 .back-to-top {
-  position: fixed !important; /* Keeps it locked to the screen, not the page content */
+  position: fixed !important;
   bottom: 20px;
   right: 20px;
-  z-index: 9999 !important; /* Ensures it stays on top of everything */
-  
-  /* Reset any inherited margins that might be pushing the page width */
-  margin: 0 !important;
+  background-color: teal !important;
+  color: white !important;
+  padding: 10px 15px;
+  border-radius: 50px;
+  z-index: 9999 !important;
+  font-weight: bold;
 }
 
 /* --- COMPLETE PRINT OVERRIDE --- */
