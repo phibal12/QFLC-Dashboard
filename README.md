@@ -1,3 +1,9 @@
+<div align="center">
+  <img src="https://placeholder.com" alt="Banner" width="100%">
+  <br>
+  <h1>🚀 QFLC Dashboard</h1>
+</div>
+
 # QF-LCD: Quantum Field Lens Coding Dashboard
 
 ## QFLC Widgets, Datasets, and Presentation Collection
@@ -98,5 +104,8 @@ How does this relate to the QF-LCA Hypercube? This Geometry Lab visualizes the f
 * Email: [philipbaback_orbsix@msn.com](mailto:philipbaback_orbsix@msn.com)
 * Email: [philipbaback66@gmail.com](mailto:philipbaback66@gmail.com)
 * Personal Web: [studentweb.uvic.ca/~phibal12/](https://studentweb.uvic.ca/~phibal12/)
+
+<a href="#" class="back-to-top">↑ Back to Top</a>
+
 
 &copy; Copyright 2026, Philip B. Alipour. All Rights Reserved.
