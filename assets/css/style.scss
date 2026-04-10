@@ -24,17 +24,24 @@ h1 {
 }
 
 
-/* Overrides Slate's narrow container */
-#main_content_wrap .container, 
-#header_wrap .container, 
-#footer_wrap .container {
-  width: 95% !important;   /* Uses 95% of the screen width */
-  max-width: 2400px !important; /* Limits it just enough for huge monitors */
+/* 1. EXPAND WIDTH (Critical for Slate) */
+.inner, .container {
+  max-width: 95% !important; /* Uses 95% of the screen width */
+  width: 95% !important;
   margin: 0 auto !important;
 }
 
-#main_content {
+/* Ensure the main wrap doesn't limit the inner container */
+#main_content_wrap, #header_wrap, #footer_wrap {
   width: 100% !important;
+}
+
+/* 2. BRIGHTEN TITLES */
+h1, h2, h3, h4, h5, h6 {
+  color: #ffffff !important; /* Pure bright white */
+  font-weight: 800 !important;
+  opacity: 1 !important;     /* Removes any theme-level dimming */
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3); /* Subtle glow for extra pop */
 }
 
 
@@ -96,8 +103,16 @@ a:hover {
   font-weight: bold;
 }
 
-/* 5. PRINT STYLE (Keep font modern) */
+/* --- COMPLETE PRINT OVERRIDE --- */
 @media print {
-  body { font-family: sans-serif !important; background: white !important; color: black !important; }
-  .top-nav, .back-to-top { display: none; }
-}
+  /* 5. Force Modern Font and Full Width */
+  html, body, .inner, .container, #main_content {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif !important;
+    background: white !important; /* White background saves ink when printing */
+    color: black !important;      /* Black text for best print contrast */
+  }
+
