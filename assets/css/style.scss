@@ -1,45 +1,62 @@
 ---
 ---
-@import url("https://cloudflare.com");
 @import "{{ site.theme }}";
+@import url("https://cloudflare.com");
 
-/* 1. Force the main background for the entire page */
+/* 1. FORCE DARK THEME & FULL WIDTH */
 html, body {
-  background: #0d1117 !important; /* GitHub dark blue-black */
-  background-image: none !important;
-  color: #c9d1d9 !important; /* Light grey text for readability */
+  background: #0d1117 !important;
+  color: #c9d1d9 !important;
+  margin: 0;
+  padding: 0;
 }
 
-/* 2. Remove the white box/container Slate often uses */
-#main_content_wrap, #main_content, .container, section {
+/* Expand the main container width */
+.container {
+  max-width: 90% !important;
+  width: 90% !important;
+}
+
+#main_content_wrap, #main_content, section {
   background: transparent !important;
-  background-color: transparent !important;
   border: none !important;
-  color: #c9d1d9 !important; /* Force text color inside containers */
 }
 
-/* 3. Style your links and headers to match the dark theme */
-h1, h2, h3, h4, h5, h6 {
-  color: #58a6ff !important; /* Blue headers */
+/* 2. STICKY TOP NAVIGATION */
+.top-nav {
+  position: sticky;
+  top: 0;
+  background: #161b22 !important;
+  border-bottom: 2px solid teal;
+  padding: 15px 0;
+  text-align: center;
+  z-index: 9999;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
 }
 
-a {
-  color: teal !important; /* Your preferred teal color */
+.top-nav a {
+  margin: 0 20px;
+  font-weight: bold;
+  color: #c9d1d9 !important;
+  text-decoration: none !important;
+  transition: all 0.3s ease;
 }
 
-/* 4. Fix for black text that won't change */
-* {
-  text-shadow: none !important;
+.top-nav a:hover {
+  color: #00ffff !important;
+  text-shadow: 0 0 8px rgba(0, 255, 255, 0.8);
 }
+
+/* 3. HOVER GLOW & LINKS */
+a { color: teal !important; }
 
 a:hover {
-  color: #00ffff !important; /* A bright, neon version of teal */
-  text-shadow: 0 0 8px rgba(0, 255, 255, 0.8); /* The "glow" effect */
-  text-decoration: none !important; /* Removes the underline on hover */
-  transition: all 0.3s ease; /* Makes the glow fade in smoothly */
+  color: #00ffff !important;
+  text-shadow: 0 0 8px rgba(0, 255, 255, 0.8);
+  text-decoration: none !important;
 }
 
-/* --- Floating Back to Top Button --- */
+/* 4. FLOATING BACK TO TOP BUTTON */
 .back-to-top {
   position: fixed;
   bottom: 20px;
@@ -48,57 +65,12 @@ a:hover {
   color: white !important;
   padding: 10px 15px;
   border-radius: 50px;
-  text-decoration: none !important;
-  font-weight: bold;
-  font-size: 14px;
-  box-shadow: 0 4px 15px rgba(0, 128, 128, 0.4);
   z-index: 999;
-  transition: transform 0.3s ease, background-color 0.3s ease;
+  font-weight: bold;
 }
 
-.back-to-top:hover {
-  background-color: #00ffff !important;
-  transform: translateY(-5px); /* Lift effect on hover */
-  color: #000 !important;
-}
-
-/* --- Header Polish --- */
-h1 {
-  border-bottom: 2px solid teal !important;
-  padding-bottom: 10px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-}
-
-/* --- Sidebar Styling --- */
-.sidebar {
-  position: fixed;
-  left: 0;
-  top: 100px;
-  width: 200px;
-  background: #161b22 !important; /* Slightly lighter than background */
-  padding: 20px;
-  border-right: 1px solid teal;
-  height: 100%;
-  display: none; /* Hidden on small screens */
-}
-
-@media screen and (min-width: 1000px) {
-  .sidebar { display: block; }
-  #main_content_wrap { margin-left: 220px !important; }
-}
-
-.sidebar a {
-  display: block;
-  padding: 10px 0;
-  font-size: 14px;
-  border-bottom: 1px solid #30363d;
-}
-
+/* 5. PRINT STYLE (Keep font modern) */
 @media print {
-  body, #main_content, h1, h2, h3, a {
-    font-family: sans-serif !important; /* Forces a clean, modern look on paper */
-    color: #000 !important; /* Usually best to print text in black to save ink */
-  }
+  body { font-family: sans-serif !important; background: white !important; color: black !important; }
+  .top-nav, .back-to-top { display: none; }
 }
-
