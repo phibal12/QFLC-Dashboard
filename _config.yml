@@ -2,6 +2,6 @@
 # theme: jekyll-theme-slate #(Dark, technical look)
 # theme: jekyll-theme-architect #(Clean, structured layout)
 # theme: jekyll-theme-merlot #(Elegant, dark red tones); following are dark themes...
- theme: jekyll-theme-hacker
-# theme: jekyll-theme-midnight
+# theme: jekyll-theme-hacker
+ theme: jekyll-theme-midnight
 # theme: jekyll-theme-tactile
