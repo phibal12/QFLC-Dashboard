@@ -6,9 +6,11 @@
 </div>
 
 <div align="center">
-  <br>
-  <h1>🚀 QFLC Dashboard</h1>
-  <p>Live Monitoring and Data Visualization</p>
+  <!-- Use the image above by right-clicking it to 'Copy Image Address' and pasting it below -->
+  <img src="./assets/QFLC_Banner.png" alt="Quantum Entanglement Banner" width="100%" style="border-radius: 10px; box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);">
+  <br><br>
+  <h1 id="qflc-dashboard">🚀 QFLC Dashboard</h1>
+  <p><i>Real-time Quantum State Monitoring & Entanglement Visualization</i></p>
 </div>
 
 ---
