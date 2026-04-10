@@ -31,3 +31,18 @@ a {
   text-shadow: none !important;
 }
 
+a:hover {
+  color: #00ffff !important; /* A bright, neon version of teal */
+  text-shadow: 0 0 8px rgba(0, 255, 255, 0.8); /* The "glow" effect */
+  text-decoration: none !important; /* Removes the underline on hover */
+  transition: all 0.3s ease; /* Makes the glow fade in smoothly */
+}
+
+
+@media print {
+  body, #main_content, h1, h2, h3, a {
+    font-family: sans-serif !important; /* Forces a clean, modern look on paper */
+    color: #000 !important; /* Usually best to print text in black to save ink */
+  }
+}
+
