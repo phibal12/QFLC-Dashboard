@@ -26,9 +26,38 @@ body {
   padding-top: 60px !important; 
 }
 
-aside#sidebar {
-  display: none !important;    /* Completely removes the ghost sidebar area */
+/* 1. RESET ALL WRAPPERS */
+#header_wrap, #main_content_wrap, #footer_wrap {
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 0 !important;
+  display: block !important;
+  float: none !important;
 }
+
+/* 2. THE NUCLEAR FIX FOR THE GAP */
+/* We target the ID and the CLASS to override Slate's hardcoded float:left */
+section#main_content, .inner {
+  float: none !important;         /* This kills the float causing the gap */
+  display: block !important;
+  width: 90% !important;          /* Your desired page width */
+  max-width: 1400px !important;   /* Prevents it from getting too wide */
+  margin: 0 auto !important;      /* Now this will actually center the page */
+  padding: 20px 0 !important;
+}
+
+/* 3. REMOVE GHOST SIDEBAR */
+aside#sidebar {
+  display: none !important;      /* Completely removes the reserved sidebar area */
+  width: 0 !important;
+}
+
+/* 4. PREVENT SIDE-SCROLLING */
+html, body {
+  overflow-x: hidden !important; /* Clips any stray pixels causing the gap */
+  width: 100% !important;
+}
+
 
 /* 2. EXPAND WRAPPERS (Crucial for Slate) */
 #header_wrap, #main_content_wrap, #footer_wrap {
