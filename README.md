@@ -124,7 +124,15 @@ How does this relate to the QF-LCA Hypercube? This Geometry Lab visualizes the f
   <a href="mailto:your-email@example.com"><i class="fas fa-envelope fa-2x"></i></a>
 </div>
 
-<a href="#" class="back-to-top">↑ Back to Top</a>
+<!-- Fixed Bottom Menu -->
+<div class="bottom-nav">
+  <a href="#qflc-dashboard">🏠 Home</a>
+  <a href="#features">📊 Features</a>
+  <a href="#installation">⚙️ Setup</a>
+  <a href="#contact">📩 Contact</a>
+  <a href="#">↑ Back to Top</a>
+</div>
+
 
 
 &copy; Copyright 2026, Philip B. Alipour. All Rights Reserved.
