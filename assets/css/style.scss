@@ -61,6 +61,13 @@ body {
   text-align: left !important;
 }
 
+#header_wrap .inner {
+  float: none !important;
+  margin: 0 auto !important;
+  width: 90% !important;
+  text-align: center; /* Centers your Title and Banner */
+}
+
 /* 3. BRIGHTEN TITLES */
 h1, h2, h3, h4, h5, h6 {
   color: #01F9C6 !important; /* Pure bright teal */
