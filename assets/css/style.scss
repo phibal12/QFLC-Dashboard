@@ -35,14 +35,10 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Optional: Make the very top title (H1) stand out in teal */
 h1 {
-  color: #00ffff !important; /* Bright Teal/Cyan */
+  color: #00ffff !important; /* Bright Teal//Neon Teal/Cyan */
 }
 
-/* Expand the main container width */
-.container {
-  max-width: 90% !important;
-  width: 90% !important;
-}
+
 
 #main_content_wrap, #main_content, section {
   background: transparent !important;
