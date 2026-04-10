@@ -4,6 +4,24 @@
   <h1>🚀 QFLC Dashboard</h1>
 </div>
 
+<!-- Sidebar Menu -->
+<div class="sidebar">
+  <h3 style="color: teal;">Navigation</h3>
+  <a href="#introduction">🏠 Intro</a>
+  <a href="#installation">⚙️ Installation</a>
+  <a href="#usage">📊 Usage</a>
+  <a href="#contact">📩 Contact</a>
+</div>
+
+<!-- Contact Icons Section -->
+## Contact Me
+<p>
+  <a href="https://github.com"><i class="fab fa-github fa-2x"></i></a> &nbsp;
+  <a href="mailto:your-email@example.com"><i class="fas fa-envelope fa-2x"></i></a> &nbsp;
+  <a href="https://yourwebsite.com"><i class="fas fa-link fa-2x"></i></a>
+</p>
+
+
 # QF-LCD: Quantum Field Lens Coding Dashboard
 
 ## QFLC Widgets, Datasets, and Presentation Collection
