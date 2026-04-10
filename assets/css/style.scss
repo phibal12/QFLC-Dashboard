@@ -18,13 +18,13 @@ html, body,
 #header_wrap, #main_content_wrap, #footer_wrap {
   width: 80% !important;
   max-width: 80% !important;
-  padding: 0 !important;
+  padding: 50 !important;
 }
 
 .inner, #main_content {
   width: 95% !important;
   max-width: 1400px !important; /* Limits width just enough for ultra-wide screens */
-  margin: 0 auto !important;
+  margin: 200 auto !important;
 }
 
 /* 3. BRIGHTEN TITLES */
