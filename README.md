@@ -26,9 +26,9 @@ This collection serves as a unified portfolio, translating the theoretical frame
 ## 🧭 Clickable Visual Directory
 *Click on any module below to jump to its detailed description and links.*
 
-| <a href="#1-qf-lca-quantum-hardware-synthesis-engine-and-phase-simulator"><img src="./assets/QFLCH_Poster.png" alt="Synthesis Engine" width="350" style="border-radius:8px; border:2px solid #3b82f6;"></a> | <a href="#2-qdf-phase--game-theory-simulator"><img src="Screenshot_8-4-2026_215657_.jpeg" alt="Game Theory Simulator" width="350" style="border-radius:8px; border:2px solid #10b981;"></a> |
+| <a href="#1-qf-lc-hypercube-hardware-synthesis-engine-and-phase-simulator"><img src="./assets/QFLCH_Poster.png" alt="Synthesis Engine" width="350" style="border-radius:8px; border:2px solid #3b82f6;"></a> | <a href="#2-qdf-phase--game-theory-simulator"><img src="Screenshot_8-4-2026_215657_.jpeg" alt="Game Theory Simulator" width="350" style="border-radius:8px; border:2px solid #10b981;"></a> |
 |:---:|:---:|
-| **[1. QF-LC Hardware Synthesis Engine (Hypercube)](#1-qf-lca-unified-quantum-hardware-synthesis-engine-and-phase-simulator)** | **[2. QDF Phase and Game Theory Simulator](#2-qdf-phase-and-game-theory-simulator)** |
+| **[1. QF-LC Hypercube Hardware Synthesis Engine (Hypercube)](#1-qf-lc-hypercube-hardware-synthesis-engine-and-phase-simulator)** | **[2. QDF Phase and Game Theory Simulator](#2-qdf-phase-and-game-theory-simulator)** |
 
 | <a href="#3-qf-lcs-system-state-predictions--lens-coding-simulator"><img src="Screenshot_8-4-2026_22257_.jpeg" alt="Prediction Simulator" width="350" style="border-radius:8px; border:2px solid #f59e0b;"></a> | <a href="#4-qdf-lens-geometry-lab-and-particle-trap"><img src="./assets/QDF_Lens_Screenshot00.JPG" alt="Geometry Lab" width="350" style="border-radius:8px; border:2px solid #8b5cf6;"></a> |
 |:---:|:---:|
@@ -50,7 +50,7 @@ Based on the Post-Ph.D. Defense Seminar and the accompanying transcript, this co
 
 The theoretical concepts discussed in the seminar have been synthesized into the following interactive dashboards and simulators. 
 
-### 1. QF-LCA Quantum Hardware Synthesis Engine and Phase Simulator
+### 1. QF-LC Hypercube Hardware Synthesis Engine and Phase Simulator
 <a href="#1-qf-lca-quantum-hardware-synthesis-engine-and-phase-simulator"><img src="./assets/QFLCH_Poster.png" alt="QF-LC Hardware Synthesis Engine (Hypercube)" height="100%" width="100%" style="border-radius:8px; border:2px solid #8b5cf6;"></a><br> 
 
 This is the flagship of the hardware engineering dashboard. It bypasses the visual intractability of traditional Karnaugh maps (scaling up to 12D/4096 nodes) by applying global field evaluations. 
