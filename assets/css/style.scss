@@ -13,16 +13,19 @@ html, body {
 
 /* 1. EXPAND WIDTH (Critical for Slate) */
 /* Add this if the web version is still narrow */
+/* 1. EXPAND WIDTH (Fixed typo and added ID override) */
 .inner {
   max-width: 95% !important;
   width: 95% !important;
-   margin: 0 manual !important;
+  margin: 0 auto !important; /* Fixed typo from 'manual' to 'auto' */
 }
 
-/* 2. REMOVE FIXED WRAPPER LIMITS */
-#header_wrap, #main_content_wrap, #footer_wrap {
+/* Slate specifically sets a fixed width on this ID that blocks widening */
+#main_content {
   width: 100% !important;
+  max-width: 100% !important;
 }
+
 
 /* 2. BRIGHTEN TITLES */
 h1, h2, h3, h4, h5, h6 {
@@ -38,14 +41,7 @@ h1 {
   color: #00ffff !important; /* Bright Teal//Neon Teal/Cyan */
 }
 
-
-
-#main_content_wrap, #main_content, section {
-  background: transparent !important;
-  border: none !important;
-}
-
-/* 2. STICKY TOP NAVIGATION */
+/* 3. STICKY TOP NAVIGATION */
 .top-nav {
   position: sticky;
   top: 0;
