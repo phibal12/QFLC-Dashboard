@@ -11,10 +11,8 @@
   <h1>🚀 QFLC Dashboard <span class="live-dot">🔵</span>Live</h1>
   <p><i>Real-time Quantum State Monitoring & Entanglement Visualization</i></p>
 </div>
+
 ---
-
-
-
 # QF-LCD: Quantum Field Lens Coding Dashboard
 
 ## QFLC Widgets, Datasets, and Presentation Collection
