@@ -23,6 +23,12 @@ html, body,
   padding: 0 !important;
 }
 
+#main_content_wrap {
+  display: flex !important;
+  justify-content: center !important;
+  width: 100% !important;
+}
+
 .inner, #main_content {
   width: 95% !important;
   /* These three lines center the 90% container on the screen */
