@@ -71,6 +71,7 @@ This widget translates the QDF model into a game theory environment. As discusse
 This dashboard provides a robust, granular look into the mathematical engine of the Quantum Field Lens Coding system. It allows users to manipulate the baseline metrics of the complex field and observe the optimized hardware routing in real-time. It acts as a direct visualizer for the transition probabilities and error rates discussed in the seminar's "Energy Paths" section.
 
 ### 4. QDF Lens Geometry Lab & Particle Trap
+<a href="#4-qdf-lens-geometry-lab--particle-trap"><img src="./assets/QDF_Lens_Screenshot00.JPG" alt="Geometry Lab" width="350" style="border-radius:8px; border:2px solid #8b5cf6;"></a> 
 *(Live verification of Spatial Density and Lens Distance)*
 
 Directly correlating with the "Measurement" and "Lens Focus" sections of the seminar, this Geometry Lab visualizes the physical interaction length between the source and the target state. 
