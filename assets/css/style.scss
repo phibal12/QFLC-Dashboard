@@ -34,14 +34,29 @@ body {
   width: 100% !important;
 }
 
-.inner, #main_content {
+/* .inner, #main_content {
   width: 95% !important;
-  /* These three lines center the 90% container on the screen */
   display: block !important;
   margin-left: auto !important;
   margin-right: auto !important;
-  max-width: 1400px !important; /* Limits width just enough for ultra-wide screens */
+  max-width: 1400px !important; 
   margin: 0 auto !important;
+} */
+
+.inner, #main_content {
+  /* Slate uses floats that break centering; this turns them off */
+  float: none !important; 
+  position: relative !important;
+  
+  width: 90% !important;
+  max-width: 1400px !important;
+  
+  /* Standard centering as a backup */
+  margin-left: auto !important;
+  margin-right: auto !important;
+  
+  /* Keeps your dashboard text left-aligned inside the centered box */
+  text-align: left !important;
 }
 
 /* 3. BRIGHTEN TITLES */
