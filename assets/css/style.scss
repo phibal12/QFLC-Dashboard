@@ -84,36 +84,35 @@ a:hover { color: #00ffff !important; text-shadow: 0 0 8px rgba(0, 255, 255, 0.8)
 
 
 /*5. --- STYLE THE GITHUB BUTTON --- */
+/* --- STYLE THE FORK ME BANNER WITH OCTOCAT --- */
 #forkme_banner {
-  background: teal !important;               /* Change background color */
-  background-color: #008080 !important;      /* Backup for solid teal */
-  color: #fff !important;                    /* Text color */
-  border: 1px solid #00ffff !important;      /* Bright teal border */
-  box-shadow: 0 0 10px rgba(0, 255, 255, 0.3) !important;
+  background: teal !important;
+  color: #fff !important;
   font-weight: bold !important;
-  text-shadow: none !important;
-  opacity: 1 !important;
-  z-index: 1000 !important;                  /* Ensure it stays above everything */
+  padding: 10px 20px 10px 50px !important; /* Space for the icon */
+  border-radius: 5px;
+  position: absolute;
+  top: 85px; /* Positioned below your Top Nav */
+  right: 5%;
+  z-index: 1000;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
 }
 
 #forkme_banner::before {
-  content: "\f09b";             /* Font Awesome GitHub icon code */
+  content: "\f09b"; /* Font Awesome GitHub icon */
   font-family: "Font Awesome 6 Brands";
   position: absolute;
   left: 15px;
+  font-size: 22px;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 20px;
-  color: #fff;                  /* Icon color */
 }
 
 #forkme_banner:hover {
-  background: #00ffff !important;            /* Bright neon teal on hover */
-  color: #000 !important;                    /* Dark text for contrast */
-  box-shadow: 0 0 20px rgba(0, 255, 255, 0.6) !important;
-  text-decoration: none !important;
+  background: #00ffff !important;
+  color: #000 !important;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
 }
-
 
 
 /* 6. PRINT OVERRIDE (Force Arial and Full Width) */
