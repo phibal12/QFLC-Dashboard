@@ -70,7 +70,7 @@ aside#sidebar {
 }
 
 /* 4. TITLES & LINKS */
-h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6 {
   color: #01F9C6 !important; /* Bright Teal */
   opacity: 1 !important;
   text-shadow: 0 0 10px rgba(1, 249, 198, 0.2);
@@ -82,7 +82,32 @@ h1 { color: #00ffff !important; text-align: center !important; }
 a { color: teal !important; transition: 0.3s; }
 a:hover { color: #00ffff !important; text-shadow: 0 0 8px rgba(0, 255, 255, 0.8); }
 
-/* 5. PRINT OVERRIDE (Force Arial and Full Width) */
+
+/*5. --- STYLE THE GITHUB BUTTON --- */
+#header_wrap .button {
+  background: rgba(0, 128, 128, 0.2) !important; /* Transparent teal */
+  color: #00ffff !important;                     /* Bright teal text */
+  border: 1px solid teal !important;             /* Teal border */
+  border-radius: 5px !important;                 /* Keep it rectangular but slightly rounded */
+  transition: all 0.3s ease !important;
+  text-shadow: none !important;                  /* Remove default theme shadow */
+  box-shadow: 0 0 5px rgba(0, 255, 255, 0.1);
+}
+
+#header_wrap .button:hover {
+  background: teal !important;                   /* Solid teal on hover */
+  color: #000 !important;                        /* Dark text for contrast */
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);   /* Glow effect */
+  text-decoration: none !important;
+}
+
+/* Ensure the button doesn't get pushed around by our centering fixes */
+#header_wrap {
+  position: relative;
+}
+
+
+/* 6. PRINT OVERRIDE (Force Arial and Full Width) */
 @media print {
   *, html, body, h1, h2, h3, h4, h5, h6, p, a, li, span, div {
     font-family: Arial, sans-serif !important;
