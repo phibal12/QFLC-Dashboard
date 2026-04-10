@@ -4,15 +4,17 @@
 @import url("https://cloudflare.com");
 
 /* 1. FORCE DARK THEME & FULL WIDTH */
-html, body {
-  background: #0d1117 !important;
+html, body, 
+#header_wrap, #main_content_wrap, #footer_wrap, 
+.inner, #main_content {
+  background: #0d1117 !important; /* Forces dark color everywhere */
+  background-color: #0d1117 !important;
+  background-image: none !important; /* Removes any default theme gradients */
   color: #c9d1d9 !important;
-  margin: 0;
-  padding: 0;
 }
 
 
-/* 1. EXPAND WRAPPERS (Crucial for Slate) */
+/* 2. EXPAND WRAPPERS (Crucial for Slate) */
 #header_wrap, #main_content_wrap, #footer_wrap {
   width: 100% !important;
   max-width: 100% !important;
@@ -25,7 +27,7 @@ html, body {
   margin: 0 auto !important;
 }
 
-/* 2. BRIGHTEN TITLES */
+/* 3. BRIGHTEN TITLES */
 h1, h2, h3, h4, h5, h6 {
   color: #01F9C6 !important; /* Pure bright teal */
   font-weight: 800 !important;
@@ -39,7 +41,7 @@ h1 {
   color: #00ffff !important; /* Bright Teal//Neon Teal/Cyan */
 }
 
-/* 3. STICKY TOP NAVIGATION */
+/* 4. STICKY TOP NAVIGATION */
 .top-nav {
   position: sticky;
   top: 0;
@@ -64,7 +66,7 @@ h1 {
   text-shadow: 0 0 8px rgba(0, 255, 255, 0.8);
 }
 
-/* 3. HOVER GLOW & LINKS */
+/* 5. HOVER GLOW & LINKS */
 a { color: teal !important; }
 
 a:hover {
@@ -73,7 +75,7 @@ a:hover {
   text-decoration: none !important;
 }
 
-/* 4. FLOATING BACK TO TOP BUTTON */
+/* 6. FLOATING BACK TO TOP BUTTON */
 .back-to-top {
   position: fixed;
   bottom: 20px;
@@ -92,7 +94,7 @@ a:hover {
     display: block;
     page-break-before: always;
   }
-  /* 5. Force Modern Font and Full Width */
+  /* 7. Force Modern Font and Full Width */
   html, body, .inner, .container, #main_content {
     width: 100% !important;
     max-width: 100% !important;
