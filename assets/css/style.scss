@@ -89,13 +89,16 @@ a:hover { color: #00ffff !important; text-shadow: 0 0 8px rgba(0, 255, 255, 0.8)
   background: teal !important;
   color: #fff !important;
   font-weight: bold !important;
-  padding: 10px 20px 10px 50px !important; /* Space for the icon */
+  padding: 10px 20px 10px 50px !important;
   border-radius: 5px;
   position: absolute;
-  top: 85px; /* Positioned below your Top Nav */
+  top: 85px;
   right: 5%;
   z-index: 1000;
   box-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
+  /* Smoothly animate all changes */
+  transition: all 0.3s ease-in-out; 
+  text-decoration: none;
 }
 
 #forkme_banner::before {
@@ -108,6 +111,7 @@ a:hover { color: #00ffff !important; text-shadow: 0 0 8px rgba(0, 255, 255, 0.8)
   top: 50%;
   transform: translateY(-50%);
 }
+
 
 #forkme_banner:hover {
   background: #00ffff !important;
