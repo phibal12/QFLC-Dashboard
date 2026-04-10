@@ -18,13 +18,17 @@ html, body,
 #header_wrap, #main_content_wrap, #footer_wrap {
   width: 80% !important;
   max-width: 80% !important;
-  padding: 50 !important;
+  padding: 0 !important;
 }
 
 .inner, #main_content {
   width: 95% !important;
+  /* These three lines center the 90% container on the screen */
+  display: block !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
   max-width: 1400px !important; /* Limits width just enough for ultra-wide screens */
-  margin: 200 auto !important;
+  margin: 0 auto !important;
 }
 
 /* 3. BRIGHTEN TITLES */
