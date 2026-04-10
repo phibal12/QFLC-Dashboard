@@ -2,13 +2,24 @@
 ---
 @import "{{ site.theme }}";
 
-body {
-  background-color: #0d1117; /* This is the GitHub dark mode color */
-  background-image: none;    /* Ensures no gradients block your color */
-  color: #c9d1d9;            /* Sets text to a readable light grey */
+/* Slate-specific override */
+html, body {
+  background: #0d1117 !important; /* Force the background color */
+  background-image: none !important;
 }
 
-/* Optional: Change link colors to pop against the dark background */
-a {
-  color: #58a6ff;
+/* Optional: If the header is still a different color, use this: */
+#header {
+  background: transparent !important;
 }
+
+/* Optional: Ensure text remains visible */
+body {
+  color: #c9d1d9 !important;
+}
+
+
+/* Optional: Change link colors to pop against the dark background */
+/* a {
+  color: #58a6ff;
+} */
