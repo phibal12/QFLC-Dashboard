@@ -23,14 +23,14 @@ This collection serves as a unified portfolio, translating the theoretical frame
 
 ---
 
-## 🧭 Clickable Visual Directory
+## 🧭 Visual Directory
 *Click on any module below to jump to its detailed description and links.*
 
-| <a href="#1-qf-lc-hypercube-hardware-synthesis-engine-and-phase-simulator"><img src="./assets/QFLCH_Poster.png" alt="Synthesis Engine" width="350" style="border-radius:8px; border:2px solid #3b82f6;"></a> | <a href="#2-qdf-phase--game-theory-simulator"><img src="Screenshot_8-4-2026_215657_.jpeg" alt="Game Theory Simulator" width="350" style="border-radius:8px; border:2px solid #10b981;"></a> |
+| <a href="#1-qf-lc-hypercube-hardware-synthesis-engine-and-phase-simulator"><img src="./assets/QFLCH_Poster.png" alt="Synthesis Engine" width="350" style="border-radius:8px; border:2px solid #3b82f6;"></a> | <a href="#2-qdf-phase--game-theory-simulator"><img src="Screenshot_8-4-2026_215657_.jpg" alt="Game Theory Simulator" width="350" style="border-radius:8px; border:2px solid #10b981;"></a> |
 |:---:|:---:|
 | **[1. QF-LC Hypercube Hardware Synthesis Engine (Hypercube)](#1-qf-lc-hypercube-hardware-synthesis-engine-and-phase-simulator)** | **[2. QDF Phase and Game Theory Simulator](#2-qdf-phase-and-game-theory-simulator)** |
 
-| <a href="#3-qf-lcs-system-state-predictions--lens-coding-simulator"><img src="Screenshot_8-4-2026_22257_.jpeg" alt="Prediction Simulator" width="350" style="border-radius:8px; border:2px solid #f59e0b;"></a> | <a href="#4-qdf-lens-geometry-lab-and-particle-trap"><img src="./assets/QDF_Lens_Screenshot00.JPG" alt="Geometry Lab" width="350" style="border-radius:8px; border:2px solid #8b5cf6;"></a> |
+| <a href="#3-qf-lcs-system-state-predictions--lens-coding-simulator"><img src="./assets/QDF_P_Screenshot01.jpg" alt="QDF Prediction Simulator" width="350" style="border-radius:8px; border:2px solid #f59e0b;"></a> | <a href="#4-qdf-lens-geometry-lab-and-particle-trap"><img src="./assets/QDF_Lens_Screenshot00.JPG" alt="Geometry Lab" width="350" style="border-radius:8px; border:2px solid #8b5cf6;"></a> |
 |:---:|:---:|
 | **[3. System State Prediction Simulator](#3-qf-lcs-system-state-predictions--lens-coding-simulator)** | **[4. QDF Lens Geometry Lab and Trap](#4-qdf-lens-geometry-lab-and-particle-trap)** |
 
@@ -70,6 +70,7 @@ This widget translates the QDF model into a game theory environment. As discusse
 * **Outcome:** It visualizes the probability doubling mechanism where information is safely received, and a decision state (the "prize") is resolved.
 
 ### 3. QF-LCS: System State Predictions and Lens Coding Simulator
+<a href="#4-qdf-lens-geometry-lab--particle-trap"><img src="./assets/QDF_P_Screenshot00.JPG" alt="Geometry Lab" height="70%" width="70%" style="border-radius:8px; border:2px solid #8b5cf6;"></a><br> 
 *(The core simulation engine for strong predictions)*
 
 This dashboard provides a robust, granular look into the mathematical engine of the Quantum Field Lens Coding system. It allows users to manipulate the baseline metrics of the complex field and observe the optimized hardware routing in real-time. It acts as a direct visualizer for the transition probabilities and error rates discussed in the seminar's "Energy Paths" section.
