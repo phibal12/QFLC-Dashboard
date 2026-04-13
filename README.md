@@ -8,7 +8,7 @@
 <div align="center">
   <!-- Use the image above by right-clicking it to 'Copy Image Address' and pasting it below -->
   <img src="./assets/QFLC_Banner00.png" alt="Quantum Entanglement Banner" height="100%" width="100%" style="border-radius: 10px; box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);">
-  <h1>🖥️📊 QFLC Dashboard <span class="live-dot"> 🔵 </span> Live</h1>
+  <h1>🖥️📊 QFLC Dashboard <span class="live-dot" style="color: red;"  > 🔵  Live</span></h1>
   <p><i>Real-time Quantum State Monitoring & Entanglement Visualization</i></p>
 </div>
 
@@ -26,7 +26,7 @@ This collection serves as a unified portfolio, translating the theoretical frame
 ## 🧭 Visual Directory
 *Click on any module below to jump to its detailed description and links.*
 
-| <a href="#1-qf-lc-hypercube-hardware-synthesis-engine-and-phase-simulator"><img src="./assets/QFLCH_Poster.png" alt="Synthesis Engine" width="350" style="border-radius:8px; border:2px solid #3b82f6;"></a> | <a href="#2-qdf-phase--game-theory-simulator"><img src="Screenshot_8-4-2026_215657_.jpg" alt="Game Theory Simulator" width="350" style="border-radius:8px; border:2px solid #10b981;"></a> |
+| <a href="#1-qf-lc-hypercube-hardware-synthesis-engine-and-phase-simulator"><img src="./assets/QFLCH_Poster.png" alt="Synthesis Engine" width="350" style="border-radius:8px; border:2px solid #3b82f6;"></a> | <a href="#2-qdf-phase--game-theory-simulator"><img src="./assets/QDF_P_Screenshot01.jpg" alt="Game Theory Simulator" width="350" style="border-radius:8px; border:2px solid #10b981;"></a> |
 |:---:|:---:|
 | **[1. QF-LC Hypercube Hardware Synthesis Engine (Hypercube)](#1-qf-lc-hypercube-hardware-synthesis-engine-and-phase-simulator)** | **[2. QDF Phase and Game Theory Simulator](#2-qdf-phase-and-game-theory-simulator)** |
 
@@ -63,6 +63,7 @@ This is the flagship of the hardware engineering dashboard. It bypasses the visu
 * Dual-compilation engine outputting both FPGA-ready VHDL and QPU-ready OpenQASM 2.0.
 
 ### 2. QDF Phase and Game Theory Simulator
+<a href="#4-qdf-lens-geometry-lab--particle-trap"><img src="./assets/QDF_P_Screenshot00.JPG" alt="Geometry Lab" height="70%" width="70%" style="border-radius:8px; border:2px solid #8b5cf6;"></a><br> 
 *(Demonstrating Quantum Phase Transitions and Participant Decisions)*
 
 This widget translates the QDF model into a game theory environment. As discussed in the seminar's exploration of entanglement and Quantum Key Distribution (QKD), this simulator models scenarios where four or more participants interact on a quantum level. 
