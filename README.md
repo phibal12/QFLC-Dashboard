@@ -30,7 +30,7 @@ This collection serves as a unified portfolio, translating the theoretical frame
 |:---:|:---:|
 | **[1. QF-LC Hypercube Hardware Synthesis Engine (Hypercube)](#1-qf-lc-hypercube-hardware-synthesis-engine-and-phase-simulator)** | **[2. QDF Phase and Game Theory Simulator](#2-qdf-phase-and-game-theory-simulator)** |
 
-| <a href="#3-qf-lcs:-system-state-predictions-and-lens-coding-simulator"><img src="./assets/QDF_P_Screenshot01.jpg" alt="QDF Prediction Simulator" width="350" style="border-radius:8px; border:2px solid #f59e0b;"></a> | <a href="#4-qdf-lens-geometry-lab-and-particle-trap"><img src="./assets/QDF_Lens_Screenshot00.JPG" alt="Geometry Lab" width="350" style="border-radius:8px; border:2px solid #8b5cf6;"></a> |
+| <a href="#3-qf-lcs-system-state-predictions-and-lens-coding-simulator"><img src="./assets/QDF_P_Screenshot01.jpg" alt="QDF Prediction Simulator" width="350" style="border-radius:8px; border:2px solid #f59e0b;"></a> | <a href="#4-qdf-lens-geometry-lab-and-particle-trap"><img src="./assets/QDF_Lens_Screenshot00.JPG" alt="Geometry Lab" width="350" style="border-radius:8px; border:2px solid #8b5cf6;"></a> |
 |:---:|:---:|
 | **[3. System State Prediction Simulator](#3-qf-lcs-system-state-predictions--lens-coding-simulator)** | **[4. QDF Lens Geometry Lab and Trap](#4-qdf-lens-geometry-lab-and-particle-trap)** |
 
