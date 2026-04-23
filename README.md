@@ -316,5 +316,56 @@ The QF-LCA requires high connectivity between the three qubits.
 </div>
 
 
+# 🌌 QF-LCA Project Dashboard
+**Quantum Field Lens Coding: Theory, Algorithm, and Simulation**
+
+Welcome to the central hub for the **Quantum Field Lens Coding (QF-LCA)** project. This dashboard provides direct access to all research assets, licensing, and implementation tools derived from the [University of Victoria](https://uvic.ca) dissertation research.
+
+---
+
+### 📂 Project Navigation Matrix
+
+
+| 📚 Research & Theory | 💻 Code & Implementation | ⚖️ Legal & Contributing |
+| :--- | :--- | :--- |
+| [🎓 PhD Dissertation](https://uvic.ca) | [🧩 QF-LCA Algorithm (Py)](assets/QF_LCA_Core.py) | [📜 Copyright Notice](assets/NOTICE.md) |
+| [📄 MethodsX Publication](https://doi.org) | [⚙️ Circuit Simulation (Qiskit)](assets/QF_LCC_Circuit.py) | [🔑 MIT License](LICENSE) |
+| [📊 Mendeley Dataset](https://doi.org) | [📈 Data Visualization](assets/QDF_Visualizer.ipynb) | [🤝 Contributing Guide](assets/CONTRIBUTING.md) |
+
+---
+
+### 🔍 Quick Access Highlights
+
+<details>
+<summary><b>🚀 Core Objectives</b></summary>
+
+- **Probability Doubling**: Shifting state transition predictions from $P \approx 1/3$ to $P \geq 2/3$.
+- **Field Lens Scaling**: Implementing the strict $\kappa$-$\rho$ stability window ($|\kappa^2| \rho \leq 2$).
+- **3-Way Entanglement**: Utilizing the 'Bridge Qubit' for hidden Bell state decoding.
+</details>
+
+<details>
+<summary><b>🛠️ Environment Setup</b></summary>
+
+To run these assets locally, ensure your environment matches the [Project Requirements](assets/README_Technical.md):
+```bash
+pip install numpy scipy matplotlib qiskit pandas scikit-learn
+```
+</details>
+
+---
+
+### 📋 Technical Metadata
+- **Author**: Philip Baback Alipour
+- **Institutional Archive**: UVicSpace
+- **Primary Frameworks**: Qiskit, Python 3.x, DFC Model
+- **Repository Maintenance**: For updates, see [CHANGELOG](assets/CHANGELOG.md)
+
+---
+
+### ⚖️ Final Attribution Notice
+The software provided in this dashboard is intended for academic and research purposes. Please cite the original dissertation and the associated **MethodsX** paper when utilizing the **QDF** logic or datasets in your own work.
+
+
 
 &copy; Copyright 2026, Philip B. Alipour. All Rights Reserved.
