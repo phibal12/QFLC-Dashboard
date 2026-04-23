@@ -204,6 +204,68 @@ def create_qdf_circuit():
 ### 3. Application in QAI
 The output of `apply_qf_lens_scaling` is passed directly to the **Quantum AI (QAI) Classifier** to verify if the state transition meets the $\langle M(F) \rangle \geq 7/5$ fidelity threshold required for strong prediction.
 
+---
+
+## Usage Example: Predicting State Transitions
+
+Follow these steps to run a validation test between a standard **Single-Field (SF)** measurement and the **Quantum Double-Field (QDF)** prediction.
+
+### Running a Test Case
+1. **Initialize** the system with a standard transition probability ($P \approx 0.33$).
+2. **Apply** the $\kappa$ scalar (set $\kappa = 1.0$ for the critical transition point).
+3. **Compare** the results.
+
+```python
+# Example Simulation Call
+p_initial = 0.333  # Standard SF Limit (1/3)
+kappa_value = 1.0  # Critical scaling factor
+
+# Apply the QF-LCA Lens
+p_predicted = apply_qf_lens_scaling(kappa_value, p_initial)
+
+print(f"Initial SF Probability: {p_initial:.3f}")
+print(f"Predicted QDF Probability: {p_predicted:.3f}")
+
+if p_predicted >= 0.666:
+    print("Result: Success. State transition probability doubled (Strong Prediction).")
+else:
+    print("Result: Dissipative. System remains in SF limit.")
+```
+
+### Interpreting the Output
+*   **If Result is Convex ($P \geq 2/3$):** The 3-qubit entanglement is successful. The "Bridge" qubit has decoded the hidden correlations, and the QAI classifier can now suggest an efficient energy path.
+*   **If Result is Concave ($P \leq 1/3$):** The system is experiencing high decoherence or $\kappa$ is too low. No strong prediction can be made.
+
+### Verification via Dataset
+For large-scale validation, use the **`QDF_Dataset.csv`** provided in the repository. Load the dataset into the QAI classifier script to visualize the "Lens" focusing across thousands of particle interactions:
+
+```bash
+python QAI-LCode_QFLCC.py --input QDF_Dataset.csv --kappa 1.0
+```
+
+---
+## Troubleshooting: Managing Decoherence in the 3-Qubit Circuit
+
+Decoherence acts as a "blurring" effect on the Quantum Field Lens, pushing a **convex** (predictive) result back into a **concave** (dissipative) state. Use the following strategies to maintain the $P \geq 2/3$ threshold.
+
+### 1. Identifying "Lens Blur" (Noise Detection)
+If the QAI classifier returns a fidelity $\langle M(F) \rangle < 1.0$, the 3rd "bridge" qubit likely lost its correlation with the sampled pair.
+*   **Symptom:** The Entanglement Entropy (EE) becomes linear (Shannon-like) rather than the non-linear curve expected in QDF.
+*   **Fix:** Reduce the gate depth between the initial Hadamard and the final SWAP operation.
+
+### 2. Error Mitigation for the $\kappa$ Operation
+The $\kappa$ scalar is sensitive to gate errors in the CNOT sequences.
+*   **Strategy:** Implement **Zero-Noise Extrapolation (ZNE)**. Run the circuit at different noise levels and extrapolate back to the "zero-noise" limit to recover the convex peak.
+*   **Circuit Adjustment:** Ensure the SWAP gate occurs within the $T_2$ coherence time of the specific hardware being used (e.g., IBM Heron or Osprey processors).
+
+### 3. Handling "Defocused" (Concave) Outputs
+If the output remains concave despite $\kappa \geq 1$:
+*   **Check Tangle:** Verify the 3-qubit tangle. If the tangle value is near zero, the system has reverted to a **Single-Field (SF)** state.
+*   **Recalibration:** Re-run the `qdf_lens_transformation` function with a higher $\kappa$ value to compensate for the hardware's interaction loss.
+
+### 4. Hardware Connectivity
+The QF-LCA requires high connectivity between the three qubits. 
+*   **Best Practice:** Map the 3 qubits to a "triangle" or "all-to-all" topology on the QPU to avoid unnecessary SWAP gates that accumulate error.
 
 
 ---
