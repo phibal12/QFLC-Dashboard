@@ -10,7 +10,7 @@
 - **Data Usage**: Datasets are available via [Mendeley Data](https://doi.org) under [CC BY 4.0](https://creativecommons.org).
 
 ---
-# Short Form Representation
+# Core Implementation (Short Form Representation): QF-LCA Scaling & Entanglement
 
 The following components summarize the transformation from a dissipative Single-Field (SF) state to a predictive Quantum Double-Field (QDF) state as defined in P. Alipour's research (UVic, 2023--2026). 
 <details>
