@@ -97,6 +97,14 @@ print(f"Status: {status} | Predicted QDF Probability: {p_predicted:.3f}")
 
 ---
 
+---
+### ⚖️ Licensing & Copyright
+- **Software Code**: This implementation is licensed under the [MIT License](LICENSE).
+- **Theoretical Research**: The **Quantum Field Lens Coding** dissertation is © 2023 Philip Alipour. 
+- **Open Access**: Distributed via [UVicSpace](https://uvic.ca) under a non-exclusive license. 
+- **Reuse**: For any substantial reuse of diagrams, math, or text from the dissertation, please follow [CC BY-NC 4.0](https://creativecommons.org) guidelines and provide proper attribution.
+
+
 ### Reference
 Alipour, P. (2023). *Quantum Field Lens Coding*. University of Victoria (UVicSpace).
 [MethodsX Publication](https://doi.org) | [Mendeley Dataset](https://doi.org)
