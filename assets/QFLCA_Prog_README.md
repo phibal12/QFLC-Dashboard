@@ -97,7 +97,7 @@ print(f"Status: {status} | Predicted QDF Probability: {p_predicted:.3f}")
 ---
 ### QF-LCA Geometric State Correlation: Concave vs. Convex
 
-The following table summarizes the transformation from a dissipative Single-Field (SF) state to a predictive Quantum Double-Field (QDF) state as defined in P. Alipour's research (UVic, 2023).
+The following table summarizes the transformation from a dissipative Single-Field (SF) state to a predictive Quantum Double-Field (QDF) state as defined in P. Alipour's research (UVic, 2023--2026).
 
 
 | Parameter / Stage | **Concave Result (Defocused)** | **Convex Result (Focused)** |
