@@ -21,7 +21,7 @@ The "Lens" effect focuses state information. To achieve the **Strong Prediction*
 | :--- | :--- | :--- |
 | **Field Model** | Single-Field (SF) | [Quantum Double-Field (QDF)](https://doi.org) |
 | **Kappa ($\kappa$) Bound** | $\kappa < 1$ or $\kappa > 1.41$ | **$1.0 \leq \kappa \leq 1.41$** |
-| **Probability ($P$)** | $P \approx 1/3$ (Standard) | **$P \geq 2/3$ (Doubled Space by Lens (iff double-field by particles, STs, bodies etc.))** |
+| **Probability ($P$)** | $P \approx 1/3$ (Standard) | **$P \geq 2/3$ (Doubled $P$ Space by Lens (iff double-field by particles, STs, bodies etc.))** |
 | **Fidelity $\langle M(F) \rangle$** | $< 1.0$ | **$\geq 7/5$** |
 | **Entropy Type** | Linear (Shannon) | Non-linear (Entanglement Entropy) |
 
