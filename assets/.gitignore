@@ -1,0 +1,25 @@
+# .gitignore
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environments
+.venv/
+venv/
+ENV/
+env/
+
+# Jupyter Notebooks
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+
+# Data and Logs
+*.log
+*.csv
+!QDF_Dataset.csv # Exclude your primary dataset from being ignored
+
+# OS generated files
+.DS_Store
+Thumbs.db
