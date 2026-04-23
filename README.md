@@ -151,6 +151,63 @@ pip install numpy scipy matplotlib qiskit pandas scikit-learn
 
 ---
 
+
+## Core Implementation: QF-LCA Scaling & Entanglement
+
+The following Python snippet demonstrates the logic used to transform a dissipative **Single-Field (SF)** state into a focused **Quantum Double-Field (QDF)** state. This function implements the $\kappa$ scaling that shifts the system from a concave to a convex result.
+
+### 1. Field Lens Scaling Function
+This function simulates the "Lens" effect, where a $\kappa \geq 1$ doubles the probability space for state transition (ST) predictions.
+
+```python
+def apply_qf_lens_scaling(kappa, p_sf):
+    """
+    Implements the QF-LCA transformation: SF -> QDF.
+    
+    Args:
+        kappa (float): Field scalar multiplier (Interaction length |kr|).
+        p_sf (float): Initial state transition probability (SF limit ~1/3).
+        
+    Returns:
+        float: Transformed QDF probability (Predictive limit ~2/3).
+    """
+    if kappa >= 1.0:
+        # Convex/Focused: Double the predictive probability space
+        p_qdf = (2 * kappa * p_sf) / (1 + (kappa - 1) * p_sf)
+    else:
+        # Concave/Defocused: Dissipative SF state
+        p_qdf = p_sf * kappa
+        
+    return min(p_qdf, 1.0) # Clamp to valid probability range
+```
+
+### 2. 3-Qubit Interaction (DFC Algorithm)
+The following pseudo-code (Qiskit-style) illustrates the three-way entanglement required to feed the lens:
+
+```python
+from qiskit import QuantumCircuit
+
+def create_qdf_circuit():
+    qc = QuantumCircuit(3) # Q1: Sample, Q2: Partner, Q3: Decoder/Bridge
+    
+    # Step 1: Create initial entanglement (SF state)
+    qc.h(0)
+    qc.cx(0, 1)
+    
+    # Step 2: Input 3rd qubit to 'decode' hidden information (The Bridge)
+    qc.cx(1, 2)
+    qc.swap(0, 2) # Exchange to maximize correlation (The DFC Step)
+    
+    return qc
+```
+
+### 3. Application in QAI
+The output of `apply_qf_lens_scaling` is passed directly to the **Quantum AI (QAI) Classifier** to verify if the state transition meets the $\langle M(F) \rangle \geq 7/5$ fidelity threshold required for strong prediction.
+
+
+
+---
+
 ## 📂 Repository Contents & Links
 
 * **[📁 Presentation Files](./path/to/presentations):** Includes the full `QFLC_PhD_PBA_seminar.pptx` slide deck and the `GMT20260331-172345_Recording.transcript.vtt` transcript.
