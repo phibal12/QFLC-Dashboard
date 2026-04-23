@@ -12,7 +12,7 @@
 ---
 # Short Form Representation
 
-The following table summarizes the transformation from a dissipative Single-Field (SF) state to a predictive Quantum Double-Field (QDF) state as defined in P. Alipour's research (UVic, 2023). 
+The following components summarize the transformation from a dissipative Single-Field (SF) state to a predictive Quantum Double-Field (QDF) state as defined in P. Alipour's research (UVic, 2023--2026). 
 <details>
 <summary><b>📊 1. Geometric State Correlation (Convex vs. Concave)</b></summary>
 
