@@ -30,31 +30,23 @@ body {
   padding-bottom: 80px !important; /* Space for Bottom Nav */
 }
 
-/* 2. THE PERMANENT CENTERING FIX */
-#header_wrap, 
-#main_content_wrap, 
-#footer_wrap, 
-.wrapper {
+
+/* THE PERMANENT CENTERING & LEFT-SPACE FIX */
+#header_wrap, #main_content_wrap, #footer_wrap {
   width: 100% !important;
-  max-width: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
   display: flex !important;
   justify-content: center !important;
-  float: none !important; /* Prevents Slate from pinning it left */
+  float: none !important;
+  background: #0d1117 !important;
 }
 
-.inner, 
-#main_content, 
-section#main_content, 
-.container {
-  float: none !important;       /* Kills the left-pinning */
+.inner, #main_content, section#main_content {
+  float: none !important;
+  margin: 0 auto !important;
+  width: 90% !important;
+  max-width: 1000px !important;
+  padding: 40px 40px !important; /* Forces 40px of space on the left and right */
   display: block !important;
-  width: 90% !important;        /* Gives you side breathing room */
-  max-width: 1000px !important;  /* Stops text from getting too wide */
-  margin: 0 auto !important;    /* Forces centering */
-  padding: 40px 30px !important; /* Explicit 30px gap on the left/right */
-  text-align: left !important;
 }
 
 
