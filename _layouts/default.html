@@ -1,12 +1,14 @@
 ---
-layout: table_of_contents # Or whatever the parent layout of your theme is
+layout: default
 ---
+
 {{ content }}
 
 <script>
   document.addEventListener("DOMContentLoaded", function() {
     const links = document.querySelectorAll('a');
     links.forEach(link => {
+      // If the link points to a different website, open in new tab
       if (link.hostname !== window.location.hostname) {
         link.setAttribute('target', '_blank');
         link.setAttribute('rel', 'noopener noreferrer');
@@ -14,3 +16,4 @@ layout: table_of_contents # Or whatever the parent layout of your theme is
     });
   });
 </script>
+
