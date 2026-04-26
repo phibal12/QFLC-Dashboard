@@ -14,13 +14,28 @@
 
 ---
 # QF-LCD: Quantum Field Lens Coding Dashboard
+Welcome to the interactive portal for **Quantum Field Lens Coding (QF-LC)**. This dashboard demonstrates the implementation of the **Quantum Double-Field (QDF)** model, a novel framework for predicting state transitions (ST) and phase transitions (PT) in quantum systems.
+---
 
-## QFLC Widgets, Datasets, and Presentation Collection
+## 🚀 Core Capabilities
+This simulation environment showcases the **QF-LC Algorithm (QF-LCA)**, which provides a significant advantage in predictive fidelity compared to traditional benchmarks like the Quantum Fourier Transform (QFT).
+
+- **Dynamic State Prediction:** Real-time calculation of transition probabilities across N-qubit architectures.
+- **Phase Transition (PT) Identification:** Automated detection of critical points using the $P \geq 2/3$ threshold.
+- **Entanglement Entropy (EE) Analysis:** Visualization of thermodynamic metrics and system entropy during state evolution.
+- **Hardware Agnostic:** Designed for integration with NISQ-era devices and simulated quantum environments (Python/Qiskit based).
+
+## 📊 Interactive Modules: QFLC Widgets, Datasets, and Presentation Collection
 
 This repository showcases the Quantum Field Lens Coding Hypercube, Hardware Synthesis Engine, Phase and Game Theory Simulators, and Dr. Alipour's PhD dissertation summary in the form of a post-PhD defense seminar and highlights, complete with relevant links and citations. The QF-LCA project and its goals have been previously presented according to [https://github.com/phibal12/QFLCS](https://github.com/phibal12/QFLCS).
 
 This collection serves as a unified portfolio, translating the theoretical frameworks of the Quantum Double-Field (QDF) model into interactive, browser-based applications designed for researchers, hardware engineers, and data scientists.
 
+*Explore the widgets below to interact with the QF-LCS (Simulator) engine:*
+
+1. **The QDF Engine:** Adjust system parameters to see how the Double-Field approach enhances prediction values during the decoding step.
+2. **Phase Transition Tracker:** Monitor how your $N$ qubits reach critical thresholds.
+3. **Comparative Benchmarking:** Toggle between QF-LCA and standard QFT outputs to visualize the "Lens Coding" advantage.
 ---
 
 ## 🧭 Visual Directory
@@ -60,6 +75,16 @@ Based on the Post-Ph.D. Defense Seminar and the accompanying transcript, this co
 * **Equation 53 & Thermodynamic Integration:** Modeling the exact transition probability to a target state over time. Entanglement Entropy (EE) is mathematically defined as the "fuel" or cost of this operation, routing physical logic around thermal limits.
 * **Global Impact & Universality:** The QDF model is validated as a universal framework applicable across classical and quantum events. It fosters new approaches in quantum communication (QKD), thermodynamics, biological diagnostics, and clean energy modeling (mapping to SDG 7 targets).
 
+## 📚 Publications and Research
+This dashboard is the practical implementation of research published at the **University of Victoria (UVic)**:
+
+*   **Software Foundation:** [QF-LCS: A Quantum Field Lens Coding Simulator](https://sciencedirect.com)
+*   **Methodology:** [Quantum Field Lens Coding for Predicting State Transitions](https://nih.gov)
+*   **Recent Advancements:** [QAI Classifiers in the Double-Field Model](https://nih.gov)
+---
+**Current Status:** Generalizing for industrial applications. Two new publications regarding high-fidelity state-classification are currently in preparation.
+
+[GitHub Repository](https://github.com) | [Contact Developer](mailto:phibal12@uvic.ca)
 ---
 
 ## 🚀 Interactive Widget Collection
