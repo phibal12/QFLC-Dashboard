@@ -7,3 +7,7 @@ theme: jekyll-theme-slate #(Dark, technical look)
 # theme: jekyll-theme-tactile
 #plugins:
 #  - jekyll-target-blank
+kramdown:
+  syntax_highlighter_opts:
+    block:
+      line_numbers: true
