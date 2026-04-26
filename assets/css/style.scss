@@ -242,6 +242,52 @@ pre {
   color: #a5d6ff !important; /* Very light blue/cyan */
 }
 
+
+/* Style the line number column */
+.highlight .lineno {
+  color: #586069 !important; /* Dim gray for numbers */
+  padding-right: 15px !important;
+  border-right: 1px solid teal !important; /* Teal divider */
+  margin-right: 10px !important;
+  user-select: none !important; /* Prevents selecting numbers when copying code */
+}
+
+/* Ensure the code block doesn't shift weirdly */
+.highlight pre {
+  display: flex !important;
+}
+
+
+/* 11. REFINED LAYOUT & SPACING FIX */
+
+/* Standard Slate theme uses .inner and #main_content for the page container */
+.inner, 
+#main_content, 
+section#main_content {
+  display: block !important;
+  width: 90% !important;        /* Keeps the content wide */
+  max-width: 1000px !important;  /* Limits width on large screens for readability */
+  margin: 0 auto !important;     /* CENTERS the content box */
+  padding: 40px 20px !important; /* Adds 20px space on the left/right and 40px on top/bottom */
+  float: none !important;        /* Ensures no side-pinning */
+  text-align: left !important;
+  background: transparent !important;
+}
+
+/* Specific padding for headers to give them breathing room */
+h1, h2, h3, h4 {
+  padding-left: 0 !important;   /* Aligns them with the body text */
+  margin-left: 0 !important;
+}
+
+/* Ensure the wrapper doesn't have its own padding fighting your layout */
+#main_content_wrap {
+  padding: 0 !important;
+  width: 100% !important;
+}
+
+
+
 /* 10. PRINT OVERRIDE (Force Arial and Full Width) */
 @media print {
   *, html, body, h1, h2, h3, h4, h5, h6, p, a, li, span, div {
