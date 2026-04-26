@@ -192,15 +192,15 @@ Based in British Columbia, I am currently generalizing my simulation framework f
 
 **Dr. Philip B. Alipour** *Quantum Architect & Hardware Engineering Researcher* University of Victoria, BC, Canada  
 
-* Email: [philipbaback_orbsix@msn.com](mailto:philipbaback_orbsix@msn.com)
-* Email: [philipbaback66@gmail.com](mailto:philipbaback66@gmail.com)
+* Email: [philipbaback_orbsix@msn.com](mailto:philipbaback_orbsix@msn.com){:target="_blank"}
+* Email: [philipbaback66@gmail.com](mailto:philipbaback66@gmail.com){:target="_blank"}
 * Personal Web: [studentweb.uvic.ca/~phibal12/index](https://studentweb.uvic.ca/~phibal12/index)
 
 <br>
 
 ## Contact
 <div align="center">
-  <a href="https://github.com"><i class="fab fa-github fa-2x"></i></a> &nbsp;&nbsp;
+  <a href="https://github.com" target="_blank"><i class="fab fa-github fa-2x"></i></a> &nbsp;&nbsp;
   <a href="mailto:philipbaback_orbsix@msn.com"><i class="fas fa-envelope fa-2x"></i></a>
 </div>
 
@@ -214,10 +214,10 @@ Based in British Columbia, I am currently generalizing my simulation framework f
 </div>
 
 
-# 🌌 QF-LCA Project Dashboard
+# 🌌 QF-LC Project Dashboard
 **Quantum Field Lens Coding: Theory, Algorithm, and Simulation**
 
-Welcome to the central hub for the **Quantum Field Lens Coding (QF-LCA)** project. This dashboard provides direct access to all research assets, licensing, and implementation tools derived from the [University of Victoria](https://uvic.ca) dissertation research.
+Welcome to the central hub for the **Quantum Field Lens Coding (QF-LC)** project. This dashboard provides direct access to all research assets, licensing, and implementation tools derived from the UVicSpace | Institutional Repository at [https://uvic.ca](https://hdl.handle.net/1828/23705){:target="_blank"} as the dissertation research.
 
 ---
 
@@ -226,7 +226,7 @@ Welcome to the central hub for the **Quantum Field Lens Coding (QF-LCA)** projec
 
 | 📚 Research & Theory | 💻 Code & Implementation | ⚖️ Legal & Contributing |
 | :--- | :--- | :--- |
-| [🎓 PhD Dissertation](https://uvic.ca) | [🧩 QF-LCA Algorithm (Py)](assets/QF_LCA_Core.py) | [📜 Copyright Notice](assets/NOTICE.md) |
+| [🎓 PhD Dissertation](https://uvic.ca){:target="_blank"} | [🧩 QF-LCA Algorithm (Py)](assets/QF_LCA_Core.py) | [📜 Copyright Notice](assets/NOTICE.md) |
 | [📄 MethodsX Publication](https://doi.org) | [⚙️ Circuit Simulation (Qiskit)](assets/QF_LCC_Circuit.py) | [🔑 MIT License](LICENSE) |
 | [📊 Mendeley Dataset](https://doi.org) | [📈 Data Visualization](assets/QDF_Visualizer.ipynb) | [🤝 Contributing Guide](assets/CONTRIBUTING.md) |
 
