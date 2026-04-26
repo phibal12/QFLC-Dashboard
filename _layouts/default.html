@@ -2,6 +2,15 @@
 layout: default
 ---
 
+<style>
+  /* Prevents the Slate theme from stretching your images */
+  img {
+    max-width: 100%;
+    height: auto !important; 
+    display: inline-block;
+  }
+</style>
+
 <!-- This manually links your custom style from the assets folder -->
 <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 
