@@ -1,23 +1,21 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <!-- Replace with the actual path to your style file -->
-  <link rel="stylesheet" href="{{ '/assets/css/style.scss' | relative_url }}">
-</head>
-<body>
-  {{ content }} <!-- Crucial: This displays your README text -->
+---
+layout: default
+---
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      document.querySelectorAll('a').forEach(link => {
-        if (link.hostname !== window.location.hostname) {
-          link.target = '_blank';
-          link.rel = 'noopener noreferrer';
-        }
-      });
+{{ content }}
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    // This finds every link and opens it in a new tab if it's external
+    const links = document.querySelectorAll('a');
+    links.forEach(link => {
+      if (link.hostname !== window.location.hostname) {
+        link.setAttribute('target', '_blank');
+        link.setAttribute('rel', 'noopener noreferrer');
+      }
     });
-  </script>
-</body>
-</html>
+  });
+</script>
+
 
 
