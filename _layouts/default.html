@@ -1,19 +1,23 @@
----
-layout: default
----
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Replace with the actual path to your style file -->
+  <link rel="stylesheet" href="{{ '/assets/css/style.scss' | relative_url }}">
+</head>
+<body>
+  {{ content }} <!-- Crucial: This displays your README text -->
 
-{{ content }}
-
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const links = document.querySelectorAll('a');
-    links.forEach(link => {
-      // If the link points to a different website, open in new tab
-      if (link.hostname !== window.location.hostname) {
-        link.setAttribute('target', '_blank');
-        link.setAttribute('rel', 'noopener noreferrer');
-      }
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      document.querySelectorAll('a').forEach(link => {
+        if (link.hostname !== window.location.hostname) {
+          link.target = '_blank';
+          link.rel = 'noopener noreferrer';
+        }
+      });
     });
-  });
-</script>
+  </script>
+</body>
+</html>
+
 
