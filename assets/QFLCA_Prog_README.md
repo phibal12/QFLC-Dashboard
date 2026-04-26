@@ -1,5 +1,5 @@
-# QF-LCA: Quantum Field Lens Coding Algorithm
-**Official Implementation & Simulation Framework**
+# QF-LCA Scaling and Entanglement 
+**Official Implementation & Simulation Framework (Part I)**
 
 ---
 
