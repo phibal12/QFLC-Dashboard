@@ -3,31 +3,43 @@ layout: default
 ---
 
 <style>
-  /* ONLY APPLY DARK THEME ON SCREENS */
+  /* 1. SCREEN VIEW (DARK) */
   @media screen {
     #main_content_wrap {
+      background-color: #0d1117 !important;
       display: flex !important;
       justify-content: center !important;
-      background: #0d1117 !important; /* Dark background only for screen */
     }
-
     #main_content {
-      color: #c9d1d9 !important;      /* Light text only for screen */
-      max-width: 900px !important;
-      width: 85% !important;
-      margin: 0 auto !important;
-      padding: 60px 40px !important;
-      float: none !important;
+      color: #c9d1d9 !important;
+      background-color: #0d1117 !important;
     }
   }
 
-  /* SHARED LAYOUT (Applying to both Screen and Print) */
+  /* 2. PRINTER VIEW (WHITE) - HARDCODED */
+  @media print {
+    /* Force white background and black text */
+    #main_content_wrap, #main_content, body, html {
+      background: white !important;
+      background-color: white !important;
+      color: black !important;
+    }
+    /* Ensure code blocks don't print as dark boxes */
+    pre, .highlight, code {
+      background: #f5f5f5 !important;
+      color: black !important;
+      border: 1px solid #ddd !important;
+    }
+  }
+
+  /* 3. SHARED LAYOUT (Centering) */
   #main_content {
     max-width: 900px !important;
     width: 85% !important;
     margin: 0 auto !important;
+    padding: 60px 40px !important;
+    float: none !important;
   }
-
   img {
     max-width: 100% !important;
     height: auto !important;
@@ -35,6 +47,7 @@ layout: default
     margin: 20px auto;
   }
 </style>
+
 
 
 <!-- Cache Buster Link -->
