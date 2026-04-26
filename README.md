@@ -217,7 +217,9 @@ Based in British Columbia, I am currently generalizing my simulation framework f
 # 🌌 QF-LC Project Dashboard
 **Quantum Field Lens Coding: Theory, Algorithm, and Simulation**
 
-Welcome to the central hub for the **Quantum Field Lens Coding (QF-LC)** project. This dashboard provides direct access to all research assets, licensing, and implementation tools derived from the UVicSpace | Institutional Repository at [https://uvic.ca](https://hdl.handle.net/1828/23705){:target="_blank"} as the dissertation research.
+Welcome to the central hub for the **Quantum Field Lens Coding (QF-LC)** project. This dashboard provides direct access to all research assets, licensing, and implementation tools derived from 
+
+UVicSpace | Institutional Repository at [https://hdl.handle.net/1828/23705](https://hdl.handle.net/1828/23705)<!-- {:target="_blank"} --> as the dissertation research.
 
 ---
 
