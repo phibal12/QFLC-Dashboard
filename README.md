@@ -14,8 +14,9 @@
 
 ---
 # QF-LCD: Quantum Field Lens Coding Dashboard
+### Predictive State Simulation for N-Qubit Machines
+
 Welcome to the interactive portal for **Quantum Field Lens Coding (QF-LC)**. This dashboard demonstrates the implementation of the **Quantum Double-Field (QDF)** model, a novel framework for predicting state transitions (ST) and phase transitions (PT) in quantum systems.
----
 
 ## 🚀 Core Capabilities
 This simulation environment showcases the **QF-LC Algorithm (QF-LCA)**, which provides a significant advantage in predictive fidelity compared to traditional benchmarks like the Quantum Fourier Transform (QFT).
