@@ -116,8 +116,8 @@ The QF-LC framework relies on three fundamental constants to maintain the stabil
 | **Structural Limit ($P_{\infty}$)** | $\approx 0.888$ ($8/9$) | Large-Scale Bound | The irreducible probability ceiling for $N$-particle systems as $N \to \infty$ (Equation 53). |
 
 #### **Why these values?**
-*   **The $\sqrt{2}$ Balance**: This is the "Unitary Threshold." At this value, $|\kappa^2| = 2$. For the system to remain physically real ($ \le 2$), the coherence factor **$\rho$** must be **1**. This represents the most efficient state of a quantum heat engine.
-*   **The 2/3 Boost**: Using $\kappa = \sqrt{2}$ is the mathematically optimal way to map a noisy $33\%$ success rate ($1/3$) to a reliable $67\%$ success rate ($2/3$).
+*   **The $\sqrt{2}$ Balance**: This is the "Unitary Threshold" at this value $|\kappa^2| = 2$ for back and forth distance unit of the interaction length between one or more entangled particled particle pairs. For the system to remain physically real ($$ \le 2 $$), the coherence factor **$\rho$** must be **1**. This represents the most efficient state of a quantum heat engine.
+*   **The 2/3 Boost**: Using $\kappa = \sqrt{2}$ is the mathematically optimal way to map a noisy $$ 33\% $$ success rate ($1/3$) to a reliable $$ 67 \% $$ success rate ($2/3$).
 *   **The 8/9 Convergence**: Even in a massive BEC cloud, the structural geometry of the Quantum Double-Field ensures that the system doesn't decohere to zero, but stabilizes at $8/9$ efficiency.
 
 
