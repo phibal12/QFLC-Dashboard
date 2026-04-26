@@ -85,6 +85,17 @@ a { color: teal !important; transition: 0.3s; }
   text-decoration: none;
 }
 
+/* 7. PRINT OVERRIDE */
+@media print {
+  *, html, body, h1, h2, h3, h4, h5, h6, p, a, li, span, div {
+    font-family: Arial, sans-serif !important;
+    color: black !important;
+    background: transparent !important;
+  }
+  .inner, #main_content { width: 100% !important; margin: 0 !important; }
+  .top-nav, .bottom-nav, #forkme_banner { display: none !important; }
+}
+
 /* 6. CODE BLOCKS, LINE NUMBERS, & SYNTAX */
 div.highlighter-rouge, .highlight, pre {
   background: #0d1117 !important;
@@ -109,13 +120,4 @@ div.highlighter-rouge, .highlight, pre {
 .highlight .s, .highlight .s1, .highlight .s2 { color: #a5d6ff !important; }
 .highlight .nb { color: #ffa657 !important; }
 
-/* 7. PRINT OVERRIDE */
-@media print {
-  *, html, body, h1, h2, h3, h4, h5, h6, p, a, li, span, div {
-    font-family: Arial, sans-serif !important;
-    color: black !important;
-    background: transparent !important;
-  }
-  .inner, #main_content { width: 100% !important; margin: 0 !important; }
-  .top-nav, .bottom-nav, #forkme_banner { display: none !important; }
-}
+
