@@ -213,3 +213,37 @@ pre {
   border: 1px solid teal !important;
   padding: 15px !important;
 }
+
+/* 8. FORCED WEBPAGE CODE BACKGROUND FIX */
+
+/* Jekyll wraps code in these specific classes; we must override them */
+div.highlighter-rouge, 
+div.highlight, 
+figure.highlight,
+pre.highlight,
+.highlight pre {
+  background-color: #0d1117 !important; /* Your dark background */
+  background: #0d1117 !important;      /* Backup for some browsers */
+  border: 1px solid teal !important;   /* Matches your site accents */
+  color: #c9d1d9 !important;
+  border-radius: 8px !important;
+  padding: 15px !important;
+  margin-bottom: 20px !important;
+}
+
+/* Kills any remaining white background on the code tag itself */
+.highlight pre code, 
+pre.highlight code,
+.language-python {
+  background: transparent !important;
+  background-color: transparent !important;
+  color: inherit !important;
+}
+
+/* Fix for inline code (e.g. `code`) */
+code {
+  background: #161b22 !important;
+  color: #00ffff !important;
+  border: 1px solid rgba(0, 255, 255, 0.2) !important;
+}
+
