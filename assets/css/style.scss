@@ -4,12 +4,6 @@
 @import url("https://cloudflare.com");
 @import "jekyll-theme-slate";
 
-
-.markdown-body .highlight pre, .markdown-body pre {
-    background-color: #1e1e1e !important;
-    color: #d4d4d4 !important;
-}
-
 /* 1. GLOBAL RESET & DARK THEME */
 html, body {
   background: #0d1117 !important;
