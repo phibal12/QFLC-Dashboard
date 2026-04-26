@@ -169,19 +169,7 @@ h1 img[alt="Live Status"] {
 }
 
 
-/* 6. PRINT OVERRIDE (Force Arial and Full Width) */
-@media print {
-  *, html, body, h1, h2, h3, h4, h5, h6, p, a, li, span, div {
-    font-family: Arial, sans-serif !important;
-    color: black !important;
-    background: transparent !important;
-  }
-  .inner, #main_content { width: 100% !important; margin: 0 !important; }
-  .top-nav, .bottom-nav { display: none !important; }
-  .page-break { display: block; page-break-before: always; }
-}
-
-/* 7. THE NUCLEAR CODE BLOCK FIX */
+/* 6. THE NUCLEAR CODE BLOCK FIX */
 
 /* Target the exact Rouge/Pygments container Jekyll creates */
 div.highlighter-rouge, 
@@ -214,7 +202,7 @@ pre {
   padding: 15px !important;
 }
 
-/* 9. CUSTOMIZE CODE COMMENT COLORS */
+/* 8. CUSTOMIZE CODE COMMENT COLORS */
 
 /* Target all comment types (General, Multiline, Single line) */
 .highlight .c, 
@@ -231,7 +219,7 @@ pre {
   color: #ff9900 !important; /* Brighter orange */
 }
 
-/* 10. FIX READABILITY FOR IMPORTS AND OPERATORS */
+/* 9. FIX READABILITY FOR IMPORTS AND OPERATORS */
 
 /* 'import', 'def', 'class', 'from' (Keywords) */
 .highlight .k, .highlight .kn, .highlight .kd {
@@ -254,3 +242,14 @@ pre {
   color: #a5d6ff !important; /* Very light blue/cyan */
 }
 
+/* 10. PRINT OVERRIDE (Force Arial and Full Width) */
+@media print {
+  *, html, body, h1, h2, h3, h4, h5, h6, p, a, li, span, div {
+    font-family: Arial, sans-serif !important;
+    color: black !important;
+    background: transparent !important;
+  }
+  .inner, #main_content { width: 100% !important; margin: 0 !important; }
+  .top-nav, .bottom-nav { display: none !important; }
+  .page-break { display: block; page-break-before: always; }
+}
