@@ -1,8 +1,8 @@
 ---
 ---
-@import "{{ site.theme }}";
-@import url("https://cloudflare.com");
-/* @import "jekyll-theme-slate"; */
+/* @import "{{ site.theme }}";
+@import url("https://cloudflare.com"); */
+@import "jekyll-theme-slate"; 
 
 /* 1. GLOBAL RESET & DARK THEME */
 html, body {
