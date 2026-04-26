@@ -1,8 +1,7 @@
 ---
 ---
-@import "{{ site.theme }}";
-@import url("https://cloudflare.com");
 @import "jekyll-theme-slate";
+@import url("https://cloudflare.com");
 
 /* 1. GLOBAL RESET & DARK THEME */
 html, body {
@@ -10,17 +9,17 @@ html, body {
   color: #c9d1d9 !important;
   margin: 0 !important;
   padding: 0 !important;
-  overflow-x: hidden !important; /* Forces removal of the right-side gap */
+  overflow-x: hidden !important;
   width: 100% !important;
   scroll-behavior: smooth !important;
 }
 
 body {
-  padding-top: 80px !important;    /* Space for Top Nav */
-  padding-bottom: 80px !important; /* Space for Bottom Nav */
+  padding-top: 80px !important;
+  padding-bottom: 80px !important;
 }
 
-/* 2. THE NUCLEAR CENTERING FIX (Removes Slate's Floats/Gaps) */
+/* 2. LAYOUT & CENTERING FIX */
 #header_wrap, #main_content_wrap, #footer_wrap {
   width: 100% !important;
   display: flex !important;
@@ -30,20 +29,19 @@ body {
 }
 
 .inner, #main_content, section#main_content {
-  float: none !important;      /* Kills Slate's left-pinning */
+  float: none !important;
   display: block !important;
-  width: 90% !important;       /* Your desired page width */
-  max-width: 1400px !important; 
-  margin: 0 auto !important;   /* Centers the block */
-  text-align: left !important; /* Keeps text inside aligned left */
+  width: 90% !important;
+  max-width: 1000px !important; /* Standard readable width */
+  margin: 0 auto !important;
+  padding: 40px 20px !important; /* Space for the sides */
+  text-align: left !important;
   background: transparent !important;
 }
 
-aside#sidebar {
-  display: none !important;    /* Deletes the ghost column on the right */
-}
+aside#sidebar { display: none !important; }
 
-/* 3. NAVIGATION BARS (Top & Bottom) */
+/* 3. NAVIGATION BARS */
 .top-nav, .bottom-nav {
   position: fixed !important;
   left: 0;
@@ -65,230 +63,53 @@ aside#sidebar {
   transition: 0.3s;
 }
 
-.top-nav a:hover, .bottom-nav a:hover {
-  color: #00ffff !important;
-  text-shadow: 0 0 8px rgba(0, 255, 255, 0.8);
-}
-
 /* 4. TITLES & LINKS */
 h1, h2, h3, h4, h5, h6 {
-  color: #01F9C6 !important; /* Bright Teal */
-  opacity: 1 !important;
+  color: #01F9C6 !important;
   text-shadow: 0 0 10px rgba(1, 249, 198, 0.2);
   margin-top: 1.5em !important;
 }
-
-h1 { color: #00ffff !important; text-align: center !important; }
-
+h1 { text-align: center !important; color: #00ffff !important; }
 a { color: teal !important; transition: 0.3s; }
-a:hover { color: #00ffff !important; text-shadow: 0 0 8px rgba(0, 255, 255, 0.8); }
 
-
-/*5. --- STYLE THE GITHUB BUTTON --- */
-/* --- STYLE THE FORK ME BANNER WITH OCTOCAT --- */
+/* 5. GITHUB BANNER */
 #forkme_banner {
   background: teal !important;
   color: #fff !important;
   font-weight: bold !important;
   padding: 10px 20px 10px 50px !important;
-  border-radius: 5px;
   position: absolute;
-  top: 85px;
+  top: 40px !important;
   right: 5%;
   z-index: 1000;
-  box-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
-  /* Smoothly animate all changes */
-  transition: all 0.3s ease-in-out; 
   text-decoration: none;
 }
 
-#forkme_banner::before {
-    content: "\2318"; /* Replace with any code above */
-  font-family: "Segoe UI Symbol", "Apple Color Emoji", "Noto Sans", sans-serif;
-  font-weight: 400; /* Mandatory for Brand icons */
-  position: absolute;
-  left: 15px;
-  font-size: 22px;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-
-#forkme_banner:hover {
-  background: #00ffff !important;
-  color: #000 !important;
-  box-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
-}
-
-
-/* HIDE THEME TITLES BUT KEEP GITHUB BUTTON */
-#header_wrap h1, #header_wrap h2 {
-  display: none !important; /* Hides the default Slate titles */
-}
-
-/* Ensure the wrapper is still visible for the GitHub button to sit in */
-#header_wrap {
-  background: transparent !important;
-  border: none !important;
-  height: 0; /* Collapses the empty space left by hidden titles */
-}
-
-/* STYLE THE LIVE BADGE GLOW (Targets the Shields.io image) */
-/* Target the badge image specifically */
-h1 img[alt="Live Status"] {
-  border-radius: 4px;
-  filter: drop-shadow(0 0 5px #00ffff);
-  animation: pulse-glow 2s infinite;
-}
-
-/* Fallback: If you use the Emoji dot instead */
-.live-dot {
-  font-size: 0.8em;
-  animation: blink 1.5s infinite;
-  text-shadow: 0 0 10px #00ffff;
-}
-
-@keyframes blink {
-  0% { opacity: 1; }
-  50% { opacity: 0.3; }
-  100% { opacity: 1; }
-}
-
-
-/* 3. ENSURE GITHUB BANNER IS POSITIONED CORRECTLY */
-#forkme_banner {
-  top: 40px !important; /* Adjusted to sit just below your Nav Menu */
-  display: block !important; /* Makes sure it stays visible */
-}
-
-.large-poster {
-  width: 150% !important;
-  max-width: none !important; /* This breaks the theme's 100% limit */
-  height: auto !important;
-  display: block;
-}
-
-
-/* Style the line number column */
-.highlight .lineno {
-  color: #586069 !important; /* Dim gray for numbers */
-  padding-right: 15px !important;
-  border-right: 1px solid teal !important; /* Teal divider */
-  margin-right: 10px !important;
-  user-select: none !important; /* Prevents selecting numbers when copying code */
-}
-
-/* Ensure the code block doesn't shift weirdly */
-.highlight pre {
-  display: flex !important;
-}
-
-
-/* 6. THE NUCLEAR CODE BLOCK FIX */
-
-/* Target the exact Rouge/Pygments container Jekyll creates */
-div.highlighter-rouge, 
-div.highlight, 
-figure.highlight,
-.highlight pre, 
-pre.highlight {
-  background-color: #0d1117 !important; /* Forces dark background */
-  background: #0d1117 !important;      /* Extra backup */
+/* 6. CODE BLOCKS, LINE NUMBERS, & SYNTAX */
+div.highlighter-rouge, .highlight, pre {
+  background: #0d1117 !important;
   border: 1px solid teal !important;
-  color: #c9d1d9 !important;
   border-radius: 8px !important;
-  margin-bottom: 20px !important;
-}
-
-/* Ensure the code tag inside doesn't have a white background */
-.highlight pre code, 
-pre.highlight code {
-  background: transparent !important;
-  background-color: transparent !important;
-  color: inherit !important;
-  border: none !important;
-  padding: 0 !important;
-}
-
-/* Fix for standard non-highlighted code blocks */
-pre {
-  background-color: #0d1117 !important;
-  border: 1px solid teal !important;
   padding: 15px !important;
+  margin-bottom: 20px !important;
+  display: flex !important; /* Necessary for line numbers */
 }
 
-/* 8. CUSTOMIZE CODE COMMENT COLORS */
-
-/* Target all comment types (General, Multiline, Single line) */
-.highlight .c, 
-.highlight .cm, 
-.highlight .c1 {
-  color: #cc7a00 !important; /* A deep, dark orange */
-  font-style: italic !important; /* Optional: makes comments stand out */
+.highlight .lineno {
+  color: #586069 !important;
+  padding-right: 15px !important;
+  border-right: 1px solid teal !important;
+  margin-right: 10px !important;
+  user-select: none !important;
 }
 
-/* Optional: Brighter orange on hover to make it interactive */
-.highlight .c:hover, 
-.highlight .cm:hover, 
-.highlight .c1:hover {
-  color: #ff9900 !important; /* Brighter orange */
-}
+.highlight .c, .highlight .c1 { color: #cc7a00 !important; font-style: italic !important; }
+.highlight .k, .highlight .kn, .highlight .kd { color: #ff7b72 !important; font-weight: bold !important; }
+.highlight .o, .highlight .ow { color: #79c0ff !important; }
+.highlight .s, .highlight .s1, .highlight .s2 { color: #a5d6ff !important; }
+.highlight .nb { color: #ffa657 !important; }
 
-/* 9. FIX READABILITY FOR IMPORTS AND OPERATORS */
-
-/* 'import', 'def', 'class', 'from' (Keywords) */
-.highlight .k, .highlight .kn, .highlight .kd {
-  color: #ff7b72 !important; /* Soft red/pink for high visibility */
-  font-weight: bold !important;
-}
-
-/* '=' , '+', '-', '*', '/' (Operators/Symbols) */
-.highlight .o, .highlight .ow {
-  color: #79c0ff !important; /* Bright light blue */
-}
-
-/* 'print', 'len', 'range' (Built-in functions) */
-.highlight .nb {
-  color: #ffa657 !important; /* Light orange */
-}
-
-/* "strings" and 'strings' */
-.highlight .s, .highlight .s1, .highlight .s2 {
-  color: #a5d6ff !important; /* Very light blue/cyan */
-}
-
-
-/* 11. REFINED LAYOUT & SPACING FIX */
-
-/* Standard Slate theme uses .inner and #main_content for the page container */
-.inner, 
-#main_content, 
-section#main_content {
-  display: block !important;
-  width: 90% !important;        /* Keeps the content wide */
-  max-width: 1000px !important;  /* Limits width on large screens for readability */
-  margin: 0 auto !important;     /* CENTERS the content box */
-  padding: 40px 20px !important; /* Adds 20px space on the left/right and 40px on top/bottom */
-  float: none !important;        /* Ensures no side-pinning */
-  text-align: left !important;
-  background: transparent !important;
-}
-
-/* Specific padding for headers to give them breathing room */
-h1, h2, h3, h4 {
-  padding-left: 0 !important;   /* Aligns them with the body text */
-  margin-left: 0 !important;
-}
-
-/* Ensure the wrapper doesn't have its own padding fighting your layout */
-#main_content_wrap {
-  padding: 0 !important;
-  width: 100% !important;
-}
-
-
-
-/* 10. PRINT OVERRIDE (Force Arial and Full Width) */
+/* 7. PRINT OVERRIDE */
 @media print {
   *, html, body, h1, h2, h3, h4, h5, h6, p, a, li, span, div {
     font-family: Arial, sans-serif !important;
@@ -296,6 +117,5 @@ h1, h2, h3, h4 {
     background: transparent !important;
   }
   .inner, #main_content { width: 100% !important; margin: 0 !important; }
-  .top-nav, .bottom-nav { display: none !important; }
-  .page-break { display: block; page-break-before: always; }
-} 
+  .top-nav, .bottom-nav, #forkme_banner { display: none !important; }
+}
