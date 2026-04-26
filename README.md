@@ -192,8 +192,8 @@ Based in British Columbia, I am currently generalizing my simulation framework f
 
 **Dr. Philip B. Alipour** *Quantum Architect & Hardware Engineering Researcher* University of Victoria, BC, Canada  
 
-* Email: [philipbaback_orbsix@msn.com](mailto:philipbaback_orbsix@msn.com){:target="_blank"}
-* Email: [philipbaback66@gmail.com](mailto:philipbaback66@gmail.com){:target="_blank"}
+* Email: [philipbaback_orbsix@msn.com](mailto:philipbaback_orbsix@msn.com)
+* Email: [philipbaback66@gmail.com](mailto:philipbaback66@gmail.com)
 * Personal Web: [studentweb.uvic.ca/~phibal12/index](https://studentweb.uvic.ca/~phibal12/index)
 
 <br>
@@ -228,7 +228,7 @@ UVicSpace | Institutional Repository at [https://hdl.handle.net/1828/23705](http
 
 | 📚 Research & Theory | 💻 Code & Implementation | ⚖️ Legal & Contributing |
 | :--- | :--- | :--- |
-| [🎓 PhD Dissertation](https://uvic.ca){:target="_blank"} | [🧩 QF-LCA Algorithm (Py)](assets/QF_LCA_Core.py) | [📜 Copyright Notice](assets/NOTICE.md) |
+| [🎓 PhD Dissertation](https://uvic.ca) | [🧩 QF-LCA Algorithm (Py)](assets/QF_LCA_Core.py) | [📜 Copyright Notice](assets/NOTICE.md) |
 | [📄 MethodsX Publication](https://doi.org) | [⚙️ Circuit Simulation (Qiskit)](assets/QF_LCC_Circuit.py) | [🔑 MIT License](LICENSE) |
 | [📊 Mendeley Dataset](https://doi.org) | [📈 Data Visualization](assets/QDF_Visualizer.ipynb) | [🤝 Contributing Guide](assets/CONTRIBUTING.md) |
 
