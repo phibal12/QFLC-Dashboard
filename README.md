@@ -96,12 +96,23 @@ The theoretical concepts discussed in the seminar have been synthesized into the
 
 
 
-This is the flagship of the hardware engineering dashboard. It bypasses the visual intractability of traditional Karnaugh maps (scaling up to 12D/4096 nodes) by applying global field evaluations. 
+This is the flagship of the hardware engineering dashboard. It bypasses the visual intractability of traditional Karnaugh maps (scaling up to 12D/4096 nodes) by applying global field evaluations. Beyond standard 2D/3D visualizations, this project utilizes the **QFLC Hypercube** (QFLCH) framework to map the evolution of $N$-qubit systems. As quantum systems scale, traditional Bloch sphere representations become insufficient; the QFLCH provides a scalable, topological map of the **Quantum Double-Field (QDF)** space.
 
 **Key Features:**
 * Live $N$-Dimensional Hypercube wave collapse visualization.
 * Equation (53) thermodynamic phase simulation (SF $\to$ QDF $\to$ Target)  from Ref. [1].
 * Dual-compilation engine outputting both FPGA-ready VHDL and QPU-ready OpenQASM 2.0.
+- **Topological Mapping:** Visualizes the relationship between vertex positions and Entanglement Entropy (EE), identifying "stability zones" within the state space.
+- **Error Mitigation Geometry:** Uses hypercubic symmetry to predict and bypass regions of high decoherence, offering a geometric approach to quantum error correction.
+- **State Pathing:** Trace the trajectory of a state transition (ST) as it moves through higher-dimensional vertices, providing a visual proof of the QF-LCA predictive advantage.
+
+### Advanced Topological Insights
+The QFLC Hypercube serves as more than a visualization; it is a **stability map**. By analyzing the vertex-to-vertex transitions within the QDF model:
+*   **Predictive Pathing:** We can identify the most efficient "energy paths" for state changes.
+*   **Decoherence Buffers:** The hypercube geometry highlights topological regions where Entanglement Entropy is naturally minimized, aiding in error-resilient algorithm design.
+
+
+*This framework is the subject of an upcoming publication focused on the geometric foundations of quantum stability.*
 
 ### 2. QDF Phase and Game Theory Simulator
 <a href="#4-qdf-lens-geometry-lab--particle-trap"><img src="./assets/QDF_P_Screenshot00.JPG" alt="Geometry Lab" height="70%" width="70%" style="border-radius:8px; border:2px solid #8b5cf6;"></a><br> 
@@ -158,7 +169,25 @@ How does this relate to the QF-LCA Hypercube? This Geometry Lab visualizes the f
 
 ---
 
-## 👨‍💻 Author & Contact
+## 👨‍💻 About the Researcher and Contact
+
+I am a Quantum Information Scientist and UVic Alumnus specializing in the intersection of **Quantum Field Theory**, **Thermodynamics**, and **Artificial Intelligence**. My work centers on the development of the **Quantum Field Lens Coding (QF-LC)** framework—a predictive methodology designed for high-fidelity state classification on $N$-qubit machines.
+
+### Research Vision
+My doctoral dissertation at the **University of Victoria** introduced the **Quantum Double-Field (QDF)** model. This model addresses a critical bottleneck in NISQ-era computing: the accurate prediction of state and phase transitions. By "lens coding" quantum fields, we can achieve superior predictive accuracy compared to standard benchmarks like the Quantum Fourier Transform (QFT).
+
+### Technical Expertise
+- **Algorithm Design:** Development and implementation of QF-LCA for real-time state prediction.
+- **System Simulation:** Architect of the **QF-LCS (Simulator)**, a Python-based engine for modeling thermodynamic quantum evolution.
+- **Topological Mapping:** Utilizing the **QFLC Hypercube** to visualize and mitigate decoherence in higher-dimensional state spaces.
+- **Quantum AI (QAI):** Implementing high-fidelity classifiers to improve measurement outcomes and system stability.
+
+### Moving Forward
+Based in British Columbia, I am currently generalizing my simulation framework for industrial applications in quantum networking and scalable hardware architectures. I am actively seeking collaborations and professional opportunities that bridge the gap between theoretical field modeling and practical quantum advantage.
+
+---
+*Two new publications regarding high-fidelity QAI classifiers and Hypercube topology are currently in preparation.*
+---
 
 **Dr. Philip B. Alipour** *Quantum Architect & Hardware Engineering Researcher* University of Victoria, BC, Canada  
 
