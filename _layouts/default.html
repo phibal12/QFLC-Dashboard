@@ -2,9 +2,38 @@
 layout: default
 ---
 
+<style>
+  /* FORCED SPACING FIX */
+  #main_content_wrap {
+    display: flex !important;
+    justify-content: center !important;
+    background: #0d1117 !important;
+  }
+
+  #main_content {
+    max-width: 900px !important; /* Prevents text stretching too wide */
+    width: 85% !important;        /* Gives safe space on small screens */
+    margin: 0 auto !important;
+    padding: 60px 40px !important; /* THE KEY: 40px gap on left/right */
+    float: none !important;        /* Kills Slate's left-pinning */
+  }
+
+  img {
+    max-width: 100% !important;
+    height: auto !important;
+    display: block;
+    margin: 20px auto;
+  }
+</style>
+
+<!-- Cache Buster Link -->
 <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.time | relative_url }}">
 
-{{ content }}
+<div id="main_content_wrap">
+  <section id="main_content">
+    {{ content }}
+  </section>
+</div>
 
 <script>
   document.addEventListener("DOMContentLoaded", function() {
@@ -17,3 +46,4 @@ layout: default
     });
   });
 </script>
+
