@@ -46,6 +46,35 @@ layout: default
     display: block;
     margin: 20px auto;
   }
+
+  <style>
+  /* ... keep your existing screen/centering code ... */
+
+  /* 4. SMOOTH SOLID HORIZONTAL LINES */
+  hr {
+    border: 0 !important;
+    border-top: 1px solid #444c56 !important; /* Solid smooth line instead of dots */
+    height: 0 !important;
+    margin: 2em 0 !important;
+    background: transparent !important;
+  }
+
+  /* 5. DARK CODE BLOCKS (Minimal approach) */
+  /* This targets the container without breaking your centering or padding */
+  .highlighter-rouge, .highlight, pre {
+    background-color: #161b22 !important; /* Dark slate gray for contrast */
+    border: 1px solid #30363d !important;
+    border-radius: 6px !important;
+    color: #c9d1d9 !important;
+  }
+
+  /* Kills any white/light background on the text container inside */
+  pre code {
+    background: transparent !important;
+    padding: 0 !important;
+  }
+</style>
+
 </style>
 
 
