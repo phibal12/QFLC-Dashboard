@@ -20,24 +20,33 @@ body {
   padding-bottom: 80px !important; /* Space for Bottom Nav */
 }
 
-/* 2. THE NUCLEAR CENTERING FIX (Removes Slate's Floats/Gaps) */
-#header_wrap, #main_content_wrap, #footer_wrap {
+/* 2. THE PERMANENT CENTERING FIX */
+#header_wrap, 
+#main_content_wrap, 
+#footer_wrap, 
+.wrapper {
   width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
   display: flex !important;
   justify-content: center !important;
-  background: #0d1117 !important;
-  float: none !important;
+  float: none !important; /* Prevents Slate from pinning it left */
 }
 
-.inner, #main_content, section#main_content {
-  float: none !important;      /* Kills Slate's left-pinning */
+.inner, 
+#main_content, 
+section#main_content, 
+.container {
+  float: none !important;       /* Kills the left-pinning */
   display: block !important;
-  width: 90% !important;       /* Your desired page width */
-  max-width: 1400px !important; 
-  margin: 0 auto !important;   /* Centers the block */
-  text-align: left !important; /* Keeps text inside aligned left */
-  background: transparent !important;
+  width: 90% !important;        /* Gives you side breathing room */
+  max-width: 1000px !important;  /* Stops text from getting too wide */
+  margin: 0 auto !important;    /* Forces centering */
+  padding: 40px 30px !important; /* Explicit 30px gap on the left/right */
+  text-align: left !important;
 }
+
 
 aside#sidebar {
   display: none !important;    /* Deletes the ghost column on the right */
@@ -183,24 +192,6 @@ h1 img[alt="Live Status"] {
   display: flex !important;
 }
 
-
-
-
-/* 11. REFINED LAYOUT & SPACING FIX */
-
-/* Standard Slate theme uses .inner and #main_content for the page container */
-.inner, 
-#main_content, 
-section#main_content {
-  display: block !important;
-  width: 90% !important;        /* Keeps the content wide */
-  max-width: 1000px !important;  /* Limits width on large screens for readability */
-  margin: 0 auto !important;     /* CENTERS the content box */
-  padding: 40px 20px !important; /* Adds 20px space on the left/right and 40px on top/bottom */
-  float: none !important;        /* Ensures no side-pinning */
-  text-align: left !important;
-  background: transparent !important;
-}
 
 
 
