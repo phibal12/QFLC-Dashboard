@@ -5,3 +5,5 @@ theme: jekyll-theme-slate #(Dark, technical look)
 # theme: jekyll-theme-hacker
 # theme: jekyll-theme-midnight  # programming style
 # theme: jekyll-theme-tactile
+plugins:
+  - jekyll-target-blan
