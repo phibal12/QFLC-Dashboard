@@ -186,21 +186,21 @@ My doctoral dissertation at the **University of Victoria** introduced the **Quan
 Based in British Columbia, I am currently generalizing my simulation framework for industrial applications in quantum networking and scalable hardware architectures. I am actively seeking collaborations and professional opportunities that bridge the gap between theoretical field modeling and practical quantum advantage.
 
 ---
-*Two new publications regarding high-fidelity QAI classifiers and Hypercube topology are currently in preparation.*
+**Two new publications regarding high-fidelity QAI classifiers and Hypercube topology are currently in preparation.**
 ---
 
 **Dr. Philip B. Alipour** *Quantum Architect & Hardware Engineering Researcher* University of Victoria, BC, Canada  
 
 * Email: [philipbaback_orbsix@msn.com](mailto:philipbaback_orbsix@msn.com)
 * Email: [philipbaback66@gmail.com](mailto:philipbaback66@gmail.com)
-* Personal Web: [studentweb.uvic.ca/~phibal12/](https://studentweb.uvic.ca/~phibal12/)
+* Personal Web: [studentweb.uvic.ca/~phibal12/index](https://studentweb.uvic.ca/~phibal12/index)
 
 <br>
 
 ## Contact
 <div align="center">
   <a href="https://github.com"><i class="fab fa-github fa-2x"></i></a> &nbsp;&nbsp;
-  <a href="mailto:your-email@example.com"><i class="fas fa-envelope fa-2x"></i></a>
+  <a href="mailto:philipbaback_orbsix@msn.com"><i class="fas fa-envelope fa-2x"></i></a>
 </div>
 
 <!-- Fixed Bottom Menu -->
