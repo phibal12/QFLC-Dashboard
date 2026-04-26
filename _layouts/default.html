@@ -2,11 +2,13 @@
 layout: default
 ---
 
+<!-- This manually links your custom style from the assets folder -->
+<link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+
 {{ content }}
 
 <script>
   document.addEventListener("DOMContentLoaded", function() {
-    // This finds every link and opens it in a new tab if it's external
     const links = document.querySelectorAll('a');
     links.forEach(link => {
       if (link.hostname !== window.location.hostname) {
@@ -16,6 +18,8 @@ layout: default
     });
   });
 </script>
+
+
 
 
 
