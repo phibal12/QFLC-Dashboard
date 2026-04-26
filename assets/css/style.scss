@@ -231,3 +231,26 @@ pre {
   color: #ff9900 !important; /* Brighter orange */
 }
 
+/* 10. FIX READABILITY FOR IMPORTS AND OPERATORS */
+
+/* 'import', 'def', 'class', 'from' (Keywords) */
+.highlight .k, .highlight .kn, .highlight .kd {
+  color: #ff7b72 !important; /* Soft red/pink for high visibility */
+  font-weight: bold !important;
+}
+
+/* '=' , '+', '-', '*', '/' (Operators/Symbols) */
+.highlight .o, .highlight .ow {
+  color: #79c0ff !important; /* Bright light blue */
+}
+
+/* 'print', 'len', 'range' (Built-in functions) */
+.highlight .nb {
+  color: #ffa657 !important; /* Light orange */
+}
+
+/* "strings" and 'strings' */
+.highlight .s, .highlight .s1, .highlight .s2 {
+  color: #a5d6ff !important; /* Very light blue/cyan */
+}
+
