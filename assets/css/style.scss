@@ -225,17 +225,6 @@ h1 img[alt="Live Status"] {
   color: #79c0ff !important; /* Bright light blue */
 }
 
-/* FIX INVISIBLE PUNCTUATION & SYMBOLS */
-    
-    /* Targets ( ) [ ] { } , : ; */
-    .highlight .p {
-      color: #adbac7 !important; /* Light silver/grey to match the variables */
-    }
-
-    /* Targets Operators like = + - * / */
-    .highlight .o, .highlight .ow {
-      color: #79c0ff !important; /* Bright sky blue so they "pop" */
-    }
 
 /* 'print', 'len', 'range' (Built-in functions) */
 .highlight .nb {
