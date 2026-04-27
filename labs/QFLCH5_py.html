@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>QF-LCA 4D Temporal Tesseract (Complete Build)</title>
+    <style>
+        body { background: #000; color: #00ffcc; font-family: 'Courier New', monospace; margin: 0; overflow: hidden; display: flex; flex-direction: column; align-items: center; }
+        #ui-layer { position: absolute; top: 20px; left: 20px; display: flex; flex-direction: column; gap: 10px; z-index: 100; pointer-events: none; }
+        .panel { background: rgba(5, 5, 5, 0.95); padding: 15px; border-radius: 8px; border: 1px solid #00ffcc; width: 310px; pointer-events: auto; box-shadow: 0 0 20px rgba(0,255,204,0.4); }
+        input[type=range] { width: 100%; cursor: pointer; accent-color: #00ffcc; margin: 5px 0; }
+        .btn { background: #00ffcc; color: #000; border: none; padding: 8px; width: 100%; border-radius: 4px; cursor: pointer; font-weight: bold; margin-top: 5px; font-family: monospace; }
+        .btn:hover { background: #fff; }
+        .btn-rec { background: #ff3333; color: #fff; }
+        .btn-play { background: #ffaa00; color: #000; }
+        .legend { font-size: 0.75em; margin-top: 5px; line-height: 1.5; color: #eee;}
+        .copyright { font-size: 0.7em; margin-top: 10px; color: #555; border-top: 1px solid #333; padding-top: 8px; }
+    </style>
+</head>
+<body>
+    <div id="ui-layer">
+        <div class="panel">
+            <div style="display:flex; justify-content:space-between;"><span>LENS (τ):</span> <b id="val">0.50</b></div>
+            <input type="range" id="slider" min="0" max="1" step="0.01" value="0.50">
+            <div style="display:flex; justify-content:space-between; margin-top:10px;"><span>PARTICLES (N):</span> <b id="n-val">80</b></div>
+            <input type="range" id="n-slider" min="0" max="300" step="1" value="80">
+            <button class="btn" id="spin-btn">AUTO-SPIN: ON</button>
+            <button class="btn btn-rec" id="rec-btn">RECORD STEPS: OFF</button>
+            <button class="btn btn-play" id="play-btn">PLAYBACK: OFF</button>
+            <button class="btn" onclick="exportData()">EXPORT Q-DATA</button>
+        </div>
+        <div class="panel">
+            <div class="legend" id="status-panel">
+                <b>4D FIELD DYNAMICS:</b><br>
+                <span style="color:#00ff88">● HUB: Central Node (0000)</span><br>
+                <span style="color:#00ffcc">● GS: Ground State (Stable)</span><br>
+                <span style="color:#ff3333">● ES: Excited State (Decohered)</span><br>
+                <span id="p-status" style="color:#aaa; font-style:italic;">Mode: Live View</span>
+                <div class="copyright">© Copyright 2026, Philip B. Alipour</div>
+            </div>
+        </div>
+    </div>
+    <canvas id="canvas"></canvas>
+
+<script>
+const canvas = document.getElementById('canvas'), ctx = canvas.getContext('2d');
+const slider = document.getElementById('slider'), nSlider = document.getElementById('n-slider');
+const valDisp = document.getElementById('val'), nDisp = document.getElementById('n-val');
+const spinBtn = document.getElementById('spin-btn'), recBtn = document.getElementById('rec-btn'), playBtn = document.getElementById('play-btn');
+
+let threshold = 0.5, time = 0, zoom = 150, angX = 0.5, angY = 0.5;
+let autoSpin = true, isDragging = false, lastX, lastY, bgParticles = [], isRecording = false;
+let temporalLog = [], isPlaying = false, playIdx = 0;
+
+const nodeData = [];
+for (let i = 0; i < 16; i++) {
+    nodeData.push({ id: i.toString(2).padStart(4, '0'), t: i === 0 ? 1.0 : Math.random(), x: (i & 1 ? 1 : -1) * (i & 8 ? 0.6 : 1.3), y: (i & 2 ? 1 : -1) * (i & 8 ? 0.6 : 1.3), z: (i & 4 ? 1 : -1) * (i & 8 ? 0.6 : 1.3) });
+}
+
+const edgeIndices = [];
+for (let i = 0; i < 16; i++) {
+    for (let j = i + 1; j < 16; j++) {
+        let diff = i ^ j;
+        if (diff && (diff & (diff - 1)) === 0) edgeIndices.push([i, j]);
+    }
+}
+
+function initParticles(n) {
+    bgParticles = [];
+    for(let i=0; i<n; i++) bgParticles.push({x:(Math.random()-0.5)*12,y:(Math.random()-0.5)*12,z:(Math.random()-0.5)*12,vx:(Math.random()-0.5)*0.02,vy:(Math.random()-0.5)*0.02,vz:(Math.random()-0.5)*0.02});
+}
+initParticles(80);
+
+function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+window.addEventListener('resize', resize); resize();
+window.addEventListener('wheel', (e) => { zoom = Math.max(50, Math.min(zoom - e.deltaY*0.1, 800)); });
+
+canvas.onmousedown = (e) => { isDragging = true; lastX = e.clientX; lastY = e.clientY; };
+window.onmouseup = () => isDragging = false;
+window.onmousemove = (e) => { if (!isDragging) return; angY += (e.clientX - lastX)*0.01; angX += (e.clientY - lastY)*0.01; lastX = e.clientX; lastY = e.clientY; };
+
+spinBtn.onclick = () => { autoSpin = !autoSpin; spinBtn.innerText = `AUTO-SPIN: ${autoSpin ? 'ON' : 'OFF'}`; };
+recBtn.onclick = () => { isRecording = !isRecording; isPlaying = false; recBtn.innerText = `RECORD STEPS: ${isRecording ? 'ON' : 'OFF'}`; if(isRecording) { temporalLog = []; logStep(); }};
+playBtn.onclick = () => { if(temporalLog.length === 0) return; isPlaying = !isPlaying; isRecording = false; playIdx = 0; playBtn.innerText = `PLAYBACK: ${isPlaying ? 'ON' : 'OFF'}`; document.getElementById('p-status').innerText = isPlaying ? "Mode: Playback Active" : "Mode: Live View"; };
+
+function logStep() {
+    temporalLog.push({ tau: threshold, states: nodeData.map(n => ({ id: n.id, isGS: n.t >= threshold, color: n.id === "0000" ? "#00ff88" : (n.t >= threshold ? "#00ffcc" : "#ff3333") })) });
+}
+
+function project(pos) {
+    let x = pos.x*Math.cos(angY) - pos.z*Math.sin(angY), z = pos.x*Math.sin(angY) + pos.z*Math.cos(angY), y = pos.y*Math.cos(angX) - z*Math.sin(angX);
+    return { x: x*zoom + canvas.width/2, y: y*zoom + canvas.height/2, z: z };
+}
+
+function exportData() {
+    const blob = new Blob([JSON.stringify(temporalLog.length > 0 ? temporalLog : nodeData, null, 2)], {type: 'application/json'});
+    const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `qf_lca_tesseract_2026.json`; a.click();
+}
+
+function draw() {
+    ctx.clearRect(0,0,canvas.width,canvas.height); time += 0.05;
+    if(autoSpin && !isDragging) angY += 0.005;
+
+    let currentNodes;
+    if (isPlaying && temporalLog.length > 0) {
+        let step = temporalLog[Math.floor(playIdx) % temporalLog.length];
+        threshold = step.tau; valDisp.innerText = threshold.toFixed(2);
+        currentNodes = nodeData.map((n, i) => ({ ...project(n), raw: n, isGS: step.states[i].isGS, color: step.states[i].color }));
+        playIdx += 0.1;
+    } else {
+        currentNodes = nodeData.map(n => ({ ...project(n), raw: n, isGS: n.t >= threshold, color: n.id === "0000" ? "#00ff88" : (n.t >= threshold ? "#00ffcc" : "#ff3333") }));
+    }
+
+    // 1. Draw Particles (Blue to Green)
+    bgParticles.forEach(p => {
+        p.x += p.vx; p.y += p.vy; p.z += p.vz;
+        if(Math.abs(p.x)>8) p.vx*=-1; if(Math.abs(p.y)>8) p.vy*=-1; if(Math.abs(p.z)>8) p.vz*=-1;
+        let projP = project(p); let captured = false;
+        currentNodes.forEach(an => {
+            let dist = Math.sqrt((p.x-an.raw.x)**2+(p.y-an.raw.y)**2+(p.z-an.raw.z)**2);
+            if (dist < (an.raw.id==="0000"?2.0:1.0) && an.isGS) {
+                captured = true;
+                ctx.beginPath(); ctx.moveTo(projP.x, projP.y); ctx.lineTo(an.x, an.y);
+                ctx.strokeStyle = an.raw.id==="0000" ? "rgba(0,255,136,0.3)" : "rgba(68,102,255,0.2)";
+                ctx.stroke();
+                p.vx += (an.raw.x-p.x)*(an.raw.id==="0000"?0.004:0.001); p.vy += (an.raw.y-p.y)*(an.raw.id==="0000"?0.004:0.001);
+            }
+        });
+        ctx.fillStyle = captured ? "#00ff88" : "#4466ff";
+        ctx.beginPath(); ctx.arc(projP.x, projP.y, 2, 0, 7); ctx.fill();
+    });
+
+    // 2. SEALED TESSERACT EDGES
+    edgeIndices.forEach(([i, j]) => {
+        let p1 = currentNodes[i], p2 = currentNodes[j];
+        let active = p1.isGS && p2.isGS;
+        ctx.beginPath();
+        let midX = (p1.x+p2.x)/2, midY = (p1.y+p2.y)/2, off = Math.sin(time*(active?18:5))*(active?4:1);
+        ctx.moveTo(p1.x, p1.y); ctx.quadraticCurveTo(midX+off, midY+off, p2.x, p2.y);
+        ctx.strokeStyle = active ? p1.color : "#800000";   //Maroon color for uncertain edges 
+        ctx.lineWidth = active ? 2.5 : 1;
+        if(active) { ctx.shadowBlur = 12; ctx.shadowColor = p1.color; }
+        ctx.stroke(); ctx.shadowBlur = 0;
+    });
+
+    // 3. INTENSE GLOW
+    ctx.globalCompositeOperation = 'lighter';
+    currentNodes.forEach(pn => {
+        let grad = ctx.createRadialGradient(pn.x, pn.y, 0, pn.x, pn.y, pn.isGS ? 35 : 15);
+        grad.addColorStop(0, pn.color); grad.addColorStop(0.3, pn.color); grad.addColorStop(1, "transparent");
+        ctx.fillStyle = grad; ctx.beginPath(); ctx.arc(pn.x, pn.y, pn.isGS ? 35 : 15, 0, 7); ctx.fill();
+        for(let i=0; i<3; i++) {
+            let orbit = time+(i*(Math.PI*2/3)), px = pn.x+18*Math.cos(orbit), py = pn.y+18*Math.sin(orbit);
+            ctx.fillStyle = pn.color; ctx.beginPath(); ctx.arc(px, py, pn.isGS?4:2, 0, 7); ctx.fill();
+        }
+    });
+    ctx.globalCompositeOperation = 'source-over';
+
+    currentNodes.forEach(pn => {
+        ctx.fillStyle = pn.isGS ? "#fff" : "#ff9999"; ctx.font = pn.isGS?"bold 10px monospace":"8px monospace";
+        ctx.fillText(pn.isGS ? pn.raw.id : "~"+pn.raw.id, pn.x-15, pn.y+5);
+    });
+
+    requestAnimationFrame(draw);
+}
+
+slider.oninput = (e) => { threshold = parseFloat(e.target.value); valDisp.innerText = threshold.toFixed(2); if(isRecording) logStep(); };
+nSlider.oninput = (e) => { nDisp.innerText = e.target.value; initParticles(parseInt(e.target.value)); };
+draw();
+</script>
+</body>
+</html>
