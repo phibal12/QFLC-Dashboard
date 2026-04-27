@@ -53,30 +53,24 @@ layout: default
 
   /* 3. SHARED LAYOUT (Centering) */
  #main_content {
-    max-width: 1150px !important; 
+    max-width: 1200px !important; /* Made it slightly wider as requested */
     width: 95% !important;        
     
-    /* THE FIX FOR UNEVEN SPACING */
-    margin-left: auto !important;  /* Force equal space on left */
-    margin-right: auto !important; /* Force equal space on right */
-    float: none !important;        /* Kills Slate's tendency to pin left */
-    display: block !important;     /* Ensures it acts as a centered block */
+    /* THE BALANCE FIX */
+    float: none !important;
+    margin-left: 6% !important;   /* Manually push from the left to close the right gap */
+    margin-right: auto !important; 
     
     padding: 60px 40px !important; 
-   
- float: none !important;
+    box-sizing: border-box !important;
     display: block !important;
-    position: relative !important;
   }
 
-  /* Force the outer wrapper to also be centered */
+  /* Ensure the parent doesn't restrict the new width */
   #main_content_wrap {
-    width: 100% !important;
-    display: flex !important;
-    justify-content: center !important;
-    margin: 0 !important;
-    padding: 0 !important;
+    justify-content: flex-start !important; /* Align to the start so our margin-left works */
   }
+  
   img {
     max-width: 100% !important;
     height: auto !important;
