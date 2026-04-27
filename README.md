@@ -54,7 +54,7 @@ This collection serves as a unified portfolio, translating the theoretical frame
 ---
 ## Quantum Field Lens Coding Framework: Probability Doubling by QDF Modeling
 
-
+<a href="assets/PhD-GAbstract.png" target="_blank"><img src="assets/PhD-GAbstract.png" alt="QF-LC Dissertattion Framework" style="width: 100% !important; max-width: none !important; border-radius: 8px; border: 2px solid #8b5cf6; position: relative; left: 50%; transform: translateX(-50%);"></a><br> 
 
 ---
 
