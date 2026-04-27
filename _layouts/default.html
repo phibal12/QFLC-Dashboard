@@ -100,6 +100,32 @@ layout: default
     background: transparent !important;
     padding: 0 !important;
   }
+
+  @media screen {
+    /* ... keep your other screen styles ... */
+
+    /* FIX INVISIBLE VARIABLE NAMES (Aer, qc, execute, etc.) */
+    
+    /* Variable names (qc, np, kappa) */
+    .highlight .nv, .highlight .n { 
+      color: #adbac7 !important; /* Light silver/grey for high contrast */
+    }
+
+    /* Imported classes and functions (Aer, QuantumCircuit, execute) */
+    .highlight .nc, .highlight .nn, .highlight .nf {
+      color: #dcbdfb !important; /* Soft lavender/purple */
+    }
+
+    /* Function arguments and parameters */
+    .highlight .ne, .highlight .ni {
+      color: #8dbdff !important; /* Soft blue */
+    }
+
+    /* Python Built-ins (print, range) */
+    .highlight .nb {
+      color: #ffa657 !important; /* Light orange */
+    }
+  }
 </style>
 
 
