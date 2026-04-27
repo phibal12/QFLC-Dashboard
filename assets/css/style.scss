@@ -194,6 +194,45 @@ h1 img[alt="Live Status"] {
   display: flex !important;
 }
 
+/* 8. CUSTOMIZE CODE COMMENT COLORS */
+
+/* Target all comment types (General, Multiline, Single line) */
+.highlight .c, 
+.highlight .cm, 
+.highlight .c1 {
+  color: #cc7a00 !important; /* A deep, dark orange */
+  font-style: italic !important; /* Optional: makes comments stand out */
+}
+
+/* Optional: Brighter orange on hover to make it interactive */
+.highlight .c:hover, 
+.highlight .cm:hover, 
+.highlight .c1:hover {
+  color: #ff9900 !important; /* Brighter orange */
+}
+
+/* 9. FIX READABILITY FOR IMPORTS AND OPERATORS */
+
+/* 'import', 'def', 'class', 'from' (Keywords) */
+.highlight .k, .highlight .kn, .highlight .kd {
+  color: #ff7b72 !important; /* Soft red/pink for high visibility */
+  font-weight: bold !important;
+}
+
+/* '=' , '+', '-', '*', '/' (Operators/Symbols) */
+.highlight .o, .highlight .ow {
+  color: #79c0ff !important; /* Bright light blue */
+}
+
+/* 'print', 'len', 'range' (Built-in functions) */
+.highlight .nb {
+  color: #ffa657 !important; /* Light orange */
+}
+
+/* "strings" and 'strings' */
+.highlight .s, .highlight .s1, .highlight .s2 {
+  color: #a5d6ff !important; /* Very light blue/cyan */
+}
 
 
 
