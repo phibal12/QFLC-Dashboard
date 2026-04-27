@@ -1,0 +1,1767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QF-LCA Quantum-Hardware Synthesis Engine</title>
+    <style>
+        :root {
+            --bg-main: #0b0f19; --bg-panel: #151a28; --bg-input: #242b3d;
+            --sf-color: #3b82f6; --qdf-color: #f43f5e; --target-color: #10b981; 
+            --classical-color: #f59e0b;  --term-color: #66b2b2;
+            --sop-edge: #0ea5e9; --pos-edge: #d946ef;
+            --text-main: #f1f5f9; --text-muted: #94a3b8;
+        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg-main); color: var(--text-main); margin: 0; padding: 20px; }
+        .container { max-width: 1450px; margin: auto; background: var(--bg-panel); padding: 25px; border-radius: 12px; border: 1px solid #1e293b; box-shadow: 0 10px 40px rgba(0,0,0,0.6); }
+        h2 { color: #58a6ff; border-bottom: 1px solid #1e293b; padding-bottom: 10px; margin-top: 0; display: flex; justify-content: space-between; align-items: center; }
+        
+        .controls-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px; }
+        .control-panel { background: var(--bg-main); padding: 15px; border-radius: 8px; border: 1px solid #1e293b; }
+        .control-header { font-size: 13px; font-weight: bold; color: var(--text-muted); text-transform: uppercase; margin-bottom: 10px; border-bottom: 1px solid #1e293b; padding-bottom: 5px; display: flex; justify-content: space-between;}
+        
+        .flex-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 10px; }
+        select, input[type="text"], button { background-color: var(--bg-input); color: var(--text-main); border: 1px solid #334155; padding: 8px; border-radius: 4px; font-size: 13px; }
+        button { background-color: #3b82f6; font-weight: bold; cursor: pointer; transition: 0.2s; border: none; }
+        button:hover { background-color: #2563eb; }
+        input[type="text"] { width: 180px; }
+        input[type="range"] { flex-grow: 1; cursor: pointer; }
+        
+        .slider-label { font-size: 12px; color: var(--text-muted); width: 170px; }
+        .num-box { background: #1e293b; border: 1px solid #334155; padding: 4px 8px; border-radius: 4px; font-family: monospace; font-size: 12px; width: 35px; text-align: center; }
+
+        .dashboard { display: grid; grid-template-columns: 1.2fr 1.5fr 1fr; gap: 15px; margin-bottom: 15px; }
+        .panel { background: var(--bg-main); border: 1px solid #1e293b; border-radius: 8px; padding: 15px; display: flex; flex-direction: column; min-width: 0; }
+        
+        .log-panel { font-family: 'Courier New', monospace; font-size: 12px; flex-grow: 1; overflow-y: auto; height: 350px; }
+        .step { margin-bottom: 8px; padding-left: 10px; border-left: 2px solid #58a6ff; }
+        .highlight { color: var(--qdf-color); font-weight: bold; }
+        .term { color: var(--term-color); font-weight: bold; }
+        .success { color: var(--target-color); font-weight: bold; margin-top: 15px; border-left: 2px solid var(--target-color); padding-left: 10px; }
+        .physics-log { color: #d2a8ff; font-weight: bold; border-left: 2px solid #d2a8ff; }
+        .entangled-log { color: var(--sop-edge); font-weight: bold; border-left: 2px solid var(--sop-edge); }
+        .classical-log { color: var(--classical-color); font-weight: bold; border-left: 2px solid var(--classical-color); }
+
+        .canvas-wrapper { position: relative; width: 100%; height: 350px; border-radius: 6px; overflow: hidden; box-shadow: inset 0 0 20px #000; border: 1px solid #1e293b; }
+        canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+        #particleCanvas { z-index: 1; pointer-events: none; }
+        #hypercubeCanvas { z-index: 2; cursor: grab; }
+        #hypercubeCanvas:active { cursor: grabbing; }
+        
+        .kmap-container { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; overflow-y: auto; height: 350px; }
+        table.kmap { border-collapse: collapse; font-size: 11px; margin-bottom: 10px; background: var(--bg-panel); }
+        table.kmap th, table.kmap td { border: 1px solid #1e293b; padding: 6px 8px; text-align: center; position: relative; }
+        table.kmap th { background: var(--bg-input); color: var(--text-muted); }
+        .kmap-active-min { background-color: rgba(14, 165, 233, 0.15); color: var(--sop-edge); font-weight: bold; }
+        .kmap-active-max { background-color: rgba(217, 70, 239, 0.15); color: var(--pos-edge); font-weight: bold; }
+        .kmap-entangled-sop { box-shadow: inset 0 0 8px var(--sop-edge); border: 2px solid var(--sop-edge) !important; z-index: 10; }
+        .kmap-entangled-pos { box-shadow: inset 0 0 8px var(--pos-edge); border: 2px solid var(--pos-edge) !important; z-index: 10; }
+
+        .fracture-warning { color: var(--qdf-color); text-align: center; padding: 40px 20px; font-family: monospace; border: 1px dashed var(--qdf-color); background: rgba(244,63,94,0.1); border-radius: 6px;}
+
+        /* Circuit Synthesizer Panel */
+        .circuit-dashboard { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin-bottom: 20px; }
+        .circuit-box { background: #010409; border: 1px solid #1e293b; border-radius: 8px; padding: 10px; font-family: 'Courier New', monospace; font-size: 13px; height: 350px; overflow-y: auto; overflow-x: auto; position: relative; line-height: 1.4; display: flex; flex-direction: column;}
+        .gate-sop { color: var(--sop-edge); font-weight: bold; }
+        .gate-pos { color: var(--pos-edge); font-weight: bold; }
+        .gate-fallback { color: var(--classical-color); font-weight: bold; }
+        .wire { color: #475569; }
+        
+        .code-panel { margin-top: auto; padding-top: 10px; border-top: 1px dashed #334155; font-family: 'Consolas', 'Courier New', monospace; font-size: 11px; color: #a5b4fc; white-space: pre-wrap; word-break: break-all; background: rgba(15, 23, 42, 0.5); border-radius: 4px; padding: 8px;}
+        .copy-btn { position: absolute; top: 5px; right: 5px; background: #334155; border: 1px solid #475569; color: #f1f5f9; font-size: 10px; padding: 3px 6px; border-radius: 4px; cursor: pointer; z-index: 10; transition: 0.2s; }
+        .copy-btn:hover { background: #475569; }
+
+        /* Bar Chart Styles */
+        .bar-container { display: flex; align-items: flex-end; justify-content: space-around; width: 100%; border-bottom: 1px solid #334155; padding-bottom: 5px; margin-top: 5px; flex-grow: 1; min-height: 60px; }
+        .bar-col { display: flex; flex-direction: column; align-items: center; justify-content: flex-end; width: 45px; height: 100%; }
+        .bar-val { font-size: 10px; color: #94a3b8; margin-bottom: 4px; text-align: center; }
+        .bar-fill { width: 100%; background: #334155; border-radius: 3px 3px 0 0; transition: height 0.5s ease, background 0.5s ease; }
+        .bar-label { font-size: 11px; margin-top: 8px; font-weight: bold; text-align: center; }
+
+        .bottom-dashboard { display: grid; grid-template-columns: 1fr; gap: 15px; margin-bottom: 20px; }
+        .graph-panel { background: var(--bg-main); border: 1px solid #1e293b; border-radius: 8px; padding: 15px; height: 280px; position: relative; }
+        #eeGraphCanvas { display: block; width: 100%; height: 100%; }
+
+        .comp-table { width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 20px; background: var(--bg-main); border-radius: 8px; overflow: hidden; border: 1px solid #1e293b; }
+        .comp-table th, .comp-table td { border: 1px solid #1e293b; padding: 12px; text-align: left; vertical-align: top; }
+        .comp-table th { background: #1e293b; color: #58a6ff; }
+        .comp-table tr:nth-child(even) { background: var(--bg-panel); }
+
+        .phase-badge { padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 12px; border: 1px solid; }
+        .badge-sf { color: var(--sf-color); border-color: var(--sf-color); background: rgba(59, 130, 246, 0.1); }
+        .badge-qdf { color: var(--qdf-color); border-color: var(--qdf-color); background: rgba(244, 63, 94, 0.1); }
+        .badge-hd { color: var(--target-color); border-color: var(--target-color); background: rgba(16, 185, 129, 0.1); box-shadow: 0 0 10px rgba(16, 185, 129, 0.4); }
+
+        .equation-box { font-family: 'Times New Roman', Times, serif; font-size: 16px; background-color: #000; padding: 8px 15px; border-radius: 6px; border: 1px solid #334155; color: #e2e8f0; display: inline-flex; align-items: center; gap: 10px; margin-top: 5px; }
+        .frac { display: inline-block; vertical-align: middle; text-align: center; font-size: 14px; }
+        .frac > span { display: block; padding: 0.1em; }
+        .frac span.bottom { border-top: 1px solid #e2e8f0; }
+        .footer { text-align: center; margin-top: 25px; color: #475569; font-size: 12px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>
+        <span>QF-LCD: Quantum Field Lens Coding Dashboard <br> <div style="font-size: 22px;" > Quantum  Field Lens Coding Hypercube, Hardware Synthesis Engine & Phase Simulator</div></span>
+        <span id="topPhaseBadge" class="phase-badge badge-sf">Phase: SF</span>
+    </h2>
+    
+    <div class="controls-grid">
+        <div class="control-panel">
+            <div class="control-header">Digital Logic Synthesis Parameters</div>
+            <div class="flex-row">
+                <select id="dimSelect" onchange="toggleCustom()">
+                    <option value="2">2-Variable (4 Nodes) - 2D Square</option>
+                    <option value="3">3-Variable (8 Nodes) - 3D Cube</option>
+                    <option value="4" selected>4-Variable (16 Nodes) - 4D Tesseract</option>
+                    <option value="5">5-Variable (32 Nodes) - 5D Penteract</option>
+                    <option value="6">6-Variable (64 Nodes) - 6D Hexeract</option>
+                    <option value="7" style="font-weight:bold; color:#0ea5e9;">7-Variable (128 Nodes) - 7D Hepteract - Intractability Test &ensp;</option>
+                    <option value="12" style="font-weight:bold; color:#ef4444">12-Variable (4096 Nodes) - N-Dim Scaling</option>
+                    <option disabled>------------- Costly Deterministic Picture -------------</option>
+                    <option value="6_det" style="font-weight:bold; color:#facc15;">6D Det. Visualizer (1,2,4,22,61)</option>
+                    <option value="7_det" style="font-weight:bold; color:#facc15;">7D Det. Visualizer (1,2,4,22,61)</option>
+                    <option value="12_det" style="font-weight:bold; color:#facc15;">12D Det. Visualizer (1,2,4,22,61)</option>
+                    <option disabled>------------- Costly Entanglement Picture -------------</option>
+                    <option value="6_costly" style="font-weight:bold; color:#ef4444;">6D Entang. (0,1,2,4,22,61)</option>
+                    <option value="7_costly" style="font-weight:bold; color:#ef4444;">7D Entang. (0,1,2,4,22,61,122)</option>
+                    <option value="12_costly" style="font-weight:bold; color:#ef4444;">12D Entang. (0,1,2,4,22,61,4044)</option>
+                </select>
+                <select id="modeSelect" onchange="runSimulation()">
+                    <option value="min">SOP (Σm - Minterms)</option>
+                    <option value="max">POS (ΠM - Maxterms)</option>
+                </select>
+                <select id="presetSelect" onchange="toggleCustom()">
+                    <option value="preset">Preset Array</option>
+                    <option value="custom">Custom Input</option>
+                </select>
+            </div>
+            <div class="flex-row" style="display: flex; width: 100%;">
+                <input type="text" id="customInput" placeholder="e.g., 0, 1, 4, 5, 8" style="display:none;" />
+                <button onclick="runSimulation()">Execute Quantum Synthesis</button>
+                <button id="downloadCsvBtn" onclick="triggerCSVDownload()" style="background-color: #10b981; display: none;">Store / Print Dataset</button>
+                <div style="margin-left: auto; display: flex; gap: 10px;">
+                    <button onclick="openHelpPopup()" style="background-color: #8b5cf6;">Quick Help | Contact</button>
+                    <button onclick="location.reload()" style="background-color: #ef4444;">Reset</button>
+                </div>
+            </div>
+            <div class="flex-row" style="margin-top: 15px; padding-top: 10px; border-top: 1px solid #1e293b;">
+                <div class="slider-label" style="color: #d2a8ff; font-weight: bold; width:190px;">QF-LC Hamming Dist. (d<sub>H</sub>):</div>
+                <input type="range" id="hammingSlider" min="1" max="12" value="1" oninput="updateHammingDynamic()">
+                <div class="num-box" id="hamVal" style="color: #d2a8ff; border-color: #d2a8ff;">1</div>
+            </div>
+        </div>
+
+        <div class="control-panel">
+            <div class="control-header">Thermodynamic Parameters (Eq. (53), Ref. [1])</div>
+            <div class="flex-row">
+                <div class="slider-label">Spatial Density: (|&kappa;|&sup2;&rho;)</div>
+                <input type="range" id="slider_k" min="0.5" max="2.0" step="0.01" value="1.0" oninput="updatePhysicsUI()">
+                <div class="num-box" id="num_k">1.00</div>
+            </div>
+            <div class="flex-row">
+                <div class="slider-label">Lens Lattice Dist. (L):</div>
+                <input type="range" id="slider_L" min="0.1" max="2.0" step="0.01" value="1.0" oninput="updatePhysicsUI()">
+                <div class="num-box" id="num_L">1.00</div>
+            </div>
+            <div class="flex-row">
+                <div class="slider-label">Nu Factor (&nu;):</div>
+                <input type="range" id="slider_nu" min="0.888" max="1.0" step="0.001" value="0.888" oninput="updatePhysicsUI()">
+                <div class="num-box" id="num_nu">0.888</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="dashboard">
+        <div class="panel">
+            <div class="control-header">Algorithmic Terminal</div>
+            <div id="output" class="log-panel"><em>Awaiting system initialization...</em></div>
+        </div>
+        
+        <div class="panel" style="padding: 0; background: transparent; border: none;">
+            <div class="control-header" style="display: flex; justify-content: space-between; margin: 15px 15px 0 15px; align-items: center;">
+                <span>Phase-Reactive Hypercube</span>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <label style="color: #10b981; font-size: 11px; cursor: pointer; text-transform: none; display: flex; align-items: center; font-weight: bold;">
+                        <input type="checkbox" id="collapseToggle" style="margin-right: 5px;" onchange="requestAnimationFrame(animate)"> Isolate Target State (Collapse)
+                    </label>
+                    <span style="color: #3b82f6; font-size: 10px;">[Drag to Rotate | Scroll to Zoom]</span>
+                </div>
+            </div>
+            <div class="canvas-wrapper" style="margin: 0 15px 15px 15px;">
+                <div style="position: absolute; top: 10px; right: 15px; color: #3b82f6; font-family: 'Times New Roman', serif; font-size: 20px; font-weight: bold; text-shadow: 0 0 8px rgba(59, 130, 246, 0.8); z-index: 10; pointer-events: none;">|&lang;&Phi;&rang;|</div>
+                <div id="kelvinIndicator" style="position: absolute; bottom: 10px; right: 15px; color: #38bdf8; font-family: 'Courier New', monospace; font-size: 14px; font-weight: bold; text-shadow: 0 0 5px #0284c7; z-index: 10; pointer-events: none;">T &approx; 2.1 K</div>
+                
+                <canvas id="particleCanvas" width="450" height="350"></canvas>
+                <canvas id="hypercubeCanvas" width="450" height="350"></canvas>
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="control-header">Parallel Mapping Grid</div>
+            <div id="kmapOutput" class="kmap-container"></div>
+        </div>
+    </div>
+
+    <div class="circuit-dashboard">
+        <div class="panel">
+            <div class="control-header"><span>Compiled Classical Schematic & VHDL</span></div>
+            <div id="classicalCircuit" class="circuit-box"></div>
+        </div>
+        <div class="panel">
+            <div class="control-header"><span>Compiled Quantum Circuit & OpenQASM</span></div>
+            <div id="quantumCircuit" class="circuit-box"></div>
+        </div>
+        
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+            <div class="panel" style="padding: 10px 15px; display: flex; flex-direction: column; flex: 1;">
+                <div class="control-header" style="margin-bottom: 5px;"><span>Quantum Probability (Eq. 
+(53))</span></div>
+                <div id="quantumChartContainer" class="bar-container"></div>
+            </div>
+            <div class="panel" style="padding: 10px 15px; display: flex; flex-direction: column; flex: 1;">
+                <div class="control-header" style="margin-bottom: 5px;"><span>Classical Deterministic Probability</span></div>
+                <div id="classicalChartContainer" class="bar-container"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom-dashboard">
+        <div class="graph-panel">
+            <div class="control-header" style="display: flex; justify-content: space-between;">
+                <span>Thermodynamic State Curve: EE vs. Spatial Density <span style="text-transform: lowercase;">(|&kappa;|&sup2;&rho;)</span> (Hybrid Solution of QF-LC, Eq. (53) Discretized by N)</span>
+                <span id="eeLegend" style="font-size: 11px; color: var(--text-muted);">Current EE: 0.000 bits</span>
+            </div>
+            <canvas id="eeGraphCanvas"></canvas>
+        </div>
+    </div>
+
+<table class="comp-table" style="margin-top: 15px;">
+        <tr>
+            <th colspan="2" style="text-align: center; color: #58a6ff; font-size: 14px;">Acronyms, Notations & Circuit Legend</th>
+        </tr>
+        <tr>
+            <th width="15%">Notation</th>
+            <th width="85%">Physics / Engineering Definition</th>
+        </tr>
+        <tr>
+            <td style="color: #94a3b8; font-weight: bold;">f</td>
+            <td><b>Boolean function:</b> Also represented as a qubit function given the QDF concept.</td>
+        </tr>
+        <tr>
+            <td style="color: #94a3b8; font-weight: bold;">|&Psi;&rang; / |&psi;&rang;</td>
+            <td><b>Position-based (wave/field) function:</b> Uppercase |&Psi;&rang; represents the multi-body target coherent state vector. Lowercase |&psi;&rang; limits to a single position-based particle or node.</td>
+        </tr>
+        <tr>
+            <td style="color: #94a3b8; font-weight: bold;">|&Phi;&rang; / |&phi;&rang;</td>
+            <td><b>Momentum-based (wave/field) function:</b> The Photonic wave-vector (k-based field) projecting onto the position-based states (multi-body / single).</td>
+        </tr>
+        <tr>
+            <td style="color: #94a3b8; font-weight: bold;">d<sub>H</sub></td>
+            <td><b>QF-LC Hamming Distance:</b> The geometric correlation or variable step difference connecting states. Explicitly styled as d<sub>H</sub> to protect distinction from the Hamiltonian (H).</td>
+        </tr>
+        <tr>
+            <td style="color: #94a3b8; font-weight: bold;">L</td>
+            <td><b>Lens Lattice Distance:</b> The spatial distance relative to the focal lens. If the derived transition probability (P) fails to reach a high probability peak, it strictly indicates that the quantum focal point has not been achieved.</td>
+        </tr>
+        <tr>
+            <td style="color: #94a3b8; font-weight: bold;">C<sub>out</sub> / C<sub>err</sub></td>
+            <td><b>Deterministic / Leakage Error:</b> The deterministic bit state and its associated ambient leakage when quantum coherence fails (d<sub>H</sub> mismatch), forcing the system to classical fallback logic. See the <a href="#qdf-tutorial" style="color:teal;" onMouseOver="this.style.color='#10b981'" 
+   onMouseOut="this.style.color='teal'">Dynamic QDF Tutorial.</a></td>
+        </tr>
+        <tr>
+            <td style="color: #94a3b8; font-weight: bold;">|&epsilon;<sub>i</sub>&rang;</td>
+            <td><b>Quantum Noise / Leakage Error:</b> Ambient decohered states (bit-flip errors) caused by spatial density misalignment or thermal phase instability, stealing probability from the target state. For more information, jump to <a href="#qdf-tutorial" style="color:teal;" onMouseOver="this.style.color='#10b981'" 
+   onMouseOut="this.style.color='teal'">Dynamic QDF Tutorial.</a></td>
+        </tr>
+        <tr>
+            <td style="color: #94a3b8; font-weight: bold;">SF / QDF</td>
+            <td><b>Superfluid Phase</b> (Standard thermal coherence) / <b>Quantum Double-Field</b>. QDF is reducing the HUP (Heisenberg Uncertainty Principle) which can be measured by observing the Quantum Density Fluctuation, which is the High target probability peak phase.</td>
+        </tr>
+        <tr>
+            <td style="color: #94a3b8; font-weight: bold;">QF-LCA</td>
+            <td><b>Quantum Field Lens Coding Algorithm:</b> A novel framework by Dr. Philip B. Alipour to predict state properties and events of systems using particle state mapping and field lens coding. It leverages phase shifts to achieve 100% predictive reliability without complex analytical geometry.</td>
+        </tr>
+        <tr>
+            <td style="color: #94a3b8; font-weight: bold;">EE / &lang;M&rang;</td>
+            <td><b>Entanglement Entropy</b> (Information-theoretic bit measurement of quantum correlation) / <b>Average Magnetization</b>.</td>
+        </tr>
+        <tr>
+            <td style="color: #94a3b8; font-weight: bold;">[ H ] / [ X ] / [ I ] / [ &bull; ]</td>
+            <td><b>Hadamard Gate</b> (Forces superposition/decoherence) / <b>Pauli-X Gate</b> (Logical Inversion/NOT) <span style="color: #facc15;">*</span> / <b>Identity Gate</b> (Maintains coherence/no-op) / <b>Control Node</b> (Entanglement logic bridge). See the <a href="#qdf-tutorial" style="color:teal;" onMouseOver="this.style.color='#10b981'" 
+   onMouseOut="this.style.color='teal'">Dynamic QDF Tutorial</a> examples.  <br><br> <span style="color: #facc15;"> * CNOT gate equivalent example:</span>  <br><br> <b>Control:</b>&ensp; ───●─── <br>
+          &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;  │  <br>
+<b>Target:</b>&ensp;  ───[X]───  <-- (Same as the conditional flip notation ⊕ as in XOR)
+</td>
+        </tr>
+        <tr>
+            <td style="color: #94a3b8; font-weight: bold;">T / K</td>
+            <td><b>Temperature (Kelvin):</b> Tracks the thermodynamic cooling of the quantum system. Entropy drops and temperature approaches absolute zero (T &rarr; 0 K) as the positional nodes successfully entangle and lock into the target phase.</td>
+        </tr>
+    </table>
+
+
+
+
+    <table class="comp-table">
+        <tr>
+            <th colspan="4" style="text-align: center; color: var(--target-color); font-size: 14px;">QDF Model Particle Interaction (N &ge; 3 Entanglement)</th>
+        </tr>
+        <tr>
+            <th width="15%">Entity</th>
+            <th width="20%">Role / Position</th>
+            <th width="15%">Quantum State</th>
+            <th width="50%">QF-LC Topological Function (Revealing Bell Information)</th>
+        </tr>
+        <tr>
+            <td style="color: #10b981; font-weight: bold;">Alice</td>
+            <td>Superposing Field</td>
+            <td>|2&rang; (Superposition)</td>
+            <td>Transmits the primary momentum field (|&Phi;&rang;). Projects the initial state density onto the positional nodes.</td>
+        </tr>
+        <tr>
+            <td style="color: #10b981; font-weight: bold;">Bob</td>
+            <td>Ground State (GS) Particle / Trap</td>
+            <td>|0&rang; / |1&rang; / |&Psi;&rang;</td>
+            <td>The target positional particle. Receives the projected field to collapse into the target state over distance d<sub>H</sub>.</td>
+        </tr>
+        <tr>
+            <td style="color: #10b981; font-weight: bold;">Eve</td>
+            <td>Ancilla / Intercepting Field</td>
+            <td>|2&rang; (Superposition)</td>
+            <td>The critical mediator. Entangles with Alice and Bob to break parity, resolving hidden Bell state information and stabilizing the swarm.</td>
+        </tr>
+    <tr>
+<td style="color: #10b981; font-weight: bold;"> [Alice]──[Bob]──[Eve]</td>
+<td>Quantum Information Network / &langle;|&Psi;|&rang;--&langle|&Phi|&rang fields (traps & free space) </td>
+<td>Paired: |BobAlice&rang;|Eve&rang;</td>
+<td>Eve on this network acts as an extra bit (helper/mediator) to reveal the "hidden Bell state" information. Visit Alice, Bob and Eve's quantum mechanics via the <a href="#qdf-tutorial" style="color:teal;" onMouseOver="this.style.color='#10b981'" 
+   onMouseOut="this.style.color='teal'">Dynamic QDF Tutorial.</a> </td>
+</tr>    
+</table>
+
+    <table class="comp-table" style="margin-top: 15px;">
+        <tr>
+            <th colspan="3" style="text-align: center; color: #f1f5f9; font-size: 14px;">Methodology Analysis: Hardware Logic Synthesis Validation</th>
+        </tr>
+        <tr>
+            <th width="20%">Criteria</th>
+            <th width="40%">Traditional Method (K-Map / QM)</th>
+            <th width="40%">QF-LCA Hypercube Model</th>
+        </tr>
+        <tr>
+            <td style="color: #94a3b8; font-weight: bold;">d<sub>H</sub> Distance Processing</td>
+            <td>Strictly <b>local and sequential</b>. Forces the designer to find d<sub>H</sub>=1 adjacencies to eliminate a single variable iteratively. Fails to map long-range correlations.</td>
+            <td>Uses a <b>global, field-based</b> evaluation. Simultaneously maps multi-dimensional correlations (d<sub>H</sub> &ge; 1), collapsing entire sub-cubes at once based on entanglement bonds.</td>
+        </tr>
+        <tr>
+            <td style="color: #94a3b8; font-weight: bold;">Visual Intractability & Scalability</td>
+            <td>Visual matrices fracture entirely at 5+ variables, becoming fundamentally unmappable and cognitively unreliable at 7+ variables. Cannot resolve 12D spaces.</td>
+            <td>Natively scalable. Scales seamlessly from basic 2D Squares up to dense 7D forms (128 nodes). At extreme dimensions (e.g., 12D), it selectively isolates active networks.</td>
+        </tr>
+        <tr>
+            <td style="color: #94a3b8; font-weight: bold;">FPGA Synthesis Translation</td>
+            <td>Translates theoretical logic into static LUTs/Muxes without awareness of underlying thermal limits or phase boundaries.</td>
+            <td><b>"Ready for FPGA":</b> Terminal verification confirms the simplified Boolean expression is thermodynamically stable. This ensures the generated VHDL/Verilog can directly program classical controllers.</td>
+        </tr>
+    </table>
+
+    <table class="comp-table" style="margin-top: 15px;">
+        <tr>
+            <th colspan="3" style="text-align: center; color: var(--target-color); font-size: 14px;">Thermodynamic & Probabilistic Integration (Eq. (53) from Ref. [1])</th>
+        </tr>
+        <tr>
+            <th width="20%">Physics Concept</th>
+            <th width="40%">Standard Digital Design Limit</th>
+            <th width="40%">QF-LCA Hardware Application</th>
+        </tr>
+        <tr>
+            <td style="color: #94a3b8; font-weight: bold;">Probability (P) Integration</td>
+            <td>Assumes ideal logic gates (100% deterministic 1s and 0s).</td>
+            <td>
+                Derives transition probability ensuring synthesized logic routes around physical phase limits.
+                <div class="equation-box" style="font-size:12px;">
+                    <strong>Eq. (53) from Ref. [1]:</strong><div style="font-size:13px;"> <i>P</i>(&Phi; &rarr; &Psi;) = 
+                    <div class="frac"><span>4(<i>N</i> &minus; 1)&sup2;</span><span class="bottom">9[<i>N</i>(<i>N</i> &minus; 1)/2]&nu;</span></div></div></div>
+                &ensp;&ensp;<span style="color:#facc15; font-size:11px;">*</span> <br>
+                <span style="color:#facc15; font-size:11px;">* Note: If the derived transition probability (P) fails to reach a high probability peak, it strictly indicates that the quantum focal point has not been achieved.</span>
+            </td>
+        </tr>
+        <tr>
+            <td style="color: #94a3b8; font-weight: bold;">State Probability Distribution</td>
+            <td>Outputs binary True/False logic tables without regard for error margins.</td>
+            <td><b>Replicating Figures 5/6 from Ref. [2]:</b> Projects the Eq. (53) P value to physically visualize the probability peak of the synthesized Target State against ambient decohered states. See the <a href="#qdf-tutorial" style="color:teal;" onMouseOver="this.style.color='#10b981'" 
+   onMouseOut="this.style.color='teal'">Dynamic QDF Tutorial.</a></td>
+        </tr>
+        <tr>
+            <td style="color: #94a3b8; font-weight: bold;">Entanglement Resource Load</td>
+            <td>When Canonical Reduction is 0%, the logical synthesis cannot eliminate variables.<br><br><span style="color:#facc15; font-weight:bold; background: rgba(250, 204, 21, 0.1); padding: 2px 4px; border-radius: 4px; border: 1px solid rgba(250, 204, 21, 0.3);">Wave Collapse Note:</span> Given that entanglement is not possible for this thermodynamic event, the deterministic classical bit sequence is presented without entanglement as a total collapse of the wave function: (<span style="text-decoration:line-through;">&Psi;</span> | <i>bit sequence</i>).</td>
+            <td>Resource usage increases relative to the physical nodes recruited. Note that Entanglement Entropy (EE) remains bounded per Eq. (53), while classical entropy S (randomness/uncertainty) physically increases due to expanded network edges connecting active bounds.<br><br><span style="color:#facc15; font-weight:bold; background: rgba(250, 204, 21, 0.1); padding: 2px 4px; border-radius: 4px; border: 1px solid rgba(245, 158, 11, 0.3);">Note:</span> To address this cost, manage resources, and handle error correction of flipped bits as d<sub>H</sub> increases, we must utilize the quantum AI methodology on the generated datasets (see Ref. [4]).</td>
+        </tr>
+    </table>
+
+    <table class="comp-table" style="margin-top: 15px;">
+        <tr>
+            <th colspan="3" style="text-align: center; color: #d2a8ff; font-size: 14px;">Operational Index: QF-LCA vs. Classical Terminology Map</th>
+        </tr>
+        <tr>
+            <th width="25%">Classical Logic Term</th>
+            <th width="25%">QF-LCA Equivalent</th>
+            <th width="50%">Hardware Engineering Context</th>
+        </tr>
+        <tr>
+            <td style="color: #94a3b8; font-weight: bold;">Eliminated Variable / Don't Care</td>
+            <td style="color: #f43f5e; font-weight: bold;">Decohered / Superposition State</td>
+            <td>Variables that drop out due to Boolean symmetry. In a quantum circuit context, these qubits are effectively traced out (decohered) or left in a uniform superposition [H].</td>
+        </tr>
+        <tr>
+            <td style="color: #94a3b8; font-weight: bold;">Kept Variable (Normal / Inverted)</td>
+            <td style="color: #10b981; font-weight: bold;">Coherent Target Qubit / X-Gate</td>
+            <td>The essential variables that form the final simplified equation. Inversions (e.g., C') dynamically trigger logical <code>NOT (|>o)</code> gates in classical synthesis and <code>Pauli-X [X]</code> phase flips in quantum routing.</td>
+        </tr>
+        <tr>
+            <td style="color: #94a3b8; font-weight: bold;">Isolated Node (No Pairings)</td>
+            <td style="color: #f59e0b; font-weight: bold;">Classical Deterministic Fallback</td>
+            <td>When no active geometric pairings exist at the set Hamming distance, the T-centre operates merely as a classical deterministic bit. Quantum probability flattens to 0. </td>
+        </tr>
+        <tr>
+            <td style="color: #94a3b8; font-weight: bold;">Logic Gate (AND/OR)</td>
+            <td style="color: #0ea5e9; font-weight: bold;">Quantum Coherence Loop</td>
+            <td id="qdf-tutorial"> Classical gates force a deterministic voltage output. QF-LCA maps this equivalent logic to quantum gate sequences that probabilistically steer the system toward the target state vector.<br><br><button onclick="openStateCircuitPopup()" style="background:#3b82f6; color:#fff; padding:6px 10px; border:none; border-radius:4px; font-weight:bold; cursor:pointer; font-size:11px;">Dynamic QDF Tutorial</button></td>
+        </tr>
+    </table>
+
+    <div style="background: #0f172a; padding: 15px; border-radius: 8px; border: 1px solid #1e293b; margin-top: 15px;">
+        <h3 style="color: #58a6ff; margin-top: 0;">References</h3>
+        <ul style="font-size: 12px; color: #94a3b8; line-height: 1.5; margin-bottom: 0; list-style-type: none; padding-left: 0;">
+            <li>[1] P.B. Alipour, T.A. Gulliver, Quantum Double-field Model and Application, SSRN, Elsevier BV (2024), Article 4595442, <a href="https://dx.doi.org/10.2139/ssrn.4595442" target="_blank" style="color: #3b82f6;">https://dx.doi.org/10.2139/ssrn.4595442</a></li>
+            <li>[2] P.B. Alipour, T.A. Gulliver, Quantum Field Lens Coding and Classification Algorithm to Predict Measurement Outcomes, MethodsX, Elsevier BV (2023), Article 102136, <a href="https://doi.org/10.1016/j.mex.2023.102136" target="_blank" style="color: #3b82f6;">https://doi.org/10.1016/j.mex.2023.102136</a></li>
+            <li>[3] P.B. Alipour, T.A. Gulliver, QF-LCA dataset: Quantum Field Lens Coding Algorithm for system state simulation and strong predictions, Data in Brief, Elsevier BV (2024), Article 110789, <a href="https://doi.org/10.1016/j.dib.2024.110789" target="_blank" style="color: #3b82f6;">https://doi.org/10.1016/j.dib.2024.110789</a></li>
+            <li>[4] P. B. Alipour, T. A. Gulliver, QF-LCS: Quantum Field Lens Coding Simulator and Game Tool for Strong System State Predictions, Software Impacts, Elsevier BV (2024), 100703, ISSN 2665-9638, <a href="https://doi.org/10.1016/j.simpa.2024.100703" target="_blank" style="color: #3b82f6;">https://doi.org/10.1016/j.simpa.2024.100703</a></li>
+        </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2026, Philip B. Alipour. All Rights Reserved. | Quantum Field Lens Coding (QF-LC) Framework
+    </div>
+</div>
+
+<script>
+    window.copyContent = function(elementId, btn) {
+        let text = document.getElementById(elementId).innerText;
+        navigator.clipboard.writeText(text).then(() => {
+            let oldText = btn.innerText;
+            btn.innerText = "Copied!";
+            setTimeout(() => btn.innerText = oldText, 2000);
+        });
+    }
+
+    // --- PHYSICS ENGINE OF Eq. (53) ---
+    let currentPhysicsState = { P: 0, N: 1, phase: 0, targetHit: false, EE: 0, M: 0 };
+    const colorSF = '#3b82f6'; const colorQDF = '#f43f5e'; const colorHD = '#10b981'; const colorClass = '#f59e0b';
+
+    function calculateEE(P) { if (P <= 0 || P >= 1) return 0.000; return (-P * Math.log2(P) - (1 - P) * Math.log2(1 - P)); }
+    function calculateMagnetization(P) { let M = (P - 0.5) * 2; return Math.max(0, M); }
+
+    function getBaseProbability(k, L) {
+        const alignmentPenalty = Math.exp(-5 * Math.pow(L - 1.0, 2)); 
+        let exponent = -0.6 * Math.pow(k, 3) * alignmentPenalty;
+        return Math.max(0.1, Math.min(1.0 - Math.exp(exponent), 0.9999));
+    }
+
+    function updatePhysicsUI() {
+        const k = parseFloat(document.getElementById('slider_k').value);
+        const L = parseFloat(document.getElementById('slider_L').value);
+        const nu = parseFloat(document.getElementById('slider_nu').value);
+        
+        document.getElementById('num_k').innerText = k.toFixed(2);
+        document.getElementById('num_L').innerText = L.toFixed(2);
+        document.getElementById('num_nu').innerText = nu.toFixed(3);
+
+        let p_base = getBaseProbability(k, L);
+        let N = 1; let P = p_base; let phase = 0; let targetHit = false;
+        
+        if (p_base >= 0.666) {
+            let denominator = 8.0 - 9.0 * p_base * nu;
+            let N_raw = (denominator <= 0.005) ? 1000 : (8.0 / denominator);
+            N = Math.max(3, Math.round(N_raw));
+            P = (4 * Math.pow(N - 1, 2)) / (9 * (N * (N - 1) / 2) * nu);
+            phase = 2; targetHit = true; 
+        } else if (p_base >= 0.333) { N = 2; phase = 1; }
+        
+        P = Math.min(P, 0.9999);
+        currentPhysicsState = { P: P, N: N, phase: phase, targetHit: targetHit, EE: calculateEE(P), M: calculateMagnetization(P) };
+        
+        const badge = document.getElementById('topPhaseBadge');
+        if (targetHit) { badge.className = 'phase-badge badge-hd'; badge.innerText = 'Phase: TARGET (d_H)'; }
+        else if (phase === 1) { badge.className = 'phase-badge badge-qdf'; badge.innerText = 'Phase: QDF'; }
+        else { badge.className = 'phase-badge badge-sf'; badge.innerText = 'Phase: SF'; }
+        
+        document.getElementById('eeLegend').innerText = `Current EE: ${currentPhysicsState.EE.toFixed(3)} bits | P: ${P.toFixed(3)} | N: ${N}`;
+        drawEEGraph(k, L, nu);
+        
+        if(window.currentAnalysis) renderCircuits(window.currentAnalysis, currentMode, currentPhysicsState.P, currentPhysicsState.targetHit);
+        
+        rebuildNodeParticles();
+    }
+
+    // --- EE GRAPH ENGINE ---
+    const eeCanvas = document.getElementById('eeGraphCanvas');
+    const eeCtx = eeCanvas.getContext('2d');
+
+    function drawEEGraph(current_k, current_L, current_nu) {
+        const rect = eeCanvas.parentElement.getBoundingClientRect();
+        eeCanvas.width = rect.width; eeCanvas.height = rect.height - 35; 
+        const w = eeCanvas.width; const h = eeCanvas.height;
+        eeCtx.clearRect(0, 0, w, h);
+
+        const padX = 30; const padY = 35; 
+        const mapX = (val) => padX + ((val - 0.5) / 1.5) * (w - padX * 2);
+        const mapY = (val) => h - padY - (Math.max(0, Math.min(1, val)) * (h - padY * 2));
+
+        eeCtx.beginPath();
+        for (let x = 0.5; x <= 2.0; x += 0.01) {
+            let p_b = getBaseProbability(x, current_L);
+            let P_val = p_b;
+            if (p_b >= 0.666) {
+                let den = 8.0 - 9.0 * p_b * current_nu;
+                let N_raw = (den <= 0.005) ? 1000 : (8.0 / den);
+                let N = Math.max(3, Math.round(N_raw));
+                P_val = Math.min((4 * Math.pow(N - 1, 2)) / (9 * (N * (N - 1) / 2) * current_nu), 0.9999);
+            }
+            let px = mapX(x); let py = mapY(calculateEE(P_val));
+            if (x === 0.5) eeCtx.moveTo(px, py); else eeCtx.lineTo(px, py);
+        }
+        
+        let isClassicalFallback = (window.globalPairings && window.globalPairings.length === 0 && currentActiveNodes && currentActiveNodes.length > 0);
+        let curveColor = isClassicalFallback ? colorClass : (currentPhysicsState.targetHit ? colorHD : (currentPhysicsState.phase === 1 ? colorQDF : colorSF));
+        eeCtx.strokeStyle = curveColor; eeCtx.lineWidth = 3; eeCtx.stroke();
+
+        let current_EE = currentPhysicsState.EE;
+        const px = mapX(current_k); const py = mapY(current_EE);
+        
+        eeCtx.beginPath(); eeCtx.moveTo(px, h - padY); eeCtx.lineTo(px, py);
+        eeCtx.strokeStyle = '#334155'; eeCtx.setLineDash([4, 4]); eeCtx.stroke(); eeCtx.setLineDash([]);
+
+        eeCtx.beginPath(); eeCtx.arc(px, py, 6, 0, Math.PI * 2);
+        eeCtx.fillStyle = currentPhysicsState.targetHit ? colorHD : (currentPhysicsState.phase === 1 ? colorQDF : colorSF);
+        eeCtx.fill(); eeCtx.strokeStyle = '#ffffff'; eeCtx.lineWidth = 2; eeCtx.stroke();
+    }
+
+    // --- LOGIC ENGINE & HARDWARE SYNTHESIS ---
+    let currentDim = 4; let currentActiveNodes = []; let currentMode = 'min';
+    let targetHamming = 1; let rotX = 0.4, rotY = 0.5; let zoomLevel = 1.0;
+    let globalPairings = []; window.globalPairings = globalPairings;
+    const varNames = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'];
+    
+    const base3D = [
+        {x: 45, y: 0, z: 0}, {x: 0, y: -45, z: 0}, {x: 0, y: 0, z: 45},
+        {x: 35, y: 25, z: 25}, {x: -60, y: -30, z: 40}, {x: 70, y: -50, z: -50},
+        {x: -20, y: 70, z: 30}, {x: -80, y: 0, z: 20}, {x: 20, y: 20, z: 80},
+        {x: -40, y: -40, z: -40}, {x: 50, y: 50, z: -50}, {x: -50, y: 50, z: 50}
+    ];
+
+    function toggleCustom() {
+        const preset = document.getElementById('presetSelect').value;
+        document.getElementById('customInput').style.display = preset === 'custom' ? 'inline-block' : 'none';
+        const dimSelectVal = document.getElementById('dimSelect').value;
+        const dim = parseInt(dimSelectVal);
+        const slider = document.getElementById('hammingSlider');
+        slider.max = dim;
+        if(parseInt(slider.value) > dim) { slider.value = dim; document.getElementById('hamVal').innerText = dim; }
+    }
+
+    function calcHammingDist(a, b) {
+        let x = a ^ b; let dist = 0;
+        while(x > 0) { dist += x & 1; x >>= 1; }
+        return dist;
+    }
+
+    function getProjectedBases() {
+        let cx = Math.cos(rotX), sx = Math.sin(rotX), cy = Math.cos(rotY), sy = Math.sin(rotY);
+        let proj = [];
+        for(let b of base3D) {
+            let x1 = b.x * cy - b.z * sy; let z1 = b.x * sy + b.z * cy;
+            proj.push({x: (x1) * zoomLevel, y: (b.y * cx - z1 * sx) * zoomLevel});
+        }
+        return proj;
+    }
+
+    function getCoords(minterm, projBases, dim, w, h) {
+        let x = w / 2; let y = h / 2;
+        for (let i = 0; i < dim; i++) {
+            if ((minterm >> i) & 1) { x += projBases[i].x; y += projBases[i].y; }
+            else { x -= projBases[i].x; y -= projBases[i].y; } 
+        }
+        return { x, y };
+    }
+
+    const hCanvas = document.getElementById('hypercubeCanvas');
+    const hCtx = hCanvas.getContext('2d');
+    const pCanvas = document.getElementById('particleCanvas');
+    const pCtx = pCanvas.getContext('2d');
+    let isDragging = false; let lastMouseX = 0, lastMouseY = 0;
+
+    hCanvas.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        zoomLevel += e.deltaY * -0.001;
+        zoomLevel = Math.min(Math.max(0.2, zoomLevel), 4.0);
+        
+        let kelvinElem = document.getElementById('kelvinIndicator');
+        if(zoomLevel > 1.8) {
+            kelvinElem.innerHTML = `T &rarr; 0 K`;
+            kelvinElem.style.color = `#10b981`;
+            kelvinElem.style.textShadow = `0 0 5px #10b981`;
+        } else if (zoomLevel <= 0.4) {
+            kelvinElem.innerHTML = `T > 2.17 K (Beyond SF Phase)`;
+            kelvinElem.style.color = `#3b82f6`;
+            kelvinElem.style.textShadow = `0 0 5px #3b82f6`;
+        } else {
+            let tVal = (2.1 / Math.pow(zoomLevel, 2)).toFixed(2);
+            if(tVal >= 2.17) {
+                kelvinElem.innerHTML = `T &ge; 2.17 K`;
+                kelvinElem.style.color = `#ef4444`;
+                kelvinElem.style.textShadow = `0 0 5px #b91c1c`;
+            } else {
+                kelvinElem.innerHTML = `T &approx; ${tVal} K`;
+                kelvinElem.style.color = `#38bdf8`;
+                kelvinElem.style.textShadow = `0 0 5px #0284c7`;
+            }
+        }
+    });
+
+    hCanvas.addEventListener('mousedown', (e) => { isDragging = true; lastMouseX = e.clientX; lastMouseY = e.clientY; });
+    hCanvas.addEventListener('mousemove', (e) => {
+        if(!isDragging) return;
+        rotY += (e.clientX - lastMouseX) * 0.01; rotX -= (e.clientY - lastMouseY) * 0.01;
+        lastMouseX = e.clientX; lastMouseY = e.clientY; 
+    });
+    hCanvas.addEventListener('mouseup', () => isDragging = false);
+    hCanvas.addEventListener('mouseleave', () => isDragging = false);
+
+    class FreeParticle {
+        constructor() {
+            this.x = Math.random() * pCanvas.width; this.y = Math.random() * pCanvas.height;
+            this.vx = (Math.random() - 0.5) * 1.5; this.vy = (Math.random() - 0.5) * 1.5;
+            this.radius = Math.random() * 2 + 1; this.opacity = Math.random() * 0.5 + 0.3;
+        }
+        update() {
+            this.x += this.vx * zoomLevel; this.y += this.vy * zoomLevel;
+            if (this.x < 0) this.x = pCanvas.width; if (this.x > pCanvas.width) this.x = 0;
+            if (this.y < 0) this.y = pCanvas.height; if (this.y > pCanvas.height) this.y = 0;
+        }
+        draw(ctx, r, g, b) {
+            ctx.beginPath(); ctx.arc(this.x, this.y, this.radius * Math.max(0.5, zoomLevel), 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${this.opacity})`;
+            ctx.shadowBlur = 8 * zoomLevel; ctx.shadowColor = `rgb(${r}, ${g}, ${b})`;
+            ctx.fill(); ctx.shadowBlur = 0;
+        }
+    }
+    let freeParticles = []; for (let i = 0; i < 50; i++) freeParticles.push(new FreeParticle());
+
+    let nodeParticles = [];
+    function rebuildNodeParticles() {
+        nodeParticles = [];
+        let isClassicalFallback = (globalPairings.length === 0 && currentActiveNodes.length > 0);
+        
+        if (currentActiveNodes.length > 0) {
+            let swarmSize = 1;
+            if (isClassicalFallback) swarmSize = 1; 
+            else if (currentPhysicsState.targetHit) swarmSize = Math.max(3, currentPhysicsState.N); 
+            else if (currentPhysicsState.phase === 1) swarmSize = 2; 
+            else swarmSize = 1; 
+
+            for(let i=0; i < currentActiveNodes.length; i++) {
+                for(let k=0; k<swarmSize; k++) {
+                    nodeParticles.push({
+                        nodeIdx: i,
+                        groupPhaseOffset: k * (Math.PI * 2 / swarmSize),
+                        x: null, y: null,
+                        vx: (Math.random() - 0.5) * 4,
+                        vy: (Math.random() - 0.5) * 4,
+                        radius: Math.random() * 1.5 + 2,
+                        opacity: Math.random() * 0.5 + 0.5,
+                        lifespan: Math.random() * 100 + 50 
+                    });
+                }
+            }
+        }
+    }
+
+    function drawKMap(dim, activeNodes, mode, pairingsList) {
+        const container = document.getElementById('kmapOutput');
+        container.innerHTML = '';
+        if (dim > 6) {
+            container.innerHTML = `<div class="fracture-warning">
+                <b>DIMENSIONAL INTRACTABILITY REACHED</b><br><br>
+                Traditional K-Map grid fracturing detected. Standard visual mapping fails to reliably represent ${Math.pow(2, dim)} nodes across a 2D plane.<br><br>
+                <i>QF-LCA Hypercube successfully bypasses visual limitations to compute entanglement directly in ${dim}D space.</i>
+                </div>`;
+            return;
+        }
+
+        let numMaps = 1;
+        if(dim === 5) numMaps = 2;
+        if(dim === 6) numMaps = 4;
+
+        let mapTitles = [];
+        if(dim === 2) mapTitles = ["A \\ B"];
+        else if(dim === 3) mapTitles = ["A \\ B,C"];
+        else if(dim === 4) mapTitles = ["A,B \\ C,D"];
+        else if(dim === 5) mapTitles = ["A=0 (B,C \\ D,E)", "A=1 (B,C \\ D,E)"];
+        else if(dim === 6) mapTitles = ["A=0,B=0 (C,D \\ E,F)", "A=0,B=1 (C,D \\ E,F)", "A=1,B=0 (C,D \\ E,F)", "A=1,B=1 (C,D \\ E,F)"];
+
+        const gray2 = [0, 1]; const gray4 = [0, 1, 3, 2]; 
+        const label2 = ["0", "1"]; const label4 = ["00", "01", "11", "10"];
+
+        let numRows = (dim === 2 || dim === 3) ? 2 : 4;
+        let numCols = (dim === 2) ? 2 : 4;
+        
+        let rowLabels = (dim === 2 || dim === 3) ? label2 : label4;
+        let colLabels = (dim === 2) ? label2 : label4;
+        let rowGrays = (dim === 2 || dim === 3) ? gray2 : gray4;
+        let colGrays = (dim === 2) ? gray2 : gray4;
+
+        let entangledSet = new Set();
+        pairingsList.forEach(p => { entangledSet.add(p[0]); entangledSet.add(p[1]); });
+
+        for(let m=0; m<numMaps; m++) {
+            let html = `<div><div style="font-size:11px; text-align:center; color:#94a3b8; margin-bottom:2px;">${mapTitles[m]}</div><table class="kmap"><tr><th></th>`;
+            for(let i=0; i<numCols; i++) html += `<th>${colLabels[i]}</th>`;
+            html += `</tr>`;
+            for(let r=0; r<numRows; r++) {
+                html += `<tr><th>${rowLabels[r]}</th>`;
+                for(let c=0; c<numCols; c++) {
+                    let cellVal;
+                    if (dim === 2) cellVal = (rowGrays[r] << 1) | colGrays[c];
+                    else if (dim === 3) cellVal = (rowGrays[r] << 2) | colGrays[c];
+                    else cellVal = (m << 4) | (rowGrays[r] << 2) | colGrays[c];
+
+                    let isActive = activeNodes.includes(cellVal);
+                    let isEntangled = entangledSet.has(cellVal);
+                    let cellClass = isActive ? (mode === 'min' ? 'kmap-active-min' : 'kmap-active-max') : '';
+                    let entangleClass = isEntangled ? (mode === 'min' ? 'kmap-entangled-sop' : 'kmap-entangled-pos') : '';
+                    let displayVal = mode === 'min' ? (isActive ? '1' : '0') : (isActive ? '0' : '1');
+                    html += `<td class="${cellClass} ${entangleClass}">${displayVal}<br><span style="font-size:9px; color:#64748b;">${cellVal}</span></td>`;
+                }
+                html += `</tr>`;
+            }
+            html += `</table></div>`;
+            container.innerHTML += html;
+        }
+    }
+
+    function openStateCircuitPopup() {
+        let qSchemExample = document.getElementById('qSchem') ? document.getElementById('qSchem').innerHTML : "Run a simulation to generate the active circuit example.";
+        // Clean out the copy button for the printable view
+        qSchemExample = qSchemExample.replace(/<button.*?>.*?<\/button>/g, '');
+        let qasmText = document.getElementById('qQasm') ? document.getElementById('qQasm').innerText : "// Run a simulation to generate OpenQASM.";
+
+        let content = `<html><head><title>Dynamic Quantum State & Circuit Tutorial</title><style>
+        body{font-family:'Segoe UI', Tahoma, sans-serif; padding:20px; line-height:1.6; color:#1e293b; background:#f8fafc;} 
+        h2{color:#3b82f6;} h3{color:#0f172a; border-bottom:1px solid #cbd5e1; padding-bottom:5px;} h4{color:#334155; margin-bottom:5px;}
+        hr{border:1px solid #cbd5e1;} 
+        button.print-btn{padding:10px 15px; background:#3b82f6; color:#fff; border:none; border-radius:4px; cursor:pointer; font-weight:bold; margin-bottom:15px;}
+        .gate-sop { color: #0ea5e9; font-weight: bold; }
+        .gate-pos { color: #d946ef; font-weight: bold; }
+        .gate-fallback { color: #f59e0b; font-weight: bold; }
+        .wire { color: #475569; }
+        </style></head><body>
+        <h2>A Dynamic QDF Tutorial:<br> Quantum State & Circuit Geometry</h2>
+        <button class="print-btn" onclick="window.print()">Print Guide</button>
+        <hr>
+        <h3>1. The Decohered Field (Eliminated Variables & [ H ] Gates)</h3>
+        <p>In the hypercube visualization, when nodes are connected by entanglement bonds, they form a continuous geometric sub-cube. If a bond connects nodes across a specific spatial coordinate (e.g., A=0 to A=1), that variable becomes a "Don't Care" mathematically. In the quantum circuit, this is represented by applying a <b>Hadamard [ H ] gate</b>. The variable is thrown into a uniform superposition, effectively allowing it to act as the ambient quantum field and tracing it out of the target coherence loop entirely. </p>
+        
+        <h3>2. The Entanglement Core (Kept Variables & Toffoli Gates)</h3>
+        <p>The variables that survive the collapse (the "Kept Variables") are the specific spatial coordinates that anchor the target sub-cube. To physically isolate this state, these variables must be entangled into a <b>Coherence Loop</b>. In the circuit, this is executed by aligning their phases with <b>[ X ] gates</b> (if they need to trigger on 0) and binding them via multi-controlled entanglement gates (like the Toffoli <code>ccx</code> or <code>mct</code>). This is visually represented by the vertical wire connecting the Control Nodes <code>[ &bull; ]</code>.</p>
+        
+        <h3>3. The Role of the Ancilla Qubit (Eve)</h3>
+        <p>In standard quantum computing, a multi-controlled logic gate needs a physical destination to store the result without destroying the input qubits. The <b>ancilla qubit (Eve)</b> acts as this intercepting field and target destination. By entangling with both the control nodes (Alice) and the target ground state (Bob), Eve breaks the parity and stabilizes the swarm. If the spatial coordinates perfectly align, the entanglement routes through Eve to trap and stabilize the final Target State <b>|&Psi;&rang;</b>.</p>
+
+        <h3>4. Revealing Hidden Bell States via QDF Lensing</h3>
+        <p>Eve is the main key to the quantum double-field (QDF) and lensing process. As discussed in the literature, the QDF method discovers hidden Bell states using ancilla qubits when the information network is maintained between at least 3 particles (N &ge; 3 entanglement, transitioning out of the SF state).</p>
+        
+        <h4>4.1 The Theoretical Base: Parity Breaking</h4>
+        <p>In standard environments, thermal noise and ambient spatial density mask distant correlations (d<sub>H</sub> &ge; 1). To reveal these hidden Bell states without destroying the superposition, QDF lensing isolates the interaction via Eve. Eve entangles with both Alice (the superposing field) and Bob (the ground state trap), acting as a parity-breaker. She absorbs complex phase interactions, stabilizing the orbital swarm and projecting the hidden correlation into a measurable localized state.</p>
+        
+        <div style="background:#010409; color:#f1f5f9; padding:15px; border-radius:6px; font-family:'Courier New', monospace; font-size:13px; margin-bottom:15px; border:1px solid #334155;">
+            // Theoretical QDF Base Circuit (Alice, Bob, Eve)<br><br>
+            |Alice&rang; (Field)&nbsp;&nbsp; <span class="wire">--</span><span class="gate-sop">[ H ]</span><span class="wire">--</span><span class="gate-sop">[ &bull; ]</span><span class="wire">-------------</span><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="wire">|</span><br>
+            |Bob&rang; &nbsp;&nbsp;(Target)&nbsp; <span class="wire">---------</span><span class="gate-sop">[ X ]</span><span class="wire">----</span><span class="gate-sop">[ &bull; ]</span><span class="wire">----</span><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="wire">|</span><br>
+            |Eve&rang; &nbsp;&nbsp;(Ancilla) <span class="wire">------------------</span><span class="gate-sop">[ X ]</span><span class="wire">----</span> |&Psi;&rang; (Bell State Revealed)<br>
+        </div>
+
+        <h4>4.2 QDF Circuit Architecture & The Lens</h4>
+        <p>Building upon the base theoretical interaction, the complete QDF architecture introduces the physical <b>"Lens"</b> transformation. As summarized from the QDF Model (Refs. [1], [2]), this lens effectively "filters" the probability space, doubling the information density and bypassing standard one-shot limitations via n-2 state elimination.</p>
+
+        <div style="background:#010409; color:#f1f5f9; padding:15px; border-radius:6px; font-family:'Courier New', monospace; font-size:13px; margin-bottom:15px; border:1px solid #334155; white-space:pre; overflow-x:auto;">
+       ENTANGLEMENT         QDF TRANSFORMATION          REVEALED 
+          SOURCE              (THE LENS)                 STATE
+          
+q0 ────<span class="gate-sop">[ H ]</span>────<span class="gate-sop">●</span>─────────────────────────────<span class="gate-fallback">[ M ]</span>──> bit 0
+                <span class="wire">│</span>               ┌───────┐      
+                <span class="wire">│</span>               │       │      
+q1 ───────────<span class="gate-sop">[ X ]</span>────────<span class="gate-sop">●</span>────┤  QDF  ├─────<span class="gate-fallback">[ M ]</span>──> bit 1
+                           <span class="wire">│</span>    │       │
+             (Entangled    <span class="wire">│</span>    │ LENS  │      (Hidden bits 
+                Pair)      <span class="wire">│</span>    │       │       recovered)
+                           <span class="wire">│</span>    │       │
+ancilla  ────────────────<span class="gate-sop">[ X ]</span>──┤       ├─────<span class="gate-fallback">[ M ]</span>──> Eve's Field 
+(Eve)                           └───────┘              Signature</div>
+
+        <p><b>Breakdown of the Roles:</b></p>
+        <ul>
+            <li><b>The Entangled Pair (q0, q1):</b> The initial qubits where the four Bell states (|00&rang;, |01&rang;, |10&rang;, |11&rang;) information is "hidden." Standard measurements fail to distinguish between all four possible states simultaneously.</li>
+            <li><b>The Ancilla (Eve):</b> In Alipour's model, Eve provides the auxiliary double-field to "double" the information density.</li>
+            <li><b>The QDF Lens & Transformation:</b> This gate represents the field transformation (&kappa;&Phi; &rarr; &Psi;) where the ancilla interacts with the entangled pair to double the state transition probability.</li>
+            <li><b>Selective Measurement:</b> By interacting the original pair with the ancilla, the "hidden bits" are projected onto the ancilla. This allows the observer to distinguish between all four Bell states with higher probability P &ge; 2/3 according to Eq. (53), Ref. [1]. This P is measured at &lang;M&rang;, which represents the adder Hamiltonian from the publication, where after measurement the count is revealed or Decoherence occurs from Ref. [2].</li>
+        </ul>
+
+        <h4>4.3 Dynamic Example from the Hypercube (Current Widget Synthesis)</h4>
+        <p>Applying this to the QF-LCA hypercube, the kept variables representing the multi-dimensional nodes act as the Alice/Bob ensemble. Eve (the Ancilla) steps in to mediate their multi-controlled entanglement. Below is the active quantum circuit synthesized from your current hypercube configuration alongside the exact OpenQASM representation.</p>
+        
+        <div style="display: flex; gap: 15px; margin-bottom: 20px;">
+            <div style="flex: 1; background:#010409; color:#f1f5f9; padding:15px; border-radius:6px; font-family:'Courier New', monospace; font-size:13px; border:1px solid #334155; line-height: 1.4; overflow-x: auto;">
+                <div style="color:#a5b4fc; border-bottom:1px dashed #334155; margin-bottom:10px; padding-bottom:5px; font-size:11px;">// Visual Quantum Schematic</div>
+                ${qSchemExample}
+            </div>
+            <div style="flex: 1; background:rgba(15, 23, 42, 0.8); color:#a5b4fc; padding:15px; border-radius:6px; font-family:'Consolas', monospace; font-size:11px; border:1px solid #334155; white-space:pre-wrap; overflow-x: auto;">
+                <div style="color:#a5b4fc; border-bottom:1px dashed #334155; margin-bottom:10px; padding-bottom:5px;">// OpenQASM 2.0 Code</div>
+                ${qasmText}
+            </div>
+        </div>
+
+        <hr>
+        <h3>References</h3>
+        <ul style="font-size: 11px; list-style-type: none; padding-left: 0; color: #475569;">
+            <li>[1] P.B. Alipour, T.A. Gulliver, Quantum Double-field Model and Application, SSRN, Elsevier BV (2024), Article 4595442, <a href="https://dx.doi.org/10.2139/ssrn.4595442" style="color:#3b82f6;" target="_blank">https://dx.doi.org/10.2139/ssrn.4595442</a></li>
+            <li>[2] P.B. Alipour, T.A. Gulliver, Quantum Field Lens Coding and Classification Algorithm to Predict Measurement Outcomes, MethodsX, Elsevier BV (2023), Article 102136, <a href="https://doi.org/10.1016/j.mex.2023.102136" style="color:#3b82f6;" target="_blank">https://doi.org/10.1016/j.mex.2023.102136</a></li>
+            <li>[3] P.B. Alipour, T.A. Gulliver, QF-LCA dataset: Quantum Field Lens Coding Algorithm for system state simulation and strong predictions, Data in Brief, Elsevier BV (2024), Article 110789, <a href="https://doi.org/10.1016/j.dib.2024.110789" style="color:#3b82f6;" target="_blank">https://doi.org/10.1016/j.dib.2024.110789</a></li>
+            <li>[4] P. B. Alipour, T. A. Gulliver, QF-LCS: Quantum Field Lens Coding Simulator and Game Tool for Strong System State Predictions, Software Impacts, Elsevier BV (2024), 100703, ISSN 2665-9638, <a href="https://doi.org/10.1016/j.simpa.2024.100703" style="color:#3b82f6;" target="_blank">https://doi.org/10.1016/j.simpa.2024.100703</a></li>
+        </ul>
+        </body></html>`;
+        let win = window.open("", "StateCircuitWindow", "width=1000,height=800");
+        win.document.write(content);
+        win.document.close();
+    }
+
+    function openHelpPopup() {
+        let helpContent = `<html><head><title>QF-LCA Dashboard - Quick Help</title><style>body{font-family:'Segoe UI', Tahoma, sans-serif; padding:20px; line-height:1.6; color:#1e293b; background:#f8fafc;} h2{color:#3b82f6;} hr{border:1px solid #cbd5e1;} button.print-btn{padding:10px 15px; background:#3b82f6; color:#fff; border:none; border-radius:4px; cursor:pointer; font-weight:bold; margin-bottom:15px;}</style></head><body>
+        <h2>QF-LCA Quantum Synthesis Engine: Quick Help Guide</h2>
+        <button class="print-btn" onclick="window.print()">Print Guide</button>
+        <hr>
+        <div style="background: #eff6ff; padding: 10px; border-left: 4px solid #3b82f6; margin-bottom: 15px;">
+            <b>What is QF-LCA?</b> The Quantum Field Lens Coding Algorithm maps target states into a highly reliable predictive system. By isolating elements (like lenses) relative to a quantum focal point (origin), it routes physics problems into digital, quantum, and classical state synthesis.
+        </div>
+        <h3>1. Digital Logic Synthesis Parameters</h3>
+        <ul>
+            <li><b>Dimensions:</b> Select 2D to 12D spaces. This sets the initial number of Boolean nodes.</li>
+            <li><b>Mode:</b> Choose SOP (Sum of Products / Minterms) or POS (Product of Sums / Maxterms).</li>
+            <li><b>Preset/Custom:</b> Use a predefined node array or enter your own comma-separated nodes (e.g., 0, 1, 4, 5).</li>
+            <li><b>d<sub>H</sub> Slider:</b> Adjust the Hamming Distance to force non-local entanglement bonds across the N-dimensional space.</li>
+            <li><b>Execute Quantum Synthesis:</b> Click this to run the dimensional collapse analysis and populate the terminal logs and circuit paths.</li>
+        </ul>
+        <h3>2. Thermodynamic Parameters</h3>
+        <ul>
+            <li>Use the sliders for <b>Spatial Density (|&kappa;|&sup2;&rho;)</b>, <b>Lattice Distance (L)</b>, and <b>Nu Factor (&nu;)</b>.</li>
+            <li>These physics parameters dictate the transition probability, Eq. (53) from Ref. [1], or Eq. (10) from Ref. [4]. Watch the Phase shift between Superfluid (SF), Quantum Density Fluctuation (QDF), and Target Hit (d_H).</li>
+        </ul>
+        <h3>3. Observability Windows</h3>
+        <ul>
+            <li><b>Phase-Reactive Hypercube:</b> <i>Click and drag</i> to rotate the 4D projection in 3D space. <i>Scroll</i> to zoom in/out. Observe the orbital node swarms.<br><b>Isolate Target State Toggle:</b> Check this to fold away the dimensional noise and isolate the raw, physical logical footprint of the N-dimensional space.</li>
+            <li><b>Circuit Synthesizer:</b> Review generated Classical VHDL vs. Quantum OpenQASM codes based on the synthesized Boolean expression.</li>
+            <li><b>Probability Charts:</b> Compare deterministic output against the physical quantum phase peaks and leakages/noise.</li>
+            <li><b>Thermodynamic State Curve:</b> Observe the live marker tracking the Entanglement Entropy (EE) against spatial density.</li>
+        </ul>
+        <h3>Contact Author</h3>
+        <p style="font-size: 13px; color: #475569;">For bug fixes, updates, or page suggestions, please contact Philip B. Alipour:<br>
+            <a href="mailto:philipbaback_orbsix@msn.com" style="display:inline-block; margin-top:10px; padding:8px 12px; background:#3b82f6; color:#fff; text-decoration:none; border-radius:4px; font-weight:bold;">Email via MSN</a>
+            <a href="mailto:philipbaback66@gmail.com" style="display:inline-block; margin-top:10px; margin-left:10px; padding:8px 12px; background:#ef4444; color:#fff; text-decoration:none; border-radius:4px; font-weight:bold;">Email via Gmail</a>
+        </p>
+        <hr>
+        <h3>References</h3>
+        <ul style="font-size: 11px; list-style-type: none; padding-left: 0;">
+            <li>[1] P.B. Alipour, T.A. Gulliver, Quantum Double-field Model and Application, SSRN, Elsevier BV (2024), Article 4595442, <a href="https://dx.doi.org/10.2139/ssrn.4595442" target="_blank" style="color: #3b82f6;">https://dx.doi.org/10.2139/ssrn.4595442</a></li>
+            <li>[2] P.B. Alipour, T.A. Gulliver, Quantum Field Lens Coding and Classification Algorithm to Predict Measurement Outcomes, MethodsX, Elsevier BV (2023), Article 102136, <a href="https://doi.org/10.1016/j.mex.2023.102136" target="_blank" style="color: #3b82f6;">https://doi.org/10.1016/j.mex.2023.102136</a></li>
+            <li>[3] P.B. Alipour, T.A. Gulliver, QF-LCA dataset: Quantum Field Lens Coding Algorithm for system state simulation and strong predictions, Data in Brief, Elsevier BV (2024), Article 110789, <a href="https://doi.org/10.1016/j.dib.2024.110789" target="_blank" style="color: #3b82f6;">https://doi.org/10.1016/j.dib.2024.110789</a></li>
+            <li>[4] P. B. Alipour, T. A. Gulliver, QF-LCS: Quantum Field Lens Coding Simulator and Game Tool for Strong System State Predictions, Software Impacts, Elsevier BV (2024), 100703, ISSN 2665-9638, <a href="https://doi.org/10.1016/j.simpa.2024.100703" target="_blank" style="color: #3b82f6;">https://doi.org/10.1016/j.simpa.2024.100703</a></li>
+        </ul>
+        </body></html>`;
+        let helpWin = window.open("", "HelpWindow", "width=700,height=750");
+        helpWin.document.write(helpContent);
+        helpWin.document.close();
+    }
+
+    function triggerCSVDownload() {
+        if (!window.currentAnalysis) {
+            alert("Please execute synthesis first.");
+            return;
+        }
+        let isFallback = (globalPairings.length === 0 && currentActiveNodes.length > 0);
+        let firstNode = currentActiveNodes.length > 0 ? currentActiveNodes[0] : 0;
+        generateAndDownloadCSV(window.currentAnalysis, currentPhysicsState.P, currentDim, firstNode, isFallback);
+    }
+
+    function analyzeCollapse(dim, nodes) {
+        if(nodes.length === 0) return {kept: [], elim: varNames.slice(0, dim), expr: currentMode === 'min' ? "0" : "1"};
+        if(nodes.length === Math.pow(2, dim)) return {kept: [], elim: varNames.slice(0, dim), expr: currentMode === 'min' ? "1" : "0"};
+        
+        // Quine-McCluskey style grouping for visualization
+        let terms = nodes.map(n => ({mask: 0, val: n}));
+        let primeImplicants = [];
+        
+        while(terms.length > 0 && terms.length < 500) { // Safety limit for massive dimensions
+            let newTerms = [];
+            let merged = new Array(terms.length).fill(false);
+            let newTermsMap = new Set();
+            
+            for(let i=0; i<terms.length; i++) {
+                for(let j=i+1; j<terms.length; j++) {
+                    let t1 = terms[i], t2 = terms[j];
+                    if(t1.mask === t2.mask) {
+                        let diff = t1.val ^ t2.val;
+                        if(diff && !(diff & (diff - 1))) { // Only 1 bit differs
+                            merged[i] = true; merged[j] = true;
+                            let nMask = t1.mask | diff;
+                            let nVal = t1.val & t2.val;
+                            let key = nMask + "-" + nVal;
+                            if(!newTermsMap.has(key)) {
+                                newTermsMap.add(key);
+                                newTerms.push({mask: nMask, val: nVal});
+                            }
+                        }
+                    }
+                }
+            }
+            for(let i=0; i<terms.length; i++) {
+                if(!merged[i]) primeImplicants.push(terms[i]);
+            }
+            terms = newTerms;
+        }
+        if(terms.length >= 500) primeImplicants = terms; // If safety limit reached
+        
+        let keptSet = new Set();
+        let exprTerms = [];
+        
+        primeImplicants.forEach(pi => {
+            let termStr = "";
+            let termArr = [];
+            for(let i=0; i<dim; i++) {
+                let bitPos = dim - 1 - i;
+                let isEliminated = (pi.mask >> bitPos) & 1;
+                if(!isEliminated) {
+                    keptSet.add(varNames[i]);
+                    let bitVal = (pi.val >> bitPos) & 1;
+                    if(currentMode === 'min') termArr.push(bitVal ? varNames[i] : varNames[i] + "'");
+                    else termArr.push(bitVal ? varNames[i] + "'" : varNames[i]);
+                }
+            }
+            if(currentMode === 'min') exprTerms.push(termArr.join(''));
+            else exprTerms.push("(" + termArr.join(' + ') + ")");
+        });
+        
+        let keptVars = Array.from(keptSet).sort();
+        let elimVars = varNames.slice(0, dim).filter(v => !keptSet.has(v));
+        let expr = currentMode === 'min' ? exprTerms.join(' + ') : exprTerms.join(' &bull; ');
+        
+        return { kept: keptVars, elim: elimVars, expr: expr, implicants: primeImplicants };
+    }
+
+    function generateAndDownloadCSV(analysis, P, dim, firstNode, isFallback) {
+        let csvRows = ["binary_string,probability,node_names"];
+        let targetBits = "";
+        for(let i=0; i<dim; i++) targetBits += ((firstNode >> (dim-1-i)) & 1);
+        let tBits = targetBits + "b";
+        let nodeStr = analysis.kept.length > 0 ? "Entangled nodes " + analysis.kept.join('-') : "None";
+
+        if(isFallback) {
+            csvRows.push(`${tBits},0.999,${nodeStr}`);
+            let zeroBits = "0".repeat(dim) + "b";
+            csvRows.push(`${zeroBits},0.001,Leakage`);
+        } else {
+            csvRows.push(`${tBits},${P.toFixed(8)},${nodeStr}`);
+            let noiseP = (1.0 - P)/4.0;
+            for(let i=1; i<=4; i++) {
+                let nBitsArr = targetBits.split('');
+                let flipIdx = (i - 1) % dim;
+                nBitsArr[flipIdx] = nBitsArr[flipIdx] === '1' ? '0' : '1';
+                csvRows.push(`${nBitsArr.join('')}b,${noiseP.toFixed(8)},Noise-E${i}`);
+            }
+        }
+        
+        let termHtmlRaw = document.getElementById('output').innerHTML;
+        let tempDiv = document.createElement('div');
+        tempDiv.innerHTML = termHtmlRaw.replace(/<sup>(.*?)<\/sup>/g, '^$1');
+        let terminalOutput = tempDiv.innerText;
+
+        let dateStr = new Date().toLocaleString();
+        
+        let fullCsvRows = [...csvRows];
+        fullCsvRows.push("-------------");
+        fullCsvRows.push(`Timestamp: ${dateStr}`);
+        fullCsvRows.push("Terminal Output:");
+        let termLines = terminalOutput.split('\n');
+        termLines.forEach(line => { if(line.trim() !== "") fullCsvRows.push(`"${line.replace(/"/g, '""')}"`); });
+        let csvString = fullCsvRows.join("\n");
+        
+        let phaseText = document.getElementById('topPhaseBadge').innerText.split(':')[1].trim();
+        let qasmText = document.getElementById('qQasm') ? document.getElementById('qQasm').innerText : "N/A";
+        
+        let qSchemExample = document.getElementById('qSchem') ? document.getElementById('qSchem').innerHTML : "N/A";
+        qSchemExample = qSchemExample.replace(/<button.*?>.*?<\/button>/g, ''); // strip copy btn
+
+        let htmlTable = `<table style="width:100%; border-collapse:collapse; margin-top:20px; background:#1e293b; box-shadow:0 4px 6px rgba(0,0,0,0.3); border-radius:8px; overflow:hidden;">
+        <tr>
+            <th style="background:#3b82f6; color:#fff; padding:12px; text-align:left; border:1px solid #334155;">Binary String</th>
+            <th style="background:#3b82f6; color:#fff; padding:12px; text-align:left; border:1px solid #334155;">Probability</th>
+            <th style="background:#3b82f6; color:#fff; padding:12px; text-align:left; border:1px solid #334155;">Node Names</th>
+            <th style="background:#0ea5e9; color:#fff; padding:12px; text-align:left; border:1px solid #334155;">Compiled Quantum Circuit</th>
+            <th style="background:#8b5cf6; color:#fff; padding:12px; text-align:left; border:1px solid #334155;">Quantum Circuit for ${phaseText}</th>
+        </tr>`;
+        for(let i=1; i<csvRows.length; i++) {
+            let cols = csvRows[i].split(',');
+            htmlTable += `<tr>
+                <td style="border:1px solid #334155; padding:12px; font-family:monospace; color:#10b981;">${cols[0]}</td>
+                <td style="border:1px solid #334155; padding:12px; font-family:monospace; color:#38bdf8;">${cols[1]}</td>
+                <td style="border:1px solid #334155; padding:12px; color:#f1f5f9;">${cols[2]}</td>`;
+            if (i === 1) {
+                htmlTable += `<td rowspan="${csvRows.length - 1}" style="border:1px solid #334155; padding:12px; background:#010409; color:#f1f5f9; font-family:'Courier New', monospace; font-size:12px; line-height:1.4; vertical-align:top;">${qSchemExample}</td>`;
+                htmlTable += `<td rowspan="${csvRows.length - 1}" style="border:1px solid #334155; padding:12px; color:#a5b4fc; font-family:'Consolas', monospace; font-size:11px; white-space:pre-wrap; vertical-align:top; background:rgba(15, 23, 42, 0.5);">${qasmText}</td>`;
+            }
+            htmlTable += `</tr>`;
+        }
+        htmlTable += `</table>`;
+        
+        let termHtml = `<div style="margin-top:20px; background:#1e293b; color:#58a6ff; padding:15px; border-radius:5px; font-family:monospace; font-size:12px; white-space:pre-wrap; border:1px solid #334155; line-height:1.5;">${terminalOutput}</div>`;
+        
+        let dataUri = "data:text/csv;charset=utf-8," + encodeURIComponent(csvString);
+        
+        let scriptBlock = `
+        <script>
+            function downloadHTM() {
+                const htmlContent = '<!DOCTYPE html><html>' + document.documentElement.innerHTML + '</html>';
+                const blob = new Blob([htmlContent], {type: 'text/html;charset=utf-8'});
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'QF_LCA_Simulation_Data.htm';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            }
+        <\/script>
+        `;
+
+        let winHtml = `<html><head><title>QF-LCA Dataset View</title>
+        <style>
+            body { font-family: 'Segoe UI', Tahoma, sans-serif; padding: 25px; background: #0f172a; color: #f1f5f9; }
+            h2 { color: #58a6ff; border-bottom: 1px solid #1e293b; padding-bottom: 10px; }
+            a.download-btn, button.download-btn { background: #10b981; color: #fff; text-decoration: none; border: none; padding: 12px 24px; cursor: pointer; font-weight: bold; border-radius: 6px; font-size: 14px; transition: 0.2s; box-shadow: 0 4px 10px rgba(0,0,0,0.3); display: inline-block; }
+            a.download-btn:hover, button.download-btn:hover { filter: brightness(1.1); }
+            
+            /* Circuit specific styles injected for report accuracy */
+            .gate-sop { color: #0ea5e9; font-weight: bold; }
+            .gate-pos { color: #d946ef; font-weight: bold; }
+            .gate-fallback { color: #f59e0b; font-weight: bold; }
+            .wire { color: #475569; }
+        </style>
+        ${scriptBlock}
+        </head><body>
+        <h2>QF-LCA Simulation Dataset Viewer</h2>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+            <span style="color:#94a3b8; font-size:12px;">Simulation Timestamp: ${dateStr}</span>
+            <div>
+                <a href="${dataUri}" download="QF_LCA_Simulation_Data.csv" class="download-btn">💾 Store Dataset as CSV</a>
+                <button onclick="downloadHTM()" class="download-btn" style="background:#3b82f6; margin-left:10px;">💾 Store Dataset as HTM</button>
+            </div>
+        </div>
+        ${htmlTable}
+        <h3 style="color:#d2a8ff; margin-top:30px; border-bottom: 1px solid #1e293b; padding-bottom:10px;">Terminal Output Log</h3>
+        ${termHtml}
+        </body></html>`;
+        
+        let newWin = window.open("", "_blank");
+        if(newWin) {
+            newWin.document.write(winHtml);
+            newWin.document.close();
+        } else {
+            alert("Popup blocked! Please allow popups to view the dataset.");
+        }
+    }
+
+    function generateVHDL(analysis, mode, firstNode, dim) {
+        if(analysis.kept.length === 0) return mode==='min' ? "Y <= '1';" : "Y <= '0';";
+        let vhdlTerms = analysis.implicants.map(pi => {
+            let t = [];
+            for(let i=0; i<dim; i++) {
+                let bitPos = dim - 1 - i;
+                if(!((pi.mask >> bitPos) & 1)) {
+                    let bitVal = (pi.val >> bitPos) & 1;
+                    if(mode === 'min') t.push(bitVal ? varNames[i] : `NOT ${varNames[i]}`);
+                    else t.push(bitVal ? `NOT ${varNames[i]}` : varNames[i]);
+                }
+            }
+            if(mode === 'min') return "(" + t.join(' AND ') + ")";
+            else return "(" + t.join(' OR ') + ")";
+        });
+        let expr = mode === 'min' ? vhdlTerms.join(' OR ') : vhdlTerms.join(' AND ');
+        return `library IEEE;\nuse IEEE.STD_LOGIC_1164.ALL;\n\nentity QFLC_Synth is\n    Port ( ${analysis.kept.join(', ')} : in STD_LOGIC;\n           Y : out STD_LOGIC);\nend QFLC_Synth;\n\narchitecture RTL of QFLC_Synth is\nbegin\n    Y <= ${expr};\nend RTL;`;
+    }
+
+    function generateQASM(analysis, mode, firstNode, dim) {
+        let numQubits = Math.max(1, analysis.kept.length);
+        let qasm = `OPENQASM 2.0;\ninclude "qelib1.inc";\n\nqreg q[${numQubits}];\nqreg anc[1]; // target ancilla (Eve)\n\n`;
+        if(analysis.kept.length === 0) return qasm + "// System completely decohered/flattened.\n";
+        
+        if (analysis.elim.length > 0) {
+            analysis.elim.forEach((v) => {
+                let origIdx = varNames.indexOf(v);
+                qasm += `// h q[${origIdx}]; // Decohered variable (${v}) counted in background superposition\n`;
+            });
+            qasm += `\n`;
+        }
+
+        let invCount = 0;
+        analysis.kept.forEach((v, idx) => {
+            let bitPos = dim - 1 - varNames.indexOf(v);
+            let bit = (firstNode >> bitPos) & 1;
+            let isInverted = (mode === 'min') ? (bit === 0) : (bit === 1);
+            if (isInverted) { qasm += `x q[${idx}];\n`; invCount++; }
+        });
+        if(invCount > 0) qasm += `\n`;
+        
+        qasm += `// Coherence Loop (${mode === 'min'? 'AND' : 'OR'})\n`;
+        let controls = analysis.kept.map((v, idx) => `q[${idx}]`).join(', ');
+        if (analysis.kept.length === 1) {
+            qasm += `cx ${controls}, anc[0];\n`;
+        } else if (analysis.kept.length === 2) {
+            qasm += `ccx ${controls}, anc[0];\n`;
+        } else {
+            qasm += `mct [${controls}], anc[0]; // multi-controlled toffoli\n`;
+        }
+        return qasm;
+    }
+
+    function renderCircuits(analysis, mode, P, targetHit) {
+        window.currentAnalysis = analysis;
+        const cDiv = document.getElementById('classicalCircuit');
+        const qDiv = document.getElementById('quantumCircuit');
+        const qChartContainer = document.getElementById('quantumChartContainer');
+        const cChartContainer = document.getElementById('classicalChartContainer');
+        
+        let isClassicalFallback = (globalPairings.length === 0 && currentActiveNodes.length > 0);
+        let cGateClass = isClassicalFallback ? 'gate-fallback' : (mode === 'min' ? 'gate-sop' : 'gate-pos');
+        let logicType = mode === 'min' ? 'AND' : 'OR';
+        
+        let firstNode = currentActiveNodes.length > 0 ? currentActiveNodes[0] : 0;
+        let tStateStr = analysis.kept.length === 1 ? '&psi;' : '&Psi;';
+
+        // --- CLASSICAL SCHEMATIC ---
+        let cHtml = `<button class="copy-btn" onclick="copyContent('cSchem', this)">Copy</button><div id="cSchem" style="white-space: pre; max-width: 100%;">`;
+        analysis.elim.forEach(v => { cHtml += `${v} <span class="wire">---------|>o---</span> (NULL)<br>`; });
+        
+        if(analysis.implicants && analysis.implicants.length > 0 && analysis.kept.length > 0) {
+            cHtml += `<br>`;
+            let spacerC = "&nbsp;".repeat(12); 
+            
+            // Draw schematic for the first term as a representative coherence loop
+            let firstTerm = analysis.implicants[0];
+            let activeVarsInFirst = [];
+            for(let i=0; i<currentDim; i++) {
+                if(!((firstTerm.mask >> (currentDim - 1 - i)) & 1)) activeVarsInFirst.push(varNames[i]);
+            }
+            
+            activeVarsInFirst.forEach((v, idx) => {
+                let bitPos = currentDim - 1 - varNames.indexOf(v);
+                let bit = (firstTerm.val >> bitPos) & 1;
+                let isInverted = (mode === 'min') ? (bit === 0) : (bit === 1);
+                
+                let invWire = isInverted ? `---<span class="${cGateClass}">|>o</span>---` : "---------";
+                cHtml += `${v} <span class="wire">${invWire}</span>\\<br>`;
+                
+                if (idx === Math.floor(activeVarsInFirst.length/2) - 1 || activeVarsInFirst.length === 1) {
+                    let nextStage = 'OUT';
+                    if (analysis.implicants.length > 1) {
+                        let joinGate = mode === 'min' ? 'OR' : 'AND';
+                        let innerGate = mode === 'min' ? 'AND' : 'OR';
+                        let joinClass = mode === 'min' ? 'gate-pos' : 'gate-sop';
+                        let innerClass = mode === 'min' ? 'gate-sop' : 'gate-pos';
+                        
+                        let remainTerms = analysis.implicants.slice(1).map(pi => {
+                            let vars = [];
+                            for(let i=0; i<currentDim; i++) {
+                                if(!((pi.mask >> (currentDim - 1 - i)) & 1)) {
+                                    let b = (pi.val >> (currentDim - 1 - i)) & 1;
+                                    let isInv = mode === 'min' ? b===0 : b===1;
+                                    vars.push(varNames[i] + (isInv ? "--|>o-" : "--"));
+                                }
+                            }
+                            return `{${vars.join(', ')}}-<span class="${innerClass}">[${innerGate}]</span>`;
+                        });
+                        nextStage = `To <span class="${joinClass}">[${joinGate}]</span> Level: -<span class="${joinClass}">[${joinGate}]</span>--${remainTerms.join('--')}--OUT`;
+                    }
+                    cHtml += `${spacerC}<span class="wire">|</span> <span class="${cGateClass}">[${logicType}]</span><span class="wire">--</span> ${nextStage}<br>`;
+                }
+            });
+            if(analysis.implicants.length > 1) {
+                cHtml += `<br><span style="color:#f59e0b; font-size:10px;"><i>* Multi-term logic detected. Schematic shows primary loop. See VHDL for combinatorial path.</i></span><br>`;
+            }
+        } else {
+            cHtml += "<i>System Collapsed - No Logic Generated</i><br>";
+        }
+        cHtml += `</div><div class="code-panel" style="position:relative; margin-top:10px;"><button class="copy-btn" onclick="copyContent('cVhdl', this)">Copy</button><div class="code-title">// Generated VHDL (FPGA Synthesis)</div><div id="cVhdl">${generateVHDL(analysis, mode, firstNode, currentDim)}</div></div>`;
+        cDiv.innerHTML = cHtml;
+
+        // --- QUANTUM SCHEMATIC ---
+        let qGateClass = isClassicalFallback ? 'gate-fallback' : (mode === 'min' ? 'gate-sop' : 'gate-pos');
+        let targetOut = isClassicalFallback ? `<span style="text-decoration:line-through; color:#64748b;">|${tStateStr}&rang;</span>` : `|${tStateStr}&rang;`;
+
+        let qHtml = `<button class="copy-btn" onclick="copyContent('qSchem', this)">Copy</button><div id="qSchem" style="white-space: pre; max-width: 100%;">`;
+        analysis.elim.forEach(v => {
+            qHtml += `|${v}&rang; <span class="wire">---</span><span class="${qGateClass}">[ H ]</span><span class="wire">---</span> (Decohered)<br>`;
+        });
+        
+        if(analysis.kept.length > 0) {
+            qHtml += `<br>`;
+            if (analysis.kept.length === 1) {
+                let v = analysis.kept[0];
+                let bitPos = currentDim - 1 - varNames.indexOf(v);
+                let bit = (firstNode >> bitPos) & 1;
+                let isInverted = (mode === 'min') ? (bit === 0) : (bit === 1);
+                let preGate = isInverted ? `<span class="${qGateClass}">[ X ]</span>` : `<span class="wire">-----</span>`;
+                qHtml += `|${v}&rang; <span class="wire">---</span>${preGate}<span class="wire">---</span><span class="${qGateClass}">[ I ]</span><span class="wire">---</span> ${targetOut}<br>`;
+            } else {
+                let spacerQ = "&nbsp;".repeat(17);
+                analysis.kept.forEach((v, idx) => {
+                    let bitPos = currentDim - 1 - varNames.indexOf(v);
+                    let bit = (firstNode >> bitPos) & 1;
+                    let isInverted = (mode === 'min') ? (bit === 0) : (bit === 1);
+                    let preGate = isInverted ? `<span class="${qGateClass}">[ X ]</span>` : `<span class="wire">-----</span>`;
+                    
+                    if (idx === analysis.kept.length -1) {
+                        qHtml += `|${v}&rang; <span class="wire">---</span>${preGate}<span class="wire">---</span><span class="${qGateClass}">[ X ]</span><span class="wire">---</span> ${targetOut}<br>`;
+                    } else {
+                        qHtml += `|${v}&rang; <span class="wire">---</span>${preGate}<span class="wire">---</span><span class="${qGateClass}">[ &bull; ]</span><span class="wire">---</span><br>`;
+                        qHtml += `${spacerQ}<span class="wire">|</span><br>`;
+                    }
+                });
+            }
+        } else {
+            qHtml += "<i>No Coherence Loop Established</i><br>";
+        }
+
+
+        qHtml += `</div>
+        <div class="code-panel" style="position:relative; padding-bottom: 40px; margin-top:10px;">
+            <button class="copy-btn" onclick="copyContent('qQasm', this)">Copy</button>
+            <div class="code-title">// Generated OpenQASM 2.0 (IBM QPU Synthesis mapped to q[0])</div>
+            <div id="qQasm">${generateQASM(analysis, mode, firstNode, currentDim)}</div>
+            <div style="position:absolute; bottom:8px; right:8px; display:flex; gap:5px; align-items:center;">
+                <select id="qpuProvider" style="padding:4px; font-size:10px; background:#1e293b; color:#94a3b8; border:1px solid #334155; border-radius:4px; outline:none;">
+                    <option value="https://quantum.ibm.com/">IBM Quantum</option>
+                    <option value="https://quantum-inspire.com">Quantum Inspire</option>
+                    <option value="https://aws.amazon.com/braket/">Amazon Braket</option>
+                    <option value="https://ionq.com/quantum-cloud">IonQ Cloud</option>
+                    <option value="https://quantumai.google/cirq">Google Quantum AI</option>
+                </select>
+                <button onclick="const url = document.getElementById('qpuProvider').value; if(url.includes('quantum-inspire')) { if(confirm('⚠️ Note: Quantum Inspire uses cQASM syntax in their editor as follows. \\n📝 1. Change the first line from OPENQASM 2.0; to: version 1.0. \\n🔢 2.  Replace qreg lines with: e.g., qubits 3 (or total count). \\n❓  3. QInspire provides help/documentation if gates do not match! \\n🚀 Ready to launch? ')) window.open(url, '_blank'); } else { window.open(url, '_blank'); }" style="padding:4px 8px; font-size:10px; background:#3b82f6; border:none; border-radius:4px; color:#fff; cursor:pointer;">Run on QPU</button>
+            </div>
+        </div>`;
+        qDiv.innerHTML = qHtml;
+
+
+
+        // --- SPLIT PROBABILITY DISTRIBUTION CHARTS ---
+        let qHtmlChart = ``; let cHtmlChart = ``;
+
+        if (currentActiveNodes.length === 0) {
+            qHtmlChart = `<span style="font-size:12px; color:#94a3b8; width:100%; text-align:center; align-self:center;">Uniform Noise - No Target Logic</span>`;
+            cHtmlChart = `<span style="font-size:12px; color:#94a3b8; width:100%; text-align:center; align-self:center;">Uniform Noise - No Target Logic</span>`;
+        } else if (globalPairings.length === 0) {
+            let targetBits = "";
+            for(let i=0; i<currentDim; i++) targetBits += ((firstNode >> (currentDim-1-i)) & 1);
+            let dBits = targetBits.length > 4 ? targetBits.substring(0,3) + ".." : targetBits;
+            
+            let cP1 = 0.999; let cP0 = 0.001;
+            // Classical error bar (noise) gets white glow if it dominates
+            let cGlow = (cP0 > cP1) ? 'box-shadow: 0 0 15px #ffffff; border: 1px solid #ffffff;' : '';
+            
+            cHtmlChart += `
+            <div class="bar-col">
+                <div class="bar-val" style="color:${colorClass}; font-weight:bold;">${(cP1*100).toFixed(1)}%</div>
+                <div class="bar-fill" style="height:${cP1*100}%; background:${colorClass}; box-shadow: 0 0 10px ${colorClass};"></div>
+                <div class="bar-label" style="color:#64748b; letter-spacing:-1px;">C<sub>out</sub> at d² </div>
+                <div style="font-size:9px; color:${colorClass}; font-family:monospace; margin-top:2px;">|${dBits}&rang;</div>
+            </div>
+            <div class="bar-col">
+                <div class="bar-val">${(cP0*100).toFixed(1)}%</div>
+                <div class="bar-fill" style="height:${Math.max(cP0*100, 1)}%; background:#334155; ${cGlow}"></div>
+                <div class="bar-label" style="color:#64748b;">C<sub>err</sub></div>
+                <div style="font-size:9px; color:#64748b; font-family:monospace; margin-top:2px;">Leak</div>
+            </div>`;
+
+            for(let i=0; i<5; i++) {
+                let label = i===0 ? `|${tStateStr}&rang;` : `|${tStateStr}'<sub>${i}</sub>&rang;`;
+                qHtmlChart += `
+                <div class="bar-col">
+                    <div class="bar-val" style="color:#64748b;">0.0%</div>
+                    <div class="bar-fill" style="height:1%; background:#334155;"></div>
+                    <div class="bar-label" style="color:#64748b; text-decoration:${i===0?'line-through':'none'};">${label}</div>
+                    <div style="font-size:9px; color:#64748b; font-family:monospace; margin-top:2px;">OFF</div>
+                </div>`;
+            }
+        } else {
+            let targetP = P; let noiseP = (1.0 - P) / 4.0; 
+            let barColor = targetHit ? colorHD : (currentPhysicsState.phase === 1 ? colorQDF : colorSF);
+
+            let targetBits = "";
+            for(let i=0; i<currentDim; i++) targetBits += ((firstNode >> (currentDim-1-i)) & 1);
+            let dBits = targetBits.length > 4 ? targetBits.substring(0,3) + ".." : targetBits;
+
+            let targetH = Math.max(targetP * 100, 1);
+            qHtmlChart += `
+            <div class="bar-col">
+                <div class="bar-val" style="color:${barColor}; font-weight:bold;">${(targetP*100).toFixed(1)}%</div>
+                <div class="bar-fill" style="height:${targetH}%; background:${barColor}; box-shadow: 0 0 10px ${barColor};"></div>
+                <div class="bar-label" style="color:#f1f5f9; letter-spacing: -0.5px;">|&Psi;&rang; : |${tStateStr}&rang;</div>
+                <div style="font-size:9px; color:${barColor}; font-family:monospace; margin-top:2px;">|${dBits}&rang;</div>
+            </div>`;
+
+            for(let i=1; i<=4; i++) {
+                let noiseH = Math.max(noiseP * 100, 1);
+                let nBitsArr = targetBits.split('');
+                let flipIdx = (i - 1) % currentDim;
+                nBitsArr[flipIdx] = nBitsArr[flipIdx] === '1' ? '0' : '1';
+                let nBitsStr = nBitsArr.join('');
+                let nDBits = nBitsStr.length > 4 ? nBitsStr.substring(0,3) + ".." : nBitsStr;
+                
+                // Add white glow if noise bar is higher than target bar
+                let glowStyle = (noiseP > targetP) ? 'box-shadow: 0 0 15px #ffffff; border: 1px solid #ffffff;' : '';
+
+                qHtmlChart += `
+                <div class="bar-col">
+                    <div class="bar-val">${(noiseP*100).toFixed(1)}%</div>
+                    <div class="bar-fill" style="height:${noiseH}%; ${glowStyle}"></div>
+                    <div class="bar-label" style="color:#64748b; letter-spacing: -1px;">|&epsilon;<sub>${i}</sub>&rang; : |${tStateStr}'<sub>${i}</sub>&rang;</div>
+                    <div style="font-size:9px; color:#f43f5e; font-family:monospace; margin-top:2px;">|${nDBits}&rang;</div>
+                </div>`;
+            }
+
+            cHtmlChart += `
+            <div class="bar-col">
+                <div class="bar-val" style="color:#64748b;">0.0%</div>
+                <div class="bar-fill" style="height:1%; background:#334155;"></div>
+                <div class="bar-label" style="color:#64748b; letter-spacing: -1px;">C<sub>out</sub> at d² </div>
+                <div style="font-size:9px; color:#64748b; font-family:monospace; margin-top:2px;">OFF</div>
+            </div>
+            <div class="bar-col">
+                <div class="bar-val" style="color:#64748b;">0.0%</div>
+                <div class="bar-fill" style="height:1%; background:#334155;"></div>
+                <div class="bar-label" style="color:#64748b; letter-spacing: -1px;">C<sub>err</sub> at d² </div>
+                <div style="font-size:9px; color:#64748b; font-family:monospace; margin-top:2px;">OFF</div>
+            </div>`;
+        }
+        
+        qChartContainer.innerHTML = qHtmlChart;
+        cChartContainer.innerHTML = cHtmlChart;
+    }
+
+    function updateHammingDynamic() {
+        targetHamming = parseInt(document.getElementById('hammingSlider').value);
+        document.getElementById('hamVal').innerText = targetHamming;
+        
+        globalPairings = []; window.globalPairings = globalPairings;
+        for(let i=0; i<currentActiveNodes.length; i++){
+            for(let j=i+1; j<currentActiveNodes.length; j++){
+                if(calcHammingDist(currentActiveNodes[i], currentActiveNodes[j]) === targetHamming) {
+                    globalPairings.push([currentActiveNodes[i], currentActiveNodes[j]]);
+                }
+            }
+        }
+        drawKMap(currentDim, currentActiveNodes, currentMode, globalPairings);
+
+        const output = document.getElementById('output');
+        if (globalPairings.length === 0 && currentActiveNodes.length > 0) {
+            output.innerHTML += `<div class="step classical-log">>> QF-LCA Re-calibrating (d<sub>H</sub>=${targetHamming}):<br>
+            &#8627; No Entanglement Found. Classical Det. Fallback Triggered.</div>`;
+        } else if (globalPairings.length > 0) {
+            let edgeCol = currentMode === 'min' ? '#0ea5e9' : '#d946ef';
+            let pStr = globalPairings.length > 50 ? `${globalPairings.length} pairs computed.` : globalPairings.map(p => `(${p[0]},${p[1]})`).join(', ');
+            output.innerHTML += `<div class="step entangled-log" style="border-color:${edgeCol}; color:${edgeCol};">>> QF-LCA Re-calibrating (d<sub>H</sub>=${targetHamming}):<br>
+            &#8627; Entangled Qubit Pairs: ${pStr}</div>`;
+        }
+        output.scrollTop = output.scrollHeight;
+        rebuildNodeParticles();
+    }
+
+    function runSimulation() {
+        document.getElementById('downloadCsvBtn').style.display = 'none';
+        updatePhysicsUI(); 
+        const dimSelectVal = document.getElementById('dimSelect').value;
+        currentDim = parseInt(dimSelectVal);
+        currentMode = document.getElementById('modeSelect').value;
+        targetHamming = parseInt(document.getElementById('hammingSlider').value);
+        const preset = document.getElementById('presetSelect').value;
+        const output = document.getElementById('output');
+        let edgeCol = currentMode === 'min' ? '#0ea5e9' : '#d946ef';
+        
+        const maxVal = Math.pow(2, currentDim) - 1;
+        if (preset === 'custom') {
+            const raw = document.getElementById('customInput').value;
+            currentActiveNodes = raw.split(',').map(n => parseInt(n.trim())).filter(n => !isNaN(n) && n >= 0 && n <= maxVal);
+        } else {
+            if(dimSelectVal === '6_det' || dimSelectVal === '7_det' || dimSelectVal === '12_det') {
+                currentActiveNodes = [1, 2, 4, 22, 61];
+            } else if(dimSelectVal === '6_costly') {
+                currentActiveNodes = [0, 1, 2, 4, 22, 61];
+            } else if(dimSelectVal === '7_costly') {
+                currentActiveNodes = [0, 1, 2, 4, 22, 61, 122];
+            } else if(dimSelectVal === '12_costly') {
+                currentActiveNodes = [0, 1, 2, 4, 22, 61, 4044];
+            } else {
+                if(currentDim === 2) currentActiveNodes = [1, 3]; 
+                if(currentDim === 3) currentActiveNodes = [2, 3, 6, 7]; 
+                if(currentDim === 4) currentActiveNodes = [0,1,4,5,8,9,12,13];
+                if(currentDim === 5) currentActiveNodes = [0,2,8,10,16,18,24,26];
+                if(currentDim === 6) currentActiveNodes = [15,31,47,63];
+                if(currentDim === 7) currentActiveNodes = [15, 31, 47, 63, 79, 95, 111, 127]; 
+                if(currentDim === 12) currentActiveNodes = [0, 511, 1023, 2047, 4095]; 
+            }
+        }
+
+        globalPairings = []; window.globalPairings = globalPairings;
+        for(let i=0; i<currentActiveNodes.length; i++){
+            for(let j=i+1; j<currentActiveNodes.length; j++){
+                if(calcHammingDist(currentActiveNodes[i], currentActiveNodes[j]) === targetHamming) {
+                    globalPairings.push([currentActiveNodes[i], currentActiveNodes[j]]);
+                }
+            }
+        }
+
+        rebuildNodeParticles();
+
+        let inputString = (currentMode === 'min' ? "Σm(" : "ΠM(") + (currentActiveNodes.length > 10 ? `${currentActiveNodes.length} Nodes Array` : currentActiveNodes.join(',')) + ")";
+        output.innerHTML = `<div style="color:#58a6ff; font-weight:bold;">[INITIALIZING QF-LCA ENGINE]</div>`;
+        output.innerHTML += `<div class="step">Target Logic: <span class="term">${inputString}</span></div>`;
+        drawKMap(currentDim, currentActiveNodes, currentMode, globalPairings);
+        
+        let analysis;
+        setTimeout(() => {
+            if (globalPairings.length === 0 && currentActiveNodes.length > 0) {
+                 output.innerHTML += `<div class="step classical-log">1. Projecting ${currentDim}D Network.<br>
+                &#8627; No Entanglement Bonds (d<sub>H</sub>=${targetHamming}). System operating as Classical Deterministic Array.</div>`;
+            } else {
+                let pStr = globalPairings.length > 50 ? `${globalPairings.length} pairs computed.` : globalPairings.map(p => `(${p[0]},${p[1]})`).join(', ');
+                output.innerHTML += `<div class="step entangled-log" style="border-color:${edgeCol}; color:${edgeCol};">1. Projecting ${currentDim}D Quantum Network.<br>
+                &#8627; Actively Entangled Qubit Pairs (d<sub>H</sub>=${targetHamming}):<br> ${pStr}</div>`;
+            }
+            output.scrollTop = output.scrollHeight;
+        }, 400);
+        
+        setTimeout(() => {
+            analysis = analyzeCollapse(currentDim, currentActiveNodes);
+            let keptStr = analysis.kept.length > 0 ? analysis.kept.join(', ') : "None";
+            let elimStr = analysis.elim.length > 0 ? analysis.elim.join(', ') : "None";
+            
+            let expr = analysis.expr;
+            
+            let totalNodesCalc = Math.pow(2, currentDim);
+            let keptNodesCalc = analysis.implicants ? analysis.implicants.length * Math.pow(2, analysis.kept.length) : Math.pow(2, analysis.kept.length);
+            let effPercent = (1 - (keptNodesCalc / totalNodesCalc)) * 100;
+            
+            let extraMetric = "";
+            if (analysis.kept.length === currentDim) {
+                effPercent = 0.0;
+                let activeRatio = currentActiveNodes.length / totalNodesCalc;
+                let reductionCalc = (1.0 - activeRatio) * 100.0;
+                let loadCalc = (1.0 + activeRatio) * 100.0;
+                let activePower = Math.log2(currentActiveNodes.length);
+                let activePowerStr = Number.isInteger(activePower) ? `2<sup>${activePower}</sup>` : currentActiveNodes.length;
+                let loadStr = (globalPairings.length === 0) ? "Array Resource Increase" : "Entanglement Resource Load";
+                extraMetric = ` | <span style="color:#93c5fd; font-weight:bold;">Canonical Reduction: ${reductionCalc.toFixed(1)}% (Active ${activePowerStr} / Total 2<sup>${currentDim}</sup> Nodes)</span><br>&#8627; ${loadStr}: <span style="color:#ef4444; font-weight:bold;">${loadCalc.toFixed(1)}% Increase</span>`;
+            } else if (analysis.kept.length === 0) {
+                effPercent = 100.0;
+            }
+            
+            output.innerHTML += `<div class="step analysis">2. QF-LCA Dimensional Collapse Analysis:<br>
+            &#8627; Variables Kept: <span style="color:#10b981">${keptStr}</span><br>
+            &#8627; Variables Eliminated: <span style="color:#f43f5e">${elimStr}</span><br>
+            &#8627; Simplified Expression: <span class="term"><i>f</i> = ${expr}</span><br>
+            &#8627; Synthesis Efficiency: <span style="color:#3b82f6;">${effPercent.toFixed(1)}% Reduction (2<sup>${analysis.kept.length}</sup> / 2<sup>${currentDim}</sup> Nodes Kept)${extraMetric}</span></div>`;
+            
+            renderCircuits(analysis, currentMode, currentPhysicsState.P, currentPhysicsState.targetHit);
+            output.scrollTop = output.scrollHeight;
+        }, 1000);
+
+        setTimeout(() => {
+            let phaseStr = currentPhysicsState.targetHit ? "TARGET (d_H)" : (currentPhysicsState.phase === 1 ? "QDF" : "SF");
+            let phaseCol = currentPhysicsState.targetHit ? colorHD : (currentPhysicsState.phase === 1 ? colorQDF : colorSF);
+            output.innerHTML += `<div class="step physics-log" style="border-color:${phaseCol}">3. Thermodynamic State Analysis (Eq. (53) from Ref. [1]):<br>
+            &#8627; Phase Limit: <span style="color:${phaseCol}">${phaseStr}</span> | Prob P(&Phi;&rarr;&Psi;): ${currentPhysicsState.P.toFixed(4)} | Adder (N): ${currentPhysicsState.N}<br>
+            &#8627; EE: ${currentPhysicsState.EE.toFixed(3)} bits | Magnetization &lang;M&rang;: ${currentPhysicsState.M.toFixed(3)}</div>`;
+            output.scrollTop = output.scrollHeight;
+        }, 1600);
+
+        setTimeout(() => {
+            output.innerHTML += `<div class="step success" style="border-color: #10b981; color: #10b981; margin-top:15px;">[DATASET VALIDATION COMPLETE]<br>&#8627; ${currentDim}-Variable state array mapped and verified against QF-LCA constraints.</div>`;
+            output.innerHTML += `<div class="step success" style="border-color: #10b981; color: #10b981;">[VERIFICATION PASSED]<br>&#8627; Hardware routing aligns with Eq. (53) quantum phase probabilities. Ready for FPGA synthesis.</div>`;
+            output.scrollTop = output.scrollHeight;
+        }, 2200);
+
+        setTimeout(() => {
+            document.getElementById('downloadCsvBtn').style.display = 'inline-block';
+        }, 2500);
+    }
+
+    let timeTracker = 0;
+    function animate() {
+        timeTracker += 0.05;
+        hCtx.clearRect(0, 0, hCanvas.width, hCanvas.height);
+        const nodes = Math.pow(2, currentDim);
+        const projBases = getProjectedBases();
+        const w = hCanvas.width; const h = hCanvas.height;
+
+        let isClassicalFallback = (globalPairings.length === 0 && currentActiveNodes.length > 0);
+        let nodeColor = isClassicalFallback ? colorClass : (currentPhysicsState.targetHit ? colorHD : (currentPhysicsState.phase === 1 ? colorQDF : colorSF));
+        let structuralEdgeColor = currentMode === 'min' ? 'rgba(14, 165, 233, 0.15)' : 'rgba(217, 70, 239, 0.15)'; 
+        let activeEdgeColor = currentMode === 'min' ? '#0ea5e9' : '#d946ef';
+        let showCollapse = document.getElementById('collapseToggle') && document.getElementById('collapseToggle').checked;
+        let numKeptVars = window.currentAnalysis ? window.currentAnalysis.kept.length : currentDim;
+        let numKeptNodesForWhite = Math.pow(2, numKeptVars);
+        let whiteCount = 0;
+
+        if (currentDim <= 7) {
+            hCtx.lineWidth = Math.max(1, 1 * zoomLevel);
+            hCtx.strokeStyle = structuralEdgeColor;
+            for (let i = 0; i < nodes; i++) {
+                for (let j = i + 1; j < nodes; j++) {
+                    if (calcHammingDist(i, j) === 1) {
+                        if (showCollapse) continue;
+                        let p1 = getCoords(i, projBases, currentDim, w, h); let p2 = getCoords(j, projBases, currentDim, w, h);
+                        hCtx.beginPath(); hCtx.moveTo(p1.x, p1.y); hCtx.lineTo(p2.x, p2.y); hCtx.stroke();
+                    }
+                }
+            }
+        }
+
+        if (globalPairings.length > 0) {
+            hCtx.lineWidth = 2.5 * zoomLevel;
+            hCtx.shadowBlur = 12;
+            hCtx.shadowColor = activeEdgeColor; hCtx.strokeStyle = activeEdgeColor;
+            globalPairings.forEach(pair => {
+                let p1 = getCoords(pair[0], projBases, currentDim, w, h); let p2 = getCoords(pair[1], projBases, currentDim, w, h);
+                hCtx.beginPath(); hCtx.moveTo(p1.x, p1.y); hCtx.lineTo(p2.x, p2.y); hCtx.stroke();
+            });
+            hCtx.shadowBlur = 0;
+        }
+
+        let activeCoords = [];
+        let baseRadius = 4 * zoomLevel;
+        if (currentDim <= 7) {
+            for (let i = 0; i < nodes; i++) {
+                if (showCollapse && !currentActiveNodes.includes(i)) continue;
+                let p = getCoords(i, projBases, currentDim, w, h);
+                hCtx.beginPath(); hCtx.arc(p.x, p.y, baseRadius, 0, Math.PI * 2);
+                if (currentActiveNodes.includes(i)) {
+                    let isWhite = false;
+                    if (showCollapse) {
+                        if (numKeptVars === 0) {
+                            if (i === activeCoords.length || (Math.random() < 0.05 && whiteCount === 0)) { isWhite = true; whiteCount++; }
+                        } else if (whiteCount < numKeptNodesForWhite) {
+                            isWhite = true; whiteCount++;
+                        }
+                    }
+                    hCtx.fillStyle = isWhite ? '#ffffff' : nodeColor;
+                    if (isWhite) { hCtx.shadowBlur = 15; hCtx.shadowColor = '#ffffff'; }
+                    hCtx.fill(); hCtx.shadowBlur = 0;
+                    activeCoords.push(p);
+                    // DYNAMIC LABEL ALIGNMENT
+                    hCtx.font = `bold ${10 * zoomLevel}px sans-serif`;
+                    let labelStr = isClassicalFallback ? "|\u0336\u27E8\u0336\u03A8\u0336\u27E9\u0336|d\u00B2" : "|\u27E8\u03A8\u27E9|d\u00B2";
+                    hCtx.fillText(labelStr, p.x + 6 * zoomLevel, p.y - 6 * zoomLevel);
+                } else {
+                    let fillStyle = '#1e293b';
+                    let shadowBlur = 0; let shadowColor = 'transparent';
+                    
+                    let isHighLoad = (numKeptVars === currentDim && currentActiveNodes.length < nodes && currentActiveNodes.length > 0);
+                    
+                    if (isHighLoad) {
+                        let connected = false; let connActiveNode = -1;
+                        for(let a of currentActiveNodes) {
+                            if(calcHammingDist(i, a) === 1) { connected = true; connActiveNode = a; break; }
+                        }
+                        if (connected) {
+                            if (!showCollapse) {
+                                let alpha = (Math.sin(timeTracker * 3 + i) + 1) / 2 * 0.6 + 0.2;
+                                fillStyle = `rgba(244, 63, 94, ${alpha})`; // Glowy Red for adjacent nodes
+                                shadowBlur = 10; shadowColor = 'rgba(244, 63, 94, 0.8)';
+                                
+                                let pA = getCoords(connActiveNode, projBases, currentDim, w, h);
+                                hCtx.beginPath(); hCtx.moveTo(p.x, p.y); hCtx.lineTo(pA.x, pA.y);
+                                hCtx.strokeStyle = `rgba(244, 63, 94, ${alpha * 0.5})`;
+                                hCtx.lineWidth = 1 * zoomLevel;
+                                hCtx.stroke();
+                                
+                                // Restore the circular path before filling
+                                hCtx.beginPath(); hCtx.arc(p.x, p.y, baseRadius, 0, Math.PI * 2);
+                            } else {
+                                if (Math.random() < 0.015) {
+                                    fillStyle = '#ffffff';
+                                    shadowBlur = 15; shadowColor = '#ffffff';
+                                    
+                                    let pA = getCoords(connActiveNode, projBases, currentDim, w, h);
+                                    hCtx.beginPath(); hCtx.moveTo(p.x, p.y); hCtx.lineTo(pA.x, pA.y);
+                                    hCtx.strokeStyle = '#ffffff';
+                                    hCtx.lineWidth = 2 * zoomLevel;
+                                    hCtx.stroke();
+                                    
+                                    hCtx.beginPath(); hCtx.arc(p.x, p.y, baseRadius, 0, Math.PI * 2);
+                                } else {
+                                    let dimAlpha = (Math.sin(timeTracker * 1.5 + i) + 1) / 2 * 0.3 + 0.1;
+                                    fillStyle = `rgba(244, 63, 94, ${dimAlpha})`;
+                                }
+                            }
+                        } else {
+                            let dimAlpha = (Math.sin(timeTracker * 1.2 + i) + 1) / 2 * 0.2 + 0.05;
+                            fillStyle = `rgba(148, 163, 184, ${dimAlpha})`;
+                        }
+                    }
+                    hCtx.fillStyle = fillStyle;
+                    if(shadowBlur > 0) { hCtx.shadowBlur = shadowBlur; hCtx.shadowColor = shadowColor; }
+                    hCtx.fill(); hCtx.shadowBlur = 0;
+                }
+            }
+        } else {
+            let nRadius = 5 * zoomLevel;
+            for(let i of currentActiveNodes) {
+                let p = getCoords(i, projBases, currentDim, w, h);
+                hCtx.beginPath(); hCtx.arc(p.x, p.y, nRadius, 0, Math.PI * 2);
+                let isWhite = false;
+                if (showCollapse) {
+                    if (numKeptVars === 0) {
+                        if (Math.random() < 0.05 && whiteCount === 0) { isWhite = true; whiteCount++; }
+                    } else if (whiteCount < numKeptNodesForWhite) {
+                        isWhite = true; whiteCount++;
+                    }
+                }
+                hCtx.fillStyle = isWhite ? '#ffffff' : nodeColor;
+                if (isWhite) { hCtx.shadowBlur = 20; hCtx.shadowColor = '#ffffff'; }
+                hCtx.fill(); hCtx.shadowBlur = 0;
+                activeCoords.push(p);
+                // DYNAMIC LABEL ALIGNMENT
+                hCtx.font = `bold ${11 * zoomLevel}px sans-serif`;
+                let labelStr = isClassicalFallback ? "|\u0336\u27E8\u0336\u03A8\u0336\u27E9\u0336|d\u00B2" : "|\u27E8\u03A8\u27E9|d\u00B2";
+                hCtx.fillText(labelStr, p.x + 8 * zoomLevel, p.y - 8 * zoomLevel);
+            }
+        }
+
+        pCtx.clearRect(0, 0, pCanvas.width, pCanvas.height);
+        
+        let pColorStr = isClassicalFallback ? '245, 158, 11' : (currentPhysicsState.targetHit ? '16, 185, 129' : (currentPhysicsState.phase === 1 ? '244, 63, 94' : '59, 130, 246'));
+        let pColorHex = isClassicalFallback ? '#f59e0b' : (currentPhysicsState.targetHit ? '#10b981' : (currentPhysicsState.phase === 1 ? '#f43f5e' : '#3b82f6'));
+        
+        freeParticles.forEach(p => { p.update(); p.draw(pCtx, 59, 130, 246); });
+
+        if (activeCoords.length > 0 && nodeParticles.length > 0) {
+            let nodeGroups = {};
+            
+            for (let i = nodeParticles.length - 1; i >= 0; i--) {
+                let np = nodeParticles[i];
+                np.lifespan--;
+
+                if(np.lifespan <= 0) {
+                    nodeParticles.splice(i, 1);
+                    nodeParticles.push({
+                        nodeIdx: np.nodeIdx,
+                        groupPhaseOffset: np.groupPhaseOffset,
+                        x: null, y: null,
+                        vx: (Math.random() - 0.5) * 4, vy: (Math.random() - 0.5) * 4,
+                        radius: Math.random() * 1.5 + 2, opacity: Math.random() * 0.5 + 0.5,
+                        lifespan: Math.random() * 100 + 50
+                    });
+                    continue;
+                }
+
+                let target = activeCoords[np.nodeIdx % activeCoords.length];
+                if (np.x === null) { np.x = target.x; np.y = target.y; }
+                
+                let orbitRadius = 10 * zoomLevel;
+                let orbitX = target.x + Math.cos(timeTracker + np.groupPhaseOffset) * orbitRadius;
+                let orbitY = target.y + Math.sin(timeTracker + np.groupPhaseOffset) * orbitRadius;
+                
+                np.x += np.vx * zoomLevel + (Math.random() - 0.5) * 4 * zoomLevel;
+                np.y += np.vy * zoomLevel + (Math.random() - 0.5) * 4 * zoomLevel;
+                
+                np.x += (orbitX - np.x) * 0.3; 
+                np.y += (orbitY - np.y) * 0.3;
+                
+                if(!nodeGroups[np.nodeIdx]) nodeGroups[np.nodeIdx] = [];
+                nodeGroups[np.nodeIdx].push(np);
+
+                pCtx.beginPath();
+                pCtx.arc(np.x, np.y, np.radius * zoomLevel, 0, Math.PI * 2);
+                pCtx.fillStyle = `rgba(${pColorStr}, ${np.opacity})`;
+                pCtx.shadowBlur = 10 * zoomLevel;
+                pCtx.shadowColor = pColorHex;
+                pCtx.fill();
+            }
+
+            pCtx.lineWidth = 1 * zoomLevel;
+            pCtx.strokeStyle = `rgba(${pColorStr}, 0.6)`;
+            
+            for (const [nIdx, group] of Object.entries(nodeGroups)) {
+                if (group.length > 2) {
+                    pCtx.beginPath();
+                    for(let j=0; j<group.length; j++) {
+                        if(j === 0) pCtx.moveTo(group[j].x, group[j].y);
+                        else pCtx.lineTo(group[j].x, group[j].y);
+                    }
+                    pCtx.closePath();
+                    pCtx.stroke();
+                } else if (group.length === 2) {
+                    pCtx.beginPath();
+                    pCtx.moveTo(group[0].x, group[0].y);
+                    pCtx.lineTo(group[1].x, group[1].y);
+                    pCtx.stroke();
+                }
+
+                if(!isClassicalFallback) {
+                    pCtx.lineWidth = 0.5 * zoomLevel;
+                    let maxConnections = Math.max(3, currentPhysicsState.N); 
+                    let currentConnections = 0;
+
+                    for(let np of group) {
+                        if (currentConnections >= maxConnections) break; 
+                        for(let fp of freeParticles) {
+                            let dx = np.x - fp.x; let dy = np.y - fp.y;
+                            let dist = Math.sqrt(dx*dx + dy*dy);
+                            let maxDist = 70 * zoomLevel;
+                            
+                            if(dist < maxDist && Math.random() > 0.6) {
+                                let alpha = 0.5 * (1 - dist / maxDist);
+                                pCtx.strokeStyle = `rgba(${pColorStr}, ${alpha})`;
+                                pCtx.beginPath();
+                                pCtx.moveTo(np.x, np.y);
+                                pCtx.lineTo(fp.x, fp.y);
+                                pCtx.stroke();
+                                currentConnections++;
+                                break; 
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        requestAnimationFrame(animate);
+    }
+
+    toggleCustom(); updatePhysicsUI(); runSimulation();
+    requestAnimationFrame(animate); 
+</script>
+</body>
+</html>

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>QF-LCA Quantum Field Simulator</title>
+    <style>
+        body { margin:0; background:#000; overflow:hidden; color:#0ff; font-family: 'Segoe UI', sans-serif; }
+        canvas { background:#000; display:block; cursor: none; }
+        
+        .panel { position: absolute; background: rgba(0, 0, 0, 0.95); border: 1px solid #444; border-radius: 4px; padding: 15px; z-index: 10; box-shadow: 0 0 20px rgba(188, 19, 254, 0.3); transition: transform 0.3s ease; }
+        #controls { top: 10px; left: 10px; width: 300px; }
+        #controls.collapsed { transform: translateX(-330px); }
+        
+        #help-panel { top: 10px; right: 10px; width: 360px; display: none; font-size: 11px; line-height: 1.4; color: #ccc; max-height: 85vh; overflow-y: auto; }
+        
+        .toggle-btn { position: absolute; top: 10px; left: 320px; background: #222; border: 1px solid #444; color: #0ff; padding: 10px; cursor: pointer; border-radius: 4px; z-index: 11; font-weight: bold; }
+        
+        .slider-group { margin-bottom: 10px; }
+        label { display: block; margin-bottom: 3px; font-size: 9px; color: #888; text-transform: uppercase; }
+        input[type=range] { width: 100%; cursor: pointer; accent-color: #bc13fe; }
+        .val { color: #bc13fe; float: right; font-weight: bold; }
+        #telemetry { font-size:10px; margin-top:8px; border-top: 1px solid #222; padding-top:8px; line-height: 1.5; }
+        
+        #entropy-bar-container { width: 100%; height: 6px; background: #111; margin: 5px 0; border-radius: 3px; overflow: hidden; }
+        #entropy-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #00ff88, #ff3366); transition: width 0.2s; }
+
+        .btn-group { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-top: 10px; }
+        .btn { background: #bc13fe; color: #fff; border: none; padding: 7px; cursor: pointer; font-size: 9px; text-transform: uppercase; font-weight: bold; }
+        
+        #legend { position: absolute; bottom: 60px; left: 10px; background: rgba(0, 0, 0, 0.85); padding: 10px; border-left: 3px solid #bc13fe; font-size: 10px; line-height: 1.4; }
+        footer { position: absolute; bottom: 10px; width: 100%; text-align: center; font-size: 9px; color: #333; }
+        #print-snapshot { display: none; width: 100%; margin-top: 15px; border: 1px solid #000; }
+
+        @media print {
+            body { background: white !important; }
+            canvas, footer, #controls, #legend, .toggle-btn { display: none !important; }
+            #help-panel { display: block !important; position: relative !important; width: 100% !important; background: white !important; color: black !important; }
+            #print-snapshot { display: block !important; }
+            h4, p, b, li { color: black !important; }
+        }
+    </style>
+</head>
+<body>
+    <button class="toggle-btn" id="uiToggle" onclick="toggleUI()">MENU</button>
+    
+    <div id="controls" class="panel">
+        <h4>QF-LCA FIDELITY MONITOR</h4>
+        <div class="slider-group">
+            <label>N-Body (System): <span id="nVal" class="val">45</span></label>
+            <input type="range" id="nSlider" min="2" max="150" step="1" value="45">
+        </div>
+        <div class="slider-group">
+            <label>Scalar (&kappa;): <span id="kVal" class="val">1.0</span></label>
+            <input type="range" id="kappaSlider" min="0.1" max="10.0" step="0.01" value="1.0">
+        </div>
+        <div class="slider-group">
+            <label>Density (&rho;): <span id="rVal" class="val">1.0</span></label>
+            <input type="range" id="rhoSlider" min="0.001" max="2.5" step="0.001" value="1.0">
+        </div>
+        <div id="telemetry">
+            <div>Cost |&kappa;&sup2;|&rho;: <span id="cCalc">1.00</span> / 2.0</div>
+            <div>Entropy ($\mathcal{S}$): <span id="sVal">0.12</span></div>
+            <div id="entropy-bar-container"><div id="entropy-fill"></div></div>
+            <div>Fidelity ($P_{succ}$): <span id="pVal">0.850</span> <span id="invLabel" style="color:#ff3366; display:none;">(INV)</span></div>
+            <div>Transition $P(\Phi \to \Psi)$: <span id="transVal">0.888</span></div>
+            <div id="statusText" style="margin-top:4px; font-weight:bold;">SUPERFLUID</div>
+        </div>
+        <div class="btn-group">
+            <button class="btn" id="lockBtn" onclick="toggleLock()">Phase Lock: OFF</button>
+            <button class="btn" onclick="runBatchSweep()">Sweep CSV</button>
+            <button class="btn help-toggle" onclick="toggleHelp()">Guide & Print</button>
+            <button class="btn reset" onclick="resetField()" style="background:#333; color:#0ff;">Reset</button>
+        </div>
+    </div>
+
+    <div id="help-panel" class="panel">
+        <h4>QDF Model Reference Guide</h4>
+        <p><b>Entropy ($\mathcal{S}$):</b> Measures the disorder within the QDF lens. Higher &kappa; over low &rho; creates field stress, increasing entropy. At the Decoherence limit (> 2.0), entropy spikes as the state becomes unpredictable.</p>
+        <p><b>Fidelity Inversion:</b> Upon Decoherence, $P$ becomes $1 - P_{succ}$. This signals the "State Complement" is reached instead of the target, essentially a measurement failure.</p>
+        <p><b>Ancilla Inertia:</b> The purple mediator carries gravitational mass. As $\rho$ increases (approaching singularity), the Ancilla follows the cursor with more "sluggishness" due to inertial resistance.</p>
+        <p><b>Phase Locking:</b> A resonance stabilizer that holds &rho; at the peak superfluid point (1.0) to maximize coherence for $N$-body transitions.</p>
+        <button class="btn" onclick="preparePrint()" style="width:100%; background:#00ff88; color:#000;">Print Reference with Live View</button>
+        <img id="print-snapshot" src="">
+    </div>
+
+    <div id="legend">
+        <b style="color:#00ff88;">SUPERFLUID:</b> $P \ge 2/3$ Stable<br>
+        <b style="color:#ff3366;">DECOHERENT:</b> $P$ Inverted / High $\mathcal{S}$<br>
+        <b style="color:#fff;">OSCILLATION:</b> Low Fidelity Noise
+    </div>
+
+    <canvas id="c"></canvas>
+    <footer>&copy; Copyright 2026, Philip B. Alipour</footer>
+
+    <script>
+        const canvas = document.getElementById('c'), ctx = canvas.getContext('2d');
+        const kSlider = document.getElementById('kappaSlider'), rSlider = document.getElementById('rhoSlider'), nSlider = document.getElementById('nSlider');
+        
+        canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+
+        let gKappa = 1.0, gRho = 1.0, gN = 45, currentCost = 1.0, pSuccess = 0.85, entropy = 0.12, flashAlpha = 0, phaseLock = false;
+        let mouseX = window.innerWidth/2, mouseY = window.innerHeight/2, ancillaX = mouseX, ancillaY = mouseY;
+        let particles = [], dataLog = [], prevP = 0.85;
+
+        window.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; });
+
+        function toggleUI() { 
+            document.getElementById('controls').classList.toggle('collapsed');
+            document.getElementById('uiToggle').innerText = document.getElementById('controls').classList.contains('collapsed') ? "EXPAND" : "MENU";
+        }
+        function toggleHelp() { const hp = document.getElementById('help-panel'); hp.style.display = hp.style.display === 'block' ? 'none' : 'block'; }
+        function toggleLock() { 
+            phaseLock = !phaseLock; 
+            document.getElementById('lockBtn').innerText = `Phase Lock: ${phaseLock ? 'ON' : 'OFF'}`;
+            document.getElementById('lockBtn').classList.toggle('toggle-on');
+        }
+        function preparePrint() {
+            document.getElementById('print-snapshot').src = canvas.toDataURL();
+            setTimeout(() => { window.print(); }, 150);
+        }
+        function resetField() { gKappa = 1.0; gRho = 1.0; gN = 45; kSlider.value = 1.0; rSlider.value = 1.0; nSlider.value = 45; initParticles(); updateTelemetry(); }
+
+        function calculateFidelity(rho) { return 0.85 * Math.exp(-Math.pow(rho - 1.0, 2) / 0.4); }
+        function calculateEntropy(k, r, cost) {
+            let baseS = Math.log(1 + cost);
+            if (cost > 2.0) baseS += (cost - 2.0) * 2; // Sharp spike
+            return baseS;
+        }
+
+        function updateTelemetry() {
+            currentCost = Math.pow(gKappa, 2) * gRho;
+            if (phaseLock) { gRho = 1.0; rSlider.value = 1.0; }
+            
+            pSuccess = calculateFidelity(gRho);
+            entropy = calculateEntropy(gKappa, gRho, currentCost);
+            
+            const isDecoherent = currentCost > 2.0;
+            if (isDecoherent) { pSuccess = 1.0 - pSuccess; document.getElementById('invLabel').style.display = 'inline'; }
+            else { document.getElementById('invLabel').style.display = 'none'; }
+
+            if (pSuccess >= 0.667 && prevP < 0.667) flashAlpha = 0.4;
+            prevP = pSuccess;
+
+            document.getElementById('kVal').innerText = gKappa.toFixed(2);
+            document.getElementById('rVal').innerText = gRho.toFixed(3);
+            document.getElementById('nVal').innerText = gN;
+            document.getElementById('cCalc').innerText = currentCost.toFixed(2);
+            document.getElementById('pVal').innerText = pSuccess.toFixed(3);
+            document.getElementById('sVal').innerText = entropy.toFixed(3);
+            document.getElementById('transVal').innerText = ((4*Math.pow(gN-1,2))/(9*(gN*(gN-1)/2))).toFixed(3);
+            
+            let sPercent = Math.min(100, (entropy / 3) * 100);
+            document.getElementById('entropy-fill').style.width = sPercent + "%";
+
+            const status = document.getElementById('statusText');
+            if (isDecoherent) { status.innerText = "DECOHERENCE"; status.style.color = "#ff3366"; }
+            else if (pSuccess >= 0.667) { status.innerText = "SUPERFLUID"; status.style.color = "#00ff88"; }
+            else { status.innerText = "LOW FIDELITY"; status.style.color = "#fff"; }
+            
+            dataLog.push({n: gN, k: gKappa, p: gRho, s: entropy, f: pSuccess});
+        }
+
+        nSlider.oninput = (e) => { gN = parseInt(e.target.value); initParticles(); updateTelemetry(); };
+        kSlider.oninput = (e) => { gKappa = parseFloat(e.target.value); updateTelemetry(); };
+        rSlider.oninput = (e) => { gRho = parseFloat(e.target.value); updateTelemetry(); };
+
+        function initParticles() { particles = Array.from({length: gN}, () => ({ x: Math.random()*canvas.width, y: Math.random()*canvas.height, vx: (Math.random()-0.5)*1.5, vy: (Math.random()-0.5)*1.5, phase: Math.random()*Math.PI*2 })); }
+
+        function loop() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            if (flashAlpha > 0) { ctx.fillStyle = `rgba(255, 255, 255, ${flashAlpha})`; ctx.fillRect(0,0,canvas.width, canvas.height); flashAlpha -= 0.04; }
+            
+            let inertia = (gRho > 1.0) ? 0.015 : 0.12;
+            ancillaX += (mouseX - ancillaX) * inertia; ancillaY += (mouseY - ancillaY) * inertia;
+
+            ctx.beginPath(); ctx.arc(ancillaX, ancillaY, 10, 0, Math.PI*2); ctx.fillStyle = "#bc13fe"; ctx.shadowBlur = gRho*30; ctx.shadowColor = "#bc13fe"; ctx.fill(); ctx.shadowBlur = 0;
+
+            particles.forEach((p, i) => {
+                p.x += p.vx * gRho * 2.2; p.y += p.vy * gRho * 2.2;
+                p.phase += (pSuccess < 0.667 || currentCost > 2.0) ? 0.35 : 0.08;
+                let dx = ancillaX - p.x, dy = ancillaY - p.y, d = Math.sqrt(dx*dx + dy*dy);
+                if (d < 450) { let f = Math.pow((450-d)/450, 3); p.x += dx * f * (gRho > 1.0 ? 0.65 : 0.15); p.y += dy * f * (gRho > 1.0 ? 0.65 : 0.15); }
+                if(p.x<0 || p.x>canvas.width) p.vx *= -1; if(p.y<0 || p.y>canvas.height) p.vy *= -1;
+
+                ctx.beginPath(); ctx.arc(p.x, p.y, gKappa*3, 0, Math.PI*2);
+                let alpha = Math.max(0.1, gRho * 0.7);
+                if (pSuccess < 0.667 || currentCost > 2.0) alpha *= (0.2 + 0.8 * Math.abs(Math.sin(p.phase)));
+                
+                if (currentCost > 2.0) ctx.fillStyle = `rgba(255, 51, 102, ${alpha})`;
+                else if (pSuccess < 0.667) ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
+                else ctx.fillStyle = `rgba(0, 255, 136, ${alpha})`;
+                ctx.fill();
+
+                particles.slice(i+1).forEach(p2 => {
+                    let dist = Math.sqrt((p.x-p2.x)**2 + (p.y-p2.y)**2);
+                    if (dist < 160 * gRho) {
+                        ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(p2.x, p2.y);
+                        let intensity = (1 - dist/(160 * gRho)) * gRho;
+                        if (pSuccess < 0.667 || currentCost > 2.0) intensity *= (0.4 + 0.6 * Math.abs(Math.sin(p.phase)));
+                        ctx.strokeStyle = (currentCost > 2.0) ? `rgba(255, 51, 102, ${intensity})` : (pSuccess < 0.667 ? `rgba(255, 255, 255, ${intensity})` : `rgba(0, 255, 136, ${intensity})`);
+                        ctx.lineWidth = (currentCost > 1.4) ? 2.5 : 0.5; ctx.stroke();
+                    }
+                });
+            });
+            requestAnimationFrame(loop);
+        }
+        initParticles(); updateTelemetry(); loop();
+
+        function runBatchSweep() {
+            let csv = "Rho,Fidelity,Entropy\n";
+            for (let r = 0.01; r <= 2.0; r += 0.05) {
+                let f = calculateFidelity(r);
+                let cost = Math.pow(gKappa, 2) * r;
+                let s = calculateEntropy(gKappa, r, cost);
+                if (cost > 2.0) f = 1.0 - f;
+                csv += `${r.toFixed(2)},${f.toFixed(4)},${s.toFixed(4)}\n`;
+            }
+            const blob = new Blob([csv], {type: 'text/csv'});
+            const link = document.createElement('a'); link.href = URL.createObjectURL(blob); link.download = 'QF_LCA_Entropy_Sweep.csv'; link.click();
+        }
+    </script>
+</body>
+</html>
