@@ -37,6 +37,7 @@ This collection serves as a unified portfolio, translating the theoretical frame
 1. **The QDF Engine:** Adjust system parameters to see how the Double-Field approach enhances prediction values during the decoding step.
 2. **Phase Transition Tracker:** Monitor how your $N$ qubits reach critical thresholds.
 3. **Comparative Benchmarking:** Toggle between QF-LCA and standard QFT outputs to visualize the "Lens Coding" advantage.
+
 ---
 
 ## 🧭 Visual Directory
