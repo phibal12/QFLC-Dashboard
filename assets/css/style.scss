@@ -16,7 +16,7 @@ html, body {
 }
 
 /* 1.5. GLOBAL IMAGE FIX */
-.post-content img, .markdown-body img {
+img {
   max-width: 100% !important; /* Prevents image from being wider than the text */
   height: auto !important;     /* Keeps the original shape (ratio) */
   display: block !important;   /* Removes the "magic gap" below images */
@@ -26,7 +26,7 @@ html, body {
 
 
 /* Select the images in your dashboard */
-img {
+.post-content img, .markdown-body img {
   /* Set the initial frame color to teal (or transparent if you only want it on hover) */
   border: 2px solid teal !important; 
   
