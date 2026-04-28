@@ -27,8 +27,11 @@ img {
 
 /* Select the images in your dashboard */
 img {
-  /* This makes the effect fade back to normal smoothly over 0.3 seconds */
-  transition: box-shadow 0.3s ease-in-out;
+  /* Set the initial frame color to teal (or transparent if you only want it on hover) */
+  border: 2px solid teal; 
+  
+  * Smooth transition for the glow and border color */
+  transition: box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out;
   
   /* Initial state: no shadow or a very subtle one */
   box-shadow: 0 0 0px transparent;
