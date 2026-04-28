@@ -22,7 +22,7 @@ html, body {
   /* Set the initial frame color to teal (or transparent if you only want it on hover) */
   border: 2px solid teal !important; 
   
-  * Smooth transition for the glow and border color */
+  /* Smooth transition for the glow and border color */
   transition: box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out;
   
   /* Initial state: no shadow or a very subtle one */
