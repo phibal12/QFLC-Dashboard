@@ -13,14 +13,11 @@ html, body {
   overflow-x: hidden !important; /* Forces removal of the right-side gap */
   width: 100% !important;
   scroll-behavior: smooth !important;
-}
 
-/* 1.5. GLOBAL IMAGE FIX */
-img {
   max-width: 100% !important; /* Prevents image from being wider than the text */
   height: auto !important;     /* Keeps the original shape (ratio) */
   display: block !important;   /* Removes the "magic gap" below images */
-  margin: 20px auto !important; /* Centers images with some breathing room */
+  /*margin: 20px auto !important;  Centers images with some breathing room */
   border-radius: 8px;           /* Optional: gives images a clean, rounded look */
 }
 
