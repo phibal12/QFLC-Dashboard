@@ -181,10 +181,9 @@ layout: default
 
 <script>
   const btn = document.getElementById("theme-toggle");
-  const currentTheme = localStorage.getItem("theme");
-
-  // Check for saved user preference
-  if (currentTheme === "light") {
+  
+  // Apply saved theme on page load
+  if (localStorage.getItem("theme") === "light") {
     document.body.classList.add("light-mode");
     btn.textContent = "Switch to Dark Mode";
   }
@@ -192,13 +191,12 @@ layout: default
   btn.addEventListener("click", function() {
     document.body.classList.toggle("light-mode");
     
-    let theme = "dark";
     if (document.body.classList.contains("light-mode")) {
-      theme = "light";
+      localStorage.setItem("theme", "light");
       btn.textContent = "Switch to Dark Mode";
     } else {
+      localStorage.setItem("theme", "dark");
       btn.textContent = "Switch to Bright Mode";
     }
-    localStorage.setItem("theme", theme);
   });
 </script>
