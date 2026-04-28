@@ -16,7 +16,8 @@ html, body {
 }
 
 /* 1.5. GLOBAL IMAGE FIX */
-img {
+.post-content img, 
+.markdown-body img {
   max-width: 100% !important; /* Prevents image from being wider than the text */
   height: auto !important;     /* Keeps the original shape (ratio) */
   display: block !important;   /* Removes the "magic gap" below images */
