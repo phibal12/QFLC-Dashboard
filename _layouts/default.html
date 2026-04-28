@@ -222,22 +222,31 @@ body.light-mode #main_content {
 
 <script>
   const btn = document.getElementById("theme-toggle");
-  
+
+  function updateButton(isLight) {
+    // Keeps your text but adds the optical symbols
+    btn.textContent = isLight ? "🌙 Switch to Dark Mode" : "☀️ Switch to Bright Mode";
+    
+    // Adjusts button colors to contrast with the current mode
+    btn.style.background = isLight ? "#f6f8fa" : "#24292f";
+    btn.style.color = isLight ? "#24292f" : "white";
+    btn.style.borderColor = isLight ? "#d0d7de" : "#444c56";
+  }
+
   // Apply saved theme on page load
   if (localStorage.getItem("theme") === "light") {
     document.body.classList.add("light-mode");
-    btn.textContent = "Switch to Dark Mode";
+    document.documentElement.classList.add("light-mode");
+    updateButton(true);
+  } else {
+    updateButton(false);
   }
 
   btn.addEventListener("click", function() {
-    document.body.classList.toggle("light-mode");
+    const isLight = document.body.classList.toggle("light-mode");
+    document.documentElement.classList.toggle("light-mode");
     
-    if (document.body.classList.contains("light-mode")) {
-      localStorage.setItem("theme", "light");
-      btn.textContent = "Switch to Dark Mode";
-    } else {
-      localStorage.setItem("theme", "dark");
-      btn.textContent = "Switch to Bright Mode";
-    }
+    updateButton(isLight);
+    localStorage.setItem("theme", isLight ? "light" : "dark");
   });
 </script>
