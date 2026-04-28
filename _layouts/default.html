@@ -170,6 +170,28 @@ body.light-mode #theme-toggle {
   border-color: #d0d7de !important;
 }
 
+  /* Ensure the total page background is white in light mode */
+html.light-mode, 
+body.light-mode {
+  background-color: #ffffff !important;
+  background-image: none !important; /* Removes Slate's default dark textures */
+}
+
+/* Force the outer wrapper to span full width and be white */
+body.light-mode #main_content_wrap {
+  background-color: #ffffff !important;
+  background-image: none !important;
+  border: none !important;
+}
+
+/* Ensure the content area matches */
+body.light-mode #main_content {
+  background-color: #ffffff !important;
+  color: #24292f !important;
+  box-shadow: none !important; /* Removes any inner glow from the theme */
+}
+
+
 </style>
 
 <!-- toggl;e button to change dark mode to bright mode and vice versa  of the webpage by the user -->
