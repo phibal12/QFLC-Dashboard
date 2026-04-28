@@ -191,6 +191,35 @@ body.light-mode #main_content {
   box-shadow: none !important; /* Removes any inner glow from the theme */
 }
 
+  /* FIX TABLE TEXT IN DARK MODE (Screen) */
+#main_content table {
+  border-color: #444c56 !important;
+}
+
+#main_content th {
+  background-color: #161b22 !important; /* Slightly lighter than the main background */
+  color: #ffffff !important;           /* Pure white for headers */
+  border: 1px solid #444c56 !important;
+}
+
+#main_content td {
+  color: #adbac7 !important;           /* Light grey for body text for better readability */
+  border: 1px solid #444c56 !important;
+}
+
+/* Ensure Bright Mode tables also flip back correctly */
+body.light-mode #main_content table,
+body.light-mode #main_content th,
+body.light-mode #main_content td {
+  border-color: #d0d7de !important;
+  color: #24292f !important;
+  background-color: #ffffff !important;
+}
+
+body.light-mode #main_content th {
+  background-color: #f6f8fa !important; /* Light grey header in bright mode */
+}
+
 
 </style>
 
