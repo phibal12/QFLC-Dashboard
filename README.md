@@ -54,7 +54,7 @@ This collection serves as a unified portfolio, translating the theoretical frame
 ---
 ## Quantum Field Lens Coding Framework: Probability Doubling by QDF Modeling
 
-<a href="assets/PhD-GAbstract.png" target="_blank"><img src="assets/PhD-GAbstract.png" alt="QF-LC Dissertattion Framework" style="width: 100% !important; max-width: none !important; border-radius: 8px; border: 2px solid #8b5cf6; position: relative; left: 50%; transform: translateX(-50%);"></a><br> 
+<a href="assets/PhD-GAbstract.png" target="_blank"><img src="assets/PhD-GAbstract.png" alt="QF-LC Dissertattion Framework" style="width: 100% !important; max-width: none !important; border-radius: 8px; border: 2px solid teal; position: relative; left: 50%; transform: translateX(-50%);"></a><br> 
 
 ---
 
@@ -94,7 +94,7 @@ This dashboard is the practical implementation of research published at the **Un
 The theoretical concepts discussed in the seminar have been synthesized into the following interactive dashboards and simulators. 
 
 ### 1. QF-LC Hypercube Hardware Synthesis Engine and Phase Simulator
-<a href="assets/QFLCH_Poster.png" target="_blank"><img src="assets/QFLCH_Poster.png" alt="QF-LC Hardware Synthesis Engine (Hypercube)" style="width: 100% !important; max-width: none !important; border-radius: 8px; border: 2px solid #8b5cf6; position: relative; left: 50%; transform: translateX(-50%);"></a><br> 
+<a href="assets/QFLCH_Poster.png" target="_blank"><img src="assets/QFLCH_Poster.png" alt="QF-LC Hardware Synthesis Engine (Hypercube)" style="width: 100% !important; max-width: none !important; border-radius: 8px; position: relative; left: 50%; transform: translateX(-50%);"></a><br> 
 
 
 
@@ -117,7 +117,7 @@ The QFLC Hypercube serves as more than a visualization; it is a **stability map*
 *This framework is the subject of an upcoming publication focused on the geometric foundations of quantum stability.*
 
 ### 2. QDF Phase and Game Theory Simulator
-<a href="#4-qdf-lens-geometry-lab--particle-trap"><img src="./assets/QDF_P_Screenshot00.JPG" alt="Geometry Lab" height="70%" width="70%" style="border-radius:8px; border:2px solid #8b5cf6;"></a><br> 
+<a href="#4-qdf-lens-geometry-lab--particle-trap"><img src="./assets/QDF_P_Screenshot00.JPG" alt="Geometry Lab" height="70%" width="70%" style="border-radius:8px;"></a><br> 
 *(Demonstrating Quantum Phase Transitions and Participant Decisions)*
 
 This widget translates the QDF model into a game theory environment. As discussed in the seminar's exploration of entanglement and Quantum Key Distribution (QKD), this simulator models scenarios where four or more participants interact on a quantum level. 
@@ -131,7 +131,7 @@ This widget translates the QDF model into a game theory environment. As discusse
 This dashboard provides a robust, granular look into the mathematical engine of the Quantum Field Lens Coding system. It allows users to manipulate the baseline metrics of the complex field and observe the optimized hardware routing in real-time. It acts as a direct visualizer for the transition probabilities and error rates discussed in the seminar's "Energy Paths" section.
 
 ### 4. QDF Lens Geometry Lab and Particle Trap
-<a href="#4-qdf-lens-geometry-lab--particle-trap"><img src="./assets/QDF_Lens_Screenshot00.JPG" alt="Geometry Lab" height="70%" width="70%" style="border-radius:8px; border:2px solid #8b5cf6;"></a><br> 
+<a href="#4-qdf-lens-geometry-lab--particle-trap"><img src="./assets/QDF_Lens_Screenshot00.JPG" alt="Geometry Lab" height="70%" width="70%" style="border-radius:8px;"></a><br> 
 *(Live verification of Spatial Density and Lens Distance)*
 
 Directly correlating with the "Measurement" and "Lens Focus" sections of the seminar, this Geometry Lab visualizes the physical interaction length between the source and the target state. 
