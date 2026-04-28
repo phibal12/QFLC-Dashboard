@@ -14,11 +14,6 @@ html, body {
   width: 100% !important;
   scroll-behavior: smooth !important;
 
-  max-width: 100% !important; /* Prevents image from being wider than the text */
-  height: auto !important;     /* Keeps the original shape (ratio) */
-  display: block !important;   /* Removes the "magic gap" below images */
-  /*margin: 20px auto !important;  Centers images with some breathing room */
-  border-radius: 8px;           /* Optional: gives images a clean, rounded look */
 }
 
 
@@ -33,6 +28,11 @@ html, body {
   /* Initial state: no shadow or a very subtle one */
   box-shadow: 0 0 0px transparent;
   border-radius: 8px; /* Optional: adds nice rounded corners */
+  max-width: 100% !important; /* Prevents image from being wider than the text */
+  height: auto !important;     /* Keeps the original shape (ratio) */
+  display: block !important;   /* Removes the "magic gap" below images */
+  margin: 20px auto !important;  /*Centers images with some breathing room */
+  border-radius: 8px;           /* Optional: gives images a clean, rounded look */
 }
 
 /* The glow effect triggered on hover */
