@@ -25,6 +25,26 @@ img {
 }
 
 
+/* Select the images in your dashboard */
+img {
+  /* This makes the effect fade back to normal smoothly over 0.3 seconds */
+  transition: box-shadow 0.3s ease-in-out;
+  
+  /* Initial state: no shadow or a very subtle one */
+  box-shadow: 0 0 0px transparent;
+  border-radius: 8px; /* Optional: adds nice rounded corners */
+}
+
+/* The glow effect triggered on hover */
+img:hover {
+  /* Syntax: horizontal-offset vertical-offset blur-radius spread-radius color */
+  box-shadow: 0 0 20px 5px rgba(0, 255, 255, 0.7); 
+  
+  /* Optional: slightly enlarge the image to enhance the 'pop' */
+  transform: scale(1.02);
+}
+
+
 body {
   padding-top: 80px !important;    /* Space for Top Nav */
   padding-bottom: 80px !important; /* Space for Bottom Nav */
