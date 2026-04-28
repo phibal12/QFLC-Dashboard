@@ -220,6 +220,26 @@ body.light-mode #main_content th {
   background-color: #f6f8fa !important; /* Light grey header in bright mode */
 }
 
+/* Base styling for the toggle button */
+#theme-toggle {
+  transition: all 0.3s ease-in-out !important;
+  outline: none;
+}
+
+/* Hover glow effect (Matches your images) */
+#theme-toggle:hover {
+  box-shadow: 0 0 20px 5px rgba(0, 255, 255, 0.7) !important;
+  color: #00ffff !important; /* Cyan text */
+  text-shadow: 0 0 8px rgba(0, 255, 255, 0.8); /* Glowy text effect */
+  border-color: #00ffff !important;
+}
+
+/* Adjust glow for Light Mode so it's not too blinding */
+body.light-mode #theme-toggle:hover {
+  box-shadow: 0 0 15px 3px rgba(0, 128, 128, 0.4) !important;
+  color: #008080 !important; /* Darker teal for readability on white */
+  text-shadow: 0 0 5px rgba(0, 128, 128, 0.3);
+}
 
 </style>
 
