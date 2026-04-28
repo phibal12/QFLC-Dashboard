@@ -269,3 +269,33 @@ h1 img[alt="Live Status"] {
   .top-nav, .bottom-nav { display: none !important; }
   .page-break { display: block; page-break-before: always; }
 } 
+
+/* Default Slate styles are already dark */
+
+/* Bright Mode Overrides */
+body.light-mode {
+  background: white !important;
+  color: #333 !important;
+}
+
+body.light-mode .wrapper {
+  background: white !important;
+}
+
+/* Ensure headers and links are readable on white */
+body.light-mode h1, 
+body.light-mode h2, 
+body.light-mode h3, 
+body.light-mode p {
+  color: black !important;
+}
+
+body.light-mode a {
+  color: #007bff !important; /* Standard blue for links */
+}
+
+/* Keep your teal frames but perhaps adjust them for white background */
+body.light-mode img {
+  border: 1px solid #ccc !important;
+}
+
