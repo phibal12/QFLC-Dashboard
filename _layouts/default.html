@@ -242,7 +242,35 @@ body.light-mode #theme-toggle:hover {
 }
 
 /* 1. RESET THE ROUGE TABLE ALIGNMENT */
-/* 1. FORCE THE TABLE TO ALIGN */
+/* Strip table structure to make cells feel like one block */
+.highlight table, .highlight tr, .highlight td {
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    vertical-align: top !important;
+}
+
+/* Force identical font and line-height so rows line up */
+.highlight .gutter pre, 
+.highlight .code pre {
+    font-family: "Courier New", monospace !important;
+    line-height: 1.6 !important; /* Adjust this until lines match */
+    font-size: 14px !important;
+    margin: 0 !important;
+}
+
+/* Add a clean divider between numbers and code */
+.highlight td.gutter {
+    border-right: 1px solid #30363d !important;
+    padding-right: 10px !important;
+    text-align: right;
+    width: 40px;
+}
+
+.highlight td.code {
+    padding-left: 15px !important;
+}
+
 
 
 
