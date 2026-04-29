@@ -74,7 +74,7 @@ Demonstrates how the system behaves as it scales to $N=100$ particles.
 
 ### 5. Reference Implementation (Qiskit)
 
-{% highlight python linenos %}
+```python
 import numpy as np
 from qiskit import QuantumCircuit, Aer, execute
 
@@ -99,7 +99,7 @@ def create_qdf_circuit(kappa=1.414):
     
     qc.measure(,)
     return qc
-{% endhighlight %}
+```
 
 
 ---
