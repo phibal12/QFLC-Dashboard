@@ -243,35 +243,8 @@ body.light-mode #theme-toggle:hover {
 
 /* 1. RESET THE ROUGE TABLE ALIGNMENT */
 /* TOTAL RESET FOR CODE TABLES */
-.highlight table, .highlight tr, .highlight td {
-    border: none !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    width: 100% !important;
-}
 
-/* SYNC PADDING & ALIGNMENT */
-.highlight td.gutter, 
-.highlight td.code {
-    padding: 15px 10px !important; /* Uniform padding top/bottom */
-    vertical-align: top !important;
-}
 
-/* FORCE FONT SYNC (CRITICAL) */
-.highlight pre, 
-.highlight code, 
-.highlight .gutter pre {
-    font-family: "Courier New", Courier, monospace !important;
-    line-height: 1.5 !important;
-    font-size: 14px !important;
-    margin: 0 !important;
-}
-
-/* CLEAN UP THE SCROLLBAR */
-.highlight pre {
-    overflow-x: auto !important; /* Keep scrollbar inside the code area */
-    display: block !important;
-}
 
 .highlighter-rouge, .highlight {
     overflow: visible !important; /* Stop the parent from creating a second scrollbar */
