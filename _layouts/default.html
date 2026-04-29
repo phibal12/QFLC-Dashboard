@@ -241,6 +241,50 @@ body.light-mode #theme-toggle:hover {
   text-shadow: 0 0 5px rgba(0, 128, 128, 0.3);
 }
 
+  /* 1. SYNC LINE NUMBERS & FIX SCROLLBAR */
+.highlighter-rouge, .highlight {
+  display: block;
+  overflow-x: auto !important; /* Proper horizontal scroll */
+  white-space: pre;            /* Prevents weird wrapping */
+}
+
+/* Force the line number column to align with the code */
+table.rouge-table {
+  border: none !important;
+  margin: 0 !important;
+  width: 100% !important;
+  border-collapse: collapse !important;
+}
+
+table.rouge-table td.gutter {
+  padding-right: 15px !important;
+  text-align: right;
+  user-select: none;           /* Prevents numbers being copied */
+  border-right: 1px solid #30363d !important; /* Vertical divider */
+  width: 1%;                   /* Shrink column to fit numbers */
+}
+
+table.rouge-table td.code {
+  padding-left: 15px !important;
+  width: auto;
+}
+
+/* 2. HIDE THE CLunky BOTTOM SCROLLBAR CONTAINER */
+/* This removes the white/empty bar showing in your screenshot */
+pre::-webkit-scrollbar {
+  height: 8px;
+}
+
+pre::-webkit-scrollbar-thumb {
+  background: #30363d;
+  border-radius: 10px;
+}
+
+pre::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+
 </style>
 
 <!-- toggl;e button to change dark mode to bright mode and vice versa  of the webpage by the user -->
