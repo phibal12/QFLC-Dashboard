@@ -241,34 +241,47 @@ body.light-mode #theme-toggle:hover {
   text-shadow: 0 0 5px rgba(0, 128, 128, 0.3);
 }
 
-/* 1. RESET THE ROUGE TABLE ALIGNMENT */
+
 /* Strip table structure to make cells feel like one block */
-.highlight table, .highlight tr, .highlight td {
-    border: none !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    vertical-align: top !important;
+/* 1. FORCE THE CODE TABLE TO BEHAVE */
+.highlight table {
+    display: table !important;
+    width: 100% !important;
+    border-collapse: collapse !important;
 }
 
-/* Force identical font and line-height so rows line up */
-.highlight .gutter pre, 
-.highlight .code pre {
-    font-family: "Courier New", monospace !important;
-    line-height: 1.6 !important; /* Adjust this until lines match */
-    font-size: 14px !important;
-    margin: 0 !important;
-}
-
-/* Add a clean divider between numbers and code */
-.highlight td.gutter {
-    border-right: 1px solid #30363d !important;
-    padding-right: 10px !important;
-    text-align: right;
-    width: 40px;
-}
-
+/* 2. ALIGN NUMBERS AND CODE ROWS */
+.highlight td.gutter, 
 .highlight td.code {
-    padding-left: 15px !important;
+    vertical-align: top !important;
+    padding: 10px 10px !important; /* Ensures they start at the same height */
+}
+
+/* 3. FIX THE "ONE LINE" ISSUE */
+.highlight td.code pre {
+    white-space: pre !important;        /* CRITICAL: Respects all line breaks */
+    word-wrap: normal !important;
+    display: block !important;
+    overflow-x: auto !important;        /* Keeps scrollbar attached to code */
+    width: 100% !important;
+    margin: 0 !important;
+}
+
+/* 4. MATCH FONTS EXACTLY (to prevent drift) */
+.highlight .gutter pre, 
+.highlight .code pre,
+.highlight code {
+    font-family: "Courier New", Courier, monospace !important;
+    line-height: 1.5 !important;
+    font-size: 14px !important;
+}
+
+/* 5. SLIM DOWN THE NUMBER COLUMN */
+.highlight .gutter {
+    width: 1% !important;
+    min-width: 45px !important;
+    border-right: 1px solid #30363d !important; /* Visual divider */
+    text-align: right;
 }
 
 
