@@ -8,7 +8,7 @@ layout: default
     #main_content_wrap {
       background-color: #0d1117 !important;
       display: flex !important;
-      justify-content: center !important;
+      justify-content: center !important; 
     }
     #main_content {
       color: #c9d1d9 !important;
@@ -17,57 +17,36 @@ layout: default
   }
 
   /* 2. PRINTER VIEW (FORCED WHITE) */
-  @media print {
-    /* Target the main containers */
+ @media print {
+    /* Main container resets */
     #main_content_wrap, #main_content, body, html {
       background: white !important;
       background-color: white !important;
       color: black !important;
     }
 
-    /* THE FIX: Target EVERY possible code container Slate/Jekyll uses */
-    div.highlighter-rouge, 
-    div.highlight, 
-    figure.highlight, 
-    pre.highlight, 
-    .highlight pre,
-    pre {
-      background: #f5f5f5 !important;
-      background-color: #f5f5f5 !important;
-      color: black !important;
-      border: 1px solid #ddd !important;
-    }
-
-    /* Ensure the actual text inside the code block isn't white */
-    .highlight code, pre code, .highlight span {
-      color: black !important;
-      background: transparent !important;
-    }
-
-    /* Hide the line numbers for cleaner printing if they are dark */
-    .lineno {
-      color: #999 !important;
-      border-right: 1px solid #eee !important;
-    }
-
-    /* THE FIX: Force ALL syntax tokens to BLACK */
-    /* This overrides the blue/gray/purple colors during printing */
-    .highlight code, 
-    .highlight span, 
-    pre code, 
-    pre span,
-    .highlight .nv, .highlight .n, .highlight .nc, .highlight .nf, 
-    .highlight .p, .highlight .o, .highlight .na, .highlight .py {
+    /* THE NUCLEAR SYNTAX RESET */
+    /* This targets every possible span class used by Rouge/Slate */
+    div.highlighter-rouge *, 
+    .highlight *, 
+    pre *, 
+    code * {
       color: black !important;
       background: transparent !important;
       text-shadow: none !important;
+      opacity: 1 !important; /* Prevents "faded" light gray looks */
     }
 
-    /*  Hide web-only elements */
+    /* Light gray background for the code box itself */
+    div.highlighter-rouge, .highlight, pre {
+      background: #f5f5f5 !important;
+      border: 1px solid #ddd !important;
+    }
+
+    /* Hide web-only elements */
     .top-nav, .bottom-nav, #forkme_banner, footer { 
       display: none !important; 
     }
-    
   }
 
   /* 3. SHARED LAYOUT (Centering) */
