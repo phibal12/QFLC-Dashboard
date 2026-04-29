@@ -243,48 +243,6 @@ body.light-mode #theme-toggle:hover {
 
 /* 1. RESET THE ROUGE TABLE ALIGNMENT */
 /* 1. FORCE THE TABLE TO ALIGN */
-.highlight table {
-    display: table !important;
-    width: 100% !important;
-    border-collapse: collapse !important;
-    margin: 0 !important;
-}
-
-/* 2. SYNC NUMBERS AND CODE */
-.highlight td.gutter, 
-.highlight td.code {
-    vertical-align: top !important;
-    padding: 15px 10px !important;
-}
-
-/* 3. THE "ONE LINE" FIX */
-.highlight td.code pre {
-    /* Forces the text to break at newlines properly */
-    white-space: pre !important; 
-    word-wrap: normal !important;
-    display: block !important;
-    
-    /* Sets the width so the scrollbar stays inside the code cell */
-    overflow-x: auto !important;
-    width: 100% !important;
-    margin: 0 !important;
-}
-
-/* 4. FONT SYNC (CRITICAL) */
-.highlight .gutter pre, 
-.highlight .code pre,
-.highlight code {
-    font-family: "Courier New", Courier, monospace !important;
-    line-height: 1.5 !important;
-    font-size: 14px !important;
-}
-
-/* Clear any Slate theme margins that push the code right */
-.highlight .gutter {
-    width: 1% !important;
-    min-width: 45px !important;
-    border-right: 1px solid #30363d !important;
-}
 
 
 
