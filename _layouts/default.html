@@ -241,48 +241,45 @@ body.light-mode #theme-toggle:hover {
   text-shadow: 0 0 5px rgba(0, 128, 128, 0.3);
 }
 
-  /* 1. SYNC LINE NUMBERS & FIX SCROLLBAR */
-.highlighter-rouge, .highlight {
-  display: block;
-  overflow-x: auto !important; /* Proper horizontal scroll */
-  white-space: pre;            /* Prevents weird wrapping */
-}
-
-/* Force the line number column to align with the code */
-table.rouge-table {
+/* 1. RESET THE ROUGE TABLE ALIGNMENT */
+.highlight table {
   border: none !important;
   margin: 0 !important;
+  padding: 0 !important;
   width: 100% !important;
-  border-collapse: collapse !important;
 }
 
-table.rouge-table td.gutter {
-  padding-right: 15px !important;
-  text-align: right;
-  user-select: none;           /* Prevents numbers being copied */
-  border-right: 1px solid #30363d !important; /* Vertical divider */
-  width: 1%;                   /* Shrink column to fit numbers */
+/* Sync the padding for both columns */
+.highlight td.gutter, 
+.highlight td.code {
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+  vertical-align: top !important;
 }
 
-table.rouge-table td.code {
-  padding-left: 15px !important;
-  width: auto;
+/* Ensure font and line-height are IDENTICAL for both */
+.highlight .gutter pre, 
+.highlight .code pre {
+  margin: 0 !important;
+  padding: 0 !important;
+  font-family: "Courier New", Courier, monospace !important;
+  line-height: 1.5 !important;
+  font-size: 14px !important;
 }
 
-/* 2. HIDE THE CLunky BOTTOM SCROLLBAR CONTAINER */
-/* This removes the white/empty bar showing in your screenshot */
-pre::-webkit-scrollbar {
-  height: 8px;
+/* 2. FIX THE HORIZONTAL SCROLLBAR */
+/* This stops the scrollbar from living in its own empty container */
+.highlight pre {
+  overflow-x: auto !important;
+  display: block !important;
+  width: 100% !important;
 }
 
-pre::-webkit-scrollbar-thumb {
-  background: #30363d;
-  border-radius: 10px;
+/* Remove horizontal scroll from the main container to fix the sync */
+.highlighter-rouge, .highlight {
+  overflow-x: visible !important;
 }
 
-pre::-webkit-scrollbar-track {
-  background: transparent;
-}
 
 .gutter pre, .code pre {
   font-family: "Courier New", Courier, monospace !important;
