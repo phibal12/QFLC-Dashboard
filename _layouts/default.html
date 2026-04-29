@@ -49,6 +49,25 @@ layout: default
       color: #999 !important;
       border-right: 1px solid #eee !important;
     }
+
+    /* THE FIX: Force ALL syntax tokens to BLACK */
+    /* This overrides the blue/gray/purple colors during printing */
+    .highlight code, 
+    .highlight span, 
+    pre code, 
+    pre span,
+    .highlight .nv, .highlight .n, .highlight .nc, .highlight .nf, 
+    .highlight .p, .highlight .o, .highlight .na, .highlight .py {
+      color: black !important;
+      background: transparent !important;
+      text-shadow: none !important;
+    }
+
+    /*  Hide web-only elements */
+    .top-nav, .bottom-nav, #forkme_banner, footer { 
+      display: none !important; 
+    }
+    
   }
 
   /* 3. SHARED LAYOUT (Centering) */
