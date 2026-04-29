@@ -277,6 +277,32 @@ body.light-mode #theme-toggle:hover {
     overflow: visible !important; /* Stop the parent from creating a second scrollbar */
 }
 
+  /* FORCE CODE TO RECOGNIZE NEW LINES */
+.highlight td.code pre {
+    white-space: pre !important;       /* Essential: Keeps formatting but allows new lines */
+    word-wrap: normal !important;      /* Prevents code from snapping mid-word */
+    overflow-x: auto !important;       /* Allows horizontal scroll for very long lines only */
+    display: block !important;         /* Ensures it fills the cell height */
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* FIX THE TABLE STRUCTURE */
+.highlight table {
+    display: table !important;         /* Prevents the table from collapsing into one line */
+    table-layout: fixed !important;    /* Forces rigid columns */
+    width: 100% !important;
+}
+
+.highlight td.code {
+    width: 95% !important;             /* Give the code most of the width */
+}
+
+.highlight td.gutter {
+    width: 5% !important;              /* Keep the number column slim */
+    min-width: 40px !important;
+}
+
 
 </style>
 
