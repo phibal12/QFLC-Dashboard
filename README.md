@@ -74,8 +74,8 @@ This result is documented in Dr. Alipour's QF-LC dissertation and validated via 
 Based on the Post-Ph.D. Defense Seminar and the accompanying transcript, this collection is built upon several core theoretical pillars:
 
 * **The SF-to-QDF Field Transform:** Transitioning systems from a Superfluid (SF) state to a Quantum Density Fluctuation (QDF) state. This involves utilizing the scalar $\kappa$ to adjust field interactions and focus the quantum "lens."
-* **Equation 53 & Thermodynamic Integration:** Modeling the exact transition probability to a target state over time. Entanglement Entropy (EE) is mathematically defined as the "fuel" or cost of this operation, routing physical logic around thermal limits.
-* **Global Impact & Universality:** The QDF model is validated as a universal framework applicable across classical and quantum events. It fosters new approaches in quantum communication (QKD), thermodynamics, biological diagnostics, and clean energy modeling (mapping to SDG 7 targets).
+* **Equation (53) and Thermodynamic Integration:** Modeling the exact transition probability to a target state over time. Entanglement Entropy (EE) is mathematically defined as the "fuel" or cost of this operation, routing physical logic around thermal limits.
+* **Global Impact and Universality:** The QDF model is validated as a universal framework applicable across classical and quantum events. It fosters new approaches in quantum communication (QKD), thermodynamics, biological diagnostics, and clean energy modeling (mapping to SDG 7 targets).
 
 ## 📚 Publications and Research
 This dashboard is the practical implementation of research published at the **University of Victoria (UVic)**:
@@ -154,7 +154,7 @@ How does this relate to the QF-LCA Hypercube? This Geometry Lab visualizes the f
 ## 📂 Repository Contents & Links
 
 * **[📁 Presentation Files](./path/to/presentations):** Includes the full `QFLC_PhD_PBA_seminar.pptx` slide deck and the `GMT20260331-172345_Recording.transcript.vtt` transcript.
-* **[🖥️ Live QF-LC Hypercube Synthesis Engine](https://phibal12.github.io/QFLC-Dashboard/labs/QFLCH):** HTML5/JS interactive hardware compiler.
+* ** [🖥️ Live QF-LC Hypercube Synthesis Engine](https://phibal12.github.io/QFLC-Dashboard/labs/QFLCH): ** HTML5/JS interactive hardware compiler.
 * **[🖥️ Live QF-LC Hypercube Synthesis Engine](labs/QFLCH.html):** HTML5/JS interactive hardware compiler.
 * **[🎮 Live QDF Game Theory Simulator](./path/to/game_simulator):** HTML5/JS prompt-based interactive phase transition simulator.
 * **[🎮 QDF Game Theory Simulator](./path/to/game_simulator):** HTML5/Python prompt-based animated phase transition and QDF circuit simulator.
