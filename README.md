@@ -60,6 +60,8 @@ This collection serves as a unified portfolio, translating the theoretical frame
 
 ## 🎓🚀 Core Reserach and Key Performance Breakthrough: The "Probability Doubling" Effect
 
+<a href="assets/QFLCACodingTripertite02.png" target="_blank"><img src="assets/QFLCACodingTripertite02.png" alt="QF-LC Probability Doubling Framework" style="width: 100% !important; max-width: none !important; border-radius: 8px; border: 2px solid teal; position: relative; left: 50%; transform: translateX(-50%);"></a><br> 
+
 The core innovation of the **Quantum Field Lens Coding (QF-LC)** framework lies in its ability to transform stochastic quantum outcomes into deterministic predictions. Using the **Quantum Double-Field (QDF)** model, the framework achieves a measurable "Focusing Effect":
 
 *   **Initial Enhancement:** It shifts the baseline state transition (ST) probability from **~1/3 (0.33)** to a dominant **>2/3 (0.66)**.
