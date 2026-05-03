@@ -71,7 +71,7 @@ This result is documented in Dr. Alipour's QF-LC dissertation and validated via 
 
 ---
 
-## 🎓 Post-PhD Seminar Summary: Theoretical Foundations
+## 🎓 Post-PhD Seminar Summary
 
 Based on the Post-Ph.D. Defense Seminar and the accompanying transcript, this collection is built upon several core theoretical pillars:
 
