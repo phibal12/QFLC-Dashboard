@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Full Tutorial: QDF Deterministic Model</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; max-width: 1000px; margin: auto; padding: 40px; color: #333; background-color: #fcfcfc; }
+        header { background-color: #3498db; color: white; padding: 40px; border-radius: 8px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        h2, h3 { color: #3498db; border-bottom: 2px solid #eee; padding-bottom: 10px; margin-top: 40px; }
+        .btn { background-color: #3498db; color: white; padding: 14px 28px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; transition: background 0.3s; margin-top: 10px; font-size: 1em; }
+        .btn:hover { background-color: #2980b9; }
+        .formula-box { background-color: #f4f4f4; padding: 30px; border-left: 6px solid #3498db; font-family: 'Courier New', Courier, monospace; overflow-x: auto; border-radius: 4px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.05); font-size: 1.15em; margin: 20px 0; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); background: white; }
+        th { background-color: #3498db; color: white; padding: 15px; border: 1px solid #ddd; text-align: left; }
+        td { padding: 15px; border: 1px solid #ddd; }
+        .walkthrough-container { display: flex; flex-wrap: wrap; gap: 20px; margin-top: 20px; }
+        .walkthrough-step { flex: 1; min-width: 280px; background-color: #f9f9f9; padding: 20px; border-radius: 8px; border: 1px solid #ddd; }
+        .feedback { display: none; margin-top: 10px; font-weight: bold; padding: 15px; border-radius: 4px; font-size: 0.95em; }
+        .correct { color: #27ae60; background-color: #e8f5e9; border: 1px solid #27ae60; }
+        .incorrect { color: #e74c3c; background-color: #fdeaea; border: 1px solid #e74c3c; }
+        @media print { .no-print { display: none; } }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1 style="margin: 0;">Tutorial: The QDF Game Model</h1>
+        <p style="margin: 15px 0 0; font-size: 1.2em; font-weight: 300;">A Comprehensive Study Guide for Section 2.2 of Ref. [1] <br> Deterministic and Probabilistic Pictures of the QDF Game</p>
+        <button class="btn no-print" style="background-color: white; color: #3498db; margin-top: 20px;" onclick="window.print()">Print or Save as PDF</button>
+    </header>
+
+
+
+
+<div style="text-align: center; margin: 30px 0; font-family: 'Segoe UI', sans-serif;">
+    <svg width="700" height="420" viewBox="0 0 700 420" style="background: #1a1a1a; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+        
+        <!-- Styles for Animation -->
+        <style>
+            @keyframes pulse { 0% { opacity: 0.2; } 50% { opacity: 0.6; } 100% { opacity: 0.2; } }
+            @keyframes slide { 0% { stroke-dashoffset: 100; } 100% { stroke-dashoffset: 0; } }
+            @keyframes glow-gold { 0% { filter: drop-shadow(0 0 5px #f1c40f); opacity: 1; fill: #f1c40f; } 50% { filter: drop-shadow(0 0 20px #f1c40f); opacity: 1; fill: #fcebb6; } 100% { filter: drop-shadow(0 0 5px #f1c40f); opacity: 1; fill: #f1c40f; } }
+            @keyframes fan { 0% { opacity: 0.1; } 50% { opacity: 0.3; } 100% { opacity: 0.1; } }
+            @keyframes superpose {
+                0%, 100% { stroke: #555; stroke-width: 2; opacity: 0.5; }
+                30% { stroke: #f1c40f; stroke-width: 4; opacity: 1; }
+                50% { stroke: #555; stroke-width: 2; opacity: 0.3; }
+                70% { stroke: #f1c40f; stroke-width: 4; opacity: 0.8; }
+            }
+
+            .quantum-field { animation: pulse 3s infinite ease-in-out; }
+            .data-flow { stroke-dasharray: 10; animation: slide 5s linear infinite; }
+            .audience-flow { stroke-dasharray: 5; animation: slide 8s linear infinite; opacity: 0.4; }
+            .prize-glow-gold { animation: glow-gold 2s infinite alternate; }
+            .superposing-box { animation: superpose 4s infinite ease-in-out; }
+            .superposing-star { animation: pulse 1.5s infinite; fill: #888; }
+            .audience-fan { animation: fan 4s infinite ease-in-out; }
+        </style>
+
+               
+        <!-- Styles for Animation -->
+        <style>
+            @keyframes pulse { 0% { opacity: 0.2; } 50% { opacity: 0.6; } 100% { opacity: 0.2; } }
+            @keyframes slide { 0% { stroke-dashoffset: 100; } 100% { stroke-dashoffset: 0; } }
+            @keyframes glow { 0% { filter: drop-shadow(0 0 2px #f1c40f); } 50% { filter: drop-shadow(0 0 15px #f1c40f); } 100% { filter: drop-shadow(0 0 2px #f1c40f); } }
+            @keyframes fan { 0% { opacity: 0.1; } 50% { opacity: 0.3; } 100% { opacity: 0.1; } }
+            .quantum-field { animation: pulse 3s infinite ease-in-out; }
+            .data-flow { stroke-dasharray: 10; animation: slide 5s linear infinite; }
+            .audience-flow { stroke-dasharray: 5; animation: slide 8s linear infinite; opacity: 0.4; }
+            .prize-glow { animation: glow 2s infinite alternate; }
+            .audience-fan { animation: fan 4s infinite ease-in-out; }
+        </style>
+
+        <!-- Background Grid -->
+        <defs>
+            <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#333" stroke-width="0.5"/>
+            </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#grid)" />
+
+        <!-- AUDIENCE (The Max of N - 3) Projection Area -->
+        <path class="audience-fan" d="M 50 420 Q 350 300 650 420" fill="#9b59b6" fill-opacity="0.2" />
+        <text x="350" y="390" fill="#9b59b6" text-anchor="middle" font-size="12" font-weight="bold">AUDIENCE PROJECTION (max of N - 3)</text>
+
+        <!-- Audience to Participants Data Lines -->
+        <path class="audience-flow" d="M 250 380 L 110 110" fill="none" stroke="#9b59b6" stroke-width="1" /> <!-- To Alice -->
+        <path class="audience-flow" d="M 350 370 L 110 260" fill="none" stroke="#9b59b6" stroke-width="1" /> <!-- To Bob -->
+        <path class="audience-flow" d="M 450 380 L 560 170" fill="none" stroke="#9b59b6" stroke-width="1" /> <!-- To Eve -->
+
+        <!-- Alice (The Projector) -->
+        <g transform="translate(50, 60)">
+            <rect width="120" height="50" rx="5" fill="#3498db" />
+            <text x="60" y="30" fill="white" text-anchor="middle" font-weight="bold" font-size="14">ALICE ♠</text>
+            <text x="60" y="70" fill="#3498db" text-anchor="middle" font-size="11">Projector / Host Hides Prize (★)
+</text>
+        </g>
+
+        <!-- Bob (The Decision Maker) -->
+        <g transform="translate(50, 240)">
+            <rect width="120" height="50" rx="5" fill="#f1c40f" />
+            <text x="60" y="30" fill="#2c3e50" text-anchor="middle" font-weight="bold" font-size="14">BOB ○</text>
+            <text x="60" y="70" fill="#f1c40f" text-anchor="middle" font-size="11">Decision: Switch?</text>
+        </g>
+
+        <!-- The Quantum Boxes (r) -->
+        <g transform="translate(260, 100)">
+            <!-- Box 1 (Flicker) -->
+            <rect class="superposing-box" x="0" y="0" width="50" height="50" fill="none" />
+            <text class="superposing-star" x="25" y="32" text-anchor="middle" font-size="20">★</text>
+            
+            <!-- Box 2 (Glowing Winner) -->
+            <rect class="prize-glow-gold" x="70" y="0" width="50" height="50" fill="#f1c40f" fill-opacity="0.1" stroke="#f1c40f" stroke-width="3" />
+            <text class="prize-glow-gold" x="95" y="32" text-anchor="middle" font-size="20">★</text>
+            
+            <!-- Box 3 (Flicker) -->
+            <rect class="superposing-box" x="140" y="0" width="50" height="50" fill="none" style="animation-delay: 2s;" />
+            <text class="superposing-star" x="165" y="32" text-anchor="middle" font-size="20" style="animation-delay: 2s;">★</text>
+            
+            <text x="95" y="-20" fill="#888" text-anchor="middle" font-size="12">QUANTUM FIELD (r)</text>
+        </g>
+
+        <!-- Eve (The Vital Party) -->
+        <g transform="translate(500, 120)">
+            <circle cx="60" cy="50" r="50" fill="#27ae60" fill-opacity="0.8" />
+            <text x="60" y="55" fill="white" text-anchor="middle" font-weight="bold" font-size="16">EVE ♣</text>
+            <text x="60" y="120" fill="#27ae60" text-anchor="middle" font-size="12">Extra Qubit: |i&#8344;i&#8347;⟩</text>
+        </g>
+
+        <!-- Primary Logic Flows -->
+        <path class="data-flow" d="M 170 85 L 260 125" fill="none" stroke="#3498db" stroke-width="2" />
+        <path class="data-flow" d="M 500 170 L 380 140" fill="none" stroke="#27ae60" stroke-width="2" />
+        <path class="data-flow" d="M 310 160 L 170 260" fill="none" stroke="#f1c40f" stroke-width="2" />
+
+        <!-- Equation Label -->
+        <rect x="220" y="280" width="260" height="40" rx="20" fill="#222" stroke="#444" />
+        <text x="350" y="305" fill="#e74c3c" text-anchor="middle" font-family="monospace" font-size="13">
+            𝒯(i)|i&#8344;i&#8347;⟩ = Distinguishable State
+        </text>
+
+        <!-- Pulse effect on the field -->
+        <circle class="quantum-field" cx="350" cy="125" r="100" fill="white" fill-opacity="0.05" />
+    </svg>
+
+    <div style="max-width: 700px; margin: 20px auto; text-align: left; padding: 20px; border-left: 4px solid #3498db; background: #fff;">
+        <p style="margin: 0; font-size: 14px; color: #555;">
+            <strong>Summary:</strong> This tutorial outlines the Deterministic and Probabilistic Pictures of the QDF Model based on 
+            Alipour & Gulliver (2023). It details how <strong>Eve's extra qubit</strong> renders quantum 
+            states distinguishable, overcoming the "Uncertainty" introduced by <strong>Audience Projection (N-3)</strong> 
+            to ensure a certain win for Bob. Key components include the <strong>fmv</strong>, the 
+            <strong>𝒯(i)</strong> operator, and hybrid quantum-classical AI simulators. 
+            Ref: <strong>SSRN Preprint 4595442</strong>.
+        </p>
+    </div>
+</div>
+
+
+<!-- Text Summary with Correct Subscripts -->
+<div style="max-width: 800px; margin: 20px auto; padding: 20px; border-left: 4px solid #3498db; background: #fff;">
+    <p style="font-size: 14px; color: #555;">
+        <strong>* Visual Logic:</strong> The variable <strong>i</strong> represents the box state mapping, while <strong>j</strong> is the interacting state. By applying the <strong>𝒯(i)</strong> operator to Eve's extra qubit <strong>|im<sub>i</sub>𝒮⟩</strong>, the prize state becomes <strong>deterministic</strong> (Box 2), while the others remain in <strong>probabilistic</strong> superposition. <br>
+<strong>* Tutorial Visualization:</strong> The yellow flickering on the outer boxes represents the <strong>prize superposing</strong> across the lattice. Upon <strong>decoherence</strong> (measurement), whomever captures the prize—in this case, Bob via Eve's distinguishable qubit—secures the final state. <br>
+ <strong>Visual Measurement Key:</strong> The central star (Box 2) represents the <strong>Certain Outcome</strong> identified by Eve's 𝒯(i) operator. The dimming stars in Boxes 1 and 3 represent the <strong>Uncertain/Hidden states</strong> caused by Audience Projection (the max of N-3) and quantum decoherence.
+    </p>
+</div>
+
+
+
+
+
+<section style="padding: 20px; border: 1px solid #3498db; border-radius: 8px; background-color: #f9fbfd;">
+    <h3 style="color: #3498db; margin-top: 0;">QDF Game Summary</h3>
+    <p>
+        This tutorial outlines the <strong>QDF Deterministic Model</strong> based on Alipour & Gulliver (2023), 
+        detailing how <strong>Eve's extra qubit</strong> renders quantum states distinguishable to ensure a certain 
+        win for Bob in a quantum "Monty Hall" scenario. 
+    </p>
+    <p>
+        It introduces key components including the four measurement variables (<strong>fmv</strong>) and the 
+        <strong>𝒯(i)</strong> operator, while highlighting applications in hybrid quantum-classical AI simulators. 
+        For more information, please consult the cited 
+        <a href="https://doi.org" style="color: #3498db;">SSRN Preprint 4595442</a>.
+    </p>
+</section>
+
+
+
+    <!-- SECTION 1: DEFINITIONS -->
+    <section>
+        <h3>1. Original Mathematical Definitions: i and j</h3>
+        <p>In Alipour's model, the variables <strong>i</strong> and <strong>j</strong> define the state of the system and the interaction between particles:</p>
+        <ul>
+            <li><strong>State i (The Box State):</strong> A mapping that determines the probability outcome of a particle trap. In the model:
+                <ul>
+                    <li><em>i</em> = 0: Ground State (GS), denoting the prize is <strong>not</strong> present.</li>
+                    <li><em>i</em> = 1: Excited State (ES), denoting the prize <strong>is</strong> present.</li>
+                    <li>|2⟩: Quantum Superposition, representing a state containing both 0 and 1.</li>
+                </ul>
+            </li>
+            <li><strong>State j (The Interacting State):</strong> Represents the energy state of a particle (where <em>j ≤ i</em>) interacting with Bob. This interaction modifies Bob's state in the metric space 𝒮, influencing his energy levels prior to a phase transition.</li>
+        </ul>
+    </section>
+
+    <!-- SECTION 2: PARTICIPANTS -->
+    <section>
+        <h3>2. The Participants & Their Roles</h3>
+        <p>In the <strong>Deterministic Picture</strong>, participants function as components of a thermodynamic system processing quantum information:</p>
+        <ul>
+            <li><strong>Bob (The Atom):</strong> The primary participant who must interact with fields to attain a <strong>Target State (TS)</strong> and win the prize.</li>
+            <li><strong>The Prize (Target Atom):</strong> A quantum particle hidden within traps (boxes) that Bob seeks to win.</li>
+            <li><strong>Alice (The Projector):</strong> A photonic probe that sets up the game environment, changes prize positions, and projects "qubit" messages.</li>
+            <li><strong>Eve (The Vital Third Party):</strong> An invisible observer who intercepts state transfers. She provides an <strong>extra qubit</strong> that renders hidden information <em>distinguishable</em>, preventing information loss from decoherence.</li>
+        </ul>
+    </section>
+
+    <!-- SECTION 3: FORMULA -->
+    <section>
+        <h3>3. The Deterministic vs. Probabilistic Equation (1c) from Ref. [1]</h3>
+        <p>This equation describes how the introduction of Eve's qubit and the State Transition (ST) operator turns indistinguishable quantum states on the probabilistic side (lefthand) into a clear, predictable outcome for Bob on the deterministic side (righthand) of the equation:</p>
+        
+        <div class="formula-box">
+
+            |ij⟩<sub>Alice/Bob</sub> ⊗ |2i<sub>𝒮</sub>⟩<sub>Eve</sub> = 
+            (|0<sub>m</sub>i⟩ ± |1<sub>m'</sub>i⟩)<sub>Alice/Bob</sub> ⊗ |i<sub>m</sub>i<sub>𝒮</sub>⟩<sub>Eve</sub> = 
+            <br><br>
+            <span style="color: #3498db;"><strong>(|0<sub>m</sub>i⟩<sub>Alice/Bob</sub> ± |1<sub>m'</sub>i</sub>⟩<sub>Alice/Bob</sub>) 𝒯(i)|i<sub>m</sub>i<sub>𝒮</sub>⟩<sub>Eve</sub></strong></span>
+        </div>
+        <p><strong>Mechanism:</strong> The <strong>𝒯(i)</strong> operator acts on Eve's qubit to reveal the prize state of the box. Eve is essential to communicate this result to any other party, ensuring a certain win for Bob.</p>
+
+1. The Qubit Pair (
+
+
+
+
+
+
+
+)
+
+
+
+
+
+
+
+: Represent the base states (e.g., 0 and 1, or horizontal and vertical polarization) of the qubit that Alice is sending to Bob.
+
+
+
+
+: These represent the basis or the measurement configuration Alice and Bob are using.
+The 
+ (Superposition): The key is not just a simple 0 or 1, but a superposition state (often a 
+
+
+
+
+ basis). If Eve tries to measure this, she collapses it, changing the state, which Alice and Bob can detect.
+
+2. The Eavesdropper Part (
+
+
+
+
+
+
+
+)
+: This is the state of Eve's quantum system (or "spy" system) and her knowledge of the key.
+
+
+
+
+: This operator acts on Eve's system, representing her eavesdropping action (e.g., measuring or interacting with the photon).
+Entanglement: The entire formula implies that Eve's system is now entangled with Alice and Bob's system. She has manipulated the original quantum state and has a copy of the information (
+), which she uses to try to decrypt the message, but in doing so, she has introduced a disturbance that can be detected
+
+
+Key Takeaways of this Equation
+Security check: If Eve intercepts the qubit, she alters the 
+ superposition. Alice and Bob can detect this by comparing a subset of their keys (checking for errors/decoherence).
+If 
+
+
+
+ equals a perfect copy (attack): The system is compromised.
+If 
+
+
+
+ is negligible: The communication is safe
+
+
+
+
+    <p>This equation is central to the work of <strong>Philip B. Alipour</strong> (specifically, Alipour and Gulliver) in their paper <em>Quantum Double-field Model and Application</em> <span class="citation"></span>.</p>
+    
+    <p>The expression is a component of the <strong>Deterministic Picture</strong> within their Quantum Double-field (QDF) model <span class="citation"></span>. Here is the breakdown of the result based on the provided research:</p>
+
+ 
+    <h2>Meaning of the Equation</h2>
+    <p>This result, labeled as <strong>Equation (1c)</strong> in the paper, describes a process where locally indistinguishable states (those in superposition) are rendered distinguishable by the inclusion of an extra qubit from an external observer, Eve <span class="citation"></span>.</p>
+
+    <ul>
+        <li><strong>( (|0<sub>m</sub> i&rangle; &pm; |1<sub>m'</sub> i&rangle;)<sub>Alice/Bob</sub> ):</strong> Represents the state shared between Alice and Bob, which can be in a ground state (( |0<sub>m</sub> i &rangle; )) or an excited state (( |1<sub>m'</sub> i\rangle )) <span class="citation"></span>. The "(&pm;)" signifies a Schrödinger’s cat state (superposition) <span class="citation"></span>.</li>
+        <li><strong>( <strong>𝒯(i)</strong> ):</strong> Defined as the <strong>State Transition (ST) operator</strong> <span class="citation"></span>. Its role is to facilitate the transition from a superposition state to a specific state \( |i_m\rangle \), or vice versa <span class="citation"></span>.</li>
+        <li><strong>( |i<sub>m</sub> i<sub>S</sub>&rangle;<sub>Eve</sub> ):</strong> This is the state of Eve's extra qubit, which acts as a probe <span class="citation"></span>.</li>
+    </ul>
+
+    <h2>Core Function in Alipour's Work</h2>
+    <ul>
+        <li><strong>Eliminating Uncertainty (?Y/N):</strong> The paper argues that by coupling the system with Eve's state via a tensor product, the model can "eliminate a set of indistinguishable states" in a perfect world (as in observing states at absolute zero temperature or 0K), or ideally, reduce the amount of uncertainty (entropy) to reach near 100% certainity, as a TS at <i>T</i> &approx; 0K.  <span class="citation"></span>.</li>
+        <li><strong>Role of Eve:</strong> Unlike traditional models where Eve is purely a "thief" of information, Alipour's deterministic picture positions Eve as a "vital party" whose state is necessary to reveal hidden global information and prevent information loss from decoherence <span class="citation"></span>.</li>
+        <li><strong>Application:</strong> This mathematical framework is used to simulate and predict outcomes in Bose-Einstein Condensates (BEC), quantum heat engines, and secure communication protocols <span class="citation"></span>.</li>
+    </ul>
+
+    <hr>
+    <p>Would you like to explore how this equation is specifically applied to the <strong>Monty Hall problem</strong> variation discussed in the Appendix?</p>
+
+
+
+
+    </section>
+
+    <!-- SECTION 4: FMV -->
+    <section>
+        <h3>4. Bob's Toolkit: Four Measurement Variables (fmv)</h3>
+        <p>Bob gathers the following four variables to calculate his "switch" and find the prize position 𝔯:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Variable</th>
+                    <th>Symbol</th>
+                    <th>Definition & Purpose</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>Prize Position</strong></td><td style="text-align: center;"><strong>𝔯</strong></td><td>The specific coordinate of the prize within the traps.</td></tr>
+                <tr style="background-color: #f9f9f9;"><td><strong>Interaction Length-based Scalar</strong></td><td style="text-align: center;"><strong>𝜅</strong></td><td>Provides information on the expected Target State (TS or ★) outcome. It is used to scale a particle's quantum field during particle interactions or diffusion within a system or 𝒮.</td></tr>
+                <tr><td><strong>Pairwise Distance</strong></td><td style="text-align: center;"><strong>2d/3</strong></td><td>The distance between Bob and a participant relative to position 𝔯.</td></tr>
+                <tr style="background-color: #f9f9f9;"><td><strong>Correlation Length</strong></td><td style="text-align: center;"><strong>𝜆<sub>c</sub></strong></td><td>The link between interacting participant states and the box state transition.</td></tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- SECTION 5: TABLE 1 -->
+    <section>
+        <h3>5. State Prediction Outcomes (Table 1)</h3>
+        <p>The following table summarizes the interaction events and whether they result in "Certain" or "Uncertain" outcomes for Bob:</p>
+        <table>
+            <thead>
+                <tr style="background-color: #34495e;">
+                    <th>Projected Event</th>
+                    <th>State (i)</th>
+                    <th>Box Prize State Effect</th>
+                    <th>Outcome</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Eve via (Alice or Box)-Prize</td><td>1</td><td>Box with prize; remaining box is 0 prize</td><td><strong>Certain</strong></td></tr>
+                <tr style="background-color: #f9f9f9;"><td>Alice to Bob</td><td>0</td><td>Prize is suggested; Bob predicts 0</td><td><strong>Certain</strong></td></tr>
+                <tr><td>Eve via (Alice or Bob)-Prize</td><td>1</td><td>Prize is entangled with Bob or Alice</td><td><strong>Certain</strong></td></tr>
+                <tr style="background-color: #fff4e5;"><td>Alice or Audience</td><td>—</td><td>Prize is in superposition (poor imitation)</td><td><strong>Uncertain</strong></td></tr>
+                <tr style="background-color: #fff4e5;"><td>Alice or Audience</td><td>—</td><td>Prize is hidden while Bob decides</td><td><strong>Uncertain</strong></td></tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- SECTION 6: GAME WALKTHROUGH -->
+    <section>
+        <h3>6. Walkthrough: The QDF Game (Appendix A)</h3>
+        <p>How the formulas apply to a quantum "Monty Hall" scenario:</p>
+        <div class="walkthrough-container">
+            <div class="walkthrough-step">
+                <h4 style="color: #2980b9; margin-top:0;">Phase 1: Setup</h4>
+                <p>Alice hides the prize. In the quantum model, she can change the position (<strong>𝔯</strong>) using state teleportation. Bob chooses a box (1/3 odds).</p>
+            </div>
+            <div class="walkthrough-step">
+                <h4 style="color: #27ae60; margin-top:0;">Phase 2: The Extra Qubit</h4>
+                <p>Alice opens an empty box. Eve intercepts the transfer and provides Bob with her <strong>extra qubit</strong>, making the state distinguishable via Equation (1c).</p>
+            </div>
+            <div class="walkthrough-step">
+                <h4 style="color: #e67e22; margin-top:0;">Phase 3: The Switch</h4>
+                <p>Bob use the <strong>fmv</strong> data and Eve's info to switch boxes. His probability space <strong>doubles to 2/3 (or even 8/9 to 1)</strong>, securing the win.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 7: QUIZ -->
+    <section style="margin-top: 50px; border: 2px solid #3498db; padding: 30px; border-radius: 12px; background-color: #fff;">
+        <h2 style="color: #3498db; margin-top: 0; border:none;">Comprehensive Practice Quiz</h2>
+        <p>Test your full understanding of the QDF Game Model:</p>
+        
+        <form id="quizForm">
+            <!-- Q1 -->
+            <div style="margin-bottom: 25px;">
+                <p><strong>1. Why is Eve the "vital party" in the Deterministic Picture?</strong></p>
+                <label><input type="radio" name="q1" value="wrong"> A) She sets the initial prize position.</label><br>
+                <label><input type="radio" name="q1" value="correct"> B) Her extra qubit renders states distinguishable, avoiding info loss.</label><br>
+                <label><input type="radio" name="q1" value="wrong"> C) She acts as the only physical box in the game.</label>
+                <div id="f1" class="feedback"></div>
+            </div>
+            <!-- Q2 -->
+            <div style="margin-bottom: 25px;">
+                <p><strong>2. In Alipour's model, what does "State j" specifically represent?</strong></p>
+                <label><input type="radio" name="q2" value="wrong"> A) The final position of the prize (𝔯).</label><br>
+                <label><input type="radio" name="q2" value="correct"> B) The state of a participant interacting with and changing Bob's state.</label><br>
+                <label><input type="radio" name="q2" value="wrong"> C) The number of participants in the game (N).</label>
+                <div id="f2" class="feedback"></div>
+            </div>
+            <!-- Q3 -->
+            <div style="margin-bottom: 25px;">
+                <p><strong>3. What is the effect of QDF field doubling on Bob's probability of winning?</strong></p>
+                <label><input type="radio" name="q3" value="wrong"> A) It remains fixed at a 1/3 random chance.</label><br>
+                <label><input type="radio" name="q3" value="wrong"> B) It decreases due to increased quantum decoherence.</label><br>
+                <label><input type="radio" name="q3" value="correct"> C) It increases from 1/3 to 2/3 (or higher) via Target State (TS) prediction.</label>
+                <div id="f3" class="feedback"></div>
+            </div>
+            <!-- Q4 -->
+            <div style="margin-bottom: 25px;">
+                <p><strong>4. Which fmv component provides information on the expected Target State (TS)?</strong></p>
+                <label><input type="radio" name="q4" value="correct"> A) The Interaction Length-based Scalar (𝜅).</label><br>
+                <label><input type="radio" name="q4" value="wrong"> B) The Prize Position (𝔯).</label><br>
+                <label><input type="radio" name="q4" value="wrong"> C) The Correlation Length (𝜆<sub>c</sub>).</label>
+                <div id="f4" class="feedback"></div>
+            </div>
+            <!-- Q5 -->
+            <div style="margin-bottom: 25px;">
+                <p><strong>5. In Equation (1c), what is the role of the 𝒯(i) operator?</strong></p>
+                <label><input type="radio" name="q5" value="wrong"> A) To delete the quantum information after Bob wins.</label><br>
+                <label><input type="radio" name="q5" value="correct"> B) To facilitate the state transition that reveals the hidden prize state.</label><br>
+                <label><input type="radio" name="q5" value="wrong"> C) To move Bob to a new physical location in space 𝒮.</label>
+                <div id="f5" class="feedback"></div>
+            </div>
+            <!-- Q6 -->
+            <div style="margin-bottom: 25px;">
+                <p><strong>6. According to Table 1, which event results in an "Uncertain" outcome?</strong></p>
+                <label><input type="radio" name="q6" value="wrong"> A) Eve sharing info via Alice when i = 1.</label><br>
+                <label><input type="radio" name="q6" value="wrong"> B) Alice suggesting a prize state to Bob when i = 0.</label><br>
+                <label><input type="radio" name="q6" value="correct"> C) The prize being in superposition as a "poor imitation" during an audience projection.</label>
+                <div id="f6" class="feedback"></div>
+            </div>
+            <!-- Q7 -->
+            <div style="margin-bottom: 25px;">
+                <p><strong>7. According to the following figure, which statement is correct?</strong></p>
+                <label><input type="radio" name="q7" value="wrong"> A) Bob cannot win this game since there is no Audience to project the prize state and reduce the 𝒮's entropy in finding it.</label><br>
+                <label><input type="radio" name="q7" value="correct"> B) Alice suggesting a prize state to Bob when i = 1, so to increase the amount of uncertainty (2/3-) and ensure a certain loss for Bob.</label><br>
+                <label><input type="radio" name="q7" value="wrong"> C) Eve's extra qubit renders quantum states indistinguishable and increases the 𝒮's entropy in finding the prize.</label>
+                <div id="f7" class="feedback"></div>
+            </div>
+
+<!-- QDF Game Logic Visualization -->
+<div style="text-align: center; margin: 20px 0; font-family: sans-serif;">
+    <svg width="600" height="300" viewBox="0 0 600 300" style="border: 1px solid #ddd; background: #fff; border-radius: 8px;">
+        <!-- Alice's Section -->
+        <rect x="20" y="30" width="120" height="60" rx="8" fill="#3498db" />
+        <text x="80" y="50" fill="white" text-anchor="middle" font-weight="bold">Alice (Host)</text>
+        <text x="80" y="130" font-size="12" text-anchor="middle">Hides Prize (★)</text> 
+
+        <!-- The 3 Boxes -->
+        <rect x="230" y="50" width="40" height="40" fill="#ecf0f1" stroke="#bdc3c7" />
+        <rect x="280" y="50" width="40" height="40" fill="#ecf0f1" stroke="#bdc3c7" />
+        <rect x="330" y="50" width="40" height="40" fill="#ecf0f1" stroke="#bdc3c7" />
+        <text x="300" y="30" font-size="14" text-anchor="middle" font-weight="bold">Quantum Field (Boxes)</text>
+
+        <!-- Eve's Vital Intervention -->
+        <circle cx="480" cy="150" r="45" fill="#27ae60" />
+        <text x="480" y="155" fill="yellow" text-anchor="middle" font-weight="bold">Eve</text>
+        <text x="480" y="210" font-size="12" text-anchor="middle" font-weight="bold">Extra Qubit (i&#8344;i&#8347;)</text>
+
+        <!-- The Logic Path (Equation 1c) -->
+        <path d="M 140 80 Q 300 80 435 150" fill="none" stroke="#3498db" stroke-width="2" stroke-dasharray="5,5" />
+        <path d="M 435 150 Q 300 220 180 220" fill="none" stroke="#27ae60" stroke-width="2" />
+        
+        <!-- Bob's Result -->
+        <rect x="20" y="190" width="160" height="60" rx="8" fill="#f1c40f" />
+        <text x="100" y="225" text-anchor="middle" font-weight="bold">Bob (Win: 2/3+)</text>
+        
+        <!-- Legend/Formula -->
+        <text x="200" y="280" font-size="14" fill="#c0392b" text-anchor="middle">
+            𝒯(i)|i&#8344;i&#8347;⟩ </text>
+        <text x="305" y="280" font-size="14" font-style="italic" fill="#c0392b" text-anchor="middle">
+             reveals the hidden state
+        </text>
+    </svg>
+</div>
+
+ <!-- Score Display -->
+    <div id="totalScore" style="display: none; margin-bottom: 20px; padding: 20px; border-radius: 8px; text-align: center; font-size: 1.2em; font-weight: bold;">
+        <!-- Score text will be injected here -->
+    </div>
+
+            <button type="button" class="btn" onclick="checkQuiz()">Check My Answers</button>
+        </form>
+    </section>
+
+    <script>
+        function checkQuiz() {
+    const answers = { q1: "correct", q2: "correct", q3: "correct", q4: "correct", q5: "correct", q6: "correct", q7: "correct" };
+    const explanations = {
+        q1: "Correct! Eve provides an extra qubit Part of the QDF metric space to ensure states are locally distinguishable.",
+        q2: "Correct! State j (where j ≤ i) is the state of a particle interacting with Bob to change his state in space 𝒮.",
+        q3: "Correct! Gathering QDF information doubles the probability to occupy space on any scale of state projection approching an ST success probability of 1, as a re-normalized particle state (e.g., after collapse or during measurement).",
+        q4: "Correct! 𝜅 is an interaction length-based scalar that provides info on the expected TS or outcome.",
+        q5: "Correct! 𝒯(i) is the state transition operator that transfers the hidden box state to Eve for Bob.",
+        q6: "Correct! Superposition without direct entanglement results in uncertain predictions or 'poor imitations'.",
+        q7: "Correct! It details how Eve's extra qubit renders quantum states distinguishable, overcoming the 'Uncertainty' (2/3-) introduced by Alice (N-1) Projection of the Prize (★) to ensure a certain win for Bob. However, the 'amount of uncertainty' (entropy) increases by the Audience Projection (N - 3) in this picture. To veryify, consult Table 1 and the Animation. "
+    };
+
+    let score = 0;
+    const totalQuestions = 7;
+
+    for (let i = 1; i <= totalQuestions; i++) {
+        const qName = "q" + i;
+        const feedbackDiv = document.getElementById("f" + i);
+        const selected = document.querySelector(`input[name="${qName}"]:checked`);
+        
+        feedbackDiv.style.display = "block";
+        
+        if (selected && selected.value === answers[qName]) {
+            feedbackDiv.className = "feedback correct";
+            feedbackDiv.innerText = explanations[qName];
+            score++; // Increment score
+        } else {
+            feedbackDiv.className = "feedback incorrect";
+            feedbackDiv.innerText = "Incorrect choice. Please review the tutorial content above and try again.";
+        }
+    }
+
+    // Display the Total Score
+    const scoreDiv = document.getElementById("totalScore");
+    scoreDiv.style.display = "block";
+    
+    // Calculate percentage
+    const percentage = Math.round((score / totalQuestions) * 100);
+    
+    // Set color based on performance
+    if (percentage >= 70) {
+        scoreDiv.style.backgroundColor = "#e8f5e9";
+        scoreDiv.style.color = "#27ae60";
+        scoreDiv.style.border = "2px solid #27ae60";
+    } else if (percentage > 50 && percentage <= 69) {
+        scoreDiv.style.backgroundColor = "#ffffc5";
+        scoreDiv.style.color = "#ffa500";
+        scoreDiv.style.border = "2px solid #ff8c00";
+    } else {
+        scoreDiv.style.backgroundColor = "#fdeaea";
+        scoreDiv.style.color = "#e74c3c";
+        scoreDiv.style.border = "2px solid #e74c3c";
+    }
+
+    scoreDiv.innerHTML = `Your Total Score: ${score} / ${totalQuestions} (${percentage}%)`;
+    
+    // Scroll to the score so the user sees it
+    scoreDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+    </script>
+
+
+ <div style="max-width: 700px; margin: 20px auto; text-align: left; padding: 20px; border-left: 4px solid #3498db; background: #fff;">
+        <p style="margin: 0; font-size: 14px; color: #555;">
+            <strong>Summary:</strong> This tutorial outlines the Deterministic and Probabilistic pictures of the QDF Game Model based on 
+            Alipour & Gulliver (2023). It details how <strong>Eve's extra qubit</strong> renders quantum 
+            states distinguishable, overcoming the "Uncertainty" introduced by <strong>Audience Projection (N-3)</strong> 
+            to ensure a certain win for Bob. Key components include the <strong>fmv</strong>, the 
+            <strong>𝒯(i)</strong> operator, and hybrid quantum-classical AI simulators. 
+            Ref: <strong>SSRN Preprint 4595442</strong>.
+        </p>
+    </div>
+
+    <footer style="margin-top: 60px; text-align: center; border-top: 1px solid #eee; padding-top: 20px; color: #95a5a6; font-size: 0.9em;">
+        <p>Reference: Alipour, P. B., & Gulliver, T. A. (2023). "Quantum Double-field Model and Application". SSRN Preprint 4595442.</p>
+    </footer>
+
+</body>
+</html>
