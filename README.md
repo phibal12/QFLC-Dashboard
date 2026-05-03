@@ -58,7 +58,7 @@ This collection serves as a unified portfolio, translating the theoretical frame
 
 ---
 
-## 🎓🚀 Core Reserach and Key Performance Breakthrough: The <i>Probability Doubling</i> Effect
+## 🎓🚀 The <i>Probability Doubling</i> Effect as the Core Reserach and Performance Breakthrough
 
 <a href="assets/QFLCACodingTripertite02.png" target="_blank"><img src="assets/QFLCACodingTripertite02.png" alt="QF-LC Probability Doubling Framework" style="width: 100% !important; max-width: none !important; border-radius: 8px; border: 2px solid teal; position: relative; left: 50%; transform: translateX(-50%);"></a><br> 
 
