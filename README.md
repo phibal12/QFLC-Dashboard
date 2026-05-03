@@ -155,6 +155,7 @@ How does this relate to the QF-LCA Hypercube? This Geometry Lab visualizes the f
 
 * **[📁 Presentation Files](./path/to/presentations):** Includes the full `QFLC_PhD_PBA_seminar.pptx` slide deck and the `GMT20260331-172345_Recording.transcript.vtt` transcript.
 * **[🖥️ Live QF-LC Hypercube Synthesis Engine](https://phibal12.github.io/QFLC-Dashboard/labs/QFLCH):** HTML5/JS interactive hardware compiler.
+* **[🖥️ Live QF-LC Hypercube Synthesis Engine](labs/QFLCH.html):** HTML5/JS interactive hardware compiler.
 * **[🎮 Live QDF Game Theory Simulator](./path/to/game_simulator):** HTML5/JS prompt-based interactive phase transition simulator.
 * **[🎮 QDF Game Theory Simulator](./path/to/game_simulator):** HTML5/Python prompt-based animated phase transition and QDF circuit simulator.
 * **[🔬 QDF Lens Geometry Lab](./labs/QDF-Lens.html):** HTML5/JS spatial density and particle trap visualizer.
