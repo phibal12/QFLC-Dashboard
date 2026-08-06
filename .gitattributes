@@ -1,6 +1,5 @@
 # Treat these specific files as JavaScript for the language bar
 # Automatically detect text files and normalize line endings
-*text=auto
 
 labs/*.html linguist-language=JavaScript
 labs/QFLCH5_py.html  linguist-language=Python
