@@ -1,0 +1,1760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dr. Philip Baback Alipour — Research Portfolio</title>
+  <style>
+  
+  h1 span {
+  text-transform: none;
+  font-size: 40px; 
+}
+
+
+   /* 3. NAVIGATION BARS (Top & Bottom) */
+.top-nav, .bottom-nav {
+  position: fixed !important;
+  left: 0;
+  width: 100% !important;
+  background: #161b22 !important;
+  text-align: center;
+  z-index: 9999 !important;
+  box-shadow: 0 0 15px rgba(0,0,0,0.5);
+}
+
+.top-nav { top: 0; border-bottom: 2px solid teal; padding: 15px 0; }
+.bottom-nav { bottom: 0; border-top: 2px solid teal; padding: 12px 0; }
+
+.top-nav a, .bottom-nav a {
+  margin: 0 15px;
+  font-weight: bold;
+  color: #c9d1d9 !important;
+  text-decoration: none !important;
+  transition: 0.3s;
+}
+
+.top-nav a:hover, .bottom-nav a:hover {
+  color: #00ffff !important;
+  text-shadow: 0 0 8px rgba(0, 255, 255, 0.8);
+}
+
+ 
+  
+    /* 1. MASTER WORKSPACE RESET & TYPOGRAPHY */
+    @media screen {
+      body { background-color: #0d1117 !important; color: #c9d1d9 !important; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace; margin: 0; }
+      #main_content_wrap { background-color: #0d1117 !important; display: flex !important; justify-content: center !important; }
+    }
+    #main_content { max-width: 1500px !important; width: 100% !important; margin-left: 6% !important; padding: 60px 40px !important; box-sizing: border-box !important; }
+    
+    /* 2. CORE CYAN GLOW & STRUCTURAL ELEMENTS OVERRIDES */
+    #main_content h1#portfolio_main_title { 
+      color: #00ffff !important; 
+      font-size: 3.2em !important; 
+      font-weight: 800 !important;
+      letter-spacing: -0.05em !important;
+      text-transform: uppercase !important;
+      text-shadow: 0 0 25px rgba(0, 255, 255, 0.85) !important;
+      margin-bottom: 5px !important;
+    }
+    #main_content h2.section_header { 
+      border-bottom: 1px solid #30363d !important; 
+      padding-bottom: 12px !important; 
+      margin-top: 50px !important;
+      color: #58a6ff !important; 
+      text-transform: uppercase !important;
+      letter-spacing: 0.1em !important;
+      font-size: 1.4em !important;
+      text-shadow: 0 0 15px rgba(88, 166, 255, 0.4) !important;
+    }
+    
+    /* 3. OTHMARO-INSPIRED UTILITY BLOCKS */
+    .system-terminal { background-color: #161b22 !important; border: 1px solid #30363d !important; border-radius: 6px !important; color: #c9d1d9 !important; padding: 25px !important; margin: 20px 0 !important; }
+    .interactive-card { background: #161b22 !important; border: 1px solid #30363d !important; border-radius: 6px !important; padding: 25px !important; margin-top: 15px !important; transition: border 0.3s ease; }
+    .interactive-card:hover { border-color: #00ffff !important; }
+    
+    /* 4. CHRONOLOGY TIMELINE INTERFACES */
+    .timeline-node { border-left: 2px solid #30363d !important; padding-left: 25px !important; margin-left: 10px !important; padding-bottom: 30px !important; position: relative !important; }
+    .timeline-node::before { content: "" !important; position: absolute !important; left: -6px !important; top: 5px !important; width: 10px !important; height: 10px !important; background-color: #00ffff !important; border-radius: 50% !important; box-shadow: 0 0 10px #00ffff !important; }
+    
+    /* 5. NAVIGATION ELEMENTS */
+    a { color: #58a6ff !important; text-decoration: none !important; }
+    a:hover { color: #00ffff !important; text-shadow: 0 0 10px rgba(0,255,255,0.5) !important; }
+    .btn-return { display: inline-block; padding: 12px 24px; border: 1px solid #444c56; border-radius: 6px; background-color: #21262d; color: #ffffff !important; font-weight: bold; text-transform: uppercase; font-size: 0.85em; letter-spacing: 0.05em; transition: background 0.2s; }
+    .btn-return:hover { background-color: #30363d; border-color: #8b949e; }
+    .meta-tag { color: #8b949e !important; font-size: 0.85em; letter-spacing: 0.05em; }
+    .accent-cyan { color: #00ffff !important; }
+    .accent-orange { color: #ffa500 !important; }
+    
+    @media print {
+      body, #main_content_wrap, #main_content { background: white !important; color: black !important; }
+      .btn-return, .timeline-node::before { display: none !important; }
+      #main_content h1#portfolio_main_title { text-shadow: none !important; color: black !important; }
+	  
+	  .timeline-node .summary-tag span {
+    color: #58a6ff !important;
+  }
+    }
+	
+	@media print {
+  /* 1. Update the containers (Background and Main Text) */
+  .system-terminal, 
+  .interactive-card {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+    background: #e0e0e0 !important;
+    background-color: #e0e0e0 !important;
+    border: 1px solid #707070 !important;
+    color: #1a1a1a !important; /* Forces default text to dark charcoal */
+  }
+
+  /* 2. Target specific text elements inside these containers to ensure contrast */
+  .system-terminal *,
+  .interactive-card *,
+  .system-terminal p,
+  .interactive-card p,
+  .system-terminal span,
+  .interactive-card span,
+  .system-terminal h1, .system-terminal h2, .system-terminal h3,
+  .interactive-card h1, .interactive-card h2, .interactive-card h3, 
+  .system-terminal code,
+  .interactive-card code {
+    color: #1a1a1a !important; /* Forces all inner elements to inherit dark text */
+    text-shadow: none !important; /* Removes any glowing or light shadows */
+  }
+  /* Targets the h3 with the accent-cyan class to force it black */
+   h3, h3.accent-cyan,
+  [class*="accent-cyan"] {
+    color: #000000 !important;
+  }
+  
+  .top-nav, 
+  .bottom-nav {
+    display: none !important;
+  }
+
+}
+
+
+.portfolio-hero-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+  max-width: 1200px;
+  margin: 25px 0;
+  padding: 0px;
+}
+
+.profile-image-frame img {
+  max-width: 300px;
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid #30363d;
+  transition: all 0.4s ease;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.1);
+}
+
+.profile-image-frame img:hover {
+  border-color: #00ffff;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+  transform: scale(1.02);
+}
+
+.profile-bio-text { text-align: center; }
+
+ @media (min-width: 768px) {
+  .portfolio-hero-container { flex-direction: row; text-align: left; }
+  .profile-bio-text { text-align: left; }
+} 
+
+/* 1. Define the custom pulsing loop */
+@keyframes cyberPulse {
+  0% {
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.15);
+    border-color: #30363d;
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(0, 255, 255, 0.4);
+    border-color: #008891; /* Subtle cyan-teal shift */
+  }
+  100% {
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.15);
+    border-color: #30363d;
+  }
+}
+
+/* 2. Apply to the profile image */
+.profile-image-frame img {
+  max-width: 300px;
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid #30363d;
+  transition: all 0.3s ease-out; /* Keeps transition responsive and snappy */
+  
+  /* Run the pulse loop infinitely every 4 seconds with smooth easing */
+  animation: cyberPulse 4s ease-in-out infinite; 
+}
+
+/* 3. Handle explicit cursor interaction */
+.profile-image-frame img:hover {
+  animation: none; /* Stops the ambient loop so user hover controls behavior */
+  border-color: #00ffff !important;
+  box-shadow: 0 0 35px rgba(0, 255, 255, 0.7) !important;
+  transform: scale(1.03);
+}
+
+/* 1. Define the dedicated terminal breathing loop */
+@keyframes terminalPulse {
+  0% {
+    box-shadow: 0 0 8px rgba(0, 255, 255, 0.15);
+    border-color: #30363d; /* Baseline GitHub-dark grey border */
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+    border-color: #006666; /* Deep cybermatic cyan/teal accent */
+  }
+  100% {
+    box-shadow: 0 0 8px rgba(0, 255, 255, 0.15);
+    border-color: #30363d;
+  }
+}
+
+/* 2. Apply the loop directly to your terminal class */
+.interactive-card, .system-terminal {
+  background-color: #161b22 !important;
+  border-radius: 6px !important;
+  color: #c9d1d9 !important;
+  padding: 25px !important;
+  margin: 20px 0 !important;
+  transition: all 0.3s ease-out; /* Keeps hover state shifts fluid and responsive */
+  
+  /* Run the pulse indefinitely every 5 seconds (slightly slower than the image loop for a layered effect) */
+  animation: terminalPulse 5s ease-in-out infinite;
+}
+
+/* 3. Handle explicit user hover interactions */
+.interactive-card:hover, .system-terminal:hover {
+  animation: none !important; /* Disengages the background loop immediately */
+  border: 1px solid #00ffff !important; /* Full, crisp neon cyan line */
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.45) !important;
+}
+
+
+/* 1. Define the sharp on/off flashing animation loop */
+@keyframes blinkCursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* 2. Style the custom cursor element */
+.terminal-cursor {
+  display: inline-block;
+  width: 10px;
+  height: 18px;
+  background-color: #00ffff; /* Neon cyan color matching your terminal hover */
+  margin-left: 4px;
+  vertical-align: middle;
+  
+  /* Animates 1 full flash per second sharply (no smooth fading) */
+  animation: blinkCursor 1s steps(2, start) infinite;
+}
+
+/* 3. Hide the cursor automatically when printing */
+@media print {
+  .terminal-cursor {
+    display: none !important;
+  }
+}
+
+@media print {
+  /* 1. Force the Main Containers to Light Grey Backgrounds */
+  body .system-terminal,
+  body .interactive-card {
+    /* Hard override against the original dark theme rules */
+    background: #e0e0e0 !important;
+    background-color: #e0e0e0 !important;
+    
+    /* Ensure the browser prints the actual graphics layout */
+    print-color-adjust: exact !important;
+    -webkit-print-color-adjust: exact !important;
+    
+    /* Darken boundaries for crisp paper reading lines */
+    border: 1px solid #666666 !important;
+    color: #000000 !important;
+    
+    /* Turn off live structural layout animations */
+    animation: none !important;
+    box-shadow: none !important;  
+  }
+
+  /* 2. Absolute Deep Override: Force EVERY single child element inside to Black text */
+  body .system-terminal *,
+  body .interactive-card *,
+  body .system-terminal p,
+  body .system-terminal span,
+  body .system-terminal div,
+  body .system-terminal h3,
+  body .system-terminal code {
+    color: #000000 !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    text-shadow: none !important;
+    -webkit-text-fill-color: #000000 !important; /* Forces Safari/Chrome WebKit engines */
+  }
+
+  /* 3. Hide the simulated prompt cursor from page printouts */
+  .terminal-cursor {
+    display: none !important;
+    visibility: hidden !important;
+  }
+}
+
+/* Keeps the hidden input accessible but physically invisible */
+#terminal-hidden-input {
+  position: absolute;
+  opacity: 0;
+  left: -9999px;
+  width: 0;
+  height: 0;
+}
+
+/* Fix mobile prediction engine reversing bugs */
+#terminal-hidden-input {
+  position: absolute;
+  /* Instead of pushing it off screen, stack it directly over the cursor layout block */
+  z-index: 2;
+  opacity: 0.01; /* Must remain slightly above 0 so iOS/Android registration layers read it as active */
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  color: transparent !important;
+  caret-color: transparent !important; /* Hides the native native blue/vertical browser blinker */
+  
+  /* Retain small touch size bounds so it captures screen taps */
+  width: 20px;
+  height: 20px;
+  font-size: 16px; /* CRITICAL: Prevents Apple iOS Safari from automatically zooming into the webpage layout on focus */
+}
+
+/* Ensure prompt wrapper isolates positioning context cleanly */
+.prompt-line {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+
+/* Ensure the user knows they can click inside the terminal window to focus typing */
+.system-terminal {
+  cursor: text;
+}
+
+/* Retain previous blinking rules from our earlier conversation */
+@keyframes blinkCursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.terminal-cursor {
+  display: inline-block;
+  width: 10px;
+  height: 18px;
+  background-color: #00ffff;
+  margin-left: 4px;
+  vertical-align: middle;
+  animation: blinkCursor 1s steps(2, start) infinite;
+}
+
+.system-terminal {
+  background-color: #161b22 !important;
+  border-radius: 6px !important;
+  color: #c9d1d9 !important;
+  padding: 25px !important;
+  margin: 20px 0 !important;
+  transition: all 0.3s ease-out;
+  animation: terminalPulse 5s ease-in-out infinite;
+
+  /* NEW: Restrict the container height and force vertical scrolling */
+  max-height: 400px !important;    /* Keeps the console compact on screen */
+  overflow-y: auto !important;     /* Shows scrollbar only when content overflows */
+  overflow-x: hidden !important;   /* Prevents broken horizontal layout shifting */
+  scroll-behavior: smooth;         /* Smooth scrolling when appending elements */
+}
+
+/* ==========================================================================
+   CUSTOM CYBERPUNK SCROLLBAR STYLES (Chrome, Safari, Edge, and Opera)
+   ========================================================================== */
+   
+/* 1. Width structure of the scrollbar gutter */
+.system-terminal::-webkit-scrollbar {
+  width: 8px !important;
+}
+
+/* 2. Background track layer behind the handle bar */
+.system-terminal::-webkit-scrollbar-track {
+  background: #0d1117 !important; /* Slightly darker than terminal background */
+  border-radius: 0 6px 6px 0;    /* Aligns perfectly with the terminal corners */
+}
+
+/* 3. The moving scroll handle bar (Thumb) */
+.system-terminal::-webkit-scrollbar-thumb {
+  background: #30363d !important; /* Baseline dark grey to match terminal borders */
+  border-radius: 4px !important;
+  border: 1px solid transparent;
+  transition: background 0.3s ease;
+}
+
+/* 4. Highlight effect when mouse moves over the track container */
+.system-terminal:hover::-webkit-scrollbar-thumb {
+  background: #008891 !important; /* Muted cyan accent when hovering over terminal */
+}
+
+.system-terminal::-webkit-scrollbar-thumb:hover {
+  background: #00ffff !important; /* Brilliant neon cyan when dragging scrollbar directly */
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.5) !important;
+}
+
+/* ==========================================================================
+   FIREFOX SCROLLBAR ENGINE SUPPORT
+   ========================================================================== */
+@supports (scrollbar-width: thin) {
+  .system-terminal {
+    scrollbar-width: thin !important;
+    scrollbar-color: #30363d #0d1117 !important; /* Thumb color followed by Track color */
+	user-select: text !important;
+  -webkit-user-select: text !important; 
+  }
+}
+
+/* Strip button defaults to look like a terminal link line */
+.accordion-trigger {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  text-align: left;
+  padding: 0;
+  margin: 0;
+  font-family: inherit;
+  font-size: 1.1rem;
+  color: #c9d1d9;
+  cursor: pointer;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+/* Moving bracket icon indicator */
+.accordion-icon {
+  color: #00ffff;
+  font-weight: bold;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Rotates the terminal bracket down when open */
+.accordion-trigger[aria-expanded="true"] .accordion-icon {
+  transform: rotate(90deg);
+}
+
+/* Collapsed content container mask */
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Inner text container adding padding spacing safely */
+.accordion-inner-text {
+  padding-top: 15px;
+  border-top: 1px dashed #30363d;
+  margin-top: 15px;
+  color: #8b949e;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   PRINT STYLESHEET RESETS (Force Open on Paper)
+   ========================================================================== */
+@media print {
+  /* Forces the slider fully open so recruiters can read the abstracts on print/PDF */
+  .accordion-content {
+    max-height: none !important;
+    overflow: visible !important;
+  }
+  .accordion-icon {
+    display: none !important; /* Hide structural UI arrow icon tokens */
+  }
+  .accordion-inner-text {
+    color: #000000 !important;
+    border-top: 1px dashed #666666 !important;
+  }
+}
+
+
+/* Container Isolation Bounds */
+.directory-tree-container {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
+}
+
+/* Master Structure Lines Layout Reset */
+.tree-root, .tree-branch {
+  list-style: none !important;
+  padding-left: 20px !important;
+  margin: 4px 0 !important;
+  position: relative;
+}
+
+/* Vertical Stems linking elements together */
+.tree-branch::before {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 0;
+  bottom: 10px;
+  border-left: 1px dashed #30363d;
+}
+
+.tree-item {
+  margin: 6px 0;
+  position: relative;
+  line-height: 1.5;
+}
+
+/* Horizontal Stem Indicators hooking into folders/files */
+.tree-item::before {
+  content: "";
+  position: absolute;
+  left: -14px;
+  top: 10px;
+  width: 10px;
+  border-top: 1px dashed #30363d;
+}
+
+.tree-toggle {
+  cursor: pointer;
+  color: #c9d1d9;
+  user-select: none;
+  transition: color 0.2s ease;
+}
+
+.tree-toggle:hover {
+  color: #00ffff;
+}
+
+.folder-icon {
+  display: inline-block;
+  width: 14px;
+  color: #58a6ff;
+  font-size: 0.8em;
+  margin-right: 4px;
+}
+
+.file-icon {
+  margin-right: 6px;
+}
+
+/* Hide branches by default if folder isn't open */
+.tree-item.folder > .tree-branch {
+  display: none;
+}
+
+.tree-item.folder.is-open > .tree-branch {
+  display: block;
+}
+
+/* Accent Highlight Filters for Active Quantum Hyperlinks */
+.computational-node a {
+  color: #ffa500 !important; /* Vibrant Orange matching core labs status triggers */
+}
+.academic-node a {
+  color: #a6e22e !important; /* Green matrix token highlight for official publications */
+}
+.tree-item a:hover {
+  text-decoration: underline !important;
+  text-shadow: 0 0 8px rgba(0,255,255,0.4) !important;
+}
+
+/* ==========================================================================
+   PRINT RESETS (Unfold Project Tree Content Completely on Paper Layouts)
+   ========================================================================== */
+@media print {
+  .tree-item.folder > .tree-branch {
+    display: block !important; /* Open every path automatically on paper */
+  }
+  .folder-icon, .tree-item::before, .tree-branch::before {
+    color: #555555 !important;
+    border-color: #666666 !important;
+  }
+  .tree-toggle, .tree-item a {
+    color: #000000 !important;
+  }
+}
+
+
+/* ==========================================================================
+   1. DEFINITIONS FOR CYBERNETIC ANIMATION LOOPS
+   ========================================================================== */
+
+/* The Breathing Frame Glow Loop (Applied to the container box) */
+@keyframes containerCyberPulse {
+  0% {
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.15);
+    border-color: #30363d;
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(0, 255, 255, 0.45);
+    border-color: #008891; /* Subtle cyan-teal shift */
+  }
+  100% {
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.15);
+    border-color: #30363d;
+  }
+}
+
+/* Image Cross-Fade Cycles (Applied directly to inner layers) */
+@keyframes imageCrossFade {
+  0%, 45%, 100% { opacity: 1; z-index: 2; }
+  55%, 90% { opacity: 0; z-index: 1; }
+}
+
+@keyframes imageCrossFadeInverse {
+  0%, 45%, 100% { opacity: 0; z-index: 1; }
+  55%, 90% { opacity: 1; z-index: 2; }
+}
+
+/* ==========================================================================
+   2. CORE CONTAINER FRAME OVERLAY MAPPING
+   ========================================================================== */
+
+.profile-image-frame {
+  position: relative;
+  max-width: 320px;
+  width: 100%;
+  aspect-ratio: 4 / 3 !important; /* Locks widescreen bounds to handle width gaps */
+  background-color: #0d1117 !important; /* Seamless dark padding matrix for narrow portrait sides */
+  border-radius: 8px;
+  border: 1px solid #30363d;
+  overflow: hidden;
+  transition: all 0.3s ease-out;
+  
+  /* RESTORED: Run the breathing glow loop infinitely every 4 seconds */
+  animation: containerCyberPulse 4s ease-in-out infinite; 
+}
+
+/* Style both images inside the frame to scale proportionally without inner lines */
+.profile-image-frame img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain !important; /* Keeps your facial dimensions perfectly natural */
+  
+  /* NEW: Strips away inner lines so the photo sits cleanly against the padding columns */
+  border: none !important; 
+  outline: none !important;
+  box-shadow: none !important; /* Removes ghost shadow trails inside the box */
+  
+  transform: none !important; 
+}
+
+
+/* Apply independent dissolving intervals to each target picture layer */
+.profile-image-frame img.img-one {
+  animation: imageCrossFade 20s ease-in-out infinite;
+}
+
+.profile-image-frame img.img-two {
+  animation: imageCrossFadeInverse 20s ease-in-out infinite;
+}
+
+/* ==========================================================================
+   ALIGNMENT ASSIGNMENTS (Control where each photo sits horizontally)
+   ========================================================================== */
+
+/* 2. Fix Image One (Narrow): Explicitly center it horizontally */
+.profile-image-frame img.img-one {
+  width: 100% !important;
+  left: 0 !important;
+  right: 0 !important;
+  margin: 0 auto !important; /* Forces the browser to distribute whitespace equally on both sides */
+  object-position: center center !important;
+}
+
+/* 3. Fix Image Two (Wide): Force it to lock to the absolute right margin boundary */
+.profile-image-frame img.img-two {
+  width: auto !important;   /* Relaxes the width constraints so it can look for layout limits */
+  left: 10px !important;    /* Breaks any default left tracking properties */
+  right: 10px !important;      /* Locks the image canvas block straight to the right line */
+  object-position: center center !important;
+}
+
+
+.profile-image-frame:hover {
+  animation: none !important;
+  border-color: #00ffff !important;
+  box-shadow: 0 0 35px rgba(0, 255, 255, 0.75) !important;
+  
+  /* Applying the scaling factor here cleanly preserves our translateX math above */
+  transform: scale(1.03) !important; 
+}
+/* ==========================================================================
+   3. EXPLICIT INTERACTIVE HOVER OVERRIDES
+   ========================================================================== */
+
+/* Target ONLY the main outer frame wrapper container */
+.profile-image-frame:hover {
+  animation: none !important;                 /* Instantly freezes the idle breathing cycle */
+  border-color: #00ffff !important;           /* Crisp, singular full-intensity neon outer line */
+  box-shadow: 0 0 35px rgba(0, 255, 255, 0.75) !important; /* Clean outer emission halo */
+  transform: scale(1.03);                     /* Smooth uniform pop scale expansion */
+}
+
+/* FIX: Ensure no secondary rules are injecting hover parameters onto the inner image tags */
+.profile-image-frame:hover img,
+.profile-image-frame img:hover {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  transform: none !important;                 /* Prevents inner portraits from warping inside the box */
+}
+
+
+
+@media print {
+  /* ==========================================================================
+     SIDE-BY-SIDE PRINT MATRIX (Forces horizontal alignment on paper)
+     ========================================================================== */
+     
+  .profile-image-frame {
+    aspect-ratio: auto !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    
+    /* NEW: Converts the container box into a side-by-side row layout */
+    /* display: flex !important;
+    flex-direction: row !important;
+    gap: 15px !important;          
+    max-width: 100% !important;
+    width: auto !important;
+    overflow: visible !important;
+  } */
+  
+  /* CHANGED: Converts the container box into a vertical stacked layout */
+    display: flex !important;
+    flex-direction: column !important; /* Forces frames to stack vertically */
+    gap: 20px !important;              /* Spacing between vertical frames */
+    max-width: 100% !important;
+    width: auto !important;
+    overflow: visible !important;
+  }
+  
+  .profile-image-frame img.img-one,
+  .profile-image-frame img.img-two {
+    /* NEW: Strips absolute tracking so the pictures flow side-by-side naturally */
+    position: static !important;     
+    display: block !important;
+    animation: none !important;      /* Kills if none is selected where it kills all digital loop animation engines */
+    opacity: 1 !important;           /* Forces full toner ink visibility for both layers */
+    
+    /* NEW: Scales down dimensions so both photos comfortably fit paper margins */
+    max-width: 300px !important;    
+    width: 100% !important;
+    height: auto !important; 
+	
+    
+    /* Ensures the browser preserves the raw photographic aspect scaling */
+    object-fit: contain !important; 
+    border: 1px solid #707070 !important; /* Optional: Clean, thin dark grey print border line */
+  }
+}
+
+
+/* --- SCREEN STYLES (Dark Teal Theme) --- */
+.custom-linkedin-card {
+  width: 100%;
+  max-width: 850px;
+  margin: 20px 0; /*  FIX: Changes "auto" to "0", aligning it perfectly to the left */
+  background-color: #0d3b40; 
+  border: 1px solid #145c63; 
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+
+.card-banner {
+  height: 60px;
+  background-color: #072225;
+}
+
+.card-content {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.name-container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.linkedin-asset-logo {
+  height: 30px;       
+  width: auto;        
+  max-height: 24px;   
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Container to hold both buttons side-by-side */
+.profile-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap; /* Stacks nicely if the container gets too narrow */
+}
+
+@media (max-width: 600px) {
+  .profile-header {
+    flex-direction: column;
+    text-align: center;
+  }
+  .name-container, .profile-actions {
+    justify-content: center;
+  }
+}
+
+.profile-avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #0d3b40;
+  margin-top: -54px;
+  background-color: #ffffff;
+}
+
+.profile-info {
+  flex-grow: 1;
+}
+
+.profile-name {
+  font-size: 24px;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0;
+}
+
+.profile-headline {
+  font-size: 16px;
+  color: #a3cbd0;
+  margin: 8px 0 4px 0;
+}
+
+.profile-location {
+  font-size: 14px;
+  color: #7ca8ae;
+  margin: 0;
+}
+
+/* Shared Button Styles */
+.profile-btn {
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: 24px;
+  font-size: 15px;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+/* Primary Button Layout (LinkedIn Blue) */
+.btn-primary {
+  background-color: #0a66c2;
+  color: #ffffff !important;
+  border: 1px solid transparent;
+}
+
+.btn-primary:hover {
+  background-color: #004182;
+}
+
+/* Secondary Button Layout (Transparent Teal with Border) */
+.btn-secondary {
+  background-color: transparent;
+  color: #a3cbd0 !important;
+  border: 1px solid #7ca8ae;
+}
+
+.btn-secondary:hover {
+  background-color: rgba(124, 168, 174, 0.15);
+  color: #ffffff !important;
+  border-color: #ffffff;
+}
+
+/* --- PRINT STYLES --- */
+@media print {
+  .custom-linkedin-card {
+    background-color: #f5f5f5 !important;
+    border: 1px solid #cccccc !important;
+    box-shadow: none !important;
+    color: #000000 !important;
+	/* Add this inside your print block so the symbol turns black on paper */
+.btn-message .msg-icon {
+  fill: #000000 !important;
+}
+
+  }
+  
+  .card-banner {
+    background-color: #dddddd !important;
+  }
+  
+  .profile-avatar {
+    border-color: #f5f5f5 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  
+  .profile-name { color: #000000 !important; }
+  .profile-headline { color: #333333 !important; }
+  .profile-location { color: #555555 !important; }
+  
+  /* Make both buttons clean, black-and-white borders for printing */
+  .profile-btn {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    border: 1px solid #000000 !important;
+  }
+}
+
+
+/* Styling for the Message Button layout */
+.btn-message {
+  background-color: transparent;
+  color: #a3cbd0 !important;
+  border: 1px solid #7ca8ae;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px; /* Spaces the symbol from the text word "Message" */
+}
+
+.btn-message:hover {
+  background-color: rgba(124, 168, 174, 0.15);
+  color: #ffffff !important;
+  border-color: #ffffff;
+}
+
+.btn-message:hover .msg-icon {
+  fill: #ffffff !important;
+}
+
+/* Default icon color setting */
+.msg-icon {
+  fill: #a3cbd0;
+  transition: fill 0.2s ease;
+}
+
+/* --- TOOLTIP LAYOUT STYLES --- */
+[data-tooltip]{
+  position: relative; /* Anchor point for our floating box */
+}
+
+/* 1. Build the Tooltip Text Box */
+ [data-tooltip]::after {
+  content: attr(data-tooltip); /* Pulls text straight from the HTML tag attribute */
+  position: absolute;
+  bottom: 125%; /* Positions it directly above the action button button */
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background-color: #072225; /* Match your deep dark banner accent teal */
+  color: #ffffff;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 6px;
+  white-space: nowrap;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.2s ease;
+}
+
+/* 2. Build the Little Pointer Arrow */
+ [data-tooltip]::before {
+  content: "";
+  position: absolute;
+  bottom: 110%;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  border-width: 6px;
+  border-style: solid;
+  border-color: #072225 transparent transparent transparent; /* Pointing downward */
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.2s ease;
+}
+
+/* 3. Reveal Animation on Hover */
+[data-tooltip]:hover::after,
+[data-tooltip]:hover::before {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* --- PRINT RULES (Hide Tooltips when printing page layouts) --- */
+@media print {
+  .btn-message::after,
+  .btn-message::before {
+    display: none !important;
+  }
+}
+
+
+  </style>
+
+
+<!-- Tell MathJax to recognize single dollar signs -->
+	<script> window.MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] } }; </script>
+  <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"> </script> 
+</head>
+<body>
+
+
+<div class="top-nav">
+  <a href="https://phibal12.github.io/QFLC-Dashboard">🏠 Home</a>
+  <a href="#terminal-interface">📟 Terminal</a>
+  <a href="#section_header">📊 Research</a>
+  <a href="#card-content">📩 Contact</a>
+</div><br>
+
+  <div id="main_content_wrap">
+    <main id="main_content">
+      
+	        <!-- REPLACEMENT FOR SECTION 1 HERO AREA -->
+      <!-- REPLACEMENT FOR SECTION 1 HERO AREA -->
+      <table style="width:100%; border-collapse:collapse; margin-top: 20px;">
+        <tr>
+          <!-- Circular Profile Frame Column (Moved to Left) -->
+          <td style="width: 220px; text-align: left; vertical-align: middle; padding-right: 30px;">
+            <img src="./assets/PBA_portrait.jpg" alt="Dr. Philip B. Alipour" style="width: 220px; height: 220px; border-radius: 50% !important; border: 2px solid #00ffff !important; box-shadow: 0 0 15px rgba(0, 255, 255, 0.5) !important; object-fit: cover !important; margin: 0 auto 0 0 !important;" />
+          </td>
+          
+          <!-- Text Metadata Column (Moved to Right) -->
+          <td style="vertical-align: middle;">
+            <h1 id="portfolio_main_title"><span>Philip Baback Alipour, </span><span style="font-size: 0.55em; text-transform: none;">Ph.D., M.Sc., B.Sc. (Hons)</span></h1>
+            <p class="meta-tag" style="font-size: 1.2em; color: #58a6ff !important; margin-top: 5px; margin-bottom: 15px;">Ph.D. in Electrical Engineering (Interdisciplinary Focus: Quantum Physics, Computer Science, and Electrical Engineering): Electrical/Computer/Quantum Engineer, and Computer Scientist // Quantum & Hybrid Algorithms Engineer // Quantum AI Architect</p>             
+            <p style="font-size: 1.1em; line-height: 1.6; max-width: 1100px;"><span style="color: #ff7b72;">
+        &bull; Focus: </span> scientific, practical, and analytical research developing hybrid/quantum algorithms with scalar fields mapping. Focus example is mapping single fields via a <span class="accent-cyan">particle interaction-based $\kappa$ scalar</span> and double them as a <span class="accent-cyan">Quantum Double-Field (QDF)</span> model to predict system states (transitions) by <span class="accent-cyan">Quantum Field Lens Coding (QF-LC)</span> and its algorithm as <span class="accent-cyan">QF-LCA</span>. <br>
+		<span style="color: #ff7b72;">&bull; Deliverables: </span> Design optimized operational frameworks bridging industrial automation with pure quantum mechanics and classical-quantum (micro/macro) thermodynamics. <br>
+		<span style="color: #ff7b72;">&bull; Research Vision:</span>  Maintain the formal references to the QDF model, the <span class="accent-cyan"> Probability Doubling </span> effect (<span class="accent-cyan">$P \geq 1/3 \to P \geq 2/3$</span>), and the official University of Victoria's dissertation archive <span style="color: #a6e22e;">[URI Link]:</span>  <a href="https://hdl.handle.net/1828/23705" target="_blank">hdl.handle.net/1828/23705</a> to achieve higher SDG 7 scores $> 77\%$ in creating clean and sustainable systems for humanity using targeted outreach of quantum computing and hybrid algorithmic mthods. <br>
+		<span style="color: #ff7b72;">&bull; Research Bridge:</span> Bridge biological and AI enhancement for upgrading both human and industry 4.0 systems via qauntum computers and hybrid classical-quantum systems. Product flow example: <a href="https://phibal12.github.io/QFLC-Dashboard/#quantum-field-lens-coding-framework-probability-doubling-by-qdf-modeling"> from DNA to clean energy.
+            </p>
+          </td>
+        </tr>
+      </table>
+
+
+    <!--  </table> -->
+      <hr> 
+	  
+	  
+
+<!-- <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script> -->
+
+
+<!-- Wrapper forces a wide element profile -->
+<!-- <div style="width: 100%; max-width: 1200px; overflow: hidden; display: flex; justify-content: center;">
+  <div style="transform: scale(0.8); transform-origin: top center; margin-bottom: 100px;">
+    <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="light" data-type="VERTICAL" data-vanity="philip-baback-alipour-b35b13b" data-version="v1">
+       <a class="badge-base__link LI-simple-link" href="https://linkedin.com"></a>
+    </div>
+  </div>
+</div>  -->
+
+
+<div class="custom-linkedin-card">
+  <!-- Top Banner Accent -->
+  <div class="card-banner"></div>
+  
+  <!-- Content Container -->
+  <div class="card-content">
+    <div class="profile-header">
+      <!-- Profile Photo Placeholder -->
+      <img class="profile-avatar" src="https://media.licdn.com/dms/image/v2/C5603AQF4tf-vq8N8wg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1517708333932?e=1785974400&v=beta&t=gOgHIqTyTzIC0JAbzTt4F6SsaqEzw9lrXfS8dsuSA5I" alt="Philip Baback Alipour">
+      
+      <div class="profile-info">
+        <div class="name-container">
+          <h2 class="profile-name">Dr. Philip B. Alipour</h2>
+        </div>
+        <p class="profile-headline">Experienced Professional on <img class="linkedin-asset-logo" src="assets/LinkedIn.svg" alt="LinkedIn Logo"> <br> Ph.D. in Electrical, Computer Engineering and Quantum Physics (University of Victoria) </p>
+        <p class="profile-location">Victoria BC, Canada</p>
+      </div>
+    </div>
+
+    <!-- 🚀 NEW: Button Action Group -->
+    <div class="profile-actions">
+    <a class="profile-btn btn-primary" href="https://www.linkedin.com/in/philip-baback-alipour-b35b13b/" target="_blank" data-tooltip="View Profile on LinkedIn" rel="noopener noreferrer">
+      View Profile
+    </a>
+	<!-- REPLACE 'assets/resume.pdf' with your actual resume file path or URL link -->
+      <a class="profile-btn btn-secondary" href="assets/PBA_Resume.pdf"  data-tooltip="View Philip B. Alipour Resume" target="_blank" rel="noopener noreferrer">
+        Résumé
+      </a>
+	  <!-- 💬 Message Button (Add this right after the Resume button) -->
+<a class="profile-btn btn-message" href="#" onclick="secureEmail(event)" data-tooltip="Spam-Protected Contact Link" rel="noopener noreferrer">
+  <svg class="msg-icon" xmlns="http://w3.org" viewBox="0 0 24 24" width="16" height="16"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.2L4 17.2V4h16v12z"/></svg>
+  Message
+</a>
+  </div>
+</div>
+</div>
+
+
+<script type="text/javascript">
+function secureEmail(event) {
+    // 1. Prevents the browser from instantly following the empty '#' link
+    event.preventDefault();
+    
+    // 2. Breaks your inbox address into separate scrambled string pieces
+    var user = "philipbaback_orbsix";
+    var domain = "msn.com";
+    var subject = "Inquiry%20via%20Professional%20Badge";
+    
+    // 3. Combines the text elements dynamically only when a real human clicks
+    window.location.href = "mailto:" + user + "@" + domain + "?subject=" + subject;
+}
+</script>
+
+
+<!-- Interactive Technical Skill Matrix Block for your Portfolio -->
+<div class="interactive-card portfolio-expertise-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; margin-top: 25px;">
+  
+  <div class="skill-category-block" style="border-left: 3px solid #00ffff; padding-left: 15px;">
+    <h4 style="margin: 0 0 5px 0; color: #00ffff;">[01] ALGORITHM DESIGN</h4>
+    <p style="font-size: 0.9rem; color: #8b949e; margin: 0;">Development of QF-LCA for real-time state prediction via hybrid classical-quantum architectures.</p>
+  </div>
+
+  <div class="skill-category-block" style="border-left: 3px solid #00ffff; padding-left: 15px;">
+    <h4 style="margin: 0 0 5px 0; color: #00ffff;">[02] SYSTEM SIMULATION</h4>
+    <p style="font-size: 0.9rem; color: #8b949e; margin: 0;">Architect of QF-LCS, a high-fidelity Python-based engine modeling thermodynamic quantum/hybrid systems and their evolution.</p>
+  </div>
+
+  <div class="skill-category-block" style="border-left: 3px solid #00ffff; padding-left: 15px;">
+    <h4 style="margin: 0 0 5px 0; color: #00ffff;">[03] TOPOLOGICAL MAPPING</h4>
+    <p style="font-size: 0.9rem; color: #8b949e; margin: 0;">Utilizing the QFLC Hypercube (QFLCH) to map higher-dimensional spaces/hardware/qubit scales and mitigate decoherence bugs.</p>
+  </div>
+
+</div>
+     
+	 
+	
+<!-- Main Hero Profile Section -->
+<div class="portfolio-hero-container">
+  <div class="profile-image-frame" style="max-width: 800px !important; max-height: 400px !important; overflow: auto !important;">
+    <img src="./assets/PBA_portrait02.png" alt="Dr. Philip Baback Alipour" class="img-one" style="max-width: 1000px !important; height: 390px !important; top: 10px !important;">
+	<img src="./assets/PBA_portrait03_01.png" alt="Dr. Philip Baback Alipour" class="img-two" style="max-width: 1000px !important; height: 390px !important;  top: 5px !important;  left: 55px !important;">
+  </div>
+  <div class="profile-bio-text">
+    <h1 class="architect-title"><span class="accent-cyan">Dr. Alipour's Workspace</span></h1>
+    <p class="subtitle-layer">Quantum & Hybrid Machine Labworks // Simulate Events & Visualize Datasets //</p>
+    <p class="summary-details">Make Strong System State Predictions, Optimize System Design, Distribution & Computation</p>
+  </div>
+</div>
+
+<p style="margin: 5px 0 12px 0; font-size: 0.95rem; opacity: 0.9;">
+    Portfolio terminal interface:
+  </p>
+      <div class="system-terminal" id="terminal-interface">
+        <strong class="accent-cyan">phibal12@workspace:~#</strong> cat core_stack.json<br>
+        <span style="color: #ff7b72;">{</span><br>
+        &nbsp;&nbsp;<span style="color: #79c0ff;">"quantum_environments"</span>: <span style="color: #a5d6ff;">["Python (NumPy, Qiskit)", "cQASM", "Q#", "Quantum Double-Field (QDF)"]</span>,<br>
+		&nbsp;&nbsp;<span style="color: #79c0ff;">"hybrid_environments"</span>: <span style="color: #a5d6ff;">["Vanilla JavaScript/PythonScript", "HTML5 Engine Components", "Local Hybrid Simulation", "UI Building", "Interactive Quantum Education/Tutorials/Dashboards", "Data Visualization", "Qubit/Cbit Hardware/Software Scaling", "VHDL"]</span>,<br>
+        &nbsp;&nbsp;<span style="color: #79c0ff;">"systems_engineering"</span>: <span style="color: #a5d6ff;">["C/C#/.Net/SQL/Java", "Assembly", "Intelligent Decision Systems (IDSS)", "Systems/Simulation DB Management/Engineering"]</span>,<br>
+        &nbsp;&nbsp;<span style="color: #79c0ff;">"web_interface_layer"</span>: <span style="color: #a5d6ff;">["Vanilla JavaScript/PythonScript", "HTML5 Engine Components", "CSS Overrides"]</span><br>
+        <span style="color: #ff7b72;">}</span>
+
+  <!-- Interactive Command Log History -->
+  <div id="terminal-history">
+    <p>Mapping scalar fields to QFLC environment... Done.</p>
+    <p>Type a command (e.g., <span style="color: #00ffff;">init --example</span>, <span style="color: #00ffff;">init --dashboard</span>, <span style="color: #00ffff;">init --...</span>, <span style="color: #00ffff;">help</span>, <span style="color: #00ffff;">exit</span>) and press Enter.</p>
+  </div>
+
+
+<!-- Main Active Typing Prompt Line -->
+<p class="prompt-line">
+  <span style="color: #00ffff; margin-right: 5px;">root@qflc-portfolio:~#</span> 
+  <span id="active-typed-string"></span>
+  <span class="terminal-cursor"></span>
+  
+  <!-- Interactive Mobile Input Mask Layer -->
+  <input type="text" id="terminal-hidden-input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" autofocus>
+</p>
+
+</div>
+
+<p style="margin: 5px 0 12px 0; font-size: 0.95rem; opacity: 0.9;">
+    Launch the live cross-compiled QF-LC environment to run physical parameter matrices and real-time state prediction models. 
+  </p><br>
+      <a href="https://phibal12.github.io/QFLC-Dashboard" class="btn-return">&larr; Access Live QF-LC Simulation Workspace</a>
+   <p> <br> 
+	  <div class="profile-image-frame" style="max-width: 1000px !important; max-height: 400px !important; overflow: auto !important;">
+      <img src="./assets/ABE_QDFTango_Banner.png" alt="Labwork Simulation Example" class="img-one" style="max-width: 1000px !important; height: 390px !important; top: 5px !important;">
+	  <img src="./assets/QFLCACodingBanner.png" alt="Labwork Simulation Example" class="img-two" style="max-width: 1000px !important; height: 390px !important; left: 120px !important;">
+      </div>
+	</p>  
+	  <!-- Section 2: The Core Laboratory Workspace -->
+      <h2 class="section_header">// The Lab: Core Infrastructure</h2>
+      <p class="meta-tag">One architectural framework, multiple live verification modules.</p>
+      
+      <div class="interactive-card">
+        <table style="width:100%; border-collapse: collapse;">
+          <tr>
+            <td style="vertical-align: top;"><a href="https://phibal12.github.io/QFLC-Dashboard/">
+              <h3 style="margin:0 0 10px 0; color: teal;" class="accent-cyan">QF-LC Dashboard Environment</h3>
+              <p style="margin: 0; line-height: 1.5; color: #8b949e;">
+                This page operates directly as a nested, active component subdirectory. It allows incoming academic panels and industrial recruiters to pivot straight from analyzing structural resume histories into running active physical parameters via web-native simulation layers.
+              </p>
+            </td></a>
+          </tr>
+        </table>
+      </div>
+
+      <table style="width:100%; border-spacing: 25px 0px; margin-top: 15px; margin-left: -25px;">
+        <tr>
+          <td style="width:50%; vertical-align: top;">
+            <div class="interactive-card" style="margin-top:0;"><a href="https://phibal12.github.io/QFLC-Dashboard/#-visual-directory">
+              <strong class="accent-orange">QF-LCS Simulation Suite</strong><br>
+              <p style="font-size:0.9em; color:#8b949e; margin-top:5px; line-height:1.4;">Quantum Field Lens Coding Simulator mapping complex matrix system calculations and particle/system state prediction layers. Early simulation published via Software Impacts [Elsevier] available as <a href="https://www.sciencedirect.com/science/article/pii/S2665963824000915" target="blank"> doi.org/10.1016/j.simpa.2024.100703.</a> More simulations are available via the <a href="https://phibal12.github.io/QFLC-Dashboard/" target="blank"> QF-LC Dashboard Environment from here. </a> </p></a>
+			  <!-- <p>Ready for input<span class="terminal-cursor"></span></p> -->
+            </div>
+          </td>
+          <td style="width:50%; vertical-align: top;">
+            <div class="interactive-card" style="margin-top:0;">
+              <strong class="accent-orange">IDSS Optimization Engines</strong><br>
+              <p style="font-size:0.9em; color:#8b949e; margin-top:5px; line-height:1.4;">Intelligent decision models employing QF-LCA as QuSole (Quantum Social Lensing) codes. Examples of Societal impacts, and achieve goals as micro and macro target states to propose a sustainable global environment by the QuSole application. Direct link to the <a href="https://phibal12.github.io/QFLC-Dashboard/labs/QuSole_QDF_v1-14" target="blank"> QuSole simulation environment can be found here.</a> </p>
+            </div>
+          </td>
+        </tr>
+      </table>
+
+
+<div class="interactive-card directory-tree-container" style="margin-top: 25px;">
+  <h3 class="accent-cyan" style="margin-bottom: 20px; color: #00ffff;">[SYS // REPOSITORY_OBJECT_TREE]</h3>
+  
+  <ul class="tree-root">
+    <!-- Main Root Node -->
+    <li class="tree-item folder is-open">
+      <span class="tree-toggle"><span class="folder-icon">▼</span> QFLC-Dashboard/</span>
+      
+      <ul class="tree-branch">
+        <!-- Subfolder: assets -->
+        <li class="tree-item folder">
+          <span class="tree-toggle"><span class="folder-icon">▶</span> assets/</span>
+          <ul class="tree-branch">
+            <li class="tree-item file"><span class="file-icon">📄</span> PBA_Portfolio.html</li>
+            <li class="tree-item file"><span class="file-icon">🖼️</span> PBA_portrait.jpg</li>
+            <li class="tree-item file"><span class="file-icon">🖼️</span> PBA_portrait02.png</li>
+          </ul>
+        </li>
+
+        <!-- Subfolder: labs -->
+        <li class="tree-item folder is-open">
+          <span class="tree-toggle"><span class="folder-icon">▼</span> labs/</span>
+          <ul class="tree-branch">
+            <!-- Nested Active Module -->
+            <li class="tree-item folder">
+              <span class="tree-toggle"><span class="folder-icon">▶</span> QuSole/</span>
+              <ul class="tree-branch">
+                <li class="tree-item file computational-node">
+                  <span class="file-icon">⚡</span> 
+                  <a href="https://github.io" target="_blank">index.html (Live QuSole Sim)</a>
+                </li>
+              </ul>
+            </li>
+			<li class="tree-item folder">
+              <span class="tree-toggle"><span class="folder-icon">▶</span> QFLCS/</span>
+              <ul class="tree-branch">
+                <li class="tree-item file computational-node">
+                  <span class="file-icon">⚡</span> 
+                  <a href="https://codeocean.com/capsule/6853712/tree/v2?run=run" target="_blank">index.html (Basic Live QFLC Sim)</a>
+                </li>
+              </ul>
+            </li>
+            <li class="tree-item file computational-node">
+              <span class="file-icon">⚡</span> 
+              <a href="https://phibal12.github.io/QFLC-Dashboard/labs/QFLCH" target="_blank">QFLCH (Hypercube Compiler)</a>
+            </li>
+          </ul>
+        </li>
+
+
+        <!-- Core Root Level Artifact Files -->
+        <li class="tree-item file"><span class="file-icon">📄</span> core_stack.json</li>
+        <li class="tree-item file"><span class="file-icon">📄</span> README.md</li>
+        <li class="tree-item file academic-node">
+          <span class="file-icon">🎓</span> 
+          <a href="https://hdl.handle.net/1828/23705" target="_blank">QFLC_Dissertation_Archive.pdf</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+      <!-- Section 3: The Chronicle Narrative (Chronological Chapters matching Othmaro's layout) -->
+      <h2 class="section_header">// The Chronicle: Research & Execution</h2>
+      <p class="meta-tag" style="margin-bottom: 30px;">Algorithmic foundations and industrial implementations mapped sequentially.</p>
+
+      <div class="timeline-node">
+        <span class="meta-tag"><span style="color: #ff7b72;">CHAPTER 01 // CORE ALGORITHMIC RE-ENGINEERING</span></span>
+        <h3 style="margin: 5px 0; color: cyan;">Interactive Simulation/DB-Visualization/Optimization Systems Workspace</h3>
+        <p style="margin: 0; font-size: 0.95em; line-height: 1.5;">
+          Designed and engineered an automated workspace showcasing interactive UI widgets to evaluate quantum-classical data hierarchies and system architectures. Synthesized raw quantum mechanics equations and lensing simulation mechanics into a visual, web-native feedback tool.
+        </p>
+      </div>
+
+      <div class="timeline-node">
+        <span class="meta-tag"><span style="color: #ff7b72;">CHAPTER 02 // PARADIGM SHIFT VALIDATION</span></span>
+        <h3 style="margin: 5px 0; color: cyan;">Quantum Double-Field (QDF) Modeling</h3>
+        <p style="margin: 0; font-size: 0.95em; line-height: 1.5;">
+          Constructed user-facing control systems using responsive layouts and Markdown interfaces to translate complex analytical datasets into accessible widgets. Advanced dual $L^+/L^-$ (focus/defocus) lensing capabilities to reveal hidden Bell state information with near 100% certainty compared to legacy variants.
+        </p>
+      </div>
+
+            <!-- REPLACEMENT FOR CHAPTER 03 & NEW CHAPTER 04 -->
+      <div class="timeline-node">
+        <span class="meta-tag"><span style="color: #ff7b72;">CHAPTER 03 // GLOBAL LOGISTICS and SOCIETAL CONVERSIONS</span></span>
+        <h3 style="margin: 5px 0; color: cyan;">Decision Optimization Engine Systems (IDSS)</h3>
+        <p style="margin: 0; font-size: 0.95em; line-height: 1.5;">
+          Architectural engineering of Intelligent Decision-Based Systems (IDSS). <br> 
+		  <b>Examples:</b> In societal impacts, reaching <b><a href="https://sdgs.un.org/goals" target ="blank"> sutainable develiopment goals (SDGs)</a></b>, as in <br> • Algorithmic feedback networks and real-time parameter parsing systems for high-risk industrial deployment scenarios. This framework was previously built to resolve bottlenecking in international maritime shipping and trade connectivity, earning recognition from the UN-CTAD panels. Finding the most efficint energy path and rerouting it for a desired target state is the employment of the <a href="https://www.sciencedirect.com/science/article/pii/S221501612300362X"> UQFCM as a universal quantum field computation model</a> which employs QF-LCA as a QuSole algorithm alongside mainstream quantum algorithms; <br> • In medicine, reconstruct damaged DNA strands to predict a virus/cancer cell target, its spread and growth against healthy cells. <br> • In law, identify forged documents from genuine ones via QF-LC's Gen-Forge algorithm. <br> • In particle physics, simulate expected event outcomes in an experiment at CERN, or micro blackholes giverned by quantum mechanics; <br>  • In social media to see which presentation of information based on QDF entanglement between datasets observed by media reports promotes <a href="https://www.cyber.gc.ca/en/guidance/how-identify-misinformation-disinformation-and-malinformation-itsap00300">MDM (mis/dis/mal)-information</a>? This stenms from <br> • Within cybersecurity to propose a sustainable global environment by the QuSole application. Publishing via Societal Impacts [Elsevier], preprint at <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5427054" target="blank"> doi.org/10.2139/ssrn.5427054</a>.
+        </p>
+      </div>
+
+      <div class="timeline-node" style="padding-bottom: 40px;">
+        <span class="meta-tag"><span style="color: #ff7b72;">CHAPTER 04 // DOCTORAL DISSERTATION & SUSTAINABILITY IMPACT</span></span>
+        <h3 style="margin: 5px 0; color: cyan;">Quantum Field Lens Coding Architecture [Dissertation Archive]</h3>
+        <p style="margin: 0; font-size: 0.95em; line-height: 1.5;">
+          Successfully defended and published the complete architectural framework establishing Quantum Field Lens Coding (QF-LC). According to SDG AI classifier benchmarks evaluating United Nations goals, this structural model delivers a minimum baseline of <span class="accent-cyan">77% alignment towards providing affordable and clean energy (SDG 7)</span> across physical systems and networks. All peer-reviewed publications are compiled as foundational chapters, permanently archived at the University of Victoria: 
+          <a href="https://hdl.handle.net/1828/23705" target="_blank">hdl.handle.net/1828/23705</a>.
+        </p>
+      </div>
+
+
+
+      
+
+
+<div>
+ <!-- Section 5: Portfolio Summary -->
+      <h2 class="section_header">// Summary</h2>
+      <p class="meta-tag" style="margin-bottom: 30px;">Portfolio and QF-LC-dashboard Summary:</p>
+
+      <div class="timeline-node">
+	  <span class="summary-tag"><span style="margin: 5px 0; color: cyan;">//DEVELOPMENT</span></span>
+        <p>Developed quantum field lens coding algorithm for sustainable energy systems.
+         </p>
+      </div>
+
+        <div class="timeline-node">
+	  <span class="summary-tag"><span style="margin: 5px 0; color: cyan;">//ENERGY SOLUTIONS</span></span>
+        <p>Researched matter replication via 3D nano-printing technology from e.g., vacuum energy and focus harnessing it for sustainable systems. 
+         </p>
+      </div>
+	  
+	    <div class="timeline-node">
+	  <span class="summary-tag"><span style="margin: 5px 0; color: cyan;">//TOP SDG (SUSTAINABLE DEVELOPMENT GOAL)</span></span>
+        <p>Dissertation content, goals and objectives scored 77% on SDG 7 (affordable and clean energy).
+         </p>
+      </div>
+	  
+	    <div class="timeline-node">
+	  <span class="summary-tag"><span style="margin: 5px 0; color: cyan;">//SYSTEM OPTIMIZATION</span></span>
+        <p>Working on energy efficiency in rerouting inefficient energy paths of particles/bodies/subsystems to efficient paths within thermodynamic systems.
+         </p>
+      </div>
+	  
+	    <div class="timeline-node">
+	  <span class="summary-tag"><span style="margin: 5px 0; color: cyan;">//THE VISION & MODEL BRIDGE</span></span>
+        <p>Bridging biological and AI enhancement for upgrading both human and industry 4.0 systems via qauntum computers and hybrid classical-quantum systems. Product flow example: <a href="https://phibal12.github.io/QFLC-Dashboard/#quantum-field-lens-coding-framework-probability-doubling-by-qdf-modeling"> from DNA to clean energy</a>.
+         </p>
+      </div 
+
+<p>These points highlight Dr. Alipour's cutting-edge research and commitment to sustainable technology solutions. His work on energy efficiency in matter replication via QDF based on QF-LCA steps with creating clean and sustainable systems for humanity using targeted outreach of quantum computing and hybrid algorithmic mthods. </p>
+</div> 
+
+
+
+<div class="publication-container" style="margin-top: 30px;">
+  <h3 class="accent-cyan" style="margin-bottom: 15px; color: #00ffff;">[Selected Publications &amp; Dissertations]</h3>
+  
+  <!-- Accordion Item 1 -->
+  <div class="accordion-item interactive-card">
+    <button class="accordion-trigger" aria-expanded="false">
+      <span class="accordion-icon">&gt;</span>
+      <span class="publication-title">Quantum Field Lens Coding (QF-LC): An Interdisciplinary Engineering Approach...</span>
+    </button>
+    <div class="accordion-content">
+      <div class="accordion-inner-text">
+        <p><strong><span style="color: #ff7b72;">Abstract:</span></strong> This research presents the synthesis of the Quantum Field Lens Coding Algorithm (QF-LCA)...</p>
+        <p style="margin-top: 10px;">
+          <span style="color: #a6e22e;">[URI Link]:</span> 
+         <a href="https://hdl.handle.net/1828/23705" target="_blank">hdl.handle.net/1828/23705</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Accordion Item 2 (Duplicate this structure for more papers) -->
+  <div class="accordion-item interactive-card" style="margin-top: 15px;">
+    <button class="accordion-trigger" aria-expanded="false">
+      <span class="accordion-icon">&gt;</span>
+      <span class="publication-title">Topological Mapping via QFLC Hypercube Structures</span>
+    </button>
+    <div class="accordion-content">
+      <div class="accordion-inner-text">
+        <p><strong><span style="color: #ff7b72;">Abstract:</span></strong> Mathematical validation and scalar field optimization modeling thermodynamic quantum decoherence pathways...</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- REPLACEMENT FOR BASE FOOTER -->
+      <hr style="margin-top: 50px !important;">
+      <table style="width:100%; border-collapse:collapse; margin-top: 15px; margin-bottom: 25px;" class="meta-tag">
+        <tr>
+          <td style="line-height: 1.6;">
+            FRAMEWORK VERSION 2026.04 // CORE ENGINE STABLE<br>
+            <span style="color: #c9d1d9;">&copy; 2026 Dr. Philip B. Alipour. All Rights Reserved.</span>
+          </td>
+          <td style="text-align: right; vertical-align: bottom;">
+            VICTORIA, BC, CANADA &bull; <a href="mailto:philipbaback_orbsix@msn.com">philipbaback_orbsix@msn.com</a>
+          </td>
+        </tr>
+      </table>
+
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const hiddenInput = document.getElementById("terminal-hidden-input");
+  const displaySpan = document.getElementById("active-typed-string");
+  const terminalHistory = document.getElementById("terminal-history");
+  const terminalWindow = document.getElementById("terminal-interface");
+
+  const dashboardUrl = "https://phibal12.github.io/QFLC-Dashboard/";
+  const qflchUrl = "https://phibal12.github.io/QFLC-Dashboard/labs/QFLCH";
+  const qflcsUrl = "https://codeocean.com/capsule/6853712/tree/v2?run=run";
+  
+  let isAutoTyping = false; 
+  
+  
+
+  // Safely manage focus states across all devices
+  hiddenInput.focus();
+  terminalWindow.addEventListener("mouseup", () => {
+    if (!isAutoTyping && window.getSelection().toString().trim() === "") {
+      hiddenInput.focus();
+    }
+  });
+
+  /* FIX: Clean text parsing architecture for mobile engines */
+  hiddenInput.addEventListener("input", (e) => {
+    if (isAutoTyping) return;
+    
+    let currentText = e.target.value;
+    
+    // Replace trailing single spaces with a non-breaking space entity 
+    // so the browser renders physical layout gaps correctly on mobile screen viewports
+    if (currentText.endsWith(" ")) {
+      displaySpan.innerHTML = currentText.slice(0, -1).replace(/ /g, "&nbsp;") + "&nbsp;";
+    } else {
+      displaySpan.textContent = currentText;
+    }
+  });
+
+  // Central keyboard action interceptor
+  hiddenInput.addEventListener("keydown", (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'c') return;
+
+    if (e.key === "Enter" && !isAutoTyping) {
+      const userText = hiddenInput.value.trim();
+      
+      if (userText !== "") {
+        appendHistoryLine(`root@qflc-portfolio:~# ${userText}`, "#00ffff");
+        processCommand(userText);
+      }
+      
+      // Wipe clean input state strings
+      hiddenInput.value = "";
+      displaySpan.textContent = "";
+    }
+  });
+
+
+
+  // Keep your existing processCommand, triggerAutomatedSequence, and appendHistoryLine functions below exactly as they were!
+//});
+
+  // Central Command Router Matrix
+  function processCommand(commandText) {
+  const lowerCommand = commandText.toLowerCase();
+  
+    if (lowerCommand === "init --dashboard" || lowerCommand ==="init --workspace" ) {
+      appendHistoryLine("Executing sequence: Directing payload architecture...", "#a6e22e");
+      /* UPDATED LINE HERE: Opens the dashboard URL in a brand new browser tab */
+      setTimeout(() => { 
+        window.open(dashboardUrl, '_blank'); 
+		// NEW SUCCESS NOTIFICATION LINE: Fires right after the new tab drops open
+        appendHistoryLine("Session branched to virtual pipeline successfully. Monitoring active dashboard port context...", "#79c0ff");
+		}, 600);
+    }
+	else if (lowerCommand === "init --example" || lowerCommand ==="init --help" || lowerCommand ==="help") {
+      triggerAutomatedSequence();
+    } 
+    /* ADDED: Explicitly handle the manual typing of the quantum algorithm command */
+    else if (lowerCommand === "execute --qflch --map-scalar-fields") {
+      // Print the success line directly without running the typing animation again
+      appendHistoryLine("Mapping scalar fields to QFLC environment... Done.", "yellow");
+	  setTimeout(() => { 
+        window.open(qflchUrl, '_blank'); 
+		// NEW SUCCESS NOTIFICATION LINE: Fires right after the new tab drops open
+        appendHistoryLine("Session branched to virtual pipeline successfully. Monitoring active QFLCH/hypercube sim port context...", "#79c0ff");
+		}, 600);
+    }
+	else if (lowerCommand === "exit") {
+      appendHistoryLine("Terminating terminal session context... Goodbye.", "brown");
+      setTimeout(() => {
+        window.close();
+      }, 2000);
+    }
+	else if (lowerCommand === "clear") {
+      // Wipes all generated paragraphs inside the history container
+      terminalHistory.innerHTML = `
+        <p>Mapping scalar fields to QFLC environment... Done.</p>
+        <p>Type a command (e.g., <span style="color: #00ffff;">init --example</span>, <span style="color: #00ffff;">init --dashboard</span>) and press Enter.</p>
+      `;
+    }    /* NEW: Handle the 'tree' command to output textual project structures */
+    else if (lowerCommand === "init --tree" || lowerCommand === "tree") {
+      appendHistoryLine("Loading repository filesystem metrics via branch context...", "#a6e22e");
+      
+      // Constructing an authentic Unix-like indentation grid mapping the folder hierarchy
+      const textTreeOutput = 
+        `<strong>QFLC-Dashboard/</strong><br>` +
+        `├── <strong>assets/</strong><br>` +
+        `│   ├── PBA_Portfolio.html<br>` +
+        `│   ├── PBA_portrait.jpg<br>` +
+        `│   └── PBA_portrait02.png<br>` +
+        `├── <strong>labs/</strong><br>` +
+        `│   ├── <strong>QuSole/</strong><br>` +
+        `│   │   └── <span style="color: #ffa500;">index.html (Live QuSole Sim)</span><br>` +
+		`│   ├── <strong>QFLCS/</strong><br>` +
+        `│   │   └── <span style="color: #ffa500;">index.html (Basic Live QFLC Sim)</span><br>` +
+        `│   └── <span style="color: #ffa500;">QFLCH (Hypercube Compiler)</span><br>` +
+        `├── core_stack.json<br>` +
+        `├── README.md<br>` +
+        `└── <span style="color: #a6e22e;">QFLC_Dissertation_Archive.pdf</span>`;
+      
+      // Inject the tree output string block into the screen context logs
+      setTimeout(() => {
+        appendHistoryTreeBlock(textTreeOutput);
+      }, 300);
+    }
+    else {
+      // Handles unmapped standard terminal fallback errors
+      appendHistoryLine(`bash: ${commandText}: command not active or unavailable in this subsystem.`, "#ff3333");
+    }
+    terminalWindow.scrollTop = terminalWindow.scrollHeight;
+  }
+
+  // Engine for the "init --example" automatic typing execution
+  function triggerAutomatedSequence() {
+    isAutoTyping = true;
+    hiddenInput.blur(); // Isolate browser field focus
+    
+    const targetString = " execute --[qflc-algorithm name] --map-scalar-fields";
+    let charIndex = 0;
+
+    function runAnimation() {
+      if (charIndex < targetString.length) {
+        displaySpan.textContent += targetString.charAt(charIndex);
+        charIndex++;
+        setTimeout(runAnimation, 50 + (Math.random() * 40 - 20));
+      } else {
+        // Once the auto-typing simulation text completes:
+        setTimeout(() => {
+          // Log the generated command line down safely into the prompt logs
+          appendHistoryLine(`root@qflc-portfolio:~# ${targetString}`, "#00ffff");
+          displaySpan.textContent = ""; // Clear active input bar
+          
+          // Print your requested successful execution logs safely
+          appendHistoryLine("Mapping scalar fields to QFLC environment... Done. \n" + "\r \n Exactly execute command with init a QFLC environment name!", "orange");
+		  // Print your requested successful execution logs safely
+          appendHistoryLine("Examples [qflc-algorithm name]:  qflch, qflcs, qdf-algorithm, qdf-game, qdf-lens, qusole-algorithm, ...", "yellow");
+          
+          isAutoTyping = false;
+          hiddenInput.focus(); // Re-open standard keyboard capture
+        }, 500);
+      }
+    }
+    runAnimation();
+  }
+
+  // Output formatting assistant
+  function appendHistoryLine(text, color = "#c9d1d9") {
+    const line = document.createElement("p");
+    line.style.color = color;
+    if (text.startsWith("root@qflc-portfolio:~#")) {
+      line.innerHTML = `<span style="color: #00ffff;">root@qflc-portfolio:~#</span> ${text.replace("root@qflc-portfolio:~#", "")}`;
+    } else {
+      line.textContent = text;
+    }
+    terminalHistory.appendChild(line);
+	
+    /* UPDATED: Only auto-scroll if the user is NOT actively selecting/highlighting text */
+    const currentSelection = window.getSelection().toString();
+    if (!currentSelection) {
+      terminalWindow.scrollTop = terminalWindow.scrollHeight;
+    }
+  }
+
+  // Output formatting assistant specifically configured for structured text trees
+  function appendHistoryTreeBlock(htmlMarkup) {
+    if (!terminalHistory) return;
+    const treeLine = document.createElement("p");
+    treeLine.style.lineHeight = "1.4";
+    treeLine.style.margin = "5px 0 15px 0";
+    treeLine.innerHTML = htmlMarkup;
+    
+    terminalHistory.appendChild(treeLine);
+    autoScrollTerminal();
+  }
+
+  
+});
+</script>
+
+<!-- Isolate the accordion component execution entirely from the terminal scope -->
+<script>
+(function() {
+  function initAccordions() {
+    const triggers = document.querySelectorAll(".accordion-trigger");
+    if (!triggers || triggers.length === 0) return;
+
+    triggers.forEach(trigger => {
+      // Remove any existing duplicate listener instances safely
+      trigger.replaceWith(trigger.cloneNode(true));
+    });
+
+    // Re-select fresh clean nodes from the DOM layout context
+    const freshTriggers = document.querySelectorAll(".accordion-trigger");
+    freshTriggers.forEach(trigger => {
+      trigger.addEventListener("click", function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const isExpanded = this.getAttribute("aria-expanded") === "true";
+        const contentBlock = this.nextElementSibling;
+
+        this.setAttribute("aria-expanded", !isExpanded);
+
+        if (contentBlock) {
+          if (!isExpanded) {
+            // Unlocks dynamic vertical space matching text abstract constraints
+            contentBlock.style.maxHeight = contentBlock.scrollHeight + "px";
+          } else {
+            contentBlock.style.maxHeight = "0px";
+          }
+        }
+      });
+    });
+  }
+
+  // Double-layer initialization buffer to safeguard background rendering
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initAccordions);
+  } else {
+    initAccordions();
+  }
+})();
+</script>
+
+<!-- Independent directory object click handler sandboxed to isolate global loop execution -->
+<script>
+(function() {
+  function initializeRepositoryTree() {
+    const toggles = document.querySelectorAll(".tree-toggle");
+    if (!toggles || toggles.length === 0) return;
+
+    toggles.forEach(toggle => {
+      toggle.addEventListener("click", function(e) {
+        e.preventDefault();
+        e.stopPropagation(); // Stops interaction loops from hijacking active terminal focus layers
+
+        const parentLi = this.parentElement;
+        if (parentLi && parentLi.classList.contains("folder")) {
+          // Toggle folder structural layer open status tokens
+          const isOpen = parentLi.classList.contains("is-open");
+          const iconSpan = this.querySelector(".folder-icon");
+
+          if (isOpen) {
+            parentLi.classList.remove("is-open");
+            if (iconSpan) iconSpan.textContent = "▶";
+          } else {
+            parentLi.classList.add("is-open");
+            if (iconSpan) iconSpan.textContent = "▼";
+          }
+        }
+      });
+    });
+  }
+
+  // Initialize loop safety buffer layers
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initializeRepositoryTree);
+  } else {
+    initializeRepositoryTree();
+  }
+})();
+</script>
+
+
+<div class="bottom-nav">
+  <a href="https://phibal12.github.io/QFLC-Dashboard">🏠 Home</a>
+  <a href="#terminal-interface">📟 Terminal</a>
+  <a href="#section_header">📊 Research</a>
+  <a href="#card-content">📩 Contact</a>
+    <a href="#">↑ Back to Top</a>
+</div><br>
+
+
+</body>
+</html>
+
+
+

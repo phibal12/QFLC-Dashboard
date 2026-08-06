@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>QFLC-Dashboard | Quantum Field Lens Coding</title>
+  <meta name="title" content="QFLC-Dashboard | Quantum Field Lens Coding">
+  <meta name="description" content="Research and simulation dashboard for Quantum Double-Field (QDF) models, featuring the QuSole logic validator for complex particle state prediction and system event analysis.">
+  <meta name="author" content="Philip B. Alipour">
+  
+  <meta property="article:published_time" content="{{ site.time | date_to_xmlschema }}">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://phibal12.github.io/QFLC-Dashboard/">
+  <meta property="og:image:secure_url" content="https://phibal12.github.io/QFLC-Dashboard/assets/ABE_QDFImage_Banner.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:title" content="QFLC-Dashboard | Quantum Field Lens Coding">
+  <meta property="og:description" content="Research and simulation dashboard for Quantum Double-Field (QDF) models, featuring the QuSole logic validator for complex particle state prediction and system state/event analysis. A simulation environment for Quantum Field Lens Coding (QF-LC) research, utilizing dual L+/L- (focus/defocus) lensing to analyze Alice-Bob-Eve (ABE) tripartite ((un-)entangled) systems and reveal hidden Bell state information with near 100% certainty (single field to QDF state transition probabilities of P >= 2/3) compared to current quantum algorithms.">
+  
+  <meta property="og:image" content="https://phibal12.github.io/QFLC-Dashboard/assets/ABE_QDFImage_Banner.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://phibal12.github.io/QFLC-Dashboard/">
+  <meta property="twitter:title" content="QFLC-Dashboard | Quantum Field Lens Coding">
+  <meta property="twitter:description" content="Research and simulation dashboard for Quantum Double-Field (QDF) models, featuring the QuSole logic validator.">
+  <meta property="twitter:image" content="https://github-readme-stats.vercel.app/api/pin/?username=phibal12&repo=QFLC-Dashboard&theme=tokyonight">
+
+<style>
+  /* 1. SCREEN VIEW (DARK) */
+  @media screen {
+    #main_content_wrap {
+      background-color: #0d1117 !important;
+      display: flex !important;
+      justify-content: center !important; 
+    }
+    #main_content {
+      color: #c9d1d9 !important;
+      background-color: #0d1117 !important;
+    }
+  }
+
+  /* 1. Hide the tooltip box during normal screen viewing */
+  .quantum-tooltip {
+    display: none;
+  }
+
+  /* 2. PRINTER VIEW (FORCED WHITE) */
+  @media print {
+    .banner-widget, #main_content_wrap, #main_content, body, html {
+      background: white !important;
+      background-color: white !important;
+      color: black !important;
+    }
+
+    div.highlighter-rouge *, 
+    .highlight *, 
+    pre *, 
+    code * {
+      color: black !important;
+      background: transparent !important;
+      text-shadow: none !important;
+      opacity: 1 !important;
+    }
+
+    div.highlighter-rouge, .highlight, pre {
+      background: #f5f5f5 !important;
+      border: 1px solid #ddd !important;
+    }
+
+    .top-nav, .bottom-nav, #forkme_banner, footer { 
+      display: none !important; 
+    }
+
+    .quantum-tooltip {
+      display: block !important;
+      margin-top: 50px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 12pt;
+      line-height: 1.5;
+    }
+
+    .tooltip-box {
+      border-left: 5px solid #ffa500;
+      padding-left: 15px;
+    }
+
+    .orange-text { color: #ffa500 !important; -webkit-print-color-adjust: exact; }
+    .cyan-text { color: #00ffff !important; -webkit-print-color-adjust: exact; }
+  }
+
+  /* 3. SHARED LAYOUT (Centering) */
+  #main_content {
+    max-width: 1500px !important;
+    width: 100% !important;        
+    float: none !important;
+    margin-left: 6% !important;   
+    margin-right: -1% !important; 
+    padding: 60px 40px !important; 
+    box-sizing: border-box !important;
+    display: block !important;
+  }
+
+  #main_content_wrap {
+    justify-content: flex-start !important;
+  }
+  
+  img {
+    max-width: 100% !important;
+    height: auto !important;
+    display: block;
+    margin: 20px auto;
+  }
+
+  /* 4. SMOOTH SOLID HORIZONTAL LINES */
+  hr {
+    border: 0 !important;
+    border-top: 1px solid #444c56 !important;
+    height: 0 !important;
+    margin: 2em 0 !important;
+    background: transparent !important;
+  }
+
+  /* 4. SMOOTH SUBSECTION DIVIDERS (##) */
+  h2 {
+    background: none !important;      
+    border-bottom: 1px solid #30363d !important;
+    padding-bottom: 10px !important;
+    margin-bottom: 20px !important;
+  }
+  
+  /* 5. DARK CODE BLOCKS */
+  .highlighter-rouge, .highlight, pre {
+    background-color: #161b22 !important;
+    border: 1px solid #30363d !important;
+    border-radius: 6px !important;
+    color: #c9d1d9 !important;
+  }
+
+  pre code {
+    background: transparent !important;
+    padding: 0 !important;
+  }
+
+  @media screen {
+    .highlight .nv, .highlight .n { color: #adbac7 !important; }
+    .highlight .nc, .highlight .nn, .highlight .nf { color: #dcbdfb !important; }
+    .highlight .ne, .highlight .ni { color: #8dbdff !important; }
+    .highlight .nb { color: #ffa657 !important; }
+    .highlight .p { color: #adbac7 !important; }
+    .highlight .o, .highlight .ow { color: #79c0ff !important; } 
+  }
+
+  #theme-toggle {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    transition: all 0.3s ease-in-out !important;
+    outline: none;
+  }
+
+  body {
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  body.light-mode #theme-toggle {
+    background: #f6f8fa !important;
+    color: #24292f !important;
+    border-color: #d0d7de !important;
+  }
+
+  html.light-mode, body.light-mode {
+    background-color: #ffffff !important;
+    background-image: none !important;
+  }
+
+  body.light-mode #main_content_wrap {
+    background-color: #ffffff !important;
+    background-image: none !important;
+    border: none !important;
+  }
+
+  body.light-mode #main_content {
+    background-color: #ffffff !important;
+    color: #24292f !important;
+    box-shadow: none !important;
+  }
+
+  #main_content table { border-color: #444c56 !important; }
+  #main_content th {
+    background-color: #161b22 !important;
+    color: #ffffff !important;           
+    border: 1px solid #444c56 !important;
+  }
+  #main_content td {
+    color: #adbac7 !important;           
+    border: 1px solid #444c56 !important;
+  }
+
+  body.light-mode #main_content table,
+  body.light-mode #main_content th,
+  body.light-mode #main_content td {
+    border-color: #d0d7de !important;
+    color: #24292f !important;
+    background-color: #ffffff !important;
+  }
+
+  body.light-mode #main_content th {
+    background-color: #f6f8fa !important;
+  }
+
+  #theme-toggle:hover {
+    box-shadow: 0 0 20px 5px rgba(0, 255, 255, 0.7) !important;
+    color: #00ffff !important;
+    text-shadow: 0 0 8px rgba(0, 255, 255, 0.8);
+    border-color: #00ffff !important;
+  }
+
+  body.light-mode #theme-toggle:hover {
+    box-shadow: 0 0 15px 3px rgba(0, 128, 128, 0.4) !important;
+    color: #008080 !important;
+    text-shadow: 0 0 5px rgba(0, 128, 128, 0.3);
+  }
+
+  .highlight table {
+    display: table !important;
+    width: 100% !important;
+    border-collapse: collapse !important;
+  }
+
+  .highlight td.gutter, .highlight td.code {
+    vertical-align: top !important;
+    padding: 10px 10px !important;
+  }
+
+  .highlight td.code pre {
+    white-space: pre !important;        
+    word-wrap: normal !important;
+    display: block !important;
+    overflow-x: auto !important;        
+    width: 100% !important;
+    margin: 0 !important;
+  }
+
+  .highlight .gutter pre, .highlight .code pre, .highlight code {
+    font-family: "Courier New", Courier, monospace !important;
+    line-height: 1.5 !important;
+    font-size: 14px !important;
+  }
+
+  .highlight .gutter {
+    width: 1% !important;
+    min-width: 45px !important;
+    border-right: 1px solid #30363d !important;
+    text-align: right;
+  }
+
+  .stats-header {
+    text-align: left !important;
+    display: block !important;
+    width: 100% !important;
+    margin-bottom: 20px !important;
+  }
+
+  .stats-header img {
+    display: inline-block !important;
+    margin: 5px 10px 5px 0 !important;
+    vertical-align: middle !important;
+  }
+
+  #main_content .stats-header img {
+    margin-left: 0 !important;
+  }
+
+  /* ========================================================= */
+  /* FIXED ANIMATED BANNER FRAME STYLES (TEAL BORDER RECOVERY) */
+  /* ========================================================= */
+  .banner-container {
+    position: relative !important;
+    /* 1. Prevent parent elements from clipping the right side */
+    width: calc(100% - 4px) !important; 
+    max-width: 1100px !important;
+    height: 480px !important; 
+    /* 2. Centering with subtle vertical breathing room */
+    margin: 10px auto !important; 
+    overflow: hidden !important; 
+    background-color: #0d1117 !important;
+    border-radius: 8px !important;
+    
+    /* 3. TEAL BORDER STYLING (Slightly thicker 2px to make it pop) */
+    box-sizing: border-box !important; 
+    border: 2px solid #00f0ff !important; /* Beautiful glowing teal */
+    padding: 0 !important; 
+  }
+
+  .banner-3 {
+    position: absolute !important;
+    /* 4. Offset by the 2px border size to prevent overlapping */
+    top: 2px !important;
+    left: 2px !important;
+    width: calc(100% - 4px) !important;
+    height: calc(100% - 4px) !important; 
+    
+    margin: 0 !important;
+    padding: 0 !important; 
+    object-fit: contain !important; 
+    opacity: 0;
+    animation: fadeThree 24s infinite ease-in-out;
+    pointer-events: auto; 
+  }
+  
+  .b1 { animation-delay: 0s; }
+  .b2 { animation-delay: 8s; }
+  .b3 { animation-delay: 16s; }
+
+  @keyframes fadeThree {
+    0%, 100% { opacity: 0; }
+    4.1%, 29.1% { opacity: 1; }
+    33.3%, 95.8% { opacity: 0; }
+  }
+
+  .banner-container:hover .banner-3 {
+    animation-play-state: paused;
+  }
+
+  @media print {
+    .banner-3 {
+      animation: none !important;
+      position: relative !important;
+      display: none !important;
+    }
+    .b1 {
+      display: block !important;
+      opacity: 1 !important;
+    }
+  }
+
+/* 1. Standard Screen Fix: Force readable white/cyan styling inside code blocks */
+.profile-bio-text pre, 
+.portfolio-hero-container code,
+details pre, 
+details code {
+  color: #e2e8f0 !important;              /* Clean, crisp off-white text */
+  background-color: #111827 !important;    /* Sleek deep charcoal background */
+}
+
+/* 2. Media Print Fix: Ensure code remains perfectly legible when printing the page */
+@media print {
+  details pre, 
+  details code {
+    color: #000000 !important;            /* Pure black text for high contrast on physical white paper */
+    background-color: #f3f4f6 !important; /* Soft light gray block shading */
+    border: 1px solid #d1d5db !important; /* Defined boundary line */
+  }
+}
+
+
+  
+</style>
+</head>
+
+<body> 
+
+
+  <div align="center" style="width: 100%;">
+  <!-- 1. The anchor tag must open with > and close down below with </a> -->
+  <a href="#-visual-directory" style="display: block; text-decoration: none;">
+    <div class="banner-container" style="margin-bottom: 0px !important;">
+      <img src="./assets/ABE_QDFImage_Banner.png" class="banner-3 b1" alt="Banner 1" style="display: block; margin: 0 auto;">
+      <img src="./assets/ABE_QDFTango_Banner.png" class="banner-3 b2" alt="Banner 2" style="display: block; margin: 0 auto;">
+      <img src="./assets/QFLCACodingBanner.png" class="banner-3 b3" alt="Banner 3" style="display: block; margin: 0 auto;">
+    </div>
+  </a>
+  
+  <div style="text-align: left; margin: 12px auto 0 auto !important; width: calc(100% - 4px) !important; max-width: 1100px !important; box-sizing: border-box; padding: 0 4px;">
+    <span class="banner-widget" style="font-weight: bold; font-size: 0.85em; letter-spacing: 0.1em; display: block; margin-bottom: 4px;">[NATIVE SIMULATION ENGINE]</span>
+    Click <a href="#-visual-directory">here</a> or banner above to jump directly to the live QF-LC visualization widgets and parameter directory and deploy the interactive matrix computing widgets below.
+  </div>
+  </div>
+
+<button id="theme-toggle" style="position: fixed; top: 80px; right: 20px; z-index: 9999; padding: 10px 15px; cursor: pointer; background: #24292f; color: white; border: 1px solid #444c56; border-radius: 6px; font-weight: bold; display: block !important; visibility: visible !important;">
+  Switch to Bright Mode
+</button>
+
+<link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.time | relative_url }}">
+
+<div id="main_content_wrap">
+  <section id="main_content">
+    {{ content }}
+  </section>
+</div>
+
+<div class="quantum-tooltip">
+  <strong>QDF Model Comments & Image Details:</strong>
+  <div class="tooltip-box">
+    Quantum Double-Field Lensing (Page Banner Details): 
+    <span class="orange-text">L⁺ (Convex/Focus)</span> and 
+    <span class="cyan-text">L⁻ (Concave/Defocus)</span> operators revealing hidden ABE Bell states. 
+    By including the third particle as an ancilla system, you’re visually representing the mechanism where Eve interacts with the transit state. 
+    In compatible quantum model, the composite system is represented as a tripartite state: 
+    <span class="cyan-text">Ψ_ABE = Σᵢ,ⱼ αᵢ,ⱼ |i⟩_A ⊗ |j⟩_B ⊗ |Eᵢ,ⱼ⟩_E </span>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const links = document.querySelectorAll('a');
+    links.forEach(link => {
+      if (link.hostname !== window.location.hostname) {
+        link.setAttribute('target', '_blank');
+        link.setAttribute('rel', 'noopener noreferrer');
+      }
+    });
+  });
+</script>
+
+<script>
+  const btn = document.getElementById("theme-toggle");
+
+  function updateButton(isLight) {
+    btn.textContent = isLight ? "☾ | Switch to Dark Mode" : "☉ | Switch to Bright Mode";
+    btn.style.background = isLight ? "#f6f8fa" : "#24292f";
+    btn.style.color = isLight ? "#24292f" : "white";
+    btn.style.borderColor = isLight ? "#d0d7de" : "#444c56";
+  }
+
+  if (localStorage.getItem("theme") === "light") {
+    document.body.classList.add("light-mode");
+    document.documentElement.classList.add("light-mode");
+    updateButton(true);
+  } else {
+    updateButton(false);
+  }
+
+  btn.addEventListener("click", function() {
+    const isLight = document.body.classList.toggle("light-mode");
+    document.documentElement.classList.toggle("light-mode");
+    updateButton(isLight);
+    localStorage.setItem("theme", isLight ? "light" : "dark");
+  });
+
+
+
+function autoExpandBookmarks() {
+  // Extract the anchor string from the URL (e.g., "#core-objectives")
+  const hash = window.location.hash;
+  
+  if (hash) {
+    // Find the target element using the hash
+    const targetElement = document.querySelector(hash);
+    
+    if (targetElement) {
+      // Find the closest parent <details> container (handles clicks on text inside the box too)
+      const detailsBox = targetElement.closest('details');
+      
+      if (detailsBox) {
+        // Expand the dropdown box instantly
+        detailsBox.open = true;
+        
+        // Re-align the window view smoothly so the expanded box header isn't cut off
+        setTimeout(() => {
+          detailsBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 50);
+      }
+    }
+  }
+}
+
+// 1. Trigger when the website initially loads from a bookmarked link
+window.addEventListener('DOMContentLoaded', autoExpandBookmarks);
+
+// 2. Trigger instantly whenever a user clicks an internal menu navigation link
+window.addEventListener('hashchange', autoExpandBookmarks);
+
+</script>
+  
+</body>
+</html>

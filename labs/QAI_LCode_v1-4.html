@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+    /* --- SCREEN STYLES (Dark Mode) --- */
+    body { background-color: #1a1a1a; margin: 0; padding: 20px; font-family: 'Segoe UI', 'Consolas', monospace; }
+    
+    #qf-master-container {
+        background: #0f1115; padding: 25px; border-radius: 15px; 
+        width: 950px; color: #eee; border: 1px solid #333; 
+        box-shadow: 0 20px 50px rgba(0,0,0,0.5); margin: 0 auto;
+    }
+
+    h3 { margin: 0; color: #00d4ff; font-size: 0.9em; letter-spacing: 1px; }
+    .header-row { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; padding-bottom: 10px; margin-bottom: 15px; }
+    
+    .panel-row { display: flex; gap: 15px; margin-bottom: 15px; }
+    .panel { background: #0a0a0a; border: 1px solid #333; border-radius: 8px; padding: 15px; }
+    .panel-left { flex: 1.4; border-color: #00d4ff; }
+    .panel-right { flex: 1.2; border-color: #f0e68c; display: flex; flex-direction: column; }
+    
+    .cell-grid { display: grid; gap: 5px; margin-bottom: 10px; }
+    .cell { background: #161b22; border: 1px solid #222; padding: 6px; text-align: center; border-radius: 4px; }
+    .cell div { font-size: 0.55em; color: #888; margin-bottom: 2px; }
+    .cell span { font-size: 1.1em; font-weight: bold; color: #fff; }
+    
+    .terminal { background: #000; padding: 10px; font-size: 0.7em; font-family: 'Courier New'; border: 1px solid #333; color: #3fb950; overflow-y: auto; border-radius: 4px; white-space: pre-wrap; }
+    
+    input[type=range] { width: 100%; margin: 5px 0 10px 0; accent-color: #00d4ff; height: 4px; background: #333; border-radius: 2px; }
+    
+    button { border: none; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 0.7em; padding: 10px; transition: 0.2s; }
+    button:hover { opacity: 0.8; }
+    .btn-go { background: #238636; color: white; width: 100%; }
+    .btn-sec { background: #21262d; color: #c9d1d9; border: 1px solid #30363d; }
+    .btn-rec { background: #005cc5; color: #fff; border: 1px solid #0366d6; }
+    .btn-danger { background: #8b0000; color: #fff; border: 1px solid #b22222; }
+    .btn-dis { background: #333; color: #555; width: 100%; cursor: not-allowed; }
+    .btn-ready { background: #00d4ff; color: #000; width: 100%; cursor: pointer; }
+    .btn-print { background: #ccc; color: #000; padding: 8px 15px; margin-bottom: 15px; }
+
+    /* --- PRINT STYLES (White Paper Mode) --- */
+    @media print {
+        body { background: white; padding: 0; color: black; }
+        #qf-master-container { width: 100%; box-shadow: none; border: none; background: white; color: black; padding: 0; margin: 0; }
+        .panel { border: 1px solid #000; background: white; color: black; break-inside: avoid; margin-bottom: 15px; }
+        .cell { background: #f5f5f5; border: 1px solid #ccc; color: black !important; }
+        .cell span { color: #000 !important; }
+        .cell div { color: #555; }
+        h3, strong { color: #000 !important; }
+        .terminal { border: 1px solid #ccc; background: #fff !important; color: #000 !important; height: auto; max-height: none; }
+        .terminal span { color: #000 !important; }
+        input[type=range], input[type=file], input[type=number], button { display: none !important; }
+        canvas { border: 1px solid #ccc !important; background: white !important; }
+        
+        .print-clear { background: transparent !important; border: 1px solid #ccc !important; color: black !important; }
+        .print-clear span, .print-clear label, .print-clear div { color: black !important; }
+        .html-legend { display: none !important; } 
+        details { display: block; }
+    }
+</style>
+</head>
+<body>
+
+<div id="qf-master-container">
+    
+    <div class="header-row">
+        <div>
+            <h3 style="font-size:1.1em;">QF-LCA TRI-CORE CONSOLE v14.0</h3>
+            <small style="color:#888; font-size:0.7em;">QuSole Logic: Safe Pairs = Stable Ground States</small>
+        </div>
+        <div style="text-align:right; font-size:0.7em; color:#888;">
+            <strong>VERDICT PROTOCOL:</strong> Safe Pair → Stable | Strong Pair → Stable
+        </div>
+    </div>
+
+    <div class="panel-row">
+        
+        <div class="panel panel-left">
+            <div style="margin-bottom:10px; color:#00d4ff; font-size:0.8em; font-weight:bold; border-bottom:1px solid #333; padding-bottom:5px;">MANUAL ENVIRONMENT</div>
+            
+            <div class="cell-grid" style="grid-template-columns:repeat(4, 1fr);">
+                <div class="cell"><div>ADDER μ</div><span id="m-mu">0</span></div>
+                <div class="cell"><div>SUM Σμ</div><span id="m-sum" style="color:#0f0;">0</span></div>
+                <div class="cell"><div>WORK W [J]</div><span id="m-w">0.00</span></div>
+                <div class="cell"><div>ENERGY U [eV]</div><span id="m-u">0.00</span></div>
+            </div>
+            <div class="cell-grid" style="grid-template-columns:repeat(4, 1fr);">
+                <div class="cell"><div>STABILITY</div><span id="m-stab">--</span></div>
+                <div class="cell"><div>DENSITY ρ</div><span id="m-rho">--</span></div>
+                <div class="cell"><div>ENTROPY S</div><span id="m-ee">--</span></div>
+                <div class="cell"><div>PROB P</div><span id="m-prob">--</span></div>
+            </div>
+
+            <div class="print-clear" style="background:#151515; padding:10px; border-radius:6px; margin-bottom:15px; border:1px solid #222;">
+                <label style="font-size:0.75em; display:flex; justify-content:space-between; align-items:center; margin-bottom:2px;">
+                    <span>Global N:</span>
+                    <input type="number" id="in-n-num" min="3" value="3" style="width:70px; background:#222; color:#00d4ff; border:1px solid #333; border-radius:3px; padding:3px; font-family:monospace; font-size:1em;">
+                </label>
+                <div style="font-size:0.65em; color:#888; margin-bottom:8px; font-style:italic;">*ρ asymptotes to 2/3, minimally representing the probability density of pairwise entangled subsets.</div>
+                <input type="range" id="in-n" min="3" max="100000" value="3" step="1">
+                
+                <label style="font-size:0.75em; display:block; margin-bottom:5px;">Coupling (κ): <span id="lbl-k" style="color:#00d4ff;">1.41</span></label>
+                <input type="range" id="in-k" min="0.1" max="10.0" step="0.01" value="1.41">
+                
+                <label style="font-size:0.75em; display:block; margin-bottom:5px;">Lens Dist (d): <span id="lbl-d" style="color:#00d4ff;">50</span></label>
+                <input type="range" id="in-d" min="1" max="100" value="50">
+            </div>
+
+            <div style="display:flex; flex-direction:column; gap:8px;">
+                <button onclick="runManualTrial()" class="btn-go">EXECUTE TRIAL (t)</button>
+                <div style="display:flex; gap:8px; width:100%;">
+                    <button onclick="recommendManual()" class="btn-rec" style="flex:1;">RECOMMEND</button>
+                    <button onclick="exportManual()" class="btn-sec" style="flex:1;">EXPORT LOG</button>
+                    <button onclick="resetManual()" class="btn-danger" style="flex:1;">RESET</button>
+                </div>
+            </div>
+            
+            <div id="m-log" class="terminal" style="margin-top:10px; height:50px;">> IDS v14.0 Online.</div>
+        </div>
+
+        <div class="panel panel-right">
+            <div style="margin-bottom:10px; color:#f0e68c; font-size:0.8em; font-weight:bold; border-bottom:1px solid #333; padding-bottom:5px;">DATASET IMPORT</div>
+            
+            <div class="print-clear" style="background:#151515; padding:10px; border-radius:6px; margin-bottom:10px; border:1px solid #222;">
+                <input type="file" id="csv-in" accept=".csv" style="width:100%; font-size:0.7em; color:#888;">
+            </div>
+
+            <div id="v-term" class="terminal" style="flex-grow:1; color:#f0e68c; border-color:#f0e68c;">
+                > Waiting for QuSole CSV...
+            </div>
+
+            <button id="btn-v-export" onclick="exportValidator()" class="btn-dis" style="margin-top:10px;" disabled>EXPORT VALIDATED REPORT</button>
+        </div>
+    </div>
+
+    <div class="panel" style="height:200px; position:relative; padding:15px; margin-bottom:15px;">
+        <h3 style="margin:0 0 5px 0; font-size:0.8em; color:#888;">TRIAL HISTORY VISUALIZER</h3>
+        <canvas id="qf-plot" width="900" height="160" style="display:block; width:100%; height:160px;"></canvas>
+        <div class="print-clear html-legend" style="position:absolute; top:15px; right:20px; font-size:0.7em; background:rgba(0,0,0,0.8); padding:5px 10px; border-radius:4px; border:1px solid #333;">
+            <span style="color:#00d4ff;">● Prob (P)</span> &nbsp; 
+            <span style="color:#ffa657;">● Entropy (S)</span> &nbsp;
+            <span style="color:#d500f9;">● Work (W)</span> &nbsp;
+            <span style="color:#f85149;">-- Bound (2/3)</span>
+        </div>
+    </div>
+
+    <div class="panel" style="height:auto; position:relative; padding:15px; margin-bottom:15px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+            <h3 style="margin:0; font-size:0.8em; color:#888;">VALIDATED DATASET & IDS REROUTING</h3>
+            <div style="display:flex; gap:5px;">
+                <button onclick="zoomPlot(1.5)" class="btn-sec" style="padding:4px 10px; width:auto; font-size:0.7em;">ZOOM +</button>
+                <button onclick="zoomPlot(1/1.5)" class="btn-sec" style="padding:4px 10px; width:auto; font-size:0.7em;">ZOOM -</button>
+                <button onclick="exportHighResPlot()" class="btn-sec" style="padding:4px 10px; width:auto; font-size:0.7em;">HD EXPORT / PRINT</button>
+            </div>
+        </div>
+        
+        <div style="position: relative;" class="print-clear">
+            <div style="overflow-x: auto; width: 100%; border-radius: 4px;">
+                <canvas id="qf-plot-validated" width="900" height="160" style="display:block;"></canvas>
+            </div>
+            
+            <div class="html-legend" style="position:absolute; top:5px; right:10px; font-size:0.7em; background:rgba(0,0,0,0.8); padding:5px 10px; border-radius:4px; border:1px solid #333; pointer-events:none;">
+                <span style="color:#00d4ff;">● Orig P</span> &nbsp; 
+                <span style="color:#ffa657;">● Orig S</span> &nbsp;
+                <span style="color:#d500f9;">● Orig W</span><br>
+                <span style="color:#8b949e;">● Orig κ (x0.1)</span> &nbsp;
+                <span style="color:#4444ff;">● Orig D (x0.01)</span><br>
+                <span style="color:#39ff14;">-- Rec P</span> &nbsp; 
+                <span style="color:#ff66b2;">-- Rec S</span> &nbsp;
+                <span style="color:#f1c40f;">-- Rec W</span><br>
+                <span style="color:#ffffff;">-- Rec κ (x0.1)</span> &nbsp;
+                <span style="color:#ff5555;">-- Rec D (x0.01)</span>
+            </div>
+        </div>
+    </div>
+
+    <details id="help-section" class="print-clear panel" style="margin-bottom: 15px; border-color: #333; cursor: pointer; padding: 15px 20px;">
+        <summary style="font-weight:bold; color:#00d4ff; font-size:0.9em; outline:none; display:list-item;">
+            [+] QF-LCA VALIDATOR DOCUMENTATION & SUMMARY POINTS
+        </summary>
+        <div style="margin-top: 15px; font-size: 0.8em; line-height: 1.6; color: #ccc;">
+            <ol style="margin:0; padding-left: 20px;">
+                <li style="margin-bottom: 10px;"><strong>Atomic Density (<span style="font-family:serif; font-style:italic;">&varrho;</span>):</strong> In Alipour's QF-LCA, atomic density &varrho; (rho) for entangled subsets is defined natively as &rho; = 2N / 3(N-1), which asymptotes to 2/3. However, in mixed populations of entangled and non-entangled particles across the entire N population, &rho; can reach values much greater than 1. To respect the strict physical boundary limit |&kappa;&sup2;|&varrho; &le; 2, an extreme cost in coupling (&kappa;) is required to compensate, which subsequently weakens the system's Probability (P).</li>
+                <li style="margin-bottom: 10px;"><strong>Thermodynamic Scale Transition:</strong> This framework rigorously bridges microscopic quantum states to macroscopic datasets. Microscopic Particle Energy (U) is measured in Electronvolts (eV), while Macroscopic Lensed Work (W) is measured in Joules (J). They relate fundamentally via W = U &times; P<sub>TheoreticalMax</sub>. At optimal coherence limits (P<sub>TheoreticalMax</sub> &rarr; 1.0), the macroscopic lensed work exactly mirrors the quantum state potential on a precise 1:1 ratio.</li>
+                <li style="margin-bottom: 10px;"><strong>Intelligent Decision Simulator (IDS) Proportional Rerouting:</strong> For indeterminate dataset rows (P < 0.67 or unstable boundaries), the IDS abandons static constants. Instead, it dynamically reverse-engineers the exact mathematical deficit of the specific row. It calculates the precise minimal shift in Lens Distance (D) to guarantee P &ge; 0.68, and scales &kappa; to bring stability safely under 1.95. This generates unique, row-specific thermodynamic entropy (S) and work (W) compensations.</li>
+                <li><strong>Visual Validation:</strong> The dual plotting system provides instant visual feedback. Solid lines represent the original dataset trials. The mathematically rerouted safe paths recommended by the IDS are tracked dynamically as dashed lines, highlighting the exact proportional energy and stability shifts applied to each compromised node.</li>
+            </ol>
+        </div>
+    </details>
+    
+    <div class="print-clear" style="margin-top:10px; background:#252525; padding:15px; border-radius:8px; text-align:center; border:1px solid #333;">
+        <button onclick="window.print()" class="btn-print">PRINT PAGE REPORT</button>
+        <div style="font-size:0.75em; color:#aaa; margin-top: 15px;">
+            © Philip B. Alipour. All Rights Reserved. | <strong>QF-LC Equation (53) Validation Station</strong>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    window.addEventListener('beforeprint', function() {
+        const helpSection = document.getElementById('help-section');
+        if(helpSection) helpSection.open = true;
+    });
+
+    let trials = [];
+    let rawImportedRows = [];
+    let parsedHeaders = [];
+    let idxK = -1, idxP = -1, idxV = -1, idxKappa = -1, idxRho = -1;
+    let validatedData = [];
+    let mTotalMu = 0;
+    let currentZoom = 1.0;
+    const nu = 0.888;
+
+    const els = {
+        n: document.getElementById('in-n'), 
+        nNum: document.getElementById('in-n-num'),
+        k: document.getElementById('in-k'), 
+        d: document.getElementById('in-d'),
+        lblK: document.getElementById('lbl-k'), 
+        lblD: document.getElementById('lbl-d'),
+        stab: document.getElementById('m-stab'), ee: document.getElementById('m-ee'),
+        prob: document.getElementById('m-prob'), w: document.getElementById('m-w'),
+        u: document.getElementById('m-u'), mu: document.getElementById('m-mu'), sum: document.getElementById('m-sum'),
+        rho: document.getElementById('m-rho'),
+        mlog: document.getElementById('m-log'), vlog: document.getElementById('v-term'),
+        canvas: document.getElementById('qf-plot'),
+        vCanvas: document.getElementById('qf-plot-validated')
+    };
+
+    // CORE PHYSICS v14.0
+    function calculateQF(N, K, D, importedP = null, origVerdict = "", customRho = null) {
+        const f = 50;
+        const rho = (customRho !== null && !isNaN(customRho)) ? customRho : (2 * N) / (3 * (N - 1));
+        const stability = (K * K) * rho;
+        const num = 4 * Math.pow(N - 1, 2);
+        const den = 9 * (N * (N - 1) / 2) * nu;
+        const pTheoreticalMax = Math.min(1.0, num / den);
+        
+        let p, focus, ee;
+
+        if(importedP !== null) {
+            p = importedP;
+            let impliedFocus = p / (pTheoreticalMax || 1);
+            impliedFocus = Math.min(1.0, Math.max(0.0, impliedFocus)); 
+            focus = impliedFocus;
+            ee = 1 - focus;
+        } else {
+            focus = Math.exp(-Math.pow(D - f, 2) / 600);
+            p = pTheoreticalMax * focus;
+            ee = 1 - focus;
+        }
+
+        let verdict = "INDETERMINATE";
+        if (stability > 2.05) verdict = "LOSS";
+        else {
+            if (origVerdict.includes("Safe Pair") || origVerdict.includes("Strong Pair")) verdict = "STABLE";
+            else if (p >= 0.66) verdict = "STABLE";
+            else verdict = "INDETERMINATE"; 
+        }
+
+        const mu = verdict === "STABLE" ? 1 : 0;
+        const u = mu * (N * K * focus); 
+        const w = mu * N * K * p; 
+
+        return { N, K, D, rho, stability, ee, p, w, u, mu, verdict };
+    }
+
+    // LIVE UPDATER
+    function updateManual() {
+        let currentN = parseInt(els.n.value) || 3;
+        if(currentN < 2) currentN = 2; 
+
+        const res = calculateQF(currentN, parseFloat(els.k.value), parseInt(els.d.value));
+        
+        els.lblK.innerText = res.K; 
+        els.lblD.innerText = res.D;
+        
+        els.rho.innerText = res.rho.toFixed(4);
+        
+        els.stab.innerText = res.stability.toFixed(2);
+        els.stab.style.color = res.stability > 2.05 ? "#f85149" : "#4f4";
+        
+        els.ee.innerText = res.ee.toFixed(3);
+        els.ee.style.color = res.ee > 0.5 ? "#ffa657" : "#4f4";
+        
+        els.prob.innerText = (res.p*100).toFixed(0)+"%";
+        els.prob.style.color = res.p >= 0.66 ? "#00d4ff" : "#f0e68c";
+        
+        els.mu.innerText = res.mu;
+        els.mu.style.color = res.mu ? "#4f4" : "#888";
+        
+        els.w.innerText = res.w.toFixed(2);
+        els.u.innerText = res.u.toFixed(2);
+
+        if (rawImportedRows.length > 0) {
+            validateDatasetLive();
+        }
+    }
+
+    // RECOMMEND OPTIMAL MANUAL TRIAL
+    function recommendManual() {
+        let currentN = parseInt(els.n.value) || 3;
+        if(currentN < 2) currentN = 2;
+        let currentK = parseFloat(els.k.value);
+        let currentD = parseInt(els.d.value);
+        
+        const res = calculateQF(currentN, currentK, currentD);
+        
+        if (res.verdict === "STABLE" && res.p >= 0.67) {
+            els.mlog.innerHTML = `<span style="color:#4f4">> IDS: This is the optimal setting (${(res.p*100).toFixed(0)}%). Continue!</span><br>` + els.mlog.innerHTML;
+            return;
+        }
+        
+        const rho = (2 * currentN) / (3 * (currentN - 1));
+        
+        let recKappa = Math.sqrt(1.95 / rho);
+        recKappa = Math.max(0.1, Math.min(10.0, recKappa)); 
+        
+        const num = 4 * Math.pow(currentN - 1, 2);
+        const den = 9 * (currentN * (currentN - 1) / 2) * nu;
+        const pTheoMax = Math.min(1.0, num / den);
+        
+        let reqFocus = 0.68 / (pTheoMax || 1);
+        reqFocus = Math.min(1.0, Math.max(0.0001, reqFocus));
+        
+        let recD = 50;
+        if (reqFocus < 1.0) {
+            recD = 50 + Math.sqrt(-600 * Math.log(reqFocus));
+        }
+        recD = Math.max(1, Math.min(100, recD)); 
+        
+        els.k.value = recKappa.toFixed(2);
+        els.d.value = Math.round(recD);
+        
+        els.mlog.innerHTML = `<span style="color:#00d4ff">> IDS Optimal combination [K=${recKappa.toFixed(2)}, D=${Math.round(recD)}] applied.</span><br>` + els.mlog.innerHTML;
+        updateManual();
+    }
+
+    function resetManual() {
+        els.n.value = 3;
+        els.nNum.value = 3;
+        els.k.value = 1.41;
+        els.d.value = 50;
+        trials = [];
+        mTotalMu = 0;
+        els.mlog.innerHTML = "> IDS v14.0 Values Reset.<br>";
+        updateManual();
+        drawPlot();
+    }
+
+    els.n.oninput = function() { els.nNum.value = els.n.value; updateManual(); };
+    els.nNum.oninput = function() { els.n.value = els.nNum.value; updateManual(); };
+    els.k.oninput = els.d.oninput = updateManual;
+
+    function runManualTrial() {
+        let currentN = parseInt(els.n.value) || 3;
+        if(currentN < 2) currentN = 2;
+        
+        const res = calculateQF(currentN, parseFloat(els.k.value), parseInt(els.d.value));
+        if(res.mu) mTotalMu++;
+        els.sum.innerText = mTotalMu;
+        
+        let col = res.verdict === "STABLE" ? "#4f4" : (res.verdict === "LOSS" ? "#f85149" : "#f0e68c");
+        els.mlog.innerHTML = `<span style="color:${col}">> [t${trials.length+1}] ${res.verdict} P=${(res.p*100).toFixed(0)}%</span><br>` + els.mlog.innerHTML;
+        
+        trials.push({t: trials.length+1, p: res.p, s: res.ee, w: res.w});
+        drawPlot();
+    }
+
+    // CSV IMPORT
+    document.getElementById('csv-in').addEventListener('change', function(e) {
+        const reader = new FileReader();
+        reader.onload = function(evt) {
+            const rows = evt.target.result.split('\n').map(r=>r.trim()).filter(r=>r);
+            if(rows.length < 2) return;
+            
+            const parseCSVLine = (line) => line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(s => s.replace(/^"|"$/g, '').trim());
+            parsedHeaders = parseCSVLine(rows[0]);
+
+            idxK = parsedHeaders.findIndex(c=>c.includes("Correlation") || c === "C");
+            idxP = parsedHeaders.findIndex(c=>c.includes("QDF_Prob") || c.includes("QDF Probability"));
+            idxV = parsedHeaders.findIndex(c=>c.includes("Verdict"));
+            idxKappa = parsedHeaders.findIndex(c=>c.toLowerCase() === "kappa");
+            idxRho = parsedHeaders.findIndex(c=>c.toLowerCase() === "rho");
+
+            if(idxK === -1 || idxP === -1) {
+                els.vlog.innerHTML = `<span style="color:#f85149">> ERROR: Missing 'Correlation' or 'QDF_Probability'</span>`;
+                return;
+            }
+
+            rawImportedRows = rows.slice(1);
+            updateManual(); 
+        };
+        reader.readAsText(e.target.files[0]);
+    });
+
+    // VALIDATOR LOGIC
+    function validateDatasetLive() {
+        validatedData = [];
+        let globalN = parseInt(els.n.value) || 3;
+        if(globalN < 2) globalN = 2;
+        const globalKappa = parseFloat(els.k.value); 
+        const globalD = parseInt(els.d.value);
+        
+        const parseCSVLine = (line) => line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(s => s.replace(/^"|"$/g, '').trim());
+        
+        let processed = 0;
+        let optimalCount = 0;
+        let indeterminateCount = 0;
+        
+        for(let i=0; i < rawImportedRows.length; i++) {
+            const cols = parseCSVLine(rawImportedRows[i]);
+            if(cols.length <= Math.max(idxK, idxP)) continue;
+
+            const origC = parseFloat(cols[idxK]); 
+            const pVal = parseFloat(cols[idxP]);
+            const origVerdict = idxV > -1 ? cols[idxV] : "";
+            
+            const origKappa = idxKappa > -1 ? parseFloat(cols[idxKappa]) : globalKappa;
+            const origRho = idxRho > -1 ? parseFloat(cols[idxRho]) : null; 
+
+            if(isNaN(origC) || isNaN(pVal)) continue; 
+
+            const res = calculateQF(globalN, origKappa, globalD, pVal, origVerdict, origRho);
+            
+            let recKappa = res.K;
+            let recRho = res.rho; // PHYSICS FIX: Default to original, update if indeterminate
+            let recD = res.D;
+            let recP = res.p;
+            let recS = res.ee;
+            let recW = res.w;
+            let isIndeterminate = false;
+
+            const isAlreadyOptimal = (res.verdict === "STABLE" && res.p >= 0.67);
+
+            if (isAlreadyOptimal) {
+                isIndeterminate = false;
+                optimalCount++;
+                recKappa = origKappa; 
+                recRho = res.rho; 
+                recD = globalD;
+                recP = res.p;
+                recS = res.ee;
+                recW = res.w;
+            } else {
+                isIndeterminate = true;
+                indeterminateCount++;
+                
+                // PHYSICS FIX: 1. Calculate strictly optimal subset Rho for recommendation
+                recRho = (2 * globalN) / (3 * (globalN - 1));
+                
+                // PHYSICS FIX: 2. Recalibrate Kappa dynamically based on the OPTIMAL recRho
+                let targetStability = Math.max(1.75, 1.98 - (Math.abs(origC) * 0.1)); 
+                recKappa = Math.sqrt(targetStability / recRho);
+                
+                let deficit = 0.68 - res.p;
+                const num = 4 * Math.pow(globalN - 1, 2);
+                const den = 9 * (globalN * (globalN - 1) / 2) * nu;
+                const pTheoMax = Math.min(1.0, num / den);
+                
+                let dynamicTargetP = 0.68 + Math.max(0, deficit * 0.5); 
+                dynamicTargetP = Math.min(dynamicTargetP, pTheoMax * 0.995); 
+
+                let reqFocus = dynamicTargetP / (pTheoMax || 1); 
+                reqFocus = Math.min(1.0, Math.max(0.0001, reqFocus)); 
+                
+                if (reqFocus < 1.0) {
+                    recD = 50 + Math.sqrt(-600 * Math.log(reqFocus));
+                } else {
+                    recD = 50; 
+                }
+                
+                // PHYSICS FIX: 3. Pass recRho back into the calculation to guarantee proper state update!
+                let recRes = calculateQF(globalN, recKappa, recD, dynamicTargetP, "STABLE", recRho); 
+                recP = recRes.p;
+                recS = recRes.ee;
+                recW = recRes.w;
+            }
+
+            validatedData.push({ 
+                ...res, origC, origKappa, origRho: res.rho, origVerdict, row: i+1, isIndeterminate, recKappa, recRho, recD, recP, recS, recW
+            });
+            processed++;
+        }
+
+        els.vlog.innerHTML = `> Live Environment synced: Subset N=${globalN}, Baseline K=${globalKappa}<br>`;
+        els.vlog.innerHTML += `> ${processed} Macro-Rows dynamically evaluated.<br>`;
+        
+        if (optimalCount > 0) {
+            els.vlog.innerHTML += `> <span style="color:#4f4">${optimalCount} rows already optimal (Preserved safely).</span><br>`;
+        }
+        if (indeterminateCount > 0) {
+            els.vlog.innerHTML += `> <span style="color:#00d4ff">Unique IDS Reroutes (\u03BA, \u03C1, D) calculated for ${indeterminateCount} compromised rows.</span><br>`;
+        }
+        
+        els.vlog.innerHTML += `> <b style="color:#fff">READY TO EXPORT.</b>`;
+        
+        const btn = document.getElementById('btn-v-export');
+        btn.disabled = false; btn.className = "btn-ready";
+        
+        drawValidatedPlot();
+    }
+
+    function exportValidator() {
+        // ADDED Rec_Rho to the exported CSV
+        let csv = "Row,Micro_N,Orig_Correlation,Orig_Kappa,Orig_Rho,Stability,Entropy,QDF_Prob,Work_Output,Orig_Verdict,IDS_Verdict,Rec_Kappa,Rec_Rho,Rec_LensDist,Rec_Entropy,Rec_Work,Rec_Verdict\n";
+        validatedData.forEach(r => {
+            let rowCsv = `${r.row},${r.N},${r.origC.toFixed(3)},${r.origKappa.toFixed(3)},${r.origRho.toFixed(4)},${r.stability.toFixed(3)},${r.ee.toFixed(4)},${r.p.toFixed(4)},${r.w.toFixed(3)},"${r.origVerdict}",${r.verdict}`;
+            if (r.isIndeterminate) {
+                rowCsv += `,${r.recKappa.toFixed(3)},${r.recRho.toFixed(4)},${r.recD.toFixed(1)},${r.recS.toFixed(4)},${r.recW.toFixed(3)},Stable (Optimal Reroute)`;
+            } else {
+                rowCsv += `,${r.origKappa.toFixed(3)},${r.origRho.toFixed(4)},${r.D.toFixed(1)},${r.ee.toFixed(4)},${r.w.toFixed(3)},Original (Safe)`;
+            }
+            csv += rowCsv + "\n";
+        });
+        const b = new Blob([csv], {type:'text/csv'});
+        const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = "Validated_QDF_v14.csv"; a.click();
+    }
+
+    function exportManual() {
+        let csv = "Trial,Prob,Entropy,Work\n";
+        trials.forEach(r => csv += `${r.t},${r.p},${r.s},${r.w}\n`);
+        const b = new Blob([csv], {type:'text/csv'});
+        const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = "Manual_Log.csv"; a.click();
+    }
+
+    function zoomPlot(factor) {
+        if (!validatedData.length) return;
+        currentZoom *= factor;
+        currentZoom = Math.max(1.0, Math.min(currentZoom, 10.0)); 
+        els.vCanvas.width = Math.max(900, 900 * currentZoom);
+        drawValidatedPlot();
+    }
+
+    function drawPlot() {
+        const ctx = els.canvas.getContext('2d');
+        const W = els.canvas.width; const H = els.canvas.height; const PAD = 30;
+        ctx.clearRect(0,0,W,H);
+        
+        ctx.strokeStyle="#333"; ctx.beginPath(); 
+        ctx.moveTo(PAD, 10); ctx.lineTo(PAD, H-PAD); ctx.lineTo(W, H-PAD); ctx.stroke();
+        
+        ctx.fillStyle="#888"; ctx.font="10px Consolas";
+        ctx.fillText("1.0", 5, 20); ctx.fillText("0.5", 5, (H-PAD)/2); ctx.fillText("0.0", 5, H-PAD);
+        ctx.fillText("Trials (t) ->", W-80, H-2);
+
+        if(!trials.length) return;
+        const step = (W-PAD) / Math.max(20, trials.length);
+
+        let tickStep = Math.max(1, Math.floor(trials.length / 10));
+        for(let i=0; i<trials.length; i+=tickStep) {
+            ctx.fillText(i+1, PAD + (i*step) - 3, H - PAD + 15);
+        }
+        if((trials.length - 1) % tickStep !== 0) {
+            ctx.fillText(trials.length, PAD + ((trials.length - 1)*step) - 3, H - PAD + 15);
+        }
+
+        function trace(prop, col, scale=1) {
+            ctx.strokeStyle=col; ctx.lineWidth=2; ctx.beginPath();
+            trials.forEach((t,i) => {
+                const val = Math.min(1.0, t[prop]*scale);
+                const y = (H-PAD) - (val * (H-PAD-10));
+                const x = PAD + (i*step);
+                if(i==0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+            });
+            ctx.stroke();
+        }
+        trace('p', "#00d4ff"); trace('s', "#ffa657"); trace('w', "#d500f9", 0.5);
+    }
+
+    function renderPlotData(ctx, W, H, scale, isExport = false) {
+        const PAD = 30 * scale;
+        ctx.clearRect(0, 0, W, H);
+        
+        if (isExport) {
+            ctx.fillStyle = "#ffffff";
+            ctx.fillRect(0, 0, W, H);
+        }
+        
+        const axisColor = isExport ? "#333333" : "#333333"; 
+        const textColor = isExport ? "#000000" : "#888888";
+        
+        ctx.strokeStyle = axisColor; ctx.lineWidth = 1 * scale; ctx.beginPath(); 
+        ctx.moveTo(PAD, 10*scale); ctx.lineTo(PAD, H-PAD); ctx.lineTo(W, H-PAD); ctx.stroke();
+        
+        ctx.fillStyle = textColor; ctx.font = `${10*scale}px Consolas`;
+        ctx.fillText("1.0", 5*scale, 20*scale); 
+        ctx.fillText("0.5", 5*scale, (H-PAD)/2); 
+        ctx.fillText("0.0", 5*scale, H-PAD);
+        ctx.fillText("Rows (n) ->", W-(80*scale), H-(2*scale));
+
+        if(!validatedData.length) return;
+        const step = (W-PAD) / Math.max(20, validatedData.length);
+
+        let tickStep = Math.max(1, Math.floor(validatedData.length / 10));
+        for(let i=0; i<validatedData.length; i+=tickStep) {
+            ctx.fillText(i+1, PAD + (i*step) - (3*scale), H - PAD + (15*scale));
+        }
+        if((validatedData.length - 1) % tickStep !== 0) {
+            ctx.fillText(validatedData.length, PAD + ((validatedData.length - 1)*step) - (3*scale), H - PAD + (15*scale));
+        }
+
+        function traceData(prop, col, lineScale=1, dashed=false) {
+            ctx.strokeStyle = col; ctx.lineWidth = 2 * scale; ctx.beginPath();
+            if (dashed) ctx.setLineDash([5*scale, 5*scale]); else ctx.setLineDash([]);
+            
+            validatedData.forEach((r,i) => {
+                const val = Math.min(1.0, r[prop]*lineScale);
+                const y = (H-PAD) - (val * (H-PAD - 20*scale)); 
+                const x = PAD + (i*step);
+                if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+            });
+            ctx.stroke();
+            ctx.setLineDash([]); 
+        }
+        
+        // Solid Originals
+        traceData('p', "#00d4ff");
+        traceData('ee', "#ffa657");
+        traceData('w', "#d500f9", 0.5);
+        traceData('origKappa', "#8b949e", 0.1); 
+        traceData('D', "#4444ff", 0.01); 
+        
+        // Dashed Recommendations
+        traceData('recP', "#39ff14", 1, true); 
+        traceData('recS', "#ff66b2", 1, true); 
+        traceData('recW', "#f1c40f", 0.5, true); 
+        traceData('recKappa', "#ffffff", 0.1, true); 
+        traceData('recD', "#ff5555", 0.01, true); 
+        
+        if (isExport) {
+            const legW = 125 * scale;
+            const legH = 135 * scale;
+            const legX = W - legW - (20*scale);
+            const legY = 20 * scale;
+            
+            ctx.fillStyle = "rgba(255, 255, 255, 0.95)";
+            ctx.fillRect(legX, legY, legW, legH);
+            ctx.strokeStyle = "#ccc"; ctx.lineWidth = 1 * scale;
+            ctx.strokeRect(legX, legY, legW, legH);
+            
+            ctx.font = `bold ${10*scale}px Consolas`;
+            const legendItems = [
+                {text: "● Orig P", color: "#00d4ff"},
+                {text: "● Orig S", color: "#ffa657"},
+                {text: "● Orig W", color: "#d500f9"},
+                {text: "● Orig \u03BA (x0.1)", color: "#8b949e"},
+                {text: "● Orig D (x0.01)", color: "#4444ff"},
+                {text: "-- Rec P", color: "#39ff14"},
+                {text: "-- Rec S", color: "#ff66b2"},
+                {text: "-- Rec W", color: "#f1c40f"},
+                {text: "-- Rec \u03BA (x0.1)", color: "#999999"},
+                {text: "-- Rec D (x0.01)", color: "#ff5555"}
+            ];
+            
+            legendItems.forEach((item, idx) => {
+                ctx.fillStyle = item.color;
+                ctx.fillText(item.text, legX + (10*scale), legY + (15*scale) + (idx * 12 * scale));
+            });
+        }
+    }
+
+    function drawValidatedPlot() {
+        const ctx = els.vCanvas.getContext('2d');
+        renderPlotData(ctx, els.vCanvas.width, els.vCanvas.height, 1, false);
+    }
+
+    function exportHighResPlot() {
+        if(!validatedData.length) return alert("Please generate or import dataset validation first.");
+        
+        const scale = 3; 
+        const tempCanvas = document.createElement('canvas');
+        tempCanvas.width = Math.max(900, els.vCanvas.width) * scale;
+        tempCanvas.height = 160 * scale; 
+        
+        const ctx = tempCanvas.getContext('2d');
+        renderPlotData(ctx, tempCanvas.width, tempCanvas.height, scale, true);
+        
+        const a = document.createElement('a');
+        a.download = "Validated_Dataset_Plot_HighRes.png";
+        a.href = tempCanvas.toDataURL("image/png");
+        a.click();
+    }
+
+    updateManual();
+</script>
+
+</body>
+</html>

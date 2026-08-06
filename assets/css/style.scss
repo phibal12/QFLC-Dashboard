@@ -1,0 +1,349 @@
+---
+---
+/* @import "{{ site.theme }}";
+@import url("https://cloudflare.com"); */
+@import "jekyll-theme-slate"; 
+
+/* 1. GLOBAL RESET & DARK THEME */
+html, body {
+  background: #0d1117 !important;
+  color: #c9d1d9 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow-x: hidden !important; /* Forces removal of the right-side gap */
+  width: 100% !important;
+  scroll-behavior: smooth !important;
+
+}
+
+
+/* Shrinks the arrow block to absolute zero dimensions 
+  details summary::-webkit-details-marker {
+    display: none !important;
+    font-size: 0px !important;
+    width: 0px !important;
+    height: 0px !important;
+  } */
+  /* details summary {
+    display: block !important; */ /* Overrides the arrow layout rule */ 
+    /* font-size: 0px !important;
+    width: 0px !important;
+    height: 0px !important;
+  } */
+
+/* Select the images in your dashboard */
+ img {
+  /* Set the initial frame color to teal (or transparent if you only want it on hover) */
+  border: 2px solid teal !important; 
+  
+  /* Smooth transition for the glow and border color */
+  transition: box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out;
+  
+  /* Initial state: no shadow or a very subtle one */
+  box-shadow: 0 0 0px transparent;
+  border-radius: 8px; /* Optional: adds nice rounded corners */
+  max-width: 100% !important; /* Prevents image from being wider than the text */
+  height: auto !important;     /* Keeps the original shape (ratio) */
+  display: block !important;   /* Removes the "magic gap" below images */
+  margin: 20px auto !important;  /*Centers images with some breathing room */
+  border-radius: 8px;           /* Optional: gives images a clean, rounded look */
+}
+
+/* The glow effect triggered on hover */
+img:hover {
+  /* Syntax: horizontal-offset vertical-offset blur-radius spread-radius color */
+  box-shadow: 0 0 20px 5px rgba(0, 255, 255, 0.7); 
+  
+  /* Optional: slightly enlarge the image to enhance the 'pop' */
+  transform: scale(1.02);
+}
+
+
+body {
+  padding-top: 80px !important;    /* Space for Top Nav */
+  padding-bottom: 80px !important; /* Space for Bottom Nav */
+}
+
+
+/* THE PERMANENT CENTERING & LEFT-SPACE FIX */
+#header_wrap, #main_content_wrap, #footer_wrap {
+  width: 90% !important;
+  display: flex !important;
+  justify-content: center !important;
+  float: none !important;
+  background: #0d1117 !important;
+}
+
+/*
+.inner, #main_content, section#main_content {
+  float: none !important;
+  margin: 0 auto !important;
+  width: 95% !important;
+  max-width: 1200px !important;
+  padding: 40px 40px !important; /* Forces 40px of space on the left and right */
+  /* display: block !important;
+}*/
+
+
+aside#sidebar {
+  display: none !important;    /* Deletes the ghost column on the right */
+}
+
+/* 3. NAVIGATION BARS (Top & Bottom) */
+.top-nav, .bottom-nav {
+  position: fixed !important;
+  left: 0;
+  width: 100% !important;
+  background: #161b22 !important;
+  text-align: center;
+  z-index: 9999 !important;
+  box-shadow: 0 0 15px rgba(0,0,0,0.5);
+}
+
+.top-nav { top: 0; border-bottom: 2px solid teal; padding: 15px 0; }
+.bottom-nav { bottom: 0; border-top: 2px solid teal; padding: 12px 0; }
+
+.top-nav a, .bottom-nav a {
+  margin: 0 15px;
+  font-weight: bold;
+  color: #c9d1d9 !important;
+  text-decoration: none !important;
+  transition: 0.3s;
+}
+
+.top-nav a:hover, .bottom-nav a:hover {
+  color: #00ffff !important;
+  text-shadow: 0 0 8px rgba(0, 255, 255, 0.8);
+}
+
+/* 4. TITLES & LINKS */
+.banner-widget, h1, h2, h3, h4, h5, h6 {
+  color: #01F9C6 !important; /* Bright Teal */
+  opacity: 1 !important;
+  text-shadow: 0 0 10px rgba(1, 249, 198, 0.2);
+  margin-top: 1.5em !important;
+}
+
+h1 { color: #00ffff !important; text-align: center !important; }
+
+a { color: teal !important; transition: 0.3s; }
+a:hover { color: #00ffff !important; text-shadow: 0 0 8px rgba(0, 255, 255, 0.8); }
+
+
+/*5. --- STYLE THE GITHUB BUTTON --- */
+/* --- STYLE THE FORK ME BANNER WITH OCTOCAT --- */
+#forkme_banner {
+  background: teal !important;
+  color: #fff !important;
+  font-weight: bold !important;
+  padding: 10px 20px 10px 50px !important;
+  border-radius: 5px;
+  position: absolute;
+  top: 85px;
+  right: 5%;
+  z-index: 1000;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
+  /* Smoothly animate all changes */
+  transition: all 0.3s ease-in-out; 
+  text-decoration: none;
+}
+
+#forkme_banner::before {
+    content: "\2318"; /* Replace with any code above */
+  font-family: "Segoe UI Symbol", "Apple Color Emoji", "Noto Sans", sans-serif;
+  font-weight: 400; /* Mandatory for Brand icons */
+  position: absolute;
+  left: 15px;
+  font-size: 22px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+
+#forkme_banner:hover {
+  background: #00ffff !important;
+  color: #000 !important;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+}
+
+
+/* HIDE THEME TITLES BUT KEEP GITHUB BUTTON */
+#header_wrap h1, #header_wrap h2 {
+  display: none !important; /* Hides the default Slate titles */
+}
+
+/* Ensure the wrapper is still visible for the GitHub button to sit in */
+#header_wrap {
+  background: transparent !important;
+  border: none !important;
+  height: 0; /* Collapses the empty space left by hidden titles */
+}
+
+/* STYLE THE LIVE BADGE GLOW (Targets the Shields.io image) */
+/* Target the badge image specifically */
+h1 img[alt="Live Status"] {
+  border-radius: 4px;
+  filter: drop-shadow(0 0 5px #00ffff);
+  animation: pulse-glow 2s infinite;
+}
+
+/* Fallback: If you use the Emoji dot instead */
+.live-dot {
+  font-size: 0.8em;
+  animation: blink 1.5s infinite;
+  text-shadow: 0 0 10px #00ffff;
+}
+
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0.3; }
+  100% { opacity: 1; }
+}
+
+
+/* 3. ENSURE GITHUB BANNER IS POSITIONED CORRECTLY */
+#forkme_banner {
+  top: 40px !important; /* Adjusted to sit just below your Nav Menu */
+  display: block !important; /* Makes sure it stays visible */
+}
+
+.large-poster {
+  width: 150% !important;
+  max-width: none !important; /* This breaks the theme's 100% limit */
+  height: auto !important;
+  display: block;
+}
+
+
+/* Style the line number column */
+.highlight .lineno {
+  color: #586069 !important; /* Dim gray for numbers */
+  padding-right: 15px !important;
+  border-right: 1px solid teal !important; /* Teal divider */
+  margin-right: 10px !important;
+  user-select: none !important; /* Prevents selecting numbers when copying code */
+}
+
+/* Ensure the code block doesn't shift weirdly */
+.highlight pre {
+  display: flex !important;
+}
+
+.btn-return:hover { background-color: #30363d; border-color: #8b949e; }
+.btn-return { display: inline-block; padding: 12px 24px; border: 1px solid #444c56; border-radius: 6px; background-color: #21262d; color: #ffffff !important; font-weight: bold; text-transform: uppercase; font-size: 0.85em; letter-spacing: 0.05em; transition: background 0.2s; }
+
+/* 8. CUSTOMIZE CODE COMMENT COLORS */
+
+/* Target all comment types (General, Multiline, Single line) */
+.highlight .c, 
+.highlight .cm, 
+.highlight .c1 {
+  color: #cc7a00 !important; /* A deep, dark orange */
+  font-style: italic !important; /* Optional: makes comments stand out */
+}
+
+/* Optional: Brighter orange on hover to make it interactive */
+.highlight .c:hover, 
+.highlight .cm:hover, 
+.highlight .c1:hover {
+  color: #ff9900 !important; /* Brighter orange */
+}
+
+/* 9. FIX READABILITY FOR IMPORTS AND OPERATORS */
+
+/* 'import', 'def', 'class', 'from' (Keywords) */
+.highlight .k, .highlight .kn, .highlight .kd {
+  color: #ff7b72 !important; /* Soft red/pink for high visibility */
+  font-weight: bold !important;
+}
+
+/* '=' , '+', '-', '*', '/' (Operators/Symbols) */
+.highlight .o, .highlight .ow {
+  color: #79c0ff !important; /* Bright light blue */
+}
+
+
+/* 'print', 'len', 'range' (Built-in functions) */
+.highlight .nb {
+  color: #ffa657 !important; /* Light orange */
+}
+
+/* "strings" and 'strings' */
+.highlight .s, .highlight .s1, .highlight .s2 {
+  color: #a5d6ff !important; /* Very light blue/cyan */
+}
+
+
+
+/* 10. PRINT OVERRIDE (Force Arial and Full Width) */
+@media print {
+  *, html, body, h1, h2, h3, h4, h5, h6, p, a, li, span, div {
+    font-family: Arial, sans-serif !important;
+    color: black !important;
+    background: transparent !important;
+  }
+  .inner, #main_content { width: 100% !important; margin: 0 !important; }
+  .top-nav, .bottom-nav { display: none !important; }
+  .page-break { display: block; page-break-before: always; }
+
+     /* 1. Force the tooltip box to remain permanently visible */
+    .quantum-tooltip .tooltip-box {
+      visibility: visible !important;
+      opacity: 1 !important;
+      position: relative !important; /* Flows inline with text instead of floating */
+      bottom: auto !important;
+      left: auto !important;
+      transform: none !important;
+      display: block !important;
+      width: 100% !important;
+      margin-top: 10px !important;
+      margin-bottom: 10px !important;
+      
+      /* 2. Ink-saver styling for paper */
+      background-color: #f6f8fa !important; /* Light grey instead of dark dark */
+      color: #24292f !important; /* Dark text */
+      border: 1px solid #d0d7de !important;
+      box-shadow: none !important;
+    }
+
+    /* 3. Darken colors so they are readable on white paper */
+    .orange-text { color: #b15c00 !important; }
+    .cyan-text { color: #006677 !important; }
+    
+    /* 4. Remove the dashed hover indicator on paper */
+    .quantum-tooltip {
+      border-bottom: none !important;
+      color: inherit !important;
+    }
+  
+} 
+
+/* Default Slate styles are already dark */
+
+/* Bright Mode Overrides */
+body.light-mode {
+  background: white !important;
+  color: #333 !important;
+}
+
+body.light-mode .wrapper {
+  background: white !important;
+}
+
+/* Ensure headers and links are readable on white */
+body.light-mode h1, 
+body.light-mode h2,  
+body.light-mode h3, 
+body.light-mode p {
+  color: black !important;
+}
+
+body.light-mode a {
+  color: #007bff !important; /* Standard blue for links */
+}
+
+/* Keep your teal frames but perhaps adjust them for white background */
+body.light-mode img {
+  border: 1px solid #ccc !important;
+}
+

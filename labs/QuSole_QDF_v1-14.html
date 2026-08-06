@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuSoLe DB: Quantum Social Lensing Database</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Dark Theme */
+        :root {
+            --bg-color: #0d1117;
+            --panel-bg: #161b22;
+            --border-color: #30363d;
+            --text-main: #c9d1d9;
+            --text-muted: #8b949e;
+            --accent: #58a6ff;
+            --btn-bg: #238636;
+            --btn-hover: #2ea043;
+            --qai-bg: #a277ff;
+            --qai-hover: #8957e5;
+            --danger: #f85149;
+            --maroon:  #B22222;
+            --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+        }
+
+        body {
+            font-family: var(--font-stack);
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 30px;
+        }
+
+        .dashboard-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        /* Hidden Print Container */
+        #printReportContainer {
+            display: none;
+            background-color: #fff;
+            color: #000;
+            padding: 20px;
+        }
+
+        .main-title {
+            text-align: center;
+            color: var(--accent);
+            font-size: 2.2em;
+            margin-top: 0;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px rgba(88, 166, 255, 0.2);
+        }
+
+        .panel {
+            background-color: var(--panel-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .qai-panel {
+            border-color: var(--qai-bg);
+            box-shadow: 0 0 15px rgba(162, 119, 255, 0.1);
+            display: none; 
+        }
+
+        h2, h3 {
+            margin-top: 0;
+            color: #fff;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        label {
+            font-weight: 600;
+            font-size: 13px;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        select, input[type="number"], input[type="text"] {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-family: var(--font-mono);
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: var(--btn-bg);
+            color: #fff;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-top: 22px;
+        }
+
+        button:hover { background-color: var(--btn-hover); }
+        button.secondary { background-color: #21262d; border: 1px solid var(--border-color); }
+        button.secondary:hover { background-color: #30363d; }
+        
+        button.qai-btn { background-color: var(--qai-bg); color: #fff; }
+        button.qai-btn:hover { background-color: var(--qai-hover); box-shadow: 0 0 10px rgba(162,119,255,0.4); }
+
+        button.del-btn { background-color: var(--danger); padding: 4px 8px; margin-top: 0; font-size: 11px; }
+        button.del-btn:hover { background-color: #ff6b64; }
+
+        button.print-btn { background-color: var(--accent); color: #000; }
+        button.print-btn:hover { background-color: #79b8ff; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px 10px;
+            border-bottom: 1px solid var(--border-color);
+            white-space: nowrap;
+        }
+
+        th { color: var(--text-muted); font-weight: 600; }
+
+        input.table-input { width: 80px; padding: 4px; font-size: 13px; margin: 0; }
+
+        .chart-container { position: relative; height: 400px; width: 100%; }
+
+        .export-bar { display: flex; justify-content: flex-end; gap: 10px; margin-top: 15px; }
+
+        .legend-box {
+            background-color: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 15px;
+            font-size: 12px;
+            margin-bottom: 20px;
+            line-height: 1.5;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 15px;
+        }
+
+        .legend-box strong { color: #fff; font-size: 13px; display: block; margin-bottom: 8px; border-bottom: 1px solid #30363d; padding-bottom: 4px;}
+        
+        .footer {
+            text-align: center; margin-top: 30px; padding-top: 20px;
+            border-top: 1px solid var(--border-color); font-size: 12px; color: var(--text-muted);
+        }
+
+        .badge-ai {
+            font-size: 11px; padding: 4px 8px; border-radius: 12px;
+            background: rgba(88, 166, 255, 0.2); color: var(--accent); border: 1px solid var(--accent);
+            display: none;
+        }
+
+        .live-feedback {
+            font-size: 11px;
+            margin-top: 6px;
+            font-family: var(--font-mono);
+            font-weight: bold;
+        }
+
+        .qdf-col { transition: all 0.2s; }
+        .qdf-col.hidden { display: none !important; }
+
+        /* --- PRINT STYLESHEET (Generates Comprehensive Report) --- */
+        @media print {
+            body {
+                background-color: #ffffff !important;
+                color: #000000 !important;
+                padding: 0 !important;
+            }
+            
+            /* Hide the entire interactive dashboard */
+            .dashboard-container {
+                display: none !important;
+            }
+            
+            /* Display the constructed hidden report */
+            #printReportContainer {
+                display: block !important;
+            }
+
+            /* Print Report specific table styling */
+            #printReportContainer table {
+                page-break-inside: auto;
+                width: 100%;
+                border-collapse: collapse;
+            }
+            #printReportContainer tr {
+                page-break-inside: avoid;
+                page-break-after: auto;
+            }
+            #printReportContainer th {
+                color: #000 !important;
+                border-bottom: 2px solid #000 !important;
+                padding: 6px;
+            }
+            #printReportContainer td {
+                border-bottom: 1px solid #ccc !important;
+                padding: 6px;
+            }
+            #printReportContainer h3 {
+                color: #000 !important;
+                border-bottom: 1px solid #000 !important;
+                margin-top: 25px;
+                padding-bottom: 5px;
+            }
+        }
+
+
+/* Apply inversion to the entire page */
+html.inverted {
+  filter: invert(1);
+}
+
+/* Optional: Prevent images and videos from looking "deep-fried" */
+/* This re-inverts them so they appear normal against the inverted background */
+html.inverted img, 
+html.inverted video {
+  filter: invert(1);
+}
+
+
+
+    </style>
+</head>
+<body>
+
+<!-- Hidden Container explicitly for building the Print Report -->
+<div id="printReportContainer"></div>
+
+<!-- Main Interactive Dashboard -->
+<div class="dashboard-container">
+    
+    <h1 class="main-title">QuSoLe DB: Quantum Social Lensing Database</h1>
+
+    <!-- Standard Panel -->
+    <div class="panel" id="standardPanel">
+        <h2>QDF Dataset Generator & Baseline Configuration</h2>
+        
+        <div class="controls" style="align-items: center;">
+            <div>
+                <label for="categorySelect">Research Category:</label>
+                <select id="categorySelect">
+                    <option value="cancer">Cancer Cell State Transition Matrix</option>
+                    <option value="mdm">Social Media MDM Analysis</option>
+                    <option value="nodes" selected>Node Network Validation (Bot/Sybil)</option>
+                </select>
+            </div>
+            <div>
+                <label for="numSamples">Samples to Generate:</label>
+                <input type="number" id="numSamples" value="150" min="10" max="5000">
+            </div>
+            <div>
+                <label for="noiseLevel">Noise Level (Variance):</label>
+                <input type="number" id="noiseLevel" value="0.08" step="0.01" min="0" max="0.4">
+            </div>
+            <button id="generateBtn">Generate Single Dataset</button>
+            <button id="toggleQaiBtn" class="qai-btn">Quantum / QDF AI Mode</button>
+            <button id="colorToggle">Invert Colors</button>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 10px;">
+            <p style="margin:0; font-size: 12px; color: var(--text-muted);">Memory: Changes to baseline rows are automatically saved locally.</p>
+            <div>
+                <button id="restoreBtn" class="secondary" style="margin:0; padding: 6px 12px; font-size: 12px;">Restore Defaults</button>
+                <button id="addRowBtn" class="secondary" style="margin:0; padding: 6px 12px; font-size: 12px;">+ Add Custom Row</button>
+            </div>
+        </div>
+        
+        <table id="baselineTable">
+            <!-- Dynamically populated -->
+        </table>
+    </div>
+
+    <!-- QDF AI Sub-Form Panel -->
+    <div class="panel qai-panel" id="qaiPanel">
+        <h2 style="color: var(--qai-bg);">Quantum AI (QDF) Dataset Combiner & Validator</h2>
+        <p style="font-size: 12px; color: var(--text-muted); margin-top: -5px; margin-bottom: 15px;">
+            Select two distinct dataset runs from the history below to entangle. Entanglement utilizes Tensor Product (&otimes;) for joint state space and XOR (&oplus;) to isolate the Eve factor noise.
+        </p>
+        
+        <div class="controls">
+            <div style="flex: 1;">
+                <label>Dataset Alpha (History)</label>
+                <select id="dataAlpha">
+                    <option value="" disabled selected>Generate a dataset first...</option>
+                </select>
+            </div>
+            <div style="flex: 1;">
+                <label>Dataset Beta (History)</label>
+                <select id="dataBeta">
+                    <option value="" disabled selected>Generate a dataset first...</option>
+                </select>
+            </div>
+            
+            <div style="border-left: 1px solid #30363d; padding-left: 15px; margin-left: 5px;">
+                <label style="color: var(--qai-bg);">Cheat Sheet: Density (&rho;)</label>
+                <input type="number" id="qaiRho" value="0.005" step="0.001" min="0.0001">
+            </div>
+            <div>
+                <label style="color: var(--qai-bg);">Cheat Sheet: Spatial (&kappa;)</label>
+                <input type="number" id="qaiKappa" value="1.40" step="0.01" min="0.1">
+            </div>
+            
+            <div style="width: 100%; display: flex; justify-content: flex-end; margin-top: -15px;">
+                <div id="liveFeedback" class="live-feedback" style="color: #2ecc71;">Spatial Density: 0.0098 (Valid Boundary)</div>
+            </div>
+
+            <div style="border-left: 1px solid #30363d; padding-left: 15px; margin-left: 5px; width: 100%; display: flex; gap: 15px; align-items: flex-end;">
+                <div style="flex: 1;">
+                    <label>AI Validator Engine Comparison</label>
+                    <select id="aiEngineSelect">
+                        <option value="Claude (Opus)">Claude (Opus)</option>
+                        <option value="Neuro-Q">Neuro-Q</option>
+                        <option value="L-Tensor">L-Tensor</option>
+                        <option value="Omni-Bench">Omni-Bench</option>
+                        <option value="OpenAI (GPT-4o)">OpenAI (GPT-4o)</option>
+                        <option value="Gemini (Pro)">Gemini (Pro)</option>
+                    </select>
+                </div>
+                <button id="runQaiBtn" class="qai-btn" style="margin-top: 0;">Run QDF AI Combiner</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Charts and Tables -->
+    <div class="panel" style="display: grid; grid-template-columns: 1fr 1.8fr; gap: 20px;">
+        <div>
+            <h3>
+                <span>QDF Prob vs. Correlation</span>
+                <span id="aiBadge" class="badge-ai">Validated</span>
+            </h3>
+            <div class="chart-container">
+                <canvas id="scatterChart"></canvas>
+            </div>
+             <div class="legend-box" style="margin-top: 20px;">
+                <div>
+                    <strong>Color Verdicts</strong>
+                    <span style="color: #e74c3c;">&bull; Strong (Red):*</span> Classical threshold met.<br>
+                    <span style="color: #2ecc71;">&bull; Safe (Green):*</span> Low correlation risk.<br>
+                    <span style="color: #a277ff;">&bull; QAI Entangled (Purple):*</span> Verified P &ge; 2/3.<br>
+                    <span style="color: #f1c40f;">&bull; Indeterminate (Yellow):*</span> Target projected, but Bell state remains hidden.<br>
+                    <span style="color: var(--maroon);">&bull; Maroon b(&psi;):*</span> Pair projects 11/00, but insufficient C makes verdict Indeterminate.
+                </div>
+                <div>
+                    <strong>4-Qubit Encoding & Decoding</strong>
+                    <span style="color: #58a6ff;">&bull; |A&rang;&otimes;|B&rang;&oplus;Eve:</span> Joint state XOR'd with Eve noise to reveal Bell State.<br>
+                    <span style="color: #58a6ff;">&bull; Encoded State (|T&rang;|A&rang;|B&rang;|E&rang;):</span> 4-qubit sequence isolating Target & Eve.<br>
+                    <span style="color: #58a6ff;">&bull; Decoded Message (<span style="color:#58a6ff;">b(T)</span> <span style="text-decoration:underline; color:#c9d1d9;">b(&psi;)</span> <span style="color:#58a6ff;">b(&phi;)</span>):</span> T/E are blue. Pair bits are underlined.<br>
+                    <span style="color: #58a6ff;">&bull; Seq Decimal:</span> Converts 4-bit binary to base-10 (e.g., 1110<sub>2</sub> = 14).<br>
+                    <span style="color: #58a6ff;">&bull; Bell Limit (Max=2):</span> State collapses when C &times; 2 approaches 2.0. <br>
+<hr>
+* Inverted {red &rarr; teal, green &rarr; pink, purple &rarr; dark green, maroon &rarr; cyan, yellow &rarr; blue} 
+                </div>
+            </div>
+        </div>
+        <div style="overflow-x: auto; overflow-y: visible;">
+            <div class="table-scroll-container" style="overflow-y: auto; max-height: 620px;">
+                <h3 id="tableHeader" style="display: flex; justify-content: space-between;">
+                    <span>Generated Sample Data (Preview)</span>
+                    <button id="toggleColsBtn" class="secondary" style="margin: 0; padding: 4px 10px; font-size: 11px;">Toggle QDF I/O Mechanics</button>
+                </h3>
+                <table id="resultsTable" style="min-width: 1100px;">
+                    <thead>
+                        <tr id="tableHeadRow">
+                            <!-- Populated Dynamically -->
+                        </tr>
+                    </thead>
+                    <tbody id="resultsBody"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="export-bar">
+        <button id="exportCsvBtn" class="secondary">Export to CSV</button>
+        <button id="exportJsonBtn" class="secondary">Export to JSON</button>
+        <button id="printBtn" class="print-btn">Print Report</button>
+    </div>
+
+    <div class="footer">
+        &copy; 2026 Philip Baback Alipour. Quantum Double-Field (QDF) Model & QF-LCA Framework. All rights reserved.
+    </div>
+</div>
+
+<script>
+const btn = document.getElementById('colorToggle');
+
+btn.addEventListener('click', () => {
+  // Toggles the 'inverted' class on the <html> tag
+  document.documentElement.classList.toggle('inverted');
+});
+</script>
+
+
+<script>
+    // 1. Persistent Memory Implementation
+    const defaultBaselines = {
+        cancer: [
+            { id: 'C-101', class: 'MCF7', scale: 1000, initProb: 0.88, entanglement: 0.95 },
+            { id: 'C-102', class: 'T47D', scale: 1000, initProb: 0.12, entanglement: 0.05 },
+            { id: 'C-103', class: 'HeLa', scale: 5000, initProb: 0.75, entanglement: 0.89 },
+            { id: 'C-104', class: 'SiHa', scale: 5000, initProb: 0.62, entanglement: 0.70 }
+        ],
+        mdm: [
+            { id: 'E-001', class: 'Bot-Network', scale: 5000, initProb: 0.85, entanglement: 0.92 },
+            { id: 'E-002', class: 'Verified User', scale: 12000, initProb: 0.15, entanglement: 0.15 },
+            { id: 'E-003', class: 'Hybrid Source', scale: 8500, initProb: 0.50, entanglement: 0.88 }
+        ],
+        nodes: [
+            { id: 'N-001', class: 'Bot Node', scale: 10000, initProb: 0.88, entanglement: 0.94 },
+            { id: 'N-002', class: 'Sybil Node', scale: 5000, initProb: 0.55, entanglement: 0.65 },
+            { id: 'N-003', class: 'Genuine Node', scale: 1000, initProb: 0.12, entanglement: 0.08 }
+        ]
+    };
+
+    let baselines = JSON.parse(localStorage.getItem('qdf_baselines_memory'));
+    if (!baselines) {
+        baselines = JSON.parse(JSON.stringify(defaultBaselines));
+    }
+
+    function saveBaselines() {
+        localStorage.setItem('qdf_baselines_memory', JSON.stringify(baselines));
+    }
+
+    let datasetHistory = []; 
+    let currentData = [];
+    let chartInstance = null;
+    let showQdfCols = true; 
+
+    const categorySelect = document.getElementById('categorySelect');
+    const baselineTable = document.getElementById('baselineTable');
+    const toggleQaiBtn = document.getElementById('toggleQaiBtn');
+    const qaiPanel = document.getElementById('qaiPanel');
+    const aiBadge = document.getElementById('aiBadge');
+    const tableHeader = document.getElementById('tableHeader');
+    const tableHeadRow = document.getElementById('tableHeadRow');
+    const toggleColsBtn = document.getElementById('toggleColsBtn');
+    const dataAlpha = document.getElementById('dataAlpha');
+    const dataBeta = document.getElementById('dataBeta');
+    
+    const inputRho = document.getElementById('qaiRho');
+    const inputKappa = document.getElementById('qaiKappa');
+    const liveFeedback = document.getElementById('liveFeedback');
+
+    function checkLiveBoundary() {
+        const r = parseFloat(inputRho.value) || 0;
+        const k = parseFloat(inputKappa.value) || 0;
+        const spatialDensity = (k * k) * r;
+        if (spatialDensity <= 2.0) {
+            liveFeedback.style.color = "#2ecc71";
+            liveFeedback.innerText = `Spatial Density Limit: ${spatialDensity.toFixed(4)} (Valid Boundary \u2264 2.0)`;
+        } else {
+            liveFeedback.style.color = "#e74c3c";
+            liveFeedback.innerText = `Spatial Density Limit: ${spatialDensity.toFixed(4)} (Boundary Violated > 2.0)`;
+        }
+    }
+
+    inputRho.addEventListener('input', checkLiveBoundary);
+    inputKappa.addEventListener('input', checkLiveBoundary);
+
+    function renderBaselineTable() {
+        const cat = categorySelect.value;
+        const data = baselines[cat];
+        let html = `<thead><tr><th>ID</th><th>Source / Line</th><th>Scale (N)</th><th>Initial Prob (P)</th><th>Entanglement (L)</th><th>Action</th></tr></thead><tbody>`;
+        data.forEach((row, index) => {
+            html += `<tr>
+                <td><input type="text" class="table-input" value="${row.id}" onchange="updateBase('${cat}', ${index}, 'id', this.value)"></td>
+                <td><input type="text" style="width: 120px;" class="table-input" value="${row.class}" onchange="updateBase('${cat}', ${index}, 'class', this.value)"></td>
+                <td><input type="number" class="table-input" value="${row.scale}" onchange="updateBase('${cat}', ${index}, 'scale', this.value)"></td>
+                <td><input type="number" class="table-input" step="0.01" value="${row.initProb}" onchange="updateBase('${cat}', ${index}, 'initProb', this.value)"></td>
+                <td><input type="number" class="table-input" step="0.01" value="${row.entanglement}" onchange="updateBase('${cat}', ${index}, 'entanglement', this.value)"></td>
+                <td><button class="del-btn" onclick="deleteBaseRow('${cat}', ${index})">X</button></td>
+            </tr>`;
+        });
+        html += `</tbody>`;
+        baselineTable.innerHTML = html;
+    }
+
+    window.updateBase = function(cat, index, field, value) {
+        if(field === 'id' || field === 'class') baselines[cat][index][field] = value;
+        else baselines[cat][index][field] = parseFloat(value);
+        saveBaselines();
+    };
+
+    window.deleteBaseRow = function(cat, index) {
+        if (baselines[cat].length <= 1) {
+            alert("Cannot delete the last row in a category. Please add another row first or modify this one.");
+            return;
+        }
+        if(confirm("Delete this baseline row?")) {
+            baselines[cat].splice(index, 1);
+            saveBaselines();
+            renderBaselineTable();
+        }
+    };
+
+    document.getElementById('addRowBtn').addEventListener('click', () => {
+        const cat = categorySelect.value;
+        const newId = `NEW-${Math.floor(Math.random() * 1000)}`;
+        baselines[cat].push({ id: newId, class: 'Custom Source', scale: 1000, initProb: 0.50, entanglement: 0.50 });
+        saveBaselines();
+        renderBaselineTable();
+    });
+
+    document.getElementById('restoreBtn').addEventListener('click', () => {
+        if(confirm("This will erase all custom row modifications and restore the original definitions. Proceed?")) {
+            baselines = JSON.parse(JSON.stringify(defaultBaselines));
+            saveBaselines();
+            renderBaselineTable();
+        }
+    });
+
+    categorySelect.addEventListener('change', renderBaselineTable);
+    renderBaselineTable();
+
+    toggleColsBtn.addEventListener('click', () => {
+        showQdfCols = !showQdfCols;
+        const cols = document.querySelectorAll('.qdf-col');
+        cols.forEach(col => {
+            if (showQdfCols) col.classList.remove('hidden');
+            else col.classList.add('hidden');
+        });
+    });
+
+    // --- COMPREHENSIVE PRINT REPORT LOGIC WITH NATIVE CHART.JS CAPTURE + BROWSER TIMEOUT ---
+    document.getElementById('printBtn').addEventListener('click', () => {
+        if (currentData.length === 0) {
+            alert("Please generate data before printing.");
+            return;
+        }
+
+        const pr = document.getElementById('printReportContainer');
+        pr.innerHTML = ''; // Clear previous report
+
+        // Title & Header
+        pr.innerHTML += `<h1 style="text-align:center; margin-bottom: 5px;">QuSoLe DB: Comprehensive Report</h1>`;
+        pr.innerHTML += `<p style="text-align:center; color: #555; margin-top: 0; margin-bottom: 25px;">Generated on: ${getTimestamp()}</p>`;
+
+        // Legend
+        pr.innerHTML += `
+        <div style="border:1px solid #000; padding:12px; margin-bottom:25px; font-size:12px; background-color:#f9f9f9; line-height: 1.6;">
+            <strong>Color Verdicts:</strong> Strong (Red), Safe (Green), QAI Entangled (Purple), Indeterminate (Yellow), Maroon b(&psi;) (Pair projects 11/00, but insufficient C makes verdict Indeterminate).<br>
+            <strong>4-Qubit Encoding:</strong> |T&rang;|A&rang;|B&rang;|E&rang; isolates Target & Eve. Decoded: b(T) b(&psi;) b(&phi;).<br>
+            <strong>Seq Decimal:</strong> Converts the 4-bit binary string into a base-10 sequence (e.g., 1110&sub2; = 14).<br>
+            <strong>Bell Limit:</strong> State collapses cleanly when C &times; 2 approaches 2.0.
+        </div>`;
+
+        // Native Chart.js Capture
+        if (chartInstance) {
+            // Force rendering of the Base64 image using Chart.js's native safe exporter
+            const currentImgUrl = chartInstance.toBase64Image();
+            pr.innerHTML += `<h3 style="margin-bottom: 10px;">Current Visual Analysis (Probability vs Correlation)</h3>`;
+            // Placed inside a solid #0d1117 container strictly to perfectly frame the data points
+            pr.innerHTML += `<div style="text-align:center; margin-bottom: 30px; background-color:#0d1117; border:2px solid #000; border-radius: 6px; padding: 10px;"><img src="${currentImgUrl}" style="max-width:100%; max-height:400px; display:inline-block;"></div>`;
+        }
+
+        // Loop through and print EVERY previously generated standard dataset
+        datasetHistory.forEach((run, index) => {
+            pr.innerHTML += `<h3>Dataset Run ${index + 1}: ${run.category.toUpperCase()}</h3>`;
+            pr.innerHTML += generatePrintTable(run.data, false);
+        });
+
+        // Print the active QAI data if it exists
+        let isQAI = document.getElementById('qaiPanel').style.display === 'block';
+        if (isQAI && currentData.length > 0 && currentData[0].id.startsWith('QAI')) {
+            pr.innerHTML += `<h3 style="margin-top: 30px;">Quantum AI (QDF) Entanglement Results</h3>`;
+            pr.innerHTML += generatePrintTable(currentData, true);
+        }
+
+        // Add Framework Conclusions
+        pr.innerHTML += `
+        <div style="margin-top: 40px; border-top: 2px solid #000; padding-top: 20px;">
+            <h3>Framework Conclusions & Observations</h3>
+            <p style="font-size: 12px; line-height: 1.6; text-align: justify; margin-bottom: 15px;">
+                As dictated by the Quantum Double-Field (QDF) Model and QF-LCA principles, this simulation tracks the deterministic mapping of the macroscopic Target State (|T&rang;). The continuous Bell Limit evaluation (C &times; 2 &rarr; 2.0) determines the collapse of the encoded 4-qubit sequence (|T&rang;|A&rang;|B&rang;|E&rang;). 
+            </p>
+            <p style="font-size: 12px; line-height: 1.6; text-align: justify;">
+                Observations of <strong>maroon-flagged pairs</strong> (where b(&psi;) = 11 or 00) amidst "Indeterminate" macroscopic verdicts explicitly confirm the framework's core theorem: localized entanglement is insufficient for cryptographic verification without adequate topological field density (&kappa;&sup2;&rho; &le; 2.0). Only when the dataset correlation overcomes environmental entropy (C &ge; 0.8) does the Eve parity factor (b(&phi;)) mathematically resolve, allowing the superposition to collapse into a Verifiable Strong or Safe macroscopic projection.
+            </p>
+        </div>`;
+
+        // The Magic Fix: Wait 500 milliseconds for the browser to draw the injected Image before locking the page to print
+        setTimeout(() => {
+            window.print();
+        }, 500);
+    });
+
+    function generatePrintTable(dataArray, isQAI) {
+        let html = '<table style="width:100%; border-collapse:collapse; font-size:11px; margin-bottom:20px;"><thead><tr>';
+        if (isQAI) {
+            html += `<th style="border-bottom:2px solid #000; text-align:left; padding:4px;">Time</th>
+                     <th style="border-bottom:2px solid #000; text-align:left; padding:4px;">ID</th>
+                     <th style="border-bottom:2px solid #000; text-align:left; padding:4px;">Class</th>
+                     <th style="border-bottom:2px solid #000; text-align:left; padding:4px;">Encoded</th>
+                     <th style="border-bottom:2px solid #000; text-align:left; padding:4px;">Decoded</th>
+                     <th style="border-bottom:2px solid #000; text-align:left; padding:4px;">Dec Val</th>
+                     <th style="border-bottom:2px solid #000; text-align:left; padding:4px;">Bell Limit</th>
+                     <th style="border-bottom:2px solid #000; text-align:left; padding:4px;">C</th>
+<th>Kappa</th>
+<th>Rho</th>
+                     <th style="border-bottom:2px solid #000; text-align:left; padding:4px;">AI Pred</th>
+                     <th style="border-bottom:2px solid #000; text-align:left; padding:4px;">QDF Prob</th>
+                     <th style="border-bottom:2px solid #000; text-align:left; padding:4px;">Verdict</th>`;
+        } else {
+            html += `<th style="border-bottom:2px solid #000; text-align:left; padding:4px;">Time</th>
+                     <th style="border-bottom:2px solid #000; text-align:left; padding:4px;">ID</th>
+                     <th style="border-bottom:2px solid #000; text-align:left; padding:4px;">Class</th>
+                     <th style="border-bottom:2px solid #000; text-align:left; padding:4px;">C</th>
+                     <th style="border-bottom:2px solid #000; text-align:left; padding:4px;">QDF Prob</th>
+                     <th style="border-bottom:2px solid #000; text-align:left; padding:4px;">Verdict</th>`;
+        }
+        html += '</tr></thead><tbody>';
+
+        //const printData = dataArray.slice(0, 150); // Limit rows for printing to prevent crashing
+
+        dataArray.forEach(d => {
+            html += '<tr>';
+            if(isQAI) {
+                html += `<td style="border-bottom:1px solid #ccc; padding:4px;">${d.timestamp.split(' ')[1]}</td>
+                         <td style="border-bottom:1px solid #ccc; padding:4px;">${d.id}</td>
+                         <td style="border-bottom:1px solid #ccc; padding:4px;">${d.class}</td>
+                         <td style="border-bottom:1px solid #ccc; padding:4px; font-family:monospace;">${d.encoded}</td>
+                         <td style="border-bottom:1px solid #ccc; padding:4px; font-family:monospace;">${d.decoded}</td>
+                         <td style="border-bottom:1px solid #ccc; padding:4px;">${d.decVal}</td>
+                         <td style="border-bottom:1px solid #ccc; padding:4px;">${d.bellLimit}</td>
+                         <td style="border-bottom:1px solid #ccc; padding:4px;">${d.correlation}</td>
+<td>${d.kappa}</td>
+<td>${d.rho}</td>
+                         <td style="border-bottom:1px solid #ccc; padding:4px;">${d.aiProb}</td>
+                         <td style="border-bottom:1px solid #ccc; padding:4px;"><strong>${d.qdf}</strong></td>
+                         <td style="border-bottom:1px solid #ccc; padding:4px; font-weight:bold; color:${d.color}">${d.verdict}</td>`;
+            } else {
+                 html += `<td style="border-bottom:1px solid #ccc; padding:4px;">${d.timestamp.split(' ')[1]}</td>
+                         <td style="border-bottom:1px solid #ccc; padding:4px;">${d.id}</td>
+                         <td style="border-bottom:1px solid #ccc; padding:4px;">${d.class}</td>
+                         <td style="border-bottom:1px solid #ccc; padding:4px;">${d.correlation}</td>
+                         <td style="border-bottom:1px solid #ccc; padding:4px;"><strong>${d.qdf}</strong></td>
+                         <td style="border-bottom:1px solid #ccc; padding:4px; font-weight:bold; color:${d.color}">${d.verdict}</td>`;
+            }
+            html += '</tr>';
+        });
+        html += '</tbody></table>';
+        return html;
+    }
+
+    toggleQaiBtn.addEventListener('click', () => {
+        if(qaiPanel.style.display === 'block') {
+            qaiPanel.style.display = 'none';
+            toggleQaiBtn.innerText = "Quantum / QDF AI Mode";
+        } else {
+            qaiPanel.style.display = 'block';
+            toggleQaiBtn.innerText = "Close QDF AI Mode";
+        }
+    });
+
+    function applyNoise(val, noise) {
+        return Math.max(0, Math.min(1, val + (Math.random() * noise * 2 - noise)));
+    }
+
+    function shuffleArray(array) {
+        let curId = array.length, randomId;
+        while (0 !== curId) {
+            randomId = Math.floor(Math.random() * curId);
+            curId -= 1;
+            let tmp = array[curId];
+            array[curId] = array[randomId];
+            array[randomId] = tmp;
+        }
+        return array;
+    }
+
+    function getTimestamp() {
+        const now = new Date();
+        return now.toISOString().replace('T', ' ').substring(0, 23);
+    }
+
+    function updateDropdowns() {
+        dataAlpha.innerHTML = '';
+        dataBeta.innerHTML = '';
+        datasetHistory.forEach((run, index) => {
+            let opt = `<option value="${index}">Run ${index + 1}: ${run.category.toUpperCase()} (${run.timestamp.split(' ')[1]})</option>`;
+            dataAlpha.innerHTML += opt;
+            dataBeta.innerHTML += opt;
+        });
+        if(datasetHistory.length > 1) {
+            dataBeta.selectedIndex = 1; 
+        }
+    }
+
+function updateDOMTable(isQAI = false) {
+    const tbody = document.getElementById('resultsBody');
+    const tableHeadRow = document.getElementById('tableHeadRow'); // Ensuring header reference is caught
+    
+    let hideClass = showQdfCols ? '' : 'hidden';
+
+    // 1. Update the Headers
+    if (isQAI) {
+        tableHeadRow.innerHTML = `
+            <th>Time</th>
+            <th>ID</th>
+            <th>Class (Tensor &oplus; Eve)</th>
+            <th class="qdf-col ${hideClass}">Encoded<br>|T&rang;|A&rang;|B&rang;|E&rang;</th>
+            <th class="qdf-col ${hideClass}">Decoded<br><span style="color:#58a6ff;">b(T)</span> <span style="text-decoration:underline;">b(&psi;)</span> <span style="color:#58a6ff;">b(&phi;)</span></th>
+            <th>Dec Val</th>
+            <th class="qdf-col ${hideClass}">Bell Limit</th>
+            <th>C</th>
+            <th class="qdf-col ${hideClass}">Kappa</th>
+            <th class="qdf-col ${hideClass}">Rho</th>
+            <th>AI Pred</th>
+            <th>QDF Prob</th>
+            <th>Diff</th>
+            <th>Verdict</th>`;
+    } else {
+        tableHeadRow.innerHTML = `<th>Timestamp</th><th>ID</th><th>Class</th><th>C</th><th>QDF Prob</th><th>Verdict</th>`;
+    }
+
+    // 2. Build the entire table in background memory
+    // ADDED 'index' to the map function so we can assign an ID to each row
+    const tableHTML = currentData.map((d, index) => {
+        if (isQAI) {
+            let diff = (d.qdf - d.aiProb).toFixed(4);
+            let diffColor = diff > 0 ? "#2ecc71" : "#e74c3c";
+            let diffHtml = `<td style="color: ${diffColor}; font-weight:bold;">${diff > 0 ? '+' : ''}${diff}</td>`;
+
+            return `
+                <tr id="table-row-${index}" style="transition: background-color 0.3s ease;">
+                    <td style="font-size: 11px; color: #8b949e;">${d.timestamp.split(' ')[1]}</td>
+                    <td>${d.id}</td>
+                    <td style="font-size: 11px;">${d.class}</td>
+                    <td class="qdf-col ${hideClass}" style="font-family: var(--font-mono); color: #a277ff;">${d.encoded}</td>
+                    <td class="qdf-col ${hideClass}" style="font-family: var(--font-mono); font-weight: bold;">${d.decoded}</td>
+                    <td style="font-family: var(--font-mono);">${d.decVal}</td>
+                    <td class="qdf-col ${hideClass}" style="font-family: var(--font-mono);">${d.bellLimit}</td>
+                    <td>${d.correlation}</td>
+<td class="qdf-col ${hideClass}">${d.kappa}</td>
+<td class="qdf-col ${hideClass}">${d.rho}</td>
+                    <td style="color: #8b949e;">${d.aiProb}</td>
+                    <td><strong>${d.qdf}</strong></td>
+                    ${diffHtml}
+                    <td style="color: ${d.color}">${d.verdict}</td>
+                </tr>
+            `;
+        } else {
+            return `
+                <tr id="table-row-${index}" style="transition: background-color 0.3s ease;">
+                    <td style="font-size: 11px; color: #8b949e;">${d.timestamp.split(' ')[1]}</td>
+                    <td>${d.id}</td>
+                    <td>${d.class}</td>
+                    <td>${d.correlation}</td>
+                    <td><strong>${d.qdf}</strong></td>
+                    <td style="color: ${d.color}">${d.verdict}</td>
+                </tr>
+            `;
+        }
+    }).join(''); // Connects all rows into one massive string
+
+    // 3. Inject into the DOM exactly ONCE
+    tbody.innerHTML = tableHTML;
+}
+
+    // 1. STANDARD GENERATION LOGIC
+    document.getElementById('generateBtn').addEventListener('click', () => {
+        aiBadge.style.display = 'none';
+        
+        const cat = categorySelect.value;
+        const bases = baselines[cat];
+        if(bases.length === 0) return alert("Please restore defaults or add a row.");
+
+        const numSamples = parseInt(document.getElementById('numSamples').value);
+        const noise = parseFloat(document.getElementById('noiseLevel').value);
+        
+        currentData = [];
+
+        for (let i = 0; i < numSamples; i++) {
+            let base = bases[Math.floor(Math.random() * bases.length)];
+            let c = applyNoise(base.entanglement, noise);
+            let rawP = applyNoise(base.initProb, noise);
+            let sfProb = rawP / 2; 
+            let qdfProb = Math.min(0.999, sfProb * 2);
+
+            let verdict = "Risky/Medium";
+            let color = "#f1c40f"; 
+            
+            if (qdfProb >= 0.67 && c >= 0.8) {
+                verdict = "Strong / Flagged";
+                color = "#e74c3c";
+            } else if (qdfProb <= 0.33 && c <= 0.3) {
+                verdict = "Safe / Genuine";
+                color = "#2ecc71";
+            }
+
+            currentData.push({
+                timestamp: getTimestamp(),
+                id: `${base.id}-${1000 + i}`,
+                //id: sampleID,
+                class: base.class,
+                correlation: parseFloat(c.toFixed(4)),
+                qdf: parseFloat(qdfProb.toFixed(4)),
+                rawP: rawP, 
+                verdict: verdict,
+                color: color
+            });
+        }
+        
+        datasetHistory.push({
+            timestamp: getTimestamp(),
+            category: cat,
+            data: [...currentData]
+        });
+        
+        updateDropdowns();
+        updateDOMTable(false);
+        updateChart();
+    });
+
+    // 2. QUANTUM AI (QDF) COMBINER LOGIC (4-QUBIT ENCODING)
+    document.getElementById('runQaiBtn').addEventListener('click', () => {
+        if(datasetHistory.length < 2) {
+            alert("MINIMUM REQUIREMENT ERROR: Please generate at least two distinct datasets first.");
+            return;
+        }
+
+        const idxA = document.getElementById('dataAlpha').value;
+        const idxB = document.getElementById('dataBeta').value;
+        const runA = datasetHistory[idxA];
+        const runB = datasetHistory[idxB];
+
+        if (runA.category !== runB.category) {
+            alert(`CATEGORY MISMATCH ERROR: Cannot entangle ${runA.category.toUpperCase()} with ${runB.category.toUpperCase()}. Datasets must be of the same category.`);
+            return;
+        }
+
+        const numSamples = parseInt(document.getElementById('numSamples').value);
+        const rho = parseFloat(document.getElementById('qaiRho').value);
+        let kappa = parseFloat(document.getElementById('qaiKappa').value);
+        
+        if (kappa > 2.0 || (kappa * kappa * rho) > 2.0) {
+            alert("PHYSICAL BOUNDARY WARNING: Spatial Density exceeds 2.0. The framework will mathematically constrain predictions, but inputs violate physical bounds.");
+        }
+
+        let setA = shuffleArray([...runA.data]);
+        let setB = shuffleArray([...runB.data]);
+        let sampleSize = Math.min(setA.length, setB.length);
+
+        currentData = [];
+
+        for (let i = 0; i < sampleSize; i++) {
+            let dataA = setA[i];
+            let dataB = setB[i];
+            
+            // Eve Factor 
+            let nFactor = 1 / Math.sqrt(numSamples); 
+            let eveNoise = Math.random() * 0.15 * (1 + nFactor);
+            let eveFactor = 1.0 - eveNoise; 
+            
+            let pairedC = ((dataA.correlation + dataB.correlation) / 2) * eveFactor;
+            let bellLimit = (pairedC * 2).toFixed(4);
+
+            let pairedP = (dataA.rawP + dataB.rawP) / 2;
+            let spatialDensity = (kappa * kappa) * rho;
+            
+            let aiProb = Math.min(0.999, applyNoise(pairedP, 0.1));
+            let dynamicP = pairedP * (1 + (spatialDensity * pairedC * 0.5));
+            let qdfProb = Math.min(0.999, dynamicP * 2);
+
+            // Qubit Generation
+            let qA = dataA.rawP >= 0.5 ? 1 : 0;
+            let qB = dataB.rawP >= 0.5 ? 1 : 0;
+            
+            let qE;
+            if (pairedC >= 0.75) qE = (qA === qB) ? 0 : 1; 
+            else if (pairedC <= 0.3) qE = (qA === qB) ? 1 : 0; 
+            else qE = Math.random() > 0.5 ? 1 : 0; 
+
+            // Target State (qT) Evaluation
+            let qT = "{1,0}"; // Indeterminate
+            let verdict = "Indeterminate";
+            let color = "#f1c40f"; 
+            let bPsiColor = "#f1c40f"; 
+
+            if (qdfProb >= 0.67 && pairedC >= 0.8) {
+                qT = "1";
+                verdict = "QAI Strong Pair";
+                color = "#a277ff"; 
+                bPsiColor = "#a277ff";
+            } else if (qdfProb <= 0.33 && pairedC <= 0.3) {
+                qT = "0";
+                verdict = "Verified Safe Pair";
+                color = "#2ecc71";
+                bPsiColor = "#2ecc71";
+            } else {
+                // Maroon check for mismatched pairs (11 or 00 but C threshold fails)
+                if (qA === qB) {
+                    bPsiColor = "var(--maroon)"; 
+                }
+            }
+            
+            // 4-Qubit Encoding: |T>|A>|B>|E>
+            let encodedState = `|${qT}&rang;|${qA}&rang;|${qB}&rang;|${qE}&rang;`;
+            
+            // Decoded Message: b(T) b(psi) b(phi)
+            let decodedBin = `<span style="color: #58a6ff;">${qT}</span> <span style="color: ${bPsiColor}; text-decoration: underline;">${qA}${qB}</span> <span style="color: #58a6ff;">${qE}</span>`;
+            
+            // Decimal Map (Pair + Sequence)
+            let pairDec = (qA === 1 && qB === 1) ? "3" : (qA === 0 && qB === 0) ? "0" : (qA === 0 && qB === 1) ? "1" : "{0, 2}";
+            let seqDecStr = "";
+            
+            if (qT === "{1,0}") {
+                let binStr1 = "1" + qA + qB + qE;
+                let binStr0 = "0" + qA + qB + qE;
+                seqDecStr = `{${parseInt(binStr1, 2)}, ${parseInt(binStr0, 2)}}`;
+            } else {
+                let binStr = "" + qT + qA + qB + qE;
+                seqDecStr = parseInt(binStr, 2);
+            }
+            
+            let finalDecHtml = `<strong>${pairDec}</strong><br><span style="font-size:10px; color:#8b949e;">Seq: ${seqDecStr}</span>`;
+
+            let bellState = pairedC >= 0.75 ? "|&Phi;&plus;&rang;" : (pairedC <= 0.3 ? "|&Psi;&minus;&rang;" : "|&Psi;&plus;&rang;");
+            let pairedClassStr = `[${dataA.class} &otimes; ${dataB.class}] &oplus; Eve (${bellState})`;
+
+// Extract the actual numbers from the HTML inputs
+const currentKappaValue = parseFloat(document.getElementById('qaiKappa').value);
+const currentRhoValue = parseFloat(document.getElementById('qaiRho').value);
+
+            currentData.push({
+                timestamp: getTimestamp(),
+                id: `QAI-${dataA.id.split('-')[1]}-${dataB.id.split('-')[1]}`,
+                class: pairedClassStr,
+                encoded: encodedState,
+                decoded: decodedBin, 
+                decVal: finalDecHtml,
+                bellLimit: bellLimit,
+                correlation: parseFloat(pairedC.toFixed(4)),
+                qdf: parseFloat(qdfProb.toFixed(4)),
+                aiProb: parseFloat(aiProb.toFixed(4)),
+                verdict: verdict,
+                color: color,
+// these two lines to capture and record them
+    kappa: currentKappaValue,
+    rho: currentRhoValue
+            });
+        }
+
+        const engine = document.getElementById('aiEngineSelect').value;
+        aiBadge.style.display = 'inline-block';
+        aiBadge.innerText = `Validated vs. ${engine}`;
+
+        let tblContent = document.getElementById('tableHeader');
+        tblContent.innerHTML = `
+            <span>Quantum AI Generated Data (Paired: Run ${parseInt(idxA)+1} &oplus; Run ${parseInt(idxB)+1})</span>
+            <button id="toggleColsBtn" class="secondary" style="margin: 0; padding: 4px 10px; font-size: 11px;">Toggle QDF I/O Mechanics</button>
+        `;
+        
+        document.getElementById('toggleColsBtn').addEventListener('click', () => {
+            showQdfCols = !showQdfCols;
+            const cols = document.querySelectorAll('.qdf-col');
+            cols.forEach(col => {
+                if (showQdfCols) col.classList.remove('hidden');
+                else col.classList.add('hidden');
+            });
+        });
+
+        updateDOMTable(true);
+        updateChart();
+    });
+
+    function updateChart() {
+        const ctx = document.getElementById('scatterChart').getContext('2d');
+        if (chartInstance) chartInstance.destroy();
+
+        const scatterData = currentData.map(d => ({ x: d.correlation, y: d.qdf, backgroundColor: d.color }));
+
+        chartInstance = new Chart(ctx, {
+            type: 'scatter',
+            data: { datasets: [{ data: scatterData, pointBackgroundColor: currentData.map(d => d.color), pointRadius: 4, pointHoverRadius: 6 }] },
+            plugins: [{
+                id: 'custom_canvas_background_color',
+                beforeDraw: (chart) => {
+                    const ctx = chart.canvas.getContext('2d');
+                    ctx.save();
+                    // Clean, standard solid background fill
+                    ctx.fillStyle = '#0d1117'; 
+                    ctx.fillRect(0, 0, chart.width, chart.height);
+                    ctx.restore();
+                }
+            }],
+            options: {
+                animation: false, 
+                responsive: true, maintainAspectRatio: false,
+                // --- NEW USER CLICK EVENT ---
+                onClick: (event, elements) => {
+                    if (elements.length > 0) {
+                        // Map all overlapping elements clicked to their indices
+                        const indices = elements.map(e => e.index);
+                        highlightTableRows(indices);
+                    }
+                },
+                // -----------------------
+                scales: {
+                    x: { title: { display: true, text: 'Correlation (C)', color: '#c9d1d9' }, min: 0, max: 1, grid: { color: '#30363d' }, ticks: { color: '#8b949e' } },
+                    y: { title: { display: true, text: 'QDF Target Probability', color: '#c9d1d9' }, min: 0, max: 1, grid: { color: '#30363d' }, ticks: { color: '#8b949e' } }
+                },
+                plugins: { legend: { display: false }, tooltip: { callbacks: { label: (ctx) => `C: ${ctx.raw.x}, P: ${ctx.raw.y}` } } }
+            }
+        });
+    }
+
+    // Export functionality restoring clean data
+    document.getElementById('exportCsvBtn').addEventListener('click', () => {
+        if (!currentData.length) return alert("Generate data first.");
+        let isQAI = document.getElementById('qaiPanel').style.display === 'block';
+        let csv = "";
+        if (isQAI) {
+ // 1. Update the Header String
+            csv = "Timestamp,ID,Class,Encoded,Decoded,DecVal,BellLimit,Correlation,Kappa,Rho,AI_Pred,QDF_Probability,Verdict\n";
+            currentData.forEach(row => {
+                let cleanDecoded = row.decoded.replace(/<[^>]*>?/gm, '');
+                let cleanDecVal = row.decVal.replace(/<[^>]*>?/gm, ' ').trim();
+                let cleanEncoded = row.encoded.replace(/&rang;/g, '>');
+                csv += `${row.timestamp},"${row.id}","${row.class}","${cleanEncoded}","${cleanDecoded}","${cleanDecVal}",${row.bellLimit},${row.correlation},${row.kappa},${row.rho},${row.aiProb},${row.qdf},"${row.verdict}"\n`;
+            });
+        } else {
+            csv = "Timestamp,ID,Class,Correlation,Kappa,Rho,QDF_Probability,Verdict\n";
+            currentData.forEach(row => {
+                csv += `${row.timestamp},${row.id},${row.class},${row.correlation},,${row.kappa},${row.rho},${row.qdf},${row.verdict}\n`;
+            });
+        }
+        const blob = new Blob([csv], { type: 'text/csv' });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `QDF_Dataset_${Date.now()}.csv`;
+        a.click();
+    });
+
+    document.getElementById('exportJsonBtn').addEventListener('click', () => {
+        if (!currentData.length) return alert("Generate data first.");
+        
+        // Bulletproof check: Look at the first row to see if QAI data exists
+        const isQAIModeActive = currentData[0].kappa !== "N/A" && currentData[0].kappa !== undefined;
+        
+        const cleanData = currentData.map(row => {
+            // Build a perfectly ordered object for the JSON file
+            let newRow = {
+                timestamp: row.timestamp,
+                id: row.id,
+                class: row.class,
+                correlation: row.correlation,
+                kappa: row.kappa,
+                rho: row.rho,
+                qdf_probability: row.qdf,
+                verdict: row.verdict
+            };
+
+            // Safely use our new bulletproof variable
+            if (isQAIModeActive) {
+                newRow.encoded = row.encoded ? row.encoded.replace(/&rang;/g, '>') : "";
+                newRow.decoded = row.decoded ? row.decoded.replace(/<[^>]*>?/gm, '') : "";
+                newRow.decVal = row.decVal ? row.decVal.replace(/<br>/g, ' | ').replace(/<[^>]*>?/gm, '') : "";
+                newRow.bellLimit = row.bellLimit;
+                newRow.aiPred = row.aiProb;
+            }
+            
+            return newRow;
+        });
+
+        const jsonStr = JSON.stringify(cleanData, null, 2);
+        const blob = new Blob([jsonStr], { type: 'application/json' });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `QDF_Dataset_${Date.now()}.json`;
+        a.click();
+    });
+
+//User selecting plot datapoints
+function highlightTableRows(indices) {
+    // 1. Clear previous highlights
+    const allRows = document.querySelectorAll('#resultsBody tr');
+    allRows.forEach(row => {
+        row.style.backgroundColor = ''; // Reset to default
+    });
+
+    // 2. Highlight the clicked row(s)
+    let firstRow = null;
+    indices.forEach(index => {
+        const row = document.getElementById(`table-row-${index}`);
+        if (row) {
+            row.style.backgroundColor = 'rgba(0, 212, 255, 0.2)'; // Cyan highlight
+            if (!firstRow) firstRow = row;
+        }
+    });
+
+    // 3. Smoothly scroll the table to the first highlighted row
+    if (firstRow) {
+        firstRow.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+}
+</script>
+
+</body>
+</html>

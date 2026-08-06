@@ -1,0 +1,13 @@
+# theme: jekyll-theme-cayman #(Bright, modern blue/green)
+theme: jekyll-theme-slate #(Dark, technical look)
+# theme: jekyll-theme-architect #(Clean, structured layout)
+# theme: jekyll-theme-merlot #(Elegant, dark red tones); following are dark themes...
+# theme: jekyll-theme-hacker
+# theme: jekyll-theme-midnight  # programming style
+# theme: jekyll-theme-tactile
+#plugins:
+#  - jekyll-target-blank
+#kramdown:
+# syntax_highlighter_opts:
+#   block: 
+#   line_numbers: true
