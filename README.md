@@ -330,13 +330,28 @@ How does this relate to the QF-LCA Hypercube? This Geometry Lab visualizes the f
 
 </div>
 
-### Researcher
+<!--
+### 🔬 About Researcher
 - **Dr. Philip Baback Alipour** earned his Ph.D. in Electrical Engineer (Interdisciplinary Focus: Quantum Physics, Computer Science, and Electrical Engineering), and is an Electrical/Computer/Quantum Engineer, and Computer Scientist, and a UVic Alumnus. He specializes in the intersection of **Quantum Field Theory**, **Quantum Computing**, **Thermodynamics**, **Computer Science**, **Electrical Engineering**, and **Artificial Intelligence**. 
 - **Research Focus:**  Dr. Alipour's work centers on the development of the **Quantum Field Lens Coding (QF-LC)** framework—a predictive methodology designed for high-fidelity state classification on $N$-qubit-cbit (hybrid) machines. His doctoral research entitled **Quantum Field Lens Coding** (archived at [https://hdl.handle.net/1828/23705](https://hdl.handle.net/1828/23705)), represents a highly interdisciplinary scope. At the **University of Victoria**, he introduced the [Quantum Field Lens Coding (QF-LC)]([https://github.io](https://hdl.handle.net/1828/23705)) framework to define quantum double-field (QDF) lensing method to double the probability of any system state (transition), and address critical limitations in real-time system state prediction, topological mapping, and error mitigation.
-- **Engineering Path:** While his official credential is a Ph.D. in Electrical Engineering, his research explicitly spans the fields of Electrical and Computer Engineering, Computer Science, and Quantum Physics, with a core focus on quantum physics (or quantum computing) to engineer advanced technological applications as hybrid quantum-classical (hybrid) systems and predict system states by those applications.
+- **Engineering Path:** While his official credential is a Ph.D. in Electrical Engineering, his research explicitly spans the fields of Electrical and Computer Engineering, Computer Science, and Quantum Physics, with a core focus on quantum physics (or quantum computing) to engineer advanced technological applications as hybrid quantum-classical (hybrid) systems and predict system states by those applications. -->
+
+
+### 🔬 About Researcher
+* **Dr. Philip Baback Alipour:** earned his Ph.D. in Electrical Engineer with an Interdisciplinary R&D Focus from the University of Victoria.
+* **Interdisciplinary R&D Focus:** Quantum Physics, Computer Science, and Electrical Engineering.
+* **Core Core Expertise:** Merging Quantum Field Theory with Artificial Intelligence.
+* **The QF-LC Framework:** Developed a predictive methodology for high-fidelity state classification.
+* **Hybrid Systems Architecture:** Optimized for $N$-qubit-cbit machines.
+* **Dissertation Work:** Introduced and explored [Quantum Field Lens Coding (QF-LC)]([https://github.io](https://hdl.handle.net/1828/23705)) framework to define quantum double-field (QDF) lensing method.
+* **Lensing Discovery:** Invented quantum double-field (QDF) lensing method to double the probability of any system state (transition), and address critical limitations in real-time system state prediction, topological mapping, and error mitigation. 
+* **Probability Metrics:** Successfully doubles system state transition probabilities.
+* **Core Solutions:** Solves real-time system prediction and active error mitigation.
+
 
 ### 🚀 Technical Expertise & Core Work
 
+<!--
 * **🎯 Algorithm Design:** Formulating the QF-LCA for real-time system state prediction and optimized control loops/paths.
   * Development and implementation of QF-LCA for any system state prediction via current hybrid machines and architectures.
 * **💻 System Simulation:** Architect of the **QF-LCS (Simulator)**, a core Python-based engine for modeling thermodynamic quantum evolution.
@@ -345,11 +360,50 @@ How does this relate to the QF-LCA Hypercube? This Geometry Lab visualizes the f
 * **🧊 Topological Mapping:** Utilizing the **QFLC Hypercube** to visualize and mitigate decoherence in higher-dimensional state spaces.
   * Leveraging the QFLC Hypercube model for space-time partitioning and active decoherence mitigation.
 * **🤖 Quantum AI (QAI):** Implementing high-fidelity classifiers to improve measurement outcomes and system stability.
-  * Integrating high-fidelity quantum classifiers to ensure hybrid system's stability and predictive precision.
+  * Integrating high-fidelity quantum classifiers to ensure hybrid system's stability and predictive precision. -->
+
+### 🚀 Technical Expertise & Core Work
+
+* **🎯 Algorithm Design:** Formulating the QF-LCA for real-time system state prediction.
+  * Predicting system states via hybrid architectures.
+  * Optimizing control loops and paths.
+* **💻 System Simulation:** Architect of the **QF-LCS (Simulator)**.
+  * Modeling thermodynamic quantum evolution in Python.
+  * Developing interactive Javascript-based simulation widgets.
+  * Visualizing complex dynamic system behaviors.
+* **🧊 Topological Mapping:** Utilizing the **QFLC Hypercube**.
+  * Partitioning space-time dimensions effectively.
+  * Mitigating active decoherence in higher-dimensional spaces.
+* **🧪 Entanglement Metrics:** Measuring three-way particle entanglement networks.
+  * Decoding hidden Bell state information via qubit exchange.
+  * Computing Entanglement Entropy (EE) values.
+  * Quantifying precise qubit pair correlations.
+  * Mapping complex macrostate transitions accurately.
+* **🤖 Quantum AI (QAI):** Implementing and integrating high-fidelity classifiers.
+  * Improving measurement outcomes consistently.
+  * Ensuring hybrid system stability.
+  * Enhancing real-time predictive precision.
+  * Optimize energy path efficiencies toward target Hamiltonian states. 
+<hr>  
+* 🔹 **Core Technical Expertise:** Quantum Algorithms, Quantum Information Theory, Quantum Double-Field (QDF) Modeling, Entanglement Entropy (EE), Quantum AI (QAI), Statistical Mechanics & Thermodynamics.
+* 🔹 **Major Skills:** Computer Science, Software Engineering, Games Development, Electrical Engineering, Mathematical and Theoretical Physics, Quantum Mechanics, Quantum Information Theory, Information Theory, Business Intelligence.
+
+### 🌐 Real-World Application Vectors
+
+* **Data Science:** Classifying particle states from evidence samples.
+* **Bioinformatics:** Reconstructing damaged DNA cell strands.
+* **Virology & Oncology:** Predicting virus spread and cancer growth.
+* **Document Security:** Verifying genuine versus forged documents.
+
 
 ### Research Vision
-Dr. Alipour's active research focuses on advancing the QF-LC framework into industrial-scale applications, bridging the gap between theoretical quantum information science and performant, hardware-integrated systems.
-His doctoral dissertation at the **University of Victoria** introduced the **Quantum Double-Field (QDF)** model. This model addresses a critical bottleneck in NISQ-era computing: the accurate prediction of state and phase transitions. By "lens coding" quantum fields, we can achieve superior predictive accuracy compared to standard benchmarks like the Quantum Fourier Transform (QFT), although compatible with the SF to a QDF transform invented via QF-LC algorithmic steps achieving high state transition probabilities over 2/3 in every case presented.
+<!-- Dr. Alipour's active research focuses on advancing the QF-LC framework into industrial-scale applications, bridging the gap between theoretical quantum information science and performant, hardware-integrated systems.
+His doctoral dissertation at the **University of Victoria** introduced the **Quantum Double-Field (QDF)** model. This model addresses a critical bottleneck in NISQ-era computing: the accurate prediction of state and phase transitions. By "lens coding" quantum fields, we can achieve superior predictive accuracy compared to standard benchmarks like the Quantum Fourier Transform (QFT), although compatible with the SF to a QDF transform invented via QF-LC algorithmic steps achieving high state transition probabilities over 2/3 in every case presented. -->
+
+* **Industrial Scale:** Advancing the QF-LC framework into performant hardware systems.
+* **NISQ Critical Bottleneck:** Solving state and phase transition prediction challenges and computation.
+* **Algorithmic Advantage:** Surpassing standard benchmarks like the Quantum Fourier Transform (QFT) by "lens coding" quantum fields: (de-)focus probability distribution of states and their distance.
+* **Proven Performance:** Achieving state transition probabilities over 2/3 in all cases.
 
 ### Moving Forward
 Based in British Columbia, Dr. Alipour is currently generalizing simulation framework for industrial applications in quantum networking and scalable hardware architectures relative to sustainable development goals (SDGs) in society. He is actively seeking collaborations and professional opportunities that bridge the gap between theoretical field modeling and practical quantum advantage.
