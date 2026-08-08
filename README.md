@@ -348,8 +348,8 @@ How does this relate to the QF-LCA Hypercube? This Geometry Lab visualizes the f
 * **Probability Metrics:** Successfully doubles system state transition probabilities.
 * **Core Solutions:** Solves real-time system prediction and active error mitigation.
 
-
-### 🚀 Technical Expertise & Core Work
+<!--
+### 🚀 Technical Expertise & Core Work -->
 
 <!--
 * **🎯 Algorithm Design:** Formulating the QF-LCA for real-time system state prediction and optimized control loops/paths.
