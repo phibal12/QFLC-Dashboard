@@ -396,7 +396,7 @@ How does this relate to the QF-LCA Hypercube? This Geometry Lab visualizes the f
 * **Document Security:** Verifying genuine versus forged documents.
 
 
-### Research Vision
+### Research Vision 
 <!-- Dr. Alipour's active research focuses on advancing the QF-LC framework into industrial-scale applications, bridging the gap between theoretical quantum information science and performant, hardware-integrated systems.
 His doctoral dissertation at the **University of Victoria** introduced the **Quantum Double-Field (QDF)** model. This model addresses a critical bottleneck in NISQ-era computing: the accurate prediction of state and phase transitions. By "lens coding" quantum fields, we can achieve superior predictive accuracy compared to standard benchmarks like the Quantum Fourier Transform (QFT), although compatible with the SF to a QDF transform invented via QF-LC algorithmic steps achieving high state transition probabilities over 2/3 in every case presented. -->
 
