@@ -1,0 +1,536 @@
+---
+layout: default
+title: Technical Documentation
+permalink: /README_Technical
+---
+<!-- HTML code starts here 
+<!DOCTYPE html>
+<html lang="en">
+<head> -->
+<!-- Tell MathJax to recognize single dollar signs -->
+	<script> window.MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] } }; </script>
+  <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"> </script> 
+
+<meta charset="UTF-8">
+  <title id="readme_tech_main_title">Technical Documentation - QF-LC Dashboard</title>
+  
+<style>
+  /* ========================================= */
+  /* 0. DEFAULT LAYOUT FROM LAYOUTS DASHBOARD FILE */
+  /* ========================================= */
+
+/* HIDE THE DYNAMIC BANNER ON THIS PAGE ONLY */
+.banner-container, .banner-widget, .banner-widget-text {
+  display: none !important;
+}
+
+/* Optional: Adjust the top margin so the content doesn't sit too high */
+#main_content {
+  margin-top: 20px !important; /* Adjust if the page looks too crowded at the top */
+}
+
+
+  /* ========================================= */
+  /* 1. CORE LAYOUT & DARK MODE (ESSENTIAL)    */
+  /* ========================================= */
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    background-color: #0d1117; /* GitHub Dark Dimmed */
+    color: #c9d1d9;
+  }
+
+  #main_content_wrap {
+    display: flex;
+    justify-content: center;
+    background-color: #0d1117;
+    width: 100%;
+  }
+
+  #main_content {
+    max-width: 1200px; /* Optimized width for reading tables */
+    width: 100%;
+    margin: 0 auto;
+    padding: 40px;
+    box-sizing: border-box;
+    display: block;
+    background-color: #0d1117;
+  }
+
+  /* ========================================= */
+  /* 2. TYPOGRAPHY & HEADERS                   */
+  /* ========================================= */
+  h1, h2, h3, h4, h5, h6 {
+    color: #ffffff;
+    margin-top: 24px;
+    margin-bottom: 16px;
+    font-weight: 600;
+    line-height: 1.25;
+  }
+
+  h2 {
+    border-bottom: 1px solid #30363d;
+    padding-bottom: 0.3em;
+  }
+
+  hr {
+    height: 0.25em;
+    padding: 0;
+    margin: 24px 0;
+    background-color: #30363d;
+    border: 0;
+  }
+
+  a { color: #58a6ff; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* ========================================= */
+  /* 3. TABLE STYLES (CRITICAL FOR SPECS)      */
+  /* ========================================= */
+  table {
+    display: block;
+    width: 100%;
+    width: max-content;
+    max-width: 100%;
+    overflow: auto;
+    border-spacing: 0;
+    border-collapse: collapse;
+    margin-bottom: 16px;
+  }
+
+  th, td {
+    padding: 6px 13px;
+    border: 1px solid #30363d;
+  }
+
+  th {
+    font-weight: 600;
+    background-color: #161b22; /* Darker Header */
+    color: #ffffff;
+  }
+
+  tr {
+    background-color: #0d1117;
+    border-top: 1px solid #c9d1d9;
+  }
+
+  tr:nth-child(2n) {
+    background-color: #161b22; /* Zebra striping */
+  }
+  
+  .meta-tag { color: #8b949e !important; font-size: 0.85em; letter-spacing: 0.05em; }
+
+  /* ========================================= */
+  /* 4. CODE BLOCKS (CRITICAL FOR PYTHON)      */
+  /* ========================================= */
+  pre {
+    background-color: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    font-size: 85%;
+    line-height: 1.45;
+    overflow: auto;
+    padding: 16px;
+  }
+
+  code {
+    font-family: ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;
+    background-color: rgba(110,118,129,0.4);
+    padding: 0.2em 0.4em;
+    border-radius: 6px;
+    font-size: 85%;
+  }
+
+  pre code {
+    background-color: transparent;
+    padding: 0;
+    font-size: 100%;
+    word-wrap: normal;
+    white-space: pre;
+  }
+
+
+  
+      /* CORE CYAN GLOW & STRUCTURAL ELEMENTS OVERRIDES */
+    /* MAIN TITLE (H1) STYLES — Natural Casing & Cyan Glow matching live QF-LCD */
+#main_content h1#readme_tech_main_title { 
+  color: #00ffff !important; 
+  font-size: 2.2em !important; 
+  font-weight: 800 !important;
+  letter-spacing: -0.02em !important;
+  text-transform: none !important; /* Preserves exact capital/lowercase letters */
+  text-shadow: 0 0 20px rgba(0, 255, 255, 0.85) !important; /* Live Dashboard Cyan Glow */
+  margin-bottom: 15px !important;
+}
+
+/* SECTION HEADINGS (H2) STYLES — Natural Casing & Soft Blue Glow */
+#main_content :is(h2, h3, h4, h5) { 
+  border-bottom: 1px solid #30363d !important; 
+  padding-bottom: 12px !important; 
+  margin-top: 40px !important;
+  color: #00ffff !important; /* Matches main heading cyan or use #58a6ff for section blue */
+  text-transform: none !important; /* Allows Title Case like "System Requirements & Performance Guidelines" */
+  letter-spacing: normal !important;
+  font-size: 1.5em !important;
+  text-shadow: 0 0 15px rgba(0, 255, 255, 0.5) !important;
+}
+
+
+	/* Fallback: the live-dot Emoji animation */
+.live-dot {
+  font-size: 0.8em;
+  animation: blink 2s infinite;
+  text-shadow: 0 0 10px #00ffff;
+}
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0.3; }
+  100% { opacity: 1; }
+}
+
+/* TOP & BOTTOM NAVIGATION HOVER EFFECT */
+.top-nav, .bottom-nav {
+  position: fixed !important;
+  left: 0;
+  width: 100% !important;
+  background: #161b22 !important;
+  text-align: center;
+  z-index: 9999 !important;
+  box-shadow: 0 0 15px rgba(0,0,0,0.5);
+}
+
+.top-nav { top: 0; border-bottom: 2px solid teal; padding: 15px 0; }
+.bottom-nav { bottom: 0; border-top: 2px solid teal; padding: 12px 0; }
+
+
+.top-nav a, .bottom-nav a {
+  /* 1. FORCE SPACING */
+  display: inline-block !important; /* Makes the box respect dimensions */
+  margin: 0 40px !important;        /*  ADJUST THIS NUMBER (e.g. 20px, 40px, 60px) */
+  
+  /* 2. EXISTING STYLES */
+  color: #58a6ff;
+  text-decoration: none;
+  font-weight: bold; /* Optional: Makes links pop more */
+  transition: all 0.2s ease-in-out;
+}
+
+
+.top-nav a:hover, .bottom-nav a:hover {
+  color: #00ffff !important; /* Cyan color on hover */
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.8), 0 0 20px rgba(0, 255, 255, 0.5) !important; /* Cyan Glow */
+  text-decoration: none !important;
+}
+
+/* FOOTER EMAIL HOVER EFFECT */
+.meta-tag a[href^="mailto:"] {
+  color: #58a6ff;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.meta-tag a[href^="mailto:"]:hover {
+  color: #00ffff !important; /* Cyan color on hover */
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.8), 0 0 20px rgba(0, 255, 255, 0.5) !important; /* Cyan Glow */
+  text-decoration: none !important;
+}
+
+/* ==========================================================================
+   PRINTER VIEW (COMPLETE GLOW & ANIMATION RESET)
+   ========================================================================== */
+@media print {
+  /* Universal reset: strips text-shadow, box-shadow, and glow filters from EVERYTHING */
+  *, *::before, *::after {
+    background: transparent !important;
+    color: #000000 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    filter: none !important;
+  }
+
+  body, #main_content, #main_content_wrap {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  /* Force all titles, headers, class overrides, and live-dots to solid black */
+  h1, h2, h3, h4, h5, h6,
+  #main_content h1,
+  #main_content h2,
+  #main_content h3,
+  #main_content h4,
+  #main_content h5,
+  #main_content h1#readme_tech_main_title,
+  .section_header,
+  .live-dot,
+  span,
+  a {
+    color: #000000 !important;
+    text-shadow: none !important;
+    animation: none !important; /* Disables glowing blink animation */
+  }
+
+  /* Clean header underlines & dividers for paper */
+  h2, .section_header, hr {
+    border-bottom: 1px solid #cccccc !important;
+    border-color: #cccccc !important;
+  }
+
+  /* Table & Code block resets */
+  table, pre, code, th, td {
+    border: 1px solid #cccccc !important;
+    color: #000000 !important;
+    background-color: #ffffff !important;
+  }
+
+  th {
+    background-color: #eeeeee !important;
+  }
+
+  a {
+    color: #000000 !important;
+    text-decoration: underline !important;
+  }
+}
+
+</style>
+<!--
+</head>
+<body>  -->
+
+
+<div class="top-nav">
+  <a href="https://phibal12.github.io/QFLC-Dashboard">🏠 Home</a>
+  <a href="#system-requirements--performance-guidelines">🖥️⚡ System Requirements</a>
+  <a href="#env-setup">⚛️⚙️ Project Setup</a>
+</div><br>
+
+  <!-- WRAPPER REQUIRED FOR STYLES TO WORK -->
+  <div id="main_content_wrap">
+    <div id="main_content">
+
+<h1 id="readme_tech_main_title">⚛️⚙️⚡ QFLC Project Setup &amp; System Requirements <span class="live-dot" style="color: red;"> 🔵 Live </span></h1>
+
+
+<h2 class="section_header" id="system-requirements--performance-guidelines">🖥️⚡ System Requirements &amp; Performance Guidelines</h2>
+
+<p>The QFLC Dashboard executes primarily client-side via WebGL/HTML5. However, specific modules (like the <b>QFLCH Synthesis Engine</b>) may require external connectivity for hybrid quantum-classical operations.</p>
+
+<h3>🖥️🔌 Recommended Hardware Specifications</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Component</th>
+      <th>Windows (10/11)</th>
+      <th>macOS (Big Sur+)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>🏻  Processor</b></td>
+      <td>Intel i5 / Ryzen 5 (Quad-Core 3.0GHz+)</td>
+      <td>Apple Silicon (M1/M2) or Intel i7</td>
+    </tr>
+    <tr>
+      <td><b>💳 Memory</b></td>
+      <td>8 GB RAM (16 GB for complex particle/datapoint swarms)</td>
+      <td>8 GB Unified Memory or higher</td>
+    </tr>
+    <!-- Storage Main Header Row -->
+<tr>
+  <td><b>🛢📀 Storage</b></td>
+  <td>1 GB free space SSD/HDD (Environment &amp; Libs)</td>
+  <td>1 GB Free Space (Environment &amp; Libs)</td>
+</tr>
+
+<!-- Storage Breakdown Sub-row (Spans 2 columns) -->
+<tr>
+  <td style="padding-left: 20px;">↳ Breakdown</td>
+  <td colspan="2">
+    • Base Python: ~100 MB |
+    • SciPy + NumPy: ~200 MB+ | 
+    • Qiskit (Full): ~150 MB+ | <br>
+    • Pandas/Matplotlib: ~100 MB |
+    • Browser Cache (JS/Web Assets): ~200 MB | <br> <span style="color: teal"><b>Total $\geq$</b><span style="color: orange"> 0.8 GB </span></span>
+  </td>
+</tr>
+    <tr>
+      <td><b>🖼️ Graphics</b></td>
+      <td>DirectX 11 compatible (Intel UHD 630+)</td>
+      <td>Metal compatible GPU</td>
+    </tr>
+    <tr>
+      <td><b>🌐 Browser</b></td>
+      <td>Chrome, Edge, Firefox (Latest)</td>
+      <td>Safari, Chrome, Firefox (Latest)</td>
+    </tr>
+    <tr>
+      <td><b>🤝🔑 API Access</b></td>
+      <td>Required for external QPU Job Dispatch</td>
+      <td>Required for external QPU Job Dispatch</td>
+    </tr>
+    <tr>
+      <td><b>📶 Network</b></td>
+      <td>Offline capable (Basic)</td>
+      <td>Broadband required for QPU links</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr>
+
+<h3>💻⚛️ Hybrid Classical-Quantum Environment</h3>
+<p>The following link is an active widget <span class="live-dot" style="color: red;"> 🔵 Live </span> environment. Before running it, visit <a href="#-performance-constraints--warnings">⚠️ Performance Constraints &amp; Warnings section</a> below.</p>
+<p><i>Applies to modules linking to background QPU providers (e.g., <a href="https://phibal12.github.io/QFLC-Dashboard/labs/QFLCH">QFLCH</a>).</i></p>
+
+<p>If running the dashboard in <b>Hybrid Mode</b> to dispatch jobs to real Quantum Processing Units (QPUs):</p>
+
+<ul>
+  <li>🤝🔑 <b>API Access:</b> A valid API Token from the provider (e.g., IBM Quantum, IonQ, or Rigetti) is required to authenticate job submission.</li>
+  <li>⚙️⏳ <b>Job Latency:</b> Real-time visualization may pause while jobs are queued in the provider's cloud execution stack.</li>
+  <li>🛡️🔄 <b>Fallback Protocol:</b> If the QPU endpoint is unreachable or the user lacks credentials, the system defaults to the <b>Local Classical Simulator</b>.</li>
+</ul>
+
+<hr>
+
+<h3>⚠️ Performance Constraints &amp; Warnings</h3>
+
+<blockquote>
+  <p><b>Note:</b> The simulation engine is optimized for stability, but local hardware limits apply.</p>
+</blockquote>
+
+<ul>
+  <li>⚛️👥🛑 <b>Particle Population Limit:</b> High ambient/background swarm counts (<b>N &gt; 400</b>) may trigger CPU utilization spikes (&gt;90%) due to the linear cost of particle-interaction calculations whilst maintaining e.g., a tripartite quantum communication network (entanglement).</li>
+  <li>⚛️🚧 <b>Particle Threshold:</b> High density clusters will reduce frame rates.</li>
+  <li>🖼️⏳ <b>Rendering Lag:</b> If the browser frame rate drops below 30 FPS, the following safety warning will appear:
+    <blockquote>
+      <p>
+  ⚠️ Warning: High ambient swarm counts ($N &gt; 400$) may cause cascade simulation lag due to local hardware rendering limits.</i><br>
+  ⚠️ Warning: High ambient swarm capture between hypercube entangled nodes (Spatial Density <b>near 2</b>, AND, Nu Adjustment Factor ($\nu$ near 0.9)) may cause cascade simulation lag due to local hardware rendering limits.
+</p>
+    </blockquote>
+  </li>
+  <li>🔥📉 <b>Thermal Throttling:</b> Extended runtime of "QDF-Lens" or high-density hypercubes on laptops may cause fan spin-up. Ensure adequate ventilation.</li>
+  <li>🧵⚙️ <b>Job Threads:</b> Background Python threads manage the QPU queue to prevent browser freezing.</li>
+</ul>
+
+<br>
+<hr>
+
+<!-- ENVIRONMENTAL SETUP SECTION -->
+<details id="env-setup">
+<summary><b>🖥️🛠️&#9654; Environmental Setup &amp; Execution</b></summary>
+
+<br>
+<p><b>Method 1: Direct Offline Launch</b><br>
+To run QF-LC widget assets offline, download the HTML widget(s) of your choice along with their dependent files. Simply double-click the file to run it in your browser (e.g., Edge, Chrome).</p> 
+
+<hr>
+
+<p><b>Method 2: Local Python Server (Recommended)</b><br>
+To run Python-based widgets locally with full module support, follow these steps to ensure your environment meets the <a href="#-system-requirements--performance-guidelines">Project Setup &amp; System Requirements</a>.</p> 
+
+<p><b>Step A: Verify Python Installation</b><br>
+Since these widgets rely on Python logic, ensure Python is installed. If not, download it from <a href="https://www.python.org/downloads">python.org/downloads</a>.</p>
+
+<p><b>Step B: Start the Local Server</b><br>
+Open your terminal (Command Prompt, PowerShell, or Terminal). Change directories to the folder containing your downloaded widget:</p>
+
+<pre><code class="language-bash">cd path/to/your/folder</code></pre>
+
+<p>Run the built-in HTTP server command:</p>
+
+<pre><code class="language-bash">python -m http.server 8000</code></pre>
+
+<p>⚠️ Note: If <code>python</code> doesn't work, try <code>python3 -m http.server 8000</code></p>
+
+<p><b>Step C: Launch in Browser</b><br>
+Open your web browser and navigate to: <a href="http://localhost:8000">http://localhost:8000</a></p>
+
+<hr>
+
+<p><b>⚠️💥🛠️ Troubleshooting &amp; Updates</b><br>
+If you encounter errors, press <b>F12</b> to open Developer Tools and check the console. Ensure your HTML file headers use the active PyScript release below to avoid version conflicts:</p> 
+
+<pre><code class="language-html">&lt;<span style="color: pink">head</span>&gt;
+... <span style="color: orange"><i>&lt;!-- HTML program code --&gt;</i></span>
+<span style="color: orange"><i>&lt;!-- Official Latest PyScript CDN Assets; Core PyScript External Dependencies --&gt;</i></span>
+&lt;link rel="stylesheet" href="https://pyscript.net/releases/2026.3.1/core.css" /&gt;
+&lt;script type="module" src="https://pyscript.net/releases/2026.3.1/core.js"&gt;&lt;/script&gt;
+&lt;<span style="color: pink">/head</span>&gt;
+</code></pre>
+
+<p><b>📦⚙️ Library Installation (Local Dependencies)</b><br>
+To avoid import errors, upgrade pip and install the required scientific libraries:</p>
+
+<pre><code class="language-bash">pip install --upgrade pip
+pip install numpy scipy matplotlib qiskit pandas scikit-learn</code></pre>
+
+</details>
+
+<div class="bottom-nav">
+  <a href="https://phibal12.github.io/QFLC-Dashboard">🏠 Home</a>
+  <a href="#system-requirements--performance-guidelines">🖥️⚡ System Requirements</a>
+  <a href="#env-setup">⚛️⚙️ Project Setup</a>
+  <a href="#">↑ Back to Top</a>
+</div><br>
+
+<!-- REPLACEMENT FOR BASE FOOTER (FORCED FULL-WIDTH & FAR-RIGHT ALIGNMENT) -->
+<hr style="margin-top: 50px !important; border-color: #30363d;">
+<table style="display: table !important; width: 100% !important; border-collapse: collapse; border: none !important; margin-top: 15px; margin-bottom: 25px; background: transparent !important;" class="meta-tag">
+  <tr style="border: none !important; background: transparent !important;">
+    <td style="line-height: 1.6; text-align: left !important; vertical-align: middle; border: none !important; padding: 0;">
+      FRAMEWORK VERSION 2026.04 // CORE ENGINE STABLE<br>
+      <span style="color: #c9d1d9;">&copy; 2026 Dr. Philip B. Alipour. All Rights Reserved.</span>
+    </td>
+    <td style="text-align: right !important; vertical-align: middle; border: none !important; padding: 0;">
+      VICTORIA, BC, CANADA &bull; <a href="mailto:philipbaback_orbsix@msn.com">philipbaback_orbsix@msn.com</a>
+    </td>
+  </tr>
+</table>
+
+
+    </div>
+  </div>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const contentArea = document.getElementById("main_content");
+    
+    if (contentArea) {
+      function highlightSymbols(node) {
+        if (node.nodeType === Node.TEXT_NODE) {
+          // Check if node contains |, (, or )
+          if (/[|()]/.test(node.nodeValue)) {
+            const span = document.createElement("span");
+            // Replace |, (, and ) with teal-styled spans
+            span.innerHTML = node.nodeValue.replace(/([|()])/g, '<span style="color: teal; font-weight: bold;">$1</span>');
+            node.parentNode.replaceChild(span, node);
+          }
+        } else if (node.nodeType === Node.ELEMENT_NODE) {
+          const tagName = node.tagName.toLowerCase();
+          // Skip script, style, code blocks, and MathJax elements so LaTeX/code math doesn't break
+          if (
+            tagName !== "script" && 
+            tagName !== "style" && 
+            tagName !== "code" && 
+            tagName !== "pre" && 
+            !node.classList.contains("MathJax") && 
+            !node.classList.contains("mjx-chtml")
+          ) {
+            Array.from(node.childNodes).forEach(highlightSymbols);
+          }
+        }
+      }
+
+      highlightSymbols(contentArea);
+    }
+  });
+</script>
+
+<!--
+</body>
+</html> -->

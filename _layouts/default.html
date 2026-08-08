@@ -36,6 +36,90 @@
       display: flex !important;
       justify-content: center !important; 
     }
+	
+/* Minimal layout isolation for standalone portfolio subpages */
+/* Minimal layout isolation for standalone portfolio subpages */
+body.standalone-page #main_content_wrap,
+body.standalone-page #main_content {
+  margin: 0 auto !important;
+  margin-top: -30px !important;    /* NEGATIVE GAP: Pulls entire hero section upward */
+  padding-top: 0 !important;       /* Strips top padding */
+  padding-left: 10px !important;
+  padding-right: 20px !important;
+  max-width: 98% !important;
+  width: 98% !important;
+  letter-spacing: normal !important;
+  word-spacing: normal !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+}
+
+/* Ensure headings inside standalone pages don't compress */
+body.standalone-page h1,
+body.standalone-page h2,
+body.standalone-page h3,
+body.standalone-page span {
+  letter-spacing: normal !important;
+}
+
+/* HARD LEFT ALIGNMENT OVERRIDE FOR NAME & SUBTITLE */
+body.standalone-page #main_content h1#portfolio_main_title,
+body.standalone-page #main_content h1#portfolio_main_title span,
+body.standalone-page #main_content table,
+body.standalone-page #main_content td {
+  text-align: left !important;     /* Forces left-alignment on title & table cells */
+  align-items: flex-start !important;
+}
+
+
+/* Standardized Cyan Section Heading Scale across Default Layout */
+#main_content h2.section_header,
+#main_content .accent-cyan-title {
+  font-size: 1.5rem !important;        /* Standardizes section header height */
+  letter-spacing: 0.05em !important;
+  line-height: 1.3 !important;
+}
+
+#main_content h3.accent-cyan,
+#main_content .timeline-node h3 {
+  font-size: 1.25rem !important;       /* Standardizes chapter title height */
+  letter-spacing: normal !important;
+  line-height: 1.3 !important;
+}
+
+
+
+
+/* Force original compact card height globally in default layout */
+.custom-linkedin-card {
+  width: 100% !important;
+  min-width: 100% !important;
+  max-width: 1100px !important;
+  box-sizing: border-box !important;
+  margin: 15px 0 !important;
+}
+
+.custom-linkedin-card .card-banner {
+  height: 40px !important;
+  width: 100% !important;
+}
+
+.custom-linkedin-card .card-content {
+  width: 100% !important;
+  padding: 14px 18px !important;
+  gap: 10px !important;
+  box-sizing: border-box !important;
+}
+
+.custom-linkedin-card img.linkedin-asset-logo {
+  display: inline-block !important;
+  height: 20px !important;
+  max-height: 20px !important;
+  width: auto !important;
+  margin: 0 0 0 6px !important;
+  vertical-align: middle !important;
+}
+
+
     #main_content {
       color: #c9d1d9 !important;
       background-color: #0d1117 !important;
@@ -44,7 +128,7 @@
 
   /* 1. Hide the tooltip box during normal screen viewing */
   .quantum-tooltip {
-    display: none;
+    display: none; 
   }
 
   /* 2. PRINTER VIEW (FORCED WHITE) */
@@ -363,7 +447,8 @@ details code {
 </style>
 </head>
 
-<body> 
+<!-- AFTER: Automatically isolates portfolio / subpage styling -->
+<body class="{% if page.standalone or page.permalink == '/PBA Portfolio' %}standalone-page{% endif %}"> 
 
 
   <div align="center" style="width: 100%;">
@@ -377,8 +462,8 @@ details code {
   </a>
   
   <div style="text-align: left; margin: 12px auto 0 auto !important; width: calc(100% - 4px) !important; max-width: 1100px !important; box-sizing: border-box; padding: 0 4px;">
-    <span class="banner-widget" style="font-weight: bold; font-size: 0.85em; letter-spacing: 0.1em; display: block; margin-bottom: 4px;">[NATIVE SIMULATION ENGINE]</span>
-    Click <a href="#-visual-directory">here</a> or banner above to jump directly to the live QF-LC visualization widgets and parameter directory and deploy the interactive matrix computing widgets below.
+    <span class="banner-widget" style="font-weight: bold; font-size: 0.9em; letter-spacing: 0.1em; display: block; margin-bottom: 4px;">[NATIVE SIMULATION ENGINE]</span><span class="banner-widget-text">
+    Click <a href="#-visual-directory">here</a> or banner above to jump directly to the live QF-LC visualization widgets and parameter directory and deploy the interactive matrix computing widgets below.</span>
   </div>
   </div>
 

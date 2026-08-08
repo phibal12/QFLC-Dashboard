@@ -1,11 +1,14 @@
 <!-- Top Menu -->
+<!-- Fixed Bottom Menu -->
 <div class="top-nav">
   <a href="https://github.com/phibal12/QFLC-Dashboard/edit/main/README.md">🏠 GitHub Home</a>
   <a href="#core-objectives">📊 Features</a>
-  <a href="#env-setup">⚙️ Setup</a>
+  <a href="#env-setup">🛠 Setup</a>
+  <a href="#-repository-contents--widget-links">⊞ Widgets</a>
   <a href="#contact">📩 Contact</a>
   <a href="#-profile">👨‍💻 Profile</a>
 </div>
+
 
 <div align="center">
 <div>
@@ -65,7 +68,8 @@ Math Mode:  <a href="https://www.mathjax.org" target="_blank">
   };
 </script><script type="text/javascript" id="MathJax-script" async
   src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"> </script>
-</details>  
+</details>
+<details><summary>⚛️⚙️ <span>⚡<a href="README_Technical.html">Project Setup & System Requirements</a></span></summary>The QFLC Dashboard executes primarily client-side via WebGL/HTML5. However, specific modules (like the **QFLCH Synthesis Engine**) may require external connectivity for hybrid quantum-classical operations. Please refer to the relevant notes on project setup and system requirements. </details>
 
 
 <!-- ========================================================= -->
@@ -109,13 +113,13 @@ Math Mode:  <a href="https://www.mathjax.org" target="_blank">
 Welcome to the interactive portal for **Quantum Field Lens Coding (QF-LC)**. This dashboard demonstrates the implementation of the **Quantum Double-Field (QDF)** model, a novel framework for predicting state transitions (ST) and phase transitions (PT) in quantum and classical systems.
 The dashboard provides a robust, granular look into the mathematical engine of the QF-LC system. 
 It allows users to manipulate the baseline metrics of the complex/scalar field and observe the optimized hardware routing in real-time. 
-It acts as a direct visualizer for the ST probabilities and error rates discussed in the thesis defense seminar's "Energy Paths" section.
+It acts as a direct visualizer for the ST probabilities and error rates discussed in the Ph.D. dissertation defence seminar's "Energy Paths" section.
 
-**Quantum Field Lens Coding Algorithm (QF-LCA):** is an advanced quantum simulation and classification algorithm that utilizes Quantum Double-field (QDF) circuits to encode-decode, (de)focus, and analyze particle energy states. By using entanglement and QF lenses to map Ground States (GS) and Excited States (ES), the algorithm projects and predicts system events with high probability, often doubling prediction accuracy.
+**Quantum Field Lens Coding Algorithm (QF-LCA):** is an advanced quantum simulation and classification algorithm that utilizes QDF circuits to encode-decode, (de)focus, and analyze particle energy states. By using entanglement and QF lenses to map Ground States (GS) and Excited States (ES), the algorithm projects and predicts system events with high probability, often doubling prediction accuracy.
 
-**Key Aspects of QF-LC Mechanism:** QF-LC uses qubit pair entanglement (specifically CNOT operators) to create QDFs that represent energy states, often applied to thermodynamic system simulations.
+**Key Aspects of QF-LC Mechanism:** QF-LCA uses qubit pair entanglement (specifically CNOT operators) to create QDFs that represent energy states, often applied to thermodynamic system simulations.
 
-**Functionality:** It acts as a "lens" by focusing energy state distributions to distinguish between GS/ES, allowing for the classification of particles and re-routing of energy paths to meet a target state (TS). 
+**Functionality:** QF-LCA acts as a "lens" by focusing energy state distributions to distinguish between GS/ES, allowing for the classification of particles and re-routing of energy paths to meet a target state (TS). 
 
 **Prediction:** The algorithm improves prediction accuracy from $\(P \ge 1/3\)$ to $\(P \ge 2/3\)$ (or similar enhancements) by transforming single-field (SF) data into a QDF.
 
@@ -125,7 +129,7 @@ It acts as a direct visualizer for the ST probabilities and error rates discusse
 
 **Context:** The method, often termed QF-LCA, has been validated using quantum hardware, for example, through methods detailed in this ScienceDirect article.This approach is highly relevant for quantum computing, providing a way to handle high-dimensional datasets and improve the reliability of quantum simulations.
 
-## 🚀 Core Capabilities
+## ⚙️🚀 Core Capabilities
 This simulation environment showcases the **QF-LC Algorithm (QF-LCA)**, which provides a significant advantage in predictive fidelity compared to traditional benchmarks like the Quantum Fourier Transform (QFT).
 
 - **Dynamic State Prediction:** Real-time calculation of transition probabilities across $N$-qubit architectures.
@@ -141,9 +145,10 @@ This simulation environment showcases the **QF-LC Algorithm (QF-LCA)**, which pr
         <img src="https://img.shields.io/badge/Logic-VHDL-orange" alt="VHDL"> 
         <img src="https://img.shields.io/badge/Logic-QACM-blueviolet" alt="QACM">
         <img src="https://img.shields.io/badge/Logic-JS-yellow" alt="javascript">
+		<img src="https://img.shields.io/badge/Logic-Python-blue" alt="python">
       </a></div>
 
-This repository showcases the Quantum Field Lens Coding Hypercube, Hardware Synthesis Engine, Phase and Game Theory Simulators, and Dr. Alipour's PhD dissertation summary in the form of a post-PhD defense seminar and highlights, complete with relevant links and citations. The QF-LCA project and its goals have been previously presented according to [https://github.com/phibal12/QFLCS](https://github.com/phibal12/QFLCS).
+This repository showcases the Quantum Field Lens Coding Hypercube, Hardware Synthesis Engine, Phase and Game Theory Simulators, and Dr. Alipour's PhD dissertation summary in the form of a post-PhD defence seminar and highlights, complete with relevant links and citations. The QF-LCA project and its goals have been previously presented according to [https://github.com/phibal12/QFLCS](https://github.com/phibal12/QFLCS).
 
 This collection serves as a unified portfolio, translating the theoretical frameworks of the Quantum Double-Field (QDF) model into interactive, browser-based applications designed for researchers, hardware engineers, and data scientists.
 
@@ -155,8 +160,9 @@ This collection serves as a unified portfolio, translating the theoretical frame
 
 ---
 
-## 🧭 Visual Directory
+## 👁🧭 Visual Directory
 *- Click on any module image below to jump to its interactive environment.* <br>
+**OR** <br>
 *- Click on any module text link below to jump to its detailed description and links.*
 
 | <a href="#1-qf-lc-hypercube-hardware-synthesis-engine-and-phase-simulator"><img src="./assets/QFLCH_Poster.png" alt="Synthesis Engine" width="350" style="border-radius:8px; border:2px solid #3b82f6;"></a> | <a href="#2-qdf-phase-and-game-theory-simulator"><img src="./assets/QDF_P_Screenshot01.jpg" alt="Game Theory Simulator" width="350" style="border-radius:8px; border:2px solid #10b981;"></a> |
@@ -168,19 +174,19 @@ This collection serves as a unified portfolio, translating the theoretical frame
 | **[3. System State Prediction Simulator](#3-qf-lcs-system-state-predictions--lens-coding-simulator)** | **[4. QDF Lens Geometry Lab and Particle Trap](#4-qdf-lens-geometry-lab-and-particle-trap)** |
 
 ---
-## Quantum Field Lens Coding Framework: Probability Doubling by QDF Modeling
+## QFLC Framework: Probability Doubling by QDF modelling
 
-<a href="assets/PhD-GAbstract.png" target="_blank"><img src="assets/PhD-GAbstract.png" alt="QF-LC Dissertattion Framework" style="width: 100% !important; max-width: none !important; border-radius: 8px; border: 2px solid teal; position: relative; left: 50%; transform: translateX(-50%);"></a><br> 
+<a href="assets/PhD-GAbstract.png" target="_blank"><img src="assets/PhD-GAbstract.png" alt="QF-LC Dissertation Framework" style="width: 100% !important; max-width: none !important; border-radius: 8px; border: 2px solid teal; position: relative; left: 50%; transform: translateX(-50%);"></a><br> 
 
 ---
 
-## 🎓🚀 The <i>Probability Doubling</i> Effect as the Core Reserach and Performance Breakthrough
+## 🎓🚀 The <i>Probability Doubling</i> Effect as the Core Research and Performance Breakthrough
 
 <a href="assets/QFLCACodingTripertite02.png" target="_blank"><img src="assets/QFLCACodingTripertite02.png" alt="QF-LC Probability Doubling Framework" style="width: 100% !important; max-width: none !important; border-radius: 8px; border: 2px solid teal; position: relative; left: 50%; transform: translateX(-50%);"></a><br> 
 
 The core innovation of the **Quantum Field Lens Coding (QF-LC)** framework lies in its ability to transform stochastic quantum outcomes into deterministic predictions. Using the **Quantum Double-Field (QDF)** model, the framework achieves a measurable "Focusing Effect":
 
-*   **Initial Enhancement:** It shifts the baseline state transition (ST) probability from **~1/3 (0.33)** to a dominant **>2/3 (0.66)**.
+*   **Initial Enhancement:** It shifts the baseline state transition (ST) probability from $\geq 1/3 (>0.33)$ to a dominant $\geq 2/3 (>0.66)$.
 *   **Predictive Convergence:** Through iterative lensing, the model forces prediction certainty to **converge toward 100%**.
 
 This result is documented in Dr. Alipour's QF-LC dissertation and validated via the **QF-LCS** (Simulator) and QDF datasets, providing a 100% correlation between the theoretical QDF model and observed measurement outcomes on $N$-qubit systems.
@@ -189,31 +195,24 @@ This result is documented in Dr. Alipour's QF-LC dissertation and validated via 
 
 ## 🎓 Post-PhD Seminar Summary
 
-Based on the Post-Ph.D. Defense Seminar and the accompanying transcript, this collection is built upon several core theoretical pillars:
+Based on the Post-Ph.D. Defence Seminar and the accompanying transcript, this collection is built upon several core theoretical pillars:
 
 * **The SF-to-QDF Field Transform:** Transitioning systems from a Superfluid (SF) state to a Quantum Density Fluctuation (QDF) state. This involves utilizing the scalar $\kappa$ to adjust field interactions and focus the quantum "lens."
-* **Equation (53) and Thermodynamic Integration:** Modeling the exact transition probability to a target state over time. Entanglement Entropy (EE) is mathematically defined as the "fuel" or cost of this operation, routing physical logic around thermal limits.
-* **Global Impact and Universality:** The QDF model is validated as a universal framework applicable across classical and quantum events. It fosters new approaches in quantum communication (QKD), thermodynamics, biological diagnostics, and clean energy modeling (mapping to SDG 7 targets).
+* **Equation (53) and Thermodynamic Integration:** modelling the exact transition probability to a target state over time. Entanglement Entropy (EE) is mathematically defined as the "fuel" or cost of this operation, routing physical logic around thermal limits.
+* **Global Impact and Universality:** The QDF model is validated as a universal framework applicable across classical and quantum events. It fosters new approaches in quantum communication (QKD), thermodynamics, biological diagnostics, and clean energy modelling (mapping to SDG 7 targets).
 
-## 📚 Publications and Research
-This dashboard is the practical implementation of research published at the **University of Victoria (UVic)**:
-
-*   **Software Foundation:** [QF-LCS: A Quantum Field Lens Coding Simulator](https://sciencedirect.com)
-*   **Methodology:** [Quantum Field Lens Coding for Predicting State Transitions](https://nih.gov)
-*   **Recent Advancements:** [QAI Classifiers in the Double-Field Model](https://nih.gov)
-  
 ---
-**Current Status:** Generalizing for industrial and societal applications. Two new publications regarding high-fidelity state-classification are currently in preparation, and another under peer-review by Societal Impacts journal.
+**Current Status:** Generalizing for academic R&D, industrial and societal applications. Two new publications regarding high-fidelity state-classification are currently in preparation, and another under peer-review by Societal Impacts journal.
 
 [GitHub Repository](https://github.com) | [Contact Developer](mailto:phibal12@uvic.ca)
 
 ---
 
-## 🚀 Interactive Widget Collection
+## 🖲️⊞ Interactive Widget Collection
 
 The theoretical concepts discussed in the seminar have been synthesized into the following interactive dashboards and simulators. 
 
-### 1. QF-LC Hypercube Hardware Synthesis Engine and Phase Simulator
+### 1.🧮🧊 QF-LC Hypercube Hardware Synthesis Engine and Phase Simulator
 <a href="https://phibal12.github.io/QFLC-Dashboard/labs/QFLCH" target="_blank"><img src="assets/QFLCH_Poster.png" alt="QF-LC Hardware Synthesis Engine (Hypercube)" style="width: 100% !important; max-width: none !important; border-radius: 8px; border: 2px solid teal; position: relative; left: 50%; transform: translateX(-50%);"></a><br> 
 
 
@@ -227,28 +226,33 @@ This is the flagship of the hardware engineering dashboard. It bypasses the visu
 - **Error Mitigation Geometry:** Uses hypercubic symmetry to predict and bypass regions of high decoherence, offering a geometric approach to quantum error correction.
 - **State Pathing:** Trace the trajectory of a state transition (ST) as it moves through higher-dimensional vertices, providing a visual proof of the QF-LCA predictive advantage.
 
-### Advanced Topological Insights
-The QFLC Hypercube serves as more than a visualization; it is a **ty map**. By analyzing the vertex-to-vertex transitions within the QDF model:
+### 🧮🧊 Advanced Topological Insights
+The QFLC Hypercube serves as more than a visualization; it is a **Ty-map** or $\mathcal{T}_y$-map.
+<details><summary>🧊⚛️📍 <span><a href="https://hdl.handle.net/1828/23705">QFLCH Function as a Ty-Map via State Matrix $(x, y)$ Coordinates</a></span></summary> 
+The QF-LC algorithm (QFLCA) uses variable coordinates $x$ and $y$ to construct the QDF state arrays on the hypercube. The metric $y$ calculates the distance between a reference node $x$ and any target node $y$ on the hypercube that can represent tripartite (ABE) entangled particles. Together, these variables create random number matrices that encode passcodes, building the exact visual configuration of the quantum circuit ($z[i]$, where $i=0,1,2..$ is the $i$-th circuit element) across the hypercube's vertex network. This metric allows the **QFLCH** algorithm to run quantum lens distance-based classification program (QFLCS) by extracting the keys from $z[i]$ of the QDF circuit. This is after the QFLCS program loops through the index $i$. </details>
+By analyzing the vertex-to-vertex  transitions within the QDF model and QF lens distances between nodes, it achieves:
 *   **Predictive Pathing:** We can identify the most efficient "energy paths" for state changes.
+- **Quantum Thermodynamics:** Identifying low-entropy paths to maximize system efficiency. This distance tracks changes in Entanglement Entropy (EE) or thermodynamic state transitions.
+- **Biomedicine:** Mapping out how damaged DNA strands mutate to predict the physical growth velocity of virus or cancer cell lines. he metric measures the data distance between normal cells ($x$) and mutated targets ($y$) to predict the physical growth velocity of a biological system.
+- **Cybersecurity / Social Lensing:** Modelling data propagation networks to detect and halt the vector spread of malicious misinformation.
 *   **Decoherence Buffers:** The hypercube geometry highlights topological regions where Entanglement Entropy is naturally minimized, aiding in error-resilient algorithm design.
 
-*This framework is the subject of an upcoming publication focused on the geometric foundations of quantum-lcassical hybrid stability.*
+*This framework is the subject of an upcoming publication focused on the geometric foundations of quantum-classical hybrid stability.*
 
 
 <!-- Video or gif image/clip of the simulation sample goes right here -->
 
 
 
-### 👁️ Understanding the Live QF-LC Hypercube Simulation
-
-When executing the interactive simulation above using a high-fidelity state combination (e.g., the **4D Dimensions** with Minterm option addressing a given input of **0, 2, 8, 10** at **T ≈ 0.93 K**), the canvas dynamically tracks real-time hardware actions:
+### 🧠👁🧩 Understanding the Live QF-LC Hypercube (QFLCH) Simulation
+When executing the interactive simulation above using a high-fidelity state combination (e.g., the **4D Dimensions** with Minterm option addressing a given input of **0, 2, 8, 10** at **T ≈ 0.93 K**), the QFLCH canvas dynamically tracks real-time hardware actions:
 
 - **Active Geometric Sub-Cubes (Bob & Alice):** The neon nodes and paths display the minimized classical hardware routing tracks. This represents Alice's field scaling mapping over Bob's ground-state spatial targets, locked strictly to an $\mathcal{O}(N^2)$ tracking footprint.
 - **The Oscillating Photon Field Web (Eve's Injection):** The white, dynamically shifting triangular bridge lines manifest the **Three-Way Entanglement Network ($N \geq 3$)**. This visualizes Eve's real-time ancilla qubit injection port intercepting the active pairs.
 - **Deterministic State Lock-In ($P \to 0.99$):** The real-time oscillation demonstrates the decoding of hidden Bell state information out of ambient background noise. This optimization effectively doubles the transition probability space, proving the system's ability to eliminate cryogenic processing bottlenecks in real time.
 
 
-### 2. QDF Phase and Game Theory Simulator
+### 2.🎯🔄 QDF Phase and Game Theory Simulator
 <a href="https://phibal12.github.io/QFLC-Dashboard/labs/QDF_P_Engine" target="_blank"><img src="./assets/QDF_P_Screenshot00.JPG" alt="Geometry Lab" height="70%" width="70%" style="border-radius:8px;"></a><br> 
 *(Demonstrating Quantum Phase Transitions and Participant Decisions)*
 
@@ -256,20 +260,20 @@ This widget translates the QDF model into a game theory environment. As discusse
 * **Mechanics:** Users can observe how a "guest participant" (acting as the Ancilla/Eve) influences the network to force a Quantum Phase Transition (QPT). 
 * **Outcome:** It visualizes the probability doubling mechanism where information is safely received, and a decision state (the "prize") is resolved.
 
-### 3. QF-LCS: System State Predictions and Lens Coding Simulator
+### 3.🧮⚛ QF-LCS: System State Predictions and Lens Coding Simulator
 <a href="#4-qdf-lens-geometry-lab--particle-trap"><img src="./assets/QDF_P_Screenshot00.JPG" alt="Geometry Lab" height="70%" width="70%" style="border-radius:8px; border:2px solid #8b5cf6;"></a><br> 
 *(The core simulation engine for strong predictions)*
 
-This widget simulates
+This widget simulates ...
 
-### 4. QDF Lens Geometry Lab and Particle Trap
+### 4.🔬⚛️ QDF Lens Geometry Lab and Particle Trap
 <!-- <a href="#4-qdf-lens-geometry-lab--particle-trap"> -->
 <a href="https://phibal12.github.io/QFLC-Dashboard/labs/QDF-Lens" target="_blank"><img src="./assets/QDF_Lens_Screenshot00.JPG" alt="Geometry Lab" height="70%" width="70%" style="border-radius:8px;"></a><br> 
 *(Live verification of Spatial Density and Lens Distance)*
 
 Directly correlating with the "Measurement" and "Lens Focus" sections of the seminar, this Geometry Lab visualizes the physical interaction length between the source and the target state. 
 
-**Concepts Visualized:**
+**💡👁🧩 Concepts Visualized:**
 * **Concepts Visualized Spatial Density Constraints** Enforces the physical boundary where spatial density $¦\kappa^2¦ \rho \le 2$. The scalar kappa acts as a governor
  to scale and maintain entanglement relative to the energy entropy (EE) observation cost.
 * **Doppler-Shifted Photonic Beam:** Visualizes the dynamic strong purple/blue shift during coherent entanglement and the red shift when defocused over extreme distances.
@@ -283,22 +287,71 @@ How does this relate to the QF-LCA Hypercube? This Geometry Lab visualizes the f
 
 ---
 
-## 📂 Repository Contents & Links
+## 📂 Repository Contents & Widget Links
 
 * **[📁 Presentation Files](./path/to/presentations):** Includes the full `QFLC_PhD_PBA_seminar.pptx` slide deck and the `GMT20260331-172345_Recording.transcript.vtt` transcript.
-* **[🖥️ Live QF-LC Hypercube Synthesis Engine](https://phibal12.github.io/QFLC-Dashboard/labs/QFLCH):** HTML5/JS interactive hardware compiler.
-* **[🔬 Live QF-LC Hypercube Entanglement Node Sample Gnerator](https://phibal12.github.io/QFLC-Dashboard/labs/QFLCH5_py):** HTML5/Python interactive hypercube entangled node generator and state transition lab.
-* **[🔬 QDF Lens Geometry: Lab 01](./labs/QDF-Lens.html):** HTML5/JS spatial density and QDF particle trap visualizer.
-* **[🔬 QDF Lens Geometry: Lab 02](./labs/qflca_optimizer_py.html):** HTML5/Python spatial density and QDF scalar optimizer.
-* **[🖥️ QF-LCS: System State Predictions and Lens Coding Simulator](https://phibal12.github.io/QFLCS/):** HTML5/Python QDF circuit and phase transition simulator.
-* **[🖥️ QuSole: Quantum Social Lens Coding Simulator and Database](https://phibal12.github.io/QFLC-Dashboard/labs/QuSole_QDF_v1-14):** HTML5/JS societal impact, target state and Intelligent Decision Simulator (IDS) simulator based on the QF-LC algorithm. <i>under review</i>
-* **[🔬 QuSole & QF-LCA TRI-CORE CONSOLE v1.4](https://phibal12.github.io/QFLC-Dashboard/labs/QAI_LCode_v1-4):** HTML5/JS QuSole Dataset Visualizer, Validator and Intelligent Decision Simulator (IDS).
-* **[🖥️🎮 Live QDF Phase and Game Theory Simulator](https://phibal12.github.io/QFLC-Dashboard/labs/QDF_P_Engine):** HTML5/JS interactive phase transition simulator and QDF prediction engine.
-* **[🔬 QDF Lens Geometry Lab 03](./labs/QFLCH5_py):** HTML5/Python spatial density and QDF particle trap and entropy visualizer.
-* **[🎮 QDF Game Theory Simulator](https://phibal12.github.io/QFLCS/):** HTML5/Python prompt-based animated phase transition and QDF circuit simulator.
-* **[🎮 Hybrid Quantum-Classical Based Game Product](https://phibal12.github.io/QFLCS/):** HTML5/JS prompt-based animated charcaters and AI decision tree for Target State simulator.
-* **[🎮 Phibal12 Games by Mojan Zygon RTL: Entertainment Dept.](https://www.deviantart.com/phibal12):**  Preview of incomplete PC Games developed since ealry 2000s transforming into their today versions via AI and quantum AI. HTML5/JS/C++/VB.NET/Legacy DOS 2.xD/3D/4D dynamic charcaters in their worlds and AI decision tree for their Target State game outcomes/results.
-* **[📊 Datasets](./path/to/datasets):** Generated baseline datasets mapping multi-dimensional collapses and QDF probabilities.
+<details id="widget-links">
+  <summary><b>⊞️ Widget Files & Links</b></summary>
+  <br>
+  <!-- Intro Text -->
+  <p>⊞ <b>Click on any widget link to run its program directly:</b></p>
+  
+  <!-- Start of HTML List -->
+  <ul>
+    <li>
+      <b><a href="https://phibal12.github.io/QFLC-Dashboard/labs/QFLCH">🖥️ Live QF-LC Hypercube Synthesis Engine</a>:</b> 
+      HTML5/JS interactive hardware compiler.
+    </li>
+    <li>
+      <b><a href="https://phibal12.github.io/QFLC-Dashboard/labs/QFLCH5_py">🔬 Live QF-LC Hypercube Entanglement Node Sample Generator</a>:</b> 
+      HTML5/Python interactive hypercube entangled node generator and state transition lab.
+    </li>
+    <li>
+      <b><a href="./labs/QDF-Lens.html">🔬 QDF Lens Geometry: Lab 01</a>:</b> 
+      HTML5/JS spatial density and QDF particle trap visualizer.
+    </li>
+    <li>
+      <b><a href="./labs/qflca_optimizer_py.html">🔬 QDF Lens Geometry: Lab 02</a>:</b> 
+      HTML5/Python spatial density and QDF scalar optimizer.
+    </li>
+    <li>
+      <b><a href="https://phibal12.github.io/QFLCS/">🖥️ QF-LCS: System State Predictions and Lens Coding Simulator</a>:</b> 
+      HTML5/Python QDF circuit and phase transition simulator.
+    </li>
+    <li>
+      <b><a href="https://phibal12.github.io/QFLC-Dashboard/labs/QuSole_QDF_v1-14">🖥️ QuSole: Quantum Social Lens Coding Simulator and Database</a>:</b> 
+      HTML5/JS societal impact, target state and Intelligent Decision Simulator (IDS) simulator based on the QF-LC algorithm. <i>under review</i>
+    </li>
+    <li>
+      <b><a href="https://phibal12.github.io/QFLC-Dashboard/labs/QAI_LCode_v1-4">🔬 QuSole & QF-LCA TRI-CORE CONSOLE v1.4</a>:</b> 
+      HTML5/JS QuSole Dataset Visualizer, Validator and Intelligent Decision Simulator (IDS).
+    </li>
+    <li>
+      <b><a href="https://phibal12.github.io/QFLC-Dashboard/labs/QDF_P_Engine">🖥️🎮 Live QDF Phase and Game Theory Simulator</a>:</b> 
+      HTML5/JS interactive phase transition simulator and QDF prediction engine.
+    </li>
+    <li>
+      <b><a href="./labs/QFLCH5_py">🔬 QDF Lens Geometry Lab 03</a>:</b> 
+      HTML5/Python spatial density and QDF particle trap and entropy visualizer.
+    </li>
+    <li>
+      <b><a href="https://phibal12.github.io/QFLCS/">🎮 QDF Game Theory Simulator</a>:</b> 
+      HTML5/Python prompt-based animated phase transition and QDF circuit simulator.
+    </li>
+    <li>
+      <b><a href="https://phibal12.github.io/QFLCS/">🎮 Hybrid Quantum-Classical Based Game Product</a>:</b> 
+      HTML5/JS prompt-based animated characters and AI decision tree for Target State simulator.
+    </li>
+    <li>
+      <b><a href="https://www.deviantart.com/phibal12">🎮 Phibal12 Games by Mojan Zygon RTL: Entertainment Dept.</a>:</b> 
+      Preview of incomplete PC Games developed since early 2000s transforming into their today versions via AI and quantum AI. HTML5/JS/C++/VB.NET/Legacy DOS 2.xD/3D/4D dynamic characters in their worlds and AI decision tree for their Target State game outcomes/results.
+    </li>
+    <li>
+      <b><a href="./path/to/datasets">📊 Datasets</a>:</b> 
+      Generated baseline datasets mapping multi-dimensional collapses and QDF probabilities.
+    </li>
+  </ul>
+</details>
 
 ---
 
@@ -309,7 +362,7 @@ How does this relate to the QF-LCA Hypercube? This Geometry Lab visualizes the f
 
 
 <p class="lead-bio">
-    Specializing in quantum computational modeling and interactive thermodynamic systems, bridging the gap between complex algorithmic logic and visual data discovery. 
+    Specializing in quantum computational modelling and interactive thermodynamic systems, bridging the gap between complex algorithmic logic and visual data discovery. 
 </p>   -->
 
 <div style="display: flex; align-items: center; gap: 25px;">
@@ -317,7 +370,7 @@ How does this relate to the QF-LCA Hypercube? This Geometry Lab visualizes the f
   <img src="./assets/PBA_portrait.jpg" alt="Dr. Philip B. Alipour" style="width: 220px; height: 220px; border-radius: 50%; border: 2px solid #00ffff; box-shadow: 0 0 15px rgba(0, 255, 255, 0.5); object-fit: cover;" />
 
   <div>
-    <strong>Dr. Philip B. Alipour </strong> specializes in Quantum Computational Modeling and Interactive Thermodynamic Systems, bridging the gap between complex algorithmic logic, visual data lab discovery and real-world datasets. <br>
+    <span style="font-size: 14pt;"><strong>Dr. Philip B. Alipour </strong> specializes in Quantum Computational modelling and Interactive Thermodynamic Systems, bridging the gap between complex algorithmic logic, visual data lab discovery and real-world datasets.</span> <br> 
   
   <!-- Place at the very top of simulator/widget layout -->
 <nav style="width: 100%; background: rgba(11, 17, 30, 0.95); border-bottom: 1px solid rgba(0, 229, 255, 0.3); padding: 10px 1px; box-sizing: border-box; display: flex; justify-content: space-between; align-items: center;">
@@ -354,7 +407,7 @@ How does this relate to the QF-LCA Hypercube? This Geometry Lab visualizes the f
 <!--
 * **🎯 Algorithm Design:** Formulating the QF-LCA for real-time system state prediction and optimized control loops/paths.
   * Development and implementation of QF-LCA for any system state prediction via current hybrid machines and architectures.
-* **💻 System Simulation:** Architect of the **QF-LCS (Simulator)**, a core Python-based engine for modeling thermodynamic quantum evolution.
+* **💻 System Simulation:** Architect of the **QF-LCS (Simulator)**, a core Python-based engine for modelling thermodynamic quantum evolution.
    * Python/Javascript-based simulations developed as widgets from the QF-LCA core engine.
    * Architectural design and development of the interactive QF-LCS engine to visualize dynamic behaviors of systems.
 * **🧊 Topological Mapping:** Utilizing the **QFLC Hypercube** to visualize and mitigate decoherence in higher-dimensional state spaces.
@@ -362,13 +415,13 @@ How does this relate to the QF-LCA Hypercube? This Geometry Lab visualizes the f
 * **🤖 Quantum AI (QAI):** Implementing high-fidelity classifiers to improve measurement outcomes and system stability.
   * Integrating high-fidelity quantum classifiers to ensure hybrid system's stability and predictive precision. -->
 
-### 🚀 Technical Expertise & Core Work
+### 👨‍💻⚙️ Technical Expertise & Core Work
 
-* **🎯 Algorithm Design:** Formulating the QF-LCA for real-time system state prediction.
+* **🧮 Algorithm Design:** Formulating the QF-LCA for real-time system state prediction.
   * Predicting system states via hybrid architectures.
   * Optimizing control loops and paths.
-* **💻 System Simulation:** Architect of the **QF-LCS (Simulator)**.
-  * Modeling thermodynamic quantum evolution in Python.
+* **💻🧮 System Simulation:** Architect of the **QF-LCS (Simulator)**.
+  * Modelling thermodynamic quantum evolution in Python.
   * Developing interactive Javascript-based simulation widgets.
   * Visualizing complex dynamic system behaviors.
 * **🧊 Topological Mapping:** Utilizing the **QFLC Hypercube**.
@@ -385,18 +438,18 @@ How does this relate to the QF-LCA Hypercube? This Geometry Lab visualizes the f
   * Enhancing real-time predictive precision.
   * Optimize energy path efficiencies toward target Hamiltonian states. 
 <hr>  
-* 🔹 **Core Technical Expertise:** Quantum Algorithms, Quantum Information Theory, Quantum Double-Field (QDF) Modeling, Entanglement Entropy (EE), Quantum AI (QAI), Statistical Mechanics & Thermodynamics.
-* 🔹 **Major Skills:** Computer Science, Software Engineering, Games Development, Electrical Engineering, Mathematical and Theoretical Physics, Quantum Mechanics, Quantum Information Theory, Information Theory, Business Intelligence.
+* 🔹 **Core Technical Expertise:** Quantum Algorithms, Quantum Information Theory, Quantum Double-Field (QDF) Modelling, Entanglement Entropy (EE), Quantum AI (QAI), Statistical Mechanics & Thermodynamics.
+* 🔹 **Major Skills:** Computer Science, Software Engineering, Games Development, Electrical Engineering, Mathematical and Computational Physics, Quantum Mechanics, Information Theory, and Business Intelligence.
 
-### 🌐 Real-World Application Vectors
+### 🌐 Real-World Application Vectors 
+Some QF-LC application vectors are presented in the following simulated and published real-world examples: 
+* **🔍📊 Data Science:** Classifying particle states from evidence samples.
+* **🧬 Bioinformatics:** Reconstructing damaged DNA cell strands.
+* **🛡️🦠 Virology & Oncology:** Predicting virus spread and cancer growth, as well as model against viral transmission pathways and macromolecular structures.
+* **🔏📄 Document Security:** Verifying genuine versus forged documents.
 
-* **Data Science:** Classifying particle states from evidence samples.
-* **Bioinformatics:** Reconstructing damaged DNA cell strands.
-* **Virology & Oncology:** Predicting virus spread and cancer growth.
-* **Document Security:** Verifying genuine versus forged documents.
 
-
-### Research Vision 
+### 💡👁 Research Vision 
 <!-- Dr. Alipour's active research focuses on advancing the QF-LC framework into industrial-scale applications, bridging the gap between theoretical quantum information science and performant, hardware-integrated systems.
 His doctoral dissertation at the **University of Victoria** introduced the **Quantum Double-Field (QDF)** model. This model addresses a critical bottleneck in NISQ-era computing: the accurate prediction of state and phase transitions. By "lens coding" quantum fields, we can achieve superior predictive accuracy compared to standard benchmarks like the Quantum Fourier Transform (QFT), although compatible with the SF to a QDF transform invented via QF-LC algorithmic steps achieving high state transition probabilities over 2/3 in every case presented. -->
 
@@ -406,7 +459,7 @@ His doctoral dissertation at the **University of Victoria** introduced the **Qua
 * **Proven Performance:** Achieving state transition probabilities over 2/3 in all cases.
 
 ### Moving Forward
-Based in British Columbia, Dr. Alipour is currently generalizing simulation framework for industrial applications in quantum networking and scalable hardware architectures relative to sustainable development goals (SDGs) in society. He is actively seeking collaborations and professional opportunities that bridge the gap between theoretical field modeling and practical quantum advantage.
+Based in British Columbia, Dr. Alipour is currently generalizing simulation framework for industrial applications in quantum networking and scalable hardware architectures relative to sustainable development goals (SDGs) in society. He is actively seeking collaborations and professional opportunities that bridge the gap between theoretical field modelling and practical quantum advantage.
 
 ## Contact
 <div align="center">
@@ -424,7 +477,7 @@ University of Victoria, V8W 2Y2, Canada.
 
 **Three new publications regarding high-fidelity QAI classifiers and Hypercube topology are currently in preparation:**
 
-- Real-Time O(1) Quantum Field Lens Coding via Fractal Information Shells
+- Real-Time $\mathcal{O}(1)$ Quantum Field Lens Coding via Fractal Information Shells
 - Qusole Codes: Quantum Social Lensing for Global Sustainable Goals
 - Scaling Hybrid Quantum-Classical Computing Architectures via QF-LCH: Quantum Field Lens Coding Hypercube 
 
@@ -435,7 +488,8 @@ University of Victoria, V8W 2Y2, Canada.
 <div class="bottom-nav">
   <a href="https://github.com/phibal12/QFLC-Dashboard/edit/main/README.md">🏠 GitHub Home</a>
   <a href="#core-objectives">📊 Features</a>
-  <a href="#env-setup">⚙️ Setup</a>
+  <a href="#env-setup">🛠 Setup</a>
+  <a href="#-repository-contents--widget-links">⊞ Widgets</a>
   <a href="#contact">📩 Contact</a>
   <a href="#-profile">👨‍💻 Profile</a>
   <a href="#">↑ Back to Top</a>
@@ -447,8 +501,9 @@ University of Victoria, V8W 2Y2, Canada.
 
 Welcome to the central hub for the **Quantum Field Lens Coding (QF-LC)** project. This dashboard provides direct access to all research assets, licensing, and implementation tools derived from 
 
-UVicSpace | Institutional Repository at [https://hdl.handle.net/1828/23705](https://hdl.handle.net/1828/23705)<!-- {:target="_blank"} --> as the dissertation research. -->
+UVicSpace | Institutional Repository at  [https://hdl.handle.net/1828/23705](https://hdl.handle.net/1828/23705) {:target="_blank"} --> <!--as the dissertation research. -->
 
+<!--
 ---
 
 ### 📂 Project Navigation Matrix
@@ -457,16 +512,15 @@ UVicSpace | Institutional Repository at [https://hdl.handle.net/1828/23705](http
 | 📚 Research & Theory | 💻 Code & Implementation | ⚖️ Legal & Contributing |
 | :--- | :--- | :--- |
 | [🎓 PhD Dissertation](https://uvic.ca) | [🧩 QF-LCA Algorithm (Py)](assets/QF_LCA_Core.py) | [📜 Copyright Notice](https://creativecommons.org/licenses/by-nc-nd/4.0/#notice-40) |
-| [📄 MethodsX Publication](https://doi.org) | [⚙️ Circuit Simulation (Qiskit)](assets/QF_LCC_Circuit.py) | [🔑 CC License](LICENSE) |
+| [📄 MethodsX Publication](https://doi.org) | [⚙️⊞ Circuit Simulation (Qiskit)](assets/QF_LCC_Circuit.py) | [🔑 CC License](LICENSE) |
 | [📊 Mendeley Dataset](https://doi.org) | [📈 Data Visualization](assets/QDF_Visualizer.ipynb) | [🤝 Contributing Guide](assets/CONTRIBUTING.md) |
+-->
 
----
-
-### 🔍 Quick Access Highlights
+### 🔍 Quick QF-LCA Dashboard Access Highlights
 
 <details id="core-objectives">
 <summary><b>📊🚀 Core Features & Objectives</b></summary>
-  <ul style="text-align: left; margin-top: 10px; padding-left: 20px; color: #e2e8f0;">
+  <ul style="text-align: left; margin-top: 10px; padding-left: 20px;">
     <li style="margin-bottom: 8px;"><strong>Probability Doubling:</strong> Shifting state transition predictions from $P \approx 1/3$ to $P \geq 2/3$.</li>
     <li style="margin-bottom: 8px;"><strong>Field Lens Scaling:</strong> Implementing the strict $\kappa$-<i>ρ</i>
 stability window ($|\kappa^2| ρ \leq 2$).</li>
@@ -476,16 +530,57 @@ stability window ($|\kappa^2| ρ \leq 2$).</li>
   </ul>
 </details>
 
+<hr>
+
+<!-- ENVIRONMENTAL SETUP SECTION -->
 <details id="env-setup">
-<summary><b>🛠️ Environmental Setup</b></summary>
-<p> • &nbsp; To run these assets locally, ensure your environment matches <a href="assets/README_Technical.md">Project Requirements</a>:</p>
+<summary><b>🖥️🛠️&#9654; Environmental Setup & Execution</b></summary>
 
-<pre><code class="language-bash">pip install numpy scipy matplotlib qiskit pandas scikit-learn</code></pre>
+<br>
+<p><b>Method 1: Direct Offline Launch</b><br>
+To run QF-LC widget assets offline, download the HTML widget(s) of your choice along with their dependent files. Simply double-click the file to run it in your browser (e.g., Edge, Chrome).</p> 
 
-<p>This single command installs all of these data science, machine learning, and quantum computing libraries at once.</p>
-<p> • &nbsp; <b>Upgrade pip</b> first to avoid compilation errors by upgrading pip before installing heavy libraries like scipy or scikit-learn.</p>
+<hr>
 
-<pre><code class="language-bash">pip install --upgrade pip</code></pre>
+<p><b>Method 2: Local Python Server (Recommended)</b><br>
+To run Python-based widgets locally with full module support, follow these steps to ensure your environment meets the <a href="README_Technical.html">Project Setup & System Requirements</a>.</p> 
+
+<p><b>Step A: Verify Python Installation</b><br>
+Since these widgets rely on Python logic, ensure Python is installed. If not, download it from <a href="https://www.python.org/downloads">python.org/downloads</a>.</p>
+
+<p><b>Step B: Start the Local Server</b><br>
+Open your terminal (Command Prompt, PowerShell, or Terminal). Change directories to the folder containing your downloaded widget:</p>
+
+<pre><code class="language-bash">cd path/to/your/folder</code></pre>
+
+<p>Run the built-in HTTP server command:</p>
+
+<pre><code class="language-bash">python -m http.server 8000</code></pre>
+
+<p>⚠️ Note: If <code>python</code> doesn't work, try <code>python3 -m http.server 8000</code></p>
+
+<p><b>Step C: Launch in Browser</b><br>
+Open your web browser and navigate to: <a href="http://localhost:8000">http://localhost:8000</a></p>
+
+<hr>
+
+<p><b>⚠️💥🛠️ Troubleshooting &amp; Updates</b><br>
+If you encounter errors, press <b>F12</b> to open Developer Tools and check the console. Ensure your HTML file headers use the active PyScript release below to avoid version conflicts:</p> 
+
+<pre><code class="language-html">&lt;<span style="color: pink">head</span>&gt;
+... <span style="color: orange ont-style: italic !important;">&lt;!-- HTML program code --&gt;</span>
+<span style="color: orange ont-style: italic !important;">&lt;!-- Official Latest PyScript CDN Assets; Core PyScript External Dependencies --&gt;</span>
+&lt;link rel="stylesheet" href="https://pyscript.net/releases/2026.3.1/core.css" /&gt;
+&lt;script type="module" src="https://pyscript.net/releases/2026.3.1/core.js"&gt;&lt;/script&gt;
+&lt;<span style="color: pink">/head</span>&gt;
+</code></pre>
+
+<p><b>📦⚙️ Library Installation (Local Dependencies)</b><br>
+To avoid import errors, upgrade pip and install the required scientific libraries:</p>
+
+<pre><code class="language-bash">pip install --upgrade pip
+pip install numpy scipy matplotlib qiskit pandas scikit-learn</code></pre>
+
 </details>
 
 ---
@@ -500,17 +595,35 @@ stability window ($|\kappa^2| ρ \leq 2$).</li>
 ---  -->
 
 ## 📚 Core Publications & Citations
-
+This dashboard is the practical implementation of research published at the **University of Victoria (UVic)**:
+*   **Methodology:** Quantum Field Lens Coding for Predicting State Transitions:
 1.   **QF-LC Base:** P.B. Alipour, Quantum Field Lens Coding, Ph.D. dissertation, Dept. Elect. Comput. Eng., Univ. Victoria, Victoria, BC (2026). [Online URI] Available: [https://hdl.handle.net/1828/23705](https://hdl.handle.net/1828/23705)
 2.   **QDF Theoretical Base:** P.B. Alipour, T.A. Gulliver, *Quantum Double-field Model and Application*, SSRN, Elsevier BV (2024), Article 4595442. [DOI: 10.2139/ssrn.4595442](https://dx.doi.org/10.2139/ssrn.4595442)
 3.  **Algorithm Mechanics:** P.B. Alipour, T.A. Gulliver, *Quantum Field Lens Coding and Classification Algorithm to Predict Measurement Outcomes*, MethodsX, Elsevier BV (2023), Article 102136. [DOI: 10.1016/j.mex.2023.102136](https://doi.org/10.1016/j.mex.2023.102136)
 4.  **Dataset Validation:** P.B. Alipour, T.A. Gulliver, *QF-LCA dataset: Quantum Field Lens Coding Algorithm for system state simulation and strong predictions*, Data in Brief, Elsevier BV (2024), Article 110789. [DOI: 10.1016/j.dib.2024.110789](https://doi.org/10.1016/j.dib.2024.110789)
-5.  **Software Implementation:** P.B. Alipour, T.A. Gulliver, *QF-LCS: Quantum Field Lens Coding Simulator and Game Tool for Strong System State Predictions*, Software Impacts, Elsevier BV (2024), 100703. [DOI: 10.1016/j.simpa.2024.100703](https://doi.org/10.1016/j.simpa.2024.100703)
+5.  **Software Implementation/Foundation:** P.B. Alipour, T.A. Gulliver, *QF-LCS: Quantum Field Lens Coding Simulator and Game Tool for Strong System State Predictions*, Software Impacts, Elsevier BV (2024), 100703. [DOI: 10.1016/j.simpa.2024.100703](https://doi.org/10.1016/j.simpa.2024.100703)
+6.  **QAI Classifiers from a QDF Model:** P.B. Alipour, T.A. Gulliver, *Quantum AI and hybrid simulators for a Universal Quantum Field Computation Model*, MethodsX, Elsevier BV (2023), Article 10236. [DOI: 10.1016/j.mex.2023.102366](https://doi.org/10.1016/j.mex.2023.102366)
 
 ---
 
-### ⚖️ Attribution Notice
-The software provided in this dashboard is intended for academic, industrial, societal and research purposes. Please cite the original dissertation and the associated **MethodsX**, **Software Impacts** and/or **Data in Brief** papers when utilizing the **QDF** logic or datasets in your own work.
+
+## ⚖ Attribution & IP Notice
+
+**Legal Framework and Trademark Notice** 
+> © 2026 Dr. Philip B. Alipour. All Rights Reserved. 
+> * This legal framework formulates the QF-LCA for <i>strong and robust real-time system state predictions</i>. <i>Next-generation quantum computers</i> as **QuBABE™** and **2xQuBABE™** computing architectures—encompassing **2xQuFL-BABE™ Computer**, **2xQuFL-BABE™ Computing**, **2xQuFL-BABE™ Systems**, and **Quantum Field Lens Coding™**—are proprietary trademarks used in conjunction with Quantum Double-Field (QDF) processing architectures. **2xQuFL-BABE™** represents the commercial implementation of the Quantum Field Lens Coding Algorithm (QF-LCA), successfully defended and archived under university intellectual repository standards at the University of Victoria, BC, Canada.
+
+**System Architecture Nomenclature and IP Notice**
+> **2xQuFL-BABE™** operates as a unified dual-definition quantum framework:
+> * **Physical Engine Platform (Academic):** Implements the 3-way entanglement (Alice-Bob-Eve or ABE) exchange system defined in Chapter 2 of Philip B. Alipour's Ph.D. dissertation: <a href="https://hdl.handle.net/1828/23705" target="_blank">hdl.handle.net/1828/23705</a>, where **E**ve's decoding matrix successfully extracts hidden **B**ell information to double transition probability limits ($P \ge 1/3 \rightarrow P \ge 2/3$).
+> * **Hardware Core Identity (Commercial):** Represents the proprietary next-gen quantum computers designed and trademarked by Philip **B**aback **A**lipour (**B.A.**). 
+> * The above-mentioned inherits **QuBABE™ Systems** as **Qu**antum **B**aback **A**lipour's **B**ell-**E**ve Systems proprietary trademark ownership as defined under Section 6 of <a href="https://ised-isde.canada.ca/site/canadian-intellectual-property-office/en/trademarks" target="_blank"> Canadian Intellectual Property Office (CIPO) </a>, and Classes 9 (Goods) and 42 (Services) of <a href="https://ised-isde.canada.ca/site/canadian-intellectual-property-office/en/trademarks/goods-and-services-manual-class-headings" target="_blank">Trademarks Act and Trademarks Regulations</a>.
+> 🛰 **[EXPLORE THE HARDWARE INTERFACE →]** *(This link will redirect to the standalone hardware platform page as live telemetry streams expand)*
+
+**Application and Dataset Layer Nomenclature and IP Notice**
+> The software widgets and their datasets provided in this dashboard as **QFLCD** components **are** intended for academic, industrial, societal, and research purposes. These QFLCD components are the practical implementation of research defended and archived at the University of Victoria: <a href="https://hdl.handle.net/1828/23705" target="_blank">hdl.handle.net/1828/23705</a>. Please cite the original dissertation and the associated Elsevier papers (**MethodsX**, **Software Impacts**, **Data in Brief**,**Societal Impacts**, etc.) when utilizing the **QDF** logic or datasets in your own work.
+> * The above-mentioned inherits **QFLCD™ Applications** as **Quantum Field Lens Coding Dashboard** computers proprietary trademark ownership as defined under Section 6 of <a href="https://ised-isde.canada.ca/site/canadian-intellectual-property-office/en/trademarks" target="_blank"> Canadian Intellectual Property Office (CIPO) </a>, and Classes 9 (Goods) and 42 (Services) of <a href="https://ised-isde.canada.ca/site/canadian-intellectual-property-office/en/trademarks/goods-and-services-manual-class-headings" target="_blank">Trademarks Act and Trademarks Regulations</a>.
+
 
 <div style="text-align: left !important; display: block; width: 100%; margin-top: 50px;">
   <hr style="border-top: 1px solid #444c56; margin-bottom: 20px;">
