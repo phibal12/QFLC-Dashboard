@@ -125,6 +125,22 @@ ol.ieee-list > li::before {
 }
 
 @media print {
+  /* 1. Invert image colors: Dark background becomes white, cyan/white lines become dark/black */
+  .print-invert, 
+  img[src*="Screenshot_2xQuBABE_06"] {
+    filter: invert(1) hue-rotate(180deg) !important;
+    -webkit-filter: invert(1) hue-rotate(180deg) !important;
+    background-color: #ffffff !important;
+  }
+
+  /* 2. Force exact color reproduction for print rendering engines */
+  img {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
+
+@media print {
   /* Force clean white background and clear forced dark mode background colors */
   body, 
   #root, 
@@ -3032,15 +3048,12 @@ if (cvPhaseWidgetRef.current && cvPhaseWidgetRef.current.contentWindow) {
   {/* ========================================================================= */}
 {/* SYSTEM BLUEPRINT IMAGE (Visible on ALL Screen Sizes)                     */}
 {/* ========================================================================= */}
-<div className="w-full my-2 flex flex-col items-center">
+<div className="w-7 my-2 flex flex-col items-center">
   <img 
     src="./webpage_assets/Screenshot_2xQuBABE_06.jpeg" 
     alt="2xQuBABE System Monospace Diagram" 
-    className="w-full h-auto rounded border border-slate-700 shadow-md object-contain"
+    className="w-full h-auto rounded border border-slate-700 shadow-md object-contain print-invert print:border-none print:shadow-none"
   />
-  <span className="block text-center text-[10px] text-cyan-500/70 pt-2 font-mono">
-    © Copyright 2026, Dr. P. B. Alipour. All Rights Reserved.
-  </span>
 </div>
 
 
