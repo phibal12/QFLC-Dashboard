@@ -318,6 +318,16 @@ useEffect(() => {
   };
 });
 
+
+// Detect if screen width is below desktop threshold (< 768px)
+const [isMobileScreen, setIsMobileScreen] = useState(window.innerWidth < 768);
+
+useEffect(() => {
+  const handleResize = () => setIsMobileScreen(window.innerWidth < 768);
+  window.addEventListener('resize', handleResize);
+  return () => window.removeEventListener('resize', handleResize);
+}, []);
+
 // 3. The actual recording loop (captures data every 1 second)
 useEffect(() => {
   let intervalId;
