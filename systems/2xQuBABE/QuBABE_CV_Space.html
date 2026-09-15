@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CV Phase Space Interactive Widget</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <script type="module" crossorigin>
+    import { jsx, jsxs } from 'https://widgetlibs.static.usercontent.goog/react/jsx-runtime-Dc9ViRTo.js';
+    import React, { useState, useRef, useEffect } from 'https://widgetlibs.static.usercontent.goog/react-Dd1pKoqe.js';
+    import ReactDOM from 'https://widgetlibs.static.usercontent.goog/react-dom/client-BTuQ-l8_.js';
+    import { ErrorBoundary } from 'https://widgetlibs.static.usercontent.goog/react-error-boundary-BY2GTZrN.js';
+    import * as Slider from 'https://widgetlibs.static.usercontent.goog/@radix-ui/react-slider-DXk-CvUR.js';
+    import * as ToggleGroup from 'https://widgetlibs.static.usercontent.goog/@radix-ui/react-toggle-group-SAzue8E6.js';
+
+    function FallbackComponent() {
+      return jsx("div", { className: "p-5 text-error text-sm font-medium", children: "An error occurred inside the simulation visualization component." });
+    }
+
+    function App() {
+      const [temperature, setTemperature] = useState(1.1);
+      const [squeezing, setSqueezing] = useState(0.4);
+      const [isPlaying, setIsPlaying] = useState(true);
+      // Replaced timeState with continuous angle tracking
+const [rotationAngle, setRotationAngle] = useState(0); // Stores total accumulated degrees
+      
+      const isPlayingRef = useRef(isPlaying);
+      const iframeRef = useRef(null);
+	  // Declare state for particleCountN in QuBABE_CV_Space.html for its child, QuBABE_Bitwise_Entropy.html
+const [particleCountN, setParticleCountN] = useState(3);
+	  
+	  
+
+      useEffect(() => {
+        isPlayingRef.current = isPlaying;
+      }, [isPlaying]);
+
+      useEffect(() => {
+        let frameId;
+  const tick = () => {
+    if (isPlayingRef.current) {
+      setRotationAngle((prevAngle) => {
+        // Rotation speed scales smoothly with temperature
+        const speed = 1.5 + temperature * 0.15; 
+        return (prevAngle + speed) % 360; // Clean 360-degree wrap with zero phase jump
+      });
+    }
+    frameId = requestAnimationFrame(tick);
+  };
+  frameId = requestAnimationFrame(tick);
+  return () => cancelAnimationFrame(frameId);
+}, [temperature]); // Listens to temperature updates
+
+      // Broadcast temperature changes to the embedded Entropy iframe
+      const handleTempChange = (newTemp) => {
+        setTemperature(newTemp);
+        if (iframeRef.current && iframeRef.current.contentWindow) {
+          iframeRef.current.contentWindow.postMessage({ type: "SYNC_TEMP", temp: newTemp }, "*");
+        }
+      };
+	  
+	  // Handler to broadcast play/pause toggles to embedded iframe
+const togglePlayPause = () => {
+  const nextState = !isPlaying;
+  setIsPlaying(nextState);
+  if (iframeRef.current && iframeRef.current.contentWindow) {
+    iframeRef.current.contentWindow.postMessage({ type: "SYNC_PLAY", playing: nextState }, "*");
+  }
+};
+
+     // Listen for play/pause sync from embedded iframe
+// Listen for incoming sync events from Parent AND forward them down to Grandchild (iframeRef)
+// Listen for incoming sync events from Parent AND forward them down to Grandchild (iframeRef)
+useEffect(() => {
+  const handleMessage = (event) => {
+    if (!event.data) return;
+
+    // Synchronize Temperature
+    if (event.data.type === "SYNC_TEMP") {
+      setTemperature(event.data.temp);
+
+      // Forward directly to grandchild (QuBABE_Bitwise_Entropy.html)
+      if (iframeRef.current && iframeRef.current.contentWindow) {
+        iframeRef.current.contentWindow.postMessage(
+          { type: "SYNC_TEMP", temp: event.data.temp },
+          "*"
+        );
+      }
+    }
+	
+	// Forward Particle Count N down to grandchild (QuBABE_Bitwise_Entropy.html)
+    // --- SYNCHRONIZE PARTICLE COUNT N ---
+    if (event.data.type === "SYNC_N" || event.data.type === "SYNC_PARTICLES" || event.data.type === "SYNC_QDF") {
+      const incomingN = parseInt(event.data.n, 10) || 3;
+      setParticleCountN(incomingN);
+
+      // Re-broadcast down to Grandchild (iframeRef)
+      if (iframeRef.current && iframeRef.current.contentWindow) {
+        iframeRef.current.contentWindow.postMessage(
+          { type: "SYNC_N", n: incomingN },
+          "*"
+        );
+      }
+    }
+
+    // Synchronize Play / Pause State
+    if (event.data.type === "SYNC_PLAY" || event.data.type === "SYNC_PLAY_STATE") {
+      const nextPlayingState = event.data.playing !== undefined ? event.data.playing : event.data.isPlaying;
+      setIsPlaying(nextPlayingState);
+
+      // Forward directly to grandchild (QuBABE_Bitwise_Entropy.html)
+      if (iframeRef.current && iframeRef.current.contentWindow) {
+        iframeRef.current.contentWindow.postMessage(
+          { type: "SYNC_PLAY", playing: nextPlayingState },
+          "*"
+        );
+      }
+    }
+
+// Forward complete thermodynamic state package to Grandchild
+    if (event.data.type === "SYNC_THERMO_STATE") {
+      setTemperature(event.data.temp);
+      setIsPlaying(event.data.playing);
+
+      try {
+        if (iframeRef.current && iframeRef.current.contentWindow) {
+          iframeRef.current.contentWindow.postMessage(event.data, "*");
+        }
+      } catch (e) {}
+    }
+
+
+
+    // Handle Dynamic Scroll Command from Parent (SEPARATE TOP-LEVEL IF STATEMENT)
+    if (event.data.type === "SET_SCROLL") {
+      const targetY = event.data.scrollTop || 0;
+      
+      // Delay slightly to ensure React has fully rendered DOM height
+      setTimeout(() => {
+        window.scrollTo({
+          top: targetY,
+          behavior: "smooth"
+        });
+      }, 100);
+    }
+  };
+
+  window.addEventListener("message", handleMessage);
+  return () => window.removeEventListener("message", handleMessage);
+}, []);
+
+      const Tc = 2.17;
+      const condensateFraction = temperature < Tc ? 1 - Math.pow(temperature / Tc, 1.5) : 0;
+      const entropy = temperature === 0 ? 0 : Math.min(2.5, 1.8 * Math.pow(temperature / 4, 2) * (1.2 - condensateFraction * 0.8));
+	  // Physical logarithmic scaling for covariance bounds (prevents blown-out SVG limits at 300K)
+// 1. Smooth, physically bounded thermal factor (logarithmic to handle 0.05K -> 300K safely)
+const thermalFactor = 1 + Math.log10(1 + temperature * 1.5);
+
+// 2. Squeezed Quadrature Semi-Axes (Re/Im uncertainty bounds along principal axes)
+const sigmaXX = Math.min(40, 12 * thermalFactor * Math.exp(-squeezing));
+const sigmaPP = Math.min(40, 12 * thermalFactor * Math.exp(squeezing));
+
+// 3. Continuous Monotonic Phase Rotation (Hamiltonian evolution: w(T) * t)
+// Rotation velocity scales with temperature (phase diffusion / thermal photon rate)
+//const angularVelocity = 1 + temperature * 0.1; // Base frequency + thermal rate
+//const rotationAngleDeg = ((timeState * angularVelocity * 180 / Math.PI) % 360); // Continuous 0 to 360 degrees
+
+// 4. Bounded thermal fluctuation background circle radius
+const thermalRadius = Math.min(48, Math.sqrt(sigmaXX * sigmaPP) * 1.1);
+
+     /* const thermalFactor = 1 + temperature * 1.5;
+      const sigmaXX = 12 * thermalFactor * Math.exp(-squeezing);
+      const sigmaPP = 12 * thermalFactor * Math.exp(squeezing);
+      const sigmaXP = 2 * Math.sin(timeState) * squeezing * thermalFactor; */
+      const width = 800;
+      const height = 200;
+
+      return jsx(ErrorBoundary, { FallbackComponent, children: jsxs("div", { className: "w-full bg-card text-foreground flex flex-col font-sans select-none overflow-hidden", children: [
+        jsxs("div", { className: "flex flex-wrap gap-x-3 gap-y-1 px-5 py-3 sm:gap-x-4 border-b border-border bg-card", children: [
+          jsxs("div", { className: "min-w-0 flex items-center gap-1.5", children: [
+            jsx("span", { className: "w-2.5 h-2.5 rounded-full bg-primary shrink-0" }),
+            jsx("span", { className: "text-xs font-normal text-muted-foreground whitespace-nowrap truncate", children: "Superfluid Ground State" })
+          ] }),
+          jsxs("div", { className: "min-w-0 flex items-center gap-1.5", children: [
+            jsx("span", { className: "w-2.5 h-2.5 rounded-full bg-error shrink-0" }),
+            jsx("span", { className: "text-xs font-normal text-muted-foreground whitespace-nowrap truncate", children: "Thermal Fluctuations" })
+          ] }),
+          jsxs("div", { className: "min-w-0 flex items-center gap-1.5", children: [
+            jsx("span", { className: "w-2.5 h-2.5 rounded-full bg-warning shrink-0" }),
+            jsx("span", { className: "text-xs font-normal text-muted-foreground whitespace-nowrap truncate", children: "Phase Space Uncertainty Boundary" })
+          ] })
+        ] }),
+        jsxs("div", { className: "relative w-full border-b border-border bg-card", children: [
+          jsx("div", { className: "absolute top-0 right-0 p-3 z-10 flex items-center justify-end", children: jsx(
+            "button",
+            {
+              onClick: (e) => {
+                e.stopPropagation();
+                togglePlayPause(); // <-- MUST call togglePlayPause() instead of inline setIsPlaying
+              },
+              className: "w-9 h-9 rounded-full flex items-center justify-center cursor-pointer transition-colors shadow-none bg-muted/90 hover:bg-secondary-hover ml-auto relative overflow-visible after:absolute after:-inset-1",
+              "aria-label": isPlaying ? "Pause simulation" : "Play simulation",
+              children: jsx("span", { className: "material-icons !text-base text-foreground", children: isPlaying ? "pause" : "play_arrow" })
+            }
+          ) }),
+          jsx("div", { className: "absolute left-[8%] top-[12%] bg-card/50 text-foreground rounded-full px-2 py-0.5 text-xs font-medium pointer-events-none", children: "Phase Space Covariance (k-r)" }),
+          jsx("div", { className: "absolute left-[42%] top-[12%] bg-card/50 text-foreground rounded-full px-2 py-0.5 text-xs font-medium pointer-events-none", children: "Condensate Wave Function Fraction" }),
+          jsx("div", { className: "absolute left-[75%] top-[12%] bg-card/50 text-foreground rounded-full px-2 py-0.5 text-xs font-medium pointer-events-none", children: "Entropy S vs Temperature T Limit" }),
+          jsxs(
+            "svg",
+            {
+              role: "img",
+              "aria-label": "Quantum simulator tracking phase space covariance matrices down to 0 Kelvin validating the 0 entropy superfluid ground state limit.",
+              viewBox: `0 0 ${width} ${height}`,
+              className: "w-full h-auto text-foreground",
+              children: [
+               // Inside your SVG JSX/jsxs rendering block for the left Phase Space Covariance group:
+//  Pass accumulated angle directly into SVG transform
+jsxs("g", { transform: `translate(${width * 0.18}, ${height * 0.5})`, children: [
+  jsx("line", { x1: -50, y1: 0, x2: 50, y2: 0, stroke: "var(--color-border)", strokeWidth: 1, strokeDasharray: "2,2", opacity: 0.6 }),
+  jsx("line", { x1: 0, y1: -50, x2: 0, y2: 50, stroke: "var(--color-border)", strokeWidth: 1, strokeDasharray: "2,2", opacity: 0.6 }),
+  
+  // Isotropic Thermal Background
+  jsx("circle", { cx: 0, cy: 0, r: thermalRadius, fill: "url(#thermalGrad)", opacity: temperature > 0 ? 0.35 : 0 }),
+  
+  // Continuous 2pi Squeezed Uncertainty Ellipse
+  jsx("ellipse", { 
+    cx: 0, 
+    cy: 0, 
+    rx: sigmaXX, 
+    ry: sigmaPP, 
+    transform: `rotate(${rotationAngle})`, // Smooth 0 to 360 continuous rotation
+    fill: "none", 
+    stroke: "var(--color-warning)", 
+    strokeWidth: 2 
+  }),
+  
+  // Principal Squeezing Core
+  jsx("ellipse", { 
+    cx: 0, 
+    cy: 0, 
+    rx: 12 * Math.exp(-squeezing), 
+    ry: 12 * Math.exp(squeezing), 
+    transform: `rotate(${rotationAngle})`, 
+    fill: "var(--color-primary)", 
+    opacity: 0.15, 
+    stroke: "var(--color-primary)", 
+    strokeWidth: 1, 
+    strokeDasharray: "3,3" 
+  }),
+  
+  jsx("text", { x: 58, y: 4, textAnchor: "start", fontSize: 10, fill: "var(--color-muted-foreground)", children: "Position (r)" }),
+  jsx("text", { x: 0, y: -55, textAnchor: "middle", fontSize: 10, fill: "var(--color-muted-foreground)", children: "Wavevector (k)" })
+] }),
+                jsxs("g", { transform: `translate(${width * 0.5}, ${height * 0.75})`, children: [
+                  jsx("line", { x1: -90, y1: 0, x2: 90, y2: 0, stroke: "var(--color-border)", strokeWidth: 1.5 }),
+                  temperature > 0 && jsx(
+                    "path",
+                    {
+                      d: `M -90 0 Q -45 ${ -15 * (temperature + 0.5)} 0 ${ -35 * (temperature / 2 + 0.3)} Q 45 ${ -15 * (temperature + 0.5)} 90 0`,
+                      fill: "none",
+                      stroke: "var(--color-error)",
+                      strokeWidth: 2,
+                      opacity: 0.6
+                    }
+                  ),
+                  jsx(
+                    "path",
+                    {
+                      d: `M -40 0 Q -10 0 0 ${ -95 * condensateFraction} Q 10 0 40 0`,
+                      fill: "url(#superfluidGrad)",
+                      stroke: "var(--color-primary)",
+                      strokeWidth: 1.5,
+                      opacity: condensateFraction > 0 ? 0.85 : 0
+                    }
+                  ),
+                  temperature === 0 && [
+  /* 1. Thermal BEC Blackhole singularity Label (Kept higher at y: -110) */
+  jsx("text", {
+    key: "bec-blackhole-label",
+    x: 0,
+    y: -110,
+    textAnchor: "middle",
+    fontSize: 11,
+    fill: "var(--color-success)",
+    className: "font-medium",
+    children: "State Trapping / Thermal BEC Blackhole"
+  }),
+
+  /* 2. Zero Entropy Ground State Label (Moved way lower to y: 25) */
+  jsx("text", {
+    key: "zero-entropy-label",
+    x: 0,
+    y: 25,
+    textAnchor: "middle",
+    fontSize: 10,
+    fill: "var(--color-success)",
+    className: "font-medium opacity-90",
+    children: "Perfect Superfluid Ground State (0 Entropy)"
+  })
+]
+                ] }),
+                jsxs("g", { transform: `translate(${width * 0.72}, ${height * 0.22})`, children: [
+                  jsx("line", { x1: 0, y1: 120, x2: 160, y2: 120, stroke: "var(--color-border)", strokeWidth: 1.5 }),
+                  jsx("line", { x1: 0, y1: 0, x2: 0, y2: 120, stroke: "var(--color-border)", strokeWidth: 1.5 }),
+                  jsx("text", { x: 165, y: 124, textAnchor: "start", fontSize: 11, fill: "var(--color-muted-foreground)", children: "T (K)" }),
+                  jsx("text", { x: -8, y: 5, textAnchor: "end", fontSize: 11, fill: "var(--color-muted-foreground)", children: "S (Entropy)" }),
+                  jsx("line", { x1: Tc / 4 * 150, y1: 0, x2: Tc / 4 * 150, y2: 120, stroke: "var(--color-border)", strokeWidth: 1, strokeDasharray: "3,3" }),
+                  jsx("text", { x: Tc / 4 * 150, y: 133, textAnchor: "middle", fontSize: 11, fill: "var(--color-muted-foreground)", children: "Tc (2.17K)" }),
+                  jsx("text", { x: 0, y: 133, textAnchor: "middle", fontSize: 11, fill: "var(--color-foreground)", className: "font-medium", children: "0 K" }),
+                  jsx(
+                    "path",
+                    {
+                      d: Array.from({ length: 41 }, (_, i) => {
+                        const tVal = i * 4 / 40;
+                        const cFrac = tVal < Tc ? 1 - Math.pow(tVal / Tc, 1.5) : 0;
+                        const entVal = tVal === 0 ? 0 : Math.min(2.5, 1.8 * Math.pow(tVal / 4, 2) * (1.2 - cFrac * 0.8));
+                        const xPos = tVal / 4 * 150;
+                        const yPos = 120 - entVal / 2.5 * 110;
+                        return `${i === 0 ? "M" : "L"} ${xPos} ${yPos}`;
+                      }).join(" "),
+                      fill: "none",
+                      stroke: "var(--color-border)",
+                      strokeWidth: 1.5
+                    }
+                  ),
+                  jsx(
+                    "circle",
+                    {
+                      cx: temperature / 4 * 150,
+                      cy: 120 - entropy / 2.5 * 110,
+                      r: 5,
+                      fill: temperature === 0 ? "var(--color-success)" : "var(--color-primary)",
+                      stroke: "var(--color-card)",
+                      strokeWidth: 1.5
+                    }
+                  )
+                ] }),
+                jsxs("defs", { children: [
+                  jsxs("radialGradient", { id: "thermalGrad", cx: "50%", cy: "50%", r: "50%", children: [
+                    jsx("stop", { offset: "0%", stopColor: "var(--color-error)", stopOpacity: "0.4" }),
+                    jsx("stop", { offset: "100%", stopColor: "var(--color-warning)", stopOpacity: "0" })
+                  ] }),
+                  jsxs("linearGradient", { id: "superfluidGrad", x1: "0%", y1: "0%", x2: "0%", y2: "100%", children: [
+                    jsx("stop", { offset: "0%", stopColor: "var(--color-primary)", stopOpacity: "0.8" }),
+                    jsx("stop", { offset: "100%", stopColor: "var(--color-primary)", stopOpacity: "0.1" })
+                  ] })
+                ] })
+              ]
+            }
+          )
+        ] }),
+        jsxs("div", { className: "flex items-center justify-center gap-x-4 sm:gap-x-8 md:gap-x-12 border-b border-border px-5 py-3 shrink-0 bg-card", children: [
+          jsxs("div", { className: "flex flex-col items-center gap-0.5 min-w-0 flex-1", children: [
+            jsx("span", { className: "text-xs text-muted-foreground font-medium truncate text-center w-full", children: "Covariance Max" }),
+            jsx("span", { className: "text-sm font-medium text-foreground tabular-nums truncate text-center w-full whitespace-nowrap shrink-0", children: sigmaPP.toFixed(2) })
+          ] }),
+          jsxs("div", { className: "flex flex-col items-center gap-0.5 min-w-0 flex-1", children: [
+            jsx("span", { className: "text-xs text-muted-foreground font-medium truncate text-center w-full", children: "Condensate Frac" }),
+            jsxs("span", { className: "text-sm font-medium text-primary tabular-nums truncate text-center w-full whitespace-nowrap shrink-0", children: [
+              (condensateFraction * 100).toFixed(1),
+              "%"
+            ] })
+          ] }),
+          jsxs("div", { className: "flex flex-col items-center gap-0.5 min-w-0 flex-1", children: [
+            jsx("span", { className: "text-xs text-muted-foreground font-medium truncate text-center w-full", children: "Von Neumann S" }),
+            jsx("span", { className: `text-sm font-medium tabular-nums truncate text-center w-full whitespace-nowrap shrink-0 ${entropy === 0 ? "text-success" : "text-foreground"}`, children: entropy.toFixed(3) })
+          ] })
+        ] }),
+
+        /* EMBEDDED ENTROPY SIMULATOR CONTAINER UNDER MIDDLE & RIGHT GRAPHS */
+        /* EMBEDDED ENTROPY SIMULATOR CONTAINER IN PARENT FILE */
+jsxs("div", { className: "w-full border-b border-border bg-card p-3 flex flex-col items-center", children: [
+  jsx("span", { className: "text-xs font-medium text-muted-foreground mb-2 w-full text-left px-2", children: "Embedded Quantum Particle Energy Levels & Shannon Entropy Dynamics" }),
+  jsx("iframe", {
+    ref: iframeRef,
+    src: "./QuBABE_Bitwise_Entropy.html",
+    style: { height: "420px", minHeight: "420px" },
+    className: "w-full border border-border rounded-xl shadow-sm overflow-hidden",
+    title: "Qbitwise Entropy Grandchild",
+    onLoad: () => {
+      // Pushes the initial state down as soon as the grandchild mounts
+      if (iframeRef.current && iframeRef.current.contentWindow) {
+        iframeRef.current.contentWindow.postMessage({ type: "SYNC_N", n: particleCountN }, "*");
+        iframeRef.current.contentWindow.postMessage({ type: "SYNC_TEMP", temp: temperature }, "*");
+        iframeRef.current.contentWindow.postMessage({ type: "SYNC_PLAY", playing: isPlaying }, "*");
+      }
+    }
+  })
+] })  ,
+
+        jsxs("div", { className: "p-5 flex flex-col gap-5 bg-card", children: [
+          jsxs("div", { className: "grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4", children: [
+            jsxs("div", { className: "flex flex-col gap-1.5 w-full", children: [
+              jsx("span", { className: "text-sm font-medium text-muted-foreground", children: "Temperature Regime" }),
+              jsxs("div", { className: "flex items-center gap-3 w-full", children: [
+                jsxs(
+                  Slider.Root,
+                  {
+                    className: "relative flex items-center grow touch-none select-none h-11 cursor-pointer py-3 -my-3",
+                    value: [temperature],
+                    min: 0,
+                    max: 300,
+                    step: 0.05,
+                    onValueChange: (val) => handleTempChange(val[0]),
+                    "aria-label": "Adjust system temperature in Kelvin",
+                    children: [
+                      jsx(Slider.Track, { className: "relative grow rounded-full h-1 bg-muted", children: jsx(Slider.Range, { className: "absolute h-full bg-primary rounded-full" }) }),
+                      jsx(
+                        Slider.Thumb,
+                        {
+                          className: "block w-[18px] h-[18px] rounded-full bg-primary border-none shadow-none relative after:absolute after:top-1/2 after:left-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:w-11 after:h-11",
+                          "aria-label": "Temperature thumb value handler"
+                        }
+                      )
+                    ]
+                  }
+                ),
+                jsx("span", { className: "w-[10ch] text-right shrink-0 whitespace-nowrap text-sm font-medium tabular-nums", children: temperature === 0 ? "0.00 K (Pure)" : `${temperature.toFixed(2)} K` })
+              ] })
+            ] }),
+            jsxs("div", { className: "flex flex-col gap-1.5 w-full", children: [
+              jsx("span", { className: "text-sm font-medium text-muted-foreground", children: "Quantum Squeezing (Hamiltonian Interaction) Amplitude (Δ𝑟)" }),
+              jsxs("div", { className: "flex items-center gap-3 w-full", children: [
+                jsxs(
+                  Slider.Root,
+                  {
+                    className: "relative flex items-center grow touch-none select-none h-11 cursor-pointer py-3 -my-3",
+                    value: [squeezing],
+                    min: 0,
+                    max: 1.2,
+                    step: 0.02,
+                    onValueChange: (val) => setSqueezing(val[0]),
+                    "aria-label": "Adjust phase space squeezing parameter",
+                    children: [
+                      jsx(Slider.Track, { className: "relative grow rounded-full h-1 bg-muted", children: jsx(Slider.Range, { className: "absolute h-full bg-primary rounded-full" }) }),
+                      jsx(
+                        Slider.Thumb,
+                        {
+                          className: "block w-[18px] h-[18px] rounded-full bg-primary border-none shadow-none relative after:absolute after:top-1/2 after:left-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:w-11 after:h-11",
+                          "aria-label": "Squeezing parameter thumb handler"
+                        }
+                      )
+                    ]
+                  }
+                ),
+                jsxs("span", { className: "w-[10ch] text-right shrink-0 whitespace-nowrap text-sm font-medium tabular-nums", children: [
+                  squeezing.toFixed(2),
+                  " Δ𝑟"
+                ] })
+              ] })
+            ] })
+          ] }),
+          jsxs("div", { className: "flex flex-col gap-2 w-full", children: [
+            jsx("span", { className: "text-sm font-medium text-muted-foreground", children: "Matter Phase Preset Configurations" }),
+            jsxs(
+              ToggleGroup.Root,
+              {
+                type: "single",
+                className: "rounded-full flex w-full bg-muted h-9 p-1",
+                value: temperature === 0 ? "absolute-zero" : temperature < Tc ? "superfluid" : "normal",
+                onValueChange: (val) => {
+                  if (val === "absolute-zero") {
+                    handleTempChange(0);
+                    setSqueezing(0.2);
+                  } else if (val === "superfluid") {
+                    handleTempChange(1.1);
+                    setSqueezing(0.4);
+                  } else if (val === "normal") {
+                    handleTempChange(3.2);
+                    setSqueezing(0.8);
+                  }
+                },
+                "aria-label": "Select matter phase configuration preset",
+                children: [
+                  jsx(
+                    ToggleGroup.Item,
+                    {
+                      value: "absolute-zero",
+                      className: "flex-1 min-w-0 text-center px-3 rounded-full text-sm font-medium transition-colors cursor-pointer relative after:absolute after:-inset-y-2 after:inset-x-0 overflow-visible data-[state=on]:bg-primary data-[state=on]:text-white text-muted-foreground",
+                      children: jsx("span", { className: "truncate block w-full", children: "0 K Ground State" })
+                    }
+                  ),
+                  jsx(
+                    ToggleGroup.Item,
+                    {
+                      value: "superfluid",
+                      className: "flex-1 min-w-0 text-center px-3 rounded-full text-sm font-medium transition-colors cursor-pointer relative after:absolute after:-inset-y-2 after:inset-x-0 overflow-visible data-[state=on]:bg-primary data-[state=on]:text-white text-muted-foreground",
+                      children: jsx("span", { className: "truncate block w-full", children: "Superfluid Condensate" })
+                    }
+                  ),
+                  jsx(
+                    ToggleGroup.Item,
+                    {
+                      value: "normal",
+                      className: "flex-1 min-w-0 text-center px-3 rounded-full text-sm font-medium transition-colors cursor-pointer relative after:absolute after:-inset-y-2 after:inset-x-0 overflow-visible data-[state=on]:bg-primary data-[state=on]:text-white text-muted-foreground",
+                      children: jsx("span", { className: "truncate block w-full", children: "Normal Thermal Fluid" })
+                    }
+                  )
+                ]
+              }
+            )
+          ] })
+        ] }) , // <-- Close of the controls block
+		
+		/* Compliance Disclaimer Footer */
+jsx(
+  "footer",
+  {
+    style: { fontSize: "10px", color: "#9ca3af" , marginBottom: "1.5rem"}, // Direct inline styling override for 8px & gray
+    className: "w-full text-center py-2 px-5 border-t border-slate-800/40 bg-[#090d13] leading-relaxed select-text print:bg-white print:text-gray-600 print:border-black/20",
+    children: "© Copyright 2026, Dr. Philip B. Alipour. All Rights Reserved. | Quantum Field Lens Coding (QF-LC) Framework | 2xQuBABE™ Framework"
+  }
+)
+		
+      ] }) });  // <-- Outermost root div close
+    }
+
+
+    ReactDOM.createRoot(document.getElementById("root")).render(
+      jsx(React.StrictMode, { children: jsx(App, {}) })
+    );
+  </script>
+
+  <style>
+    :root {
+      --font-sans: "Google Sans", "Roboto", sans-serif;
+      --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      --color-white: #fff;
+      --spacing: .25rem;
+      --text-xs: .75rem;
+      --text-sm: .875rem;
+      --text-base: 1rem;
+      --font-weight-normal: 400;
+      --font-weight-medium: 500;
+      --default-transition-duration: .15s;
+      --default-transition-timing-function: cubic-bezier(.31, .94, .34, 1);
+      --default-font-family: var(--font-sans);
+      --color-primary: var(--primary, #336ef3);
+      --color-error: var(--brand-red, #ea4335);
+      --color-warning: var(--brand-yellow, #fbbc04);
+      --color-success: var(--brand-green, #34a853);
+      --color-card: #1e2025;            /* Dark main container background */
+  --color-background: #181a1f;      /* Outer dark canvas background */
+  --color-muted: #2a2d35;           /* Button & toggle container background */
+  --color-muted-foreground: #a0a5b5;/* Subtle text & icon color */
+  --color-foreground: #f0f2f5;      /* Main text color */
+  --color-border: #333742;          /* Component divider lines */
+  --color-secondary-hover: #383c48;  /* Play/Pause button hover state */
+    }
+	
+	/* Radix UI Toggle Group Off-State Dark Styling Override */
+[data-state="off"],
+[data-state="inactive"] {
+  background-color: transparent !important;
+  color: var(--color-muted-foreground) !important;
+}
+
+/* Ensure active/selected buttons retain their accent highlight */
+[data-state="on"],
+[data-state="active"] {
+  background-color: var(--color-primary) !important;
+  color: #ffffff !important;
+}
+
+/* Clear default HTML button white browser styling */
+button {
+  background-color: transparent;
+  color: inherit;
+  border: none;
+}
+
+/* Ensure muted container track stays dark slate */
+.bg-muted {
+  background-color: #1b1d22 !important;
+}
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --color-card: #272930;
+        --color-border: #363840;
+        --color-secondary-hover: #42444d;
+        --color-muted: #2c2e35;
+        --color-muted-foreground: #adafb8;
+        --color-foreground: #e6e8f0;
+      }
+    }
+
+    *, ::after, ::before {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Force dark theme overrides regardless of system preference */
+body {
+  background-color: var(--color-background) !important;
+  color: var(--color-foreground) !important;
+}
+
+/* Dark background overrides for buttons, sliders, and controls */
+.bg-card, .bg-card\/50 {
+  background-color: #1e2025 !important;
+}
+
+.bg-muted, .bg-muted\/90, .bg-muted\/40 {
+  background-color: #2a2d35 !important;
+}
+
+button {
+  color: var(--color-foreground);
+}
+
+    .pointer-events-none { pointer-events: none; }
+    .absolute { position: absolute; }
+    .relative { position: relative; }
+    .top-0 { top: 0; }
+    .right-0 { right: 0; }
+    .left-\[8\%\] { left: 8%; }
+    .left-\[42\%\] { left: 42%; }
+    .left-\[75\%\] { left: 75%; }
+    .top-\[12\%\] { top: 12%; }
+    .z-10 { z-index: 10; }
+    .-my-3 { margin-block: -0.75rem; }
+    .ml-auto { margin-left: auto; }
+    .block { display: block; }
+    .flex { display: flex; }
+    .grid { display: grid; }
+    .h-1 { height: 0.25rem; }
+    .h-2\.5 { height: 0.625rem; }
+    .h-9 { height: 2.25rem; }
+    .h-11 { height: 2.75rem; }
+    .h-\[18px\] { height: 18px; }
+    .h-auto { height: auto; }
+    .h-full { height: 100%; }
+    .w-2\.5 { width: 0.625rem; }
+    .w-9 { width: 2.25rem; }
+    .w-\[10ch\] { width: 10ch; }
+    .w-\[18px\] { width: 18px; }
+    .w-full { width: 100%; }
+    .min-w-0 { min-width: 0; }
+    .flex-1 { flex: 1; }
+    .shrink-0 { flex-shrink: 0; }
+    .grow { flex-grow: 1; }
+    .cursor-pointer { cursor: pointer; }
+    .touch-none { touch-action: none; }
+    .grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+    .flex-col { flex-direction: column; }
+    .flex-wrap { flex-wrap: wrap; }
+    .items-center { align-items: center; }
+    .justify-center { justify-content: center; }
+    .justify-end { justify-content: flex-end; }
+    .gap-0\.5 { gap: 0.125rem; }
+    .gap-1\.5 { gap: 0.375rem; }
+    .gap-2 { gap: 0.5rem; }
+    .gap-3 { gap: 0.75rem; }
+    .gap-5 { gap: 1.25rem; }
+    .gap-x-3 { column-gap: 0.75rem; }
+    .gap-x-4 { column-gap: 1rem; }
+    .gap-x-8 { column-gap: 2rem; }
+    .gap-y-1 { row-gap: 0.25rem; }
+    .gap-y-4 { row-gap: 1rem; }
+    .truncate { text-overflow: ellipsis; white-space: nowrap; overflow: hidden; }
+    .overflow-hidden { overflow: hidden; }
+    .overflow-visible { overflow: visible; }
+    .rounded-full { border-radius: 9999px; }
+    .rounded-xl { border-radius: 0.75rem; }
+    .border { border: 1px solid var(--color-border); }
+    .border-b { border-bottom: 1px solid var(--color-border); }
+    .border-none { border-style: none; }
+    .border-border { border-color: var(--color-border); }
+    .bg-card { background-color: var(--color-card); }
+    .bg-card\/50 { background-color: rgba(247, 248, 250, 0.5); }
+    .bg-error { background-color: var(--color-error); }
+    .bg-muted { background-color: var(--color-muted); }
+    .bg-muted\/90 { background-color: rgba(240, 242, 245, 0.9); }
+    .bg-primary { background-color: var(--color-primary); }
+    .bg-warning { background-color: var(--color-warning); }
+    .p-1 { padding: 0.25rem; }
+    .p-3 { padding: 0.75rem; }
+    .p-5 { padding: 1.25rem; }
+    .px-2 { padding-inline: 0.5rem; }
+    .px-3 { padding-inline: 0.75rem; }
+    .px-5 { padding-inline: 1.25rem; }
+    .py-0\.5 { padding-block: 0.125rem; }
+    .py-3 { padding-block: 0.75rem; }
+    .mb-2 { margin-bottom: 0.5rem; }
+    .text-center { text-align: center; }
+    .text-left { text-align: left; }
+    .text-right { text-align: right; }
+    .font-sans { font-family: var(--font-sans); }
+    .\!text-base { font-size: 1rem !important; }
+    .text-sm { font-size: 0.875rem; }
+    .text-xs { font-size: 0.75rem; }
+    .font-medium { font-weight: 500; }
+    .font-normal { font-weight: 400; }
+    .whitespace-nowrap { white-space: nowrap; }
+    .text-error { color: var(--color-error); }
+    .text-foreground { color: var(--color-foreground); }
+    .text-muted-foreground { color: var(--color-muted-foreground); }
+    .text-primary { color: var(--color-primary); }
+    .text-success { color: var(--color-success); }
+    .tabular-nums { font-variant-numeric: tabular-nums; }
+    .shadow-none { box-shadow: none; }
+    .shadow-sm { box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); }
+    .transition-colors { transition: background-color 0.15s, color 0.15s; }
+    .select-none { user-select: none; }
+
+    .after\:absolute::after { content: ""; position: absolute; }
+    .after\:-inset-1::after { content: ""; inset: -0.25rem; }
+    .after\:inset-x-0::after { content: ""; left: 0; right: 0; }
+    .after\:-inset-y-2::after { content: ""; top: -0.5rem; bottom: -0.5rem; }
+    .after\:top-1\/2::after { content: ""; top: 50%; }
+    .after\:left-1\/2::after { content: ""; left: 50%; }
+    .after\:h-11::after { content: ""; height: 2.75rem; }
+    .after\:w-11::after { content: ""; width: 2.75rem; }
+    .after\:-translate-x-1\/2::after { transform: translateX(-50%); }
+    .after\:-translate-y-1\/2::after { transform: translateY(-50%); }
+
+    [data-state="on"] {
+      background-color: var(--color-primary) !important;
+      color: #fff !important;
+    }
+
+    @media (min-width: 640px) {
+      .sm\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .sm\:gap-x-4 { column-gap: 1rem; }
+      .sm\:gap-x-8 { column-gap: 2rem; }
+    }
+    @media (min-width: 768px) {
+      .md\:gap-x-12 { column-gap: 3rem; }
+    }
+	
+	
+	@media print {
+  /* 1. Global Light Background & Black Text Override */
+  :root {
+    --color-background: #ffffff !important;
+    --color-card: #ffffff !important;
+    --color-muted: #f4f5f8 !important;
+    --color-foreground: #000000 !important;
+    --color-muted-foreground: #333333 !important;
+    --color-border: #cccccc !important;
+  }
+
+  /* Force ALL structural containers to white */
+  html, body, #root, div, section, article, header, footer {
+    background-color: #ffffff !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    box-shadow: none !important;
+  }
+
+  /* 2. Fix Dark Buttons, Toggle Containers, and Control Cards */
+  .bg-card, .bg-card\/50, .bg-muted, .bg-muted\/90, .bg-muted\/40,
+  button, [role="button"], [data-state], .rounded-full {
+    background-color: #f0f2f5 !important;
+    background: #f0f2f5 !important;
+    color: #000000 !important;
+    border: 1px solid #cccccc !important;
+  }
+
+  /* Active/Selected buttons retain high-contrast dark blue highlight */
+  [data-state="on"], [data-state="active"], .bg-primary {
+    background-color: #2563eb !important;
+    color: #ffffff !important;
+  }
+
+  /* Unselected toggle options keep crisp black text on light grey */
+  [data-state="off"], [data-state="inactive"] {
+    background-color: #f0f2f5 !important;
+    color: #4b5563 !important;
+  }
+
+  /* 3. Invert Play/Pause Buttons & Temperature Badge Readouts */
+  .material-icons, button span {
+    color: #000000 !important;
+  }
+
+  /* 4. Ensure SVG Vectors, Phase Graphs, and Curves Remain Vivid */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  svg {
+    background-color: #ffffff !important;
+  }
+
+  svg text {
+    fill: #000000 !important;
+    font-weight: 600 !important;
+  }
+
+  line[stroke="var(--color-border)"] {
+    stroke: #b0b5c0 !important;
+  }
+
+  /* 5. Clean iFrame Border and Layout for Paper Output */
+  iframe {
+    border: 1px solid #cccccc !important;
+    background-color: #ffffff !important;
+    page-break-inside: avoid;
+  }
+}
+	
+	
+	/* Custom Global Dark Scrollbar Styles */
+/* 1. Firefox Scrollbar Support */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #383c48 #1b1d22; /* Thumb color (dark slate), Track color (canvas dark) */
+}
+
+/* 2. WebKit Browsers (Chrome, Edge, Safari, Brave) */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  background-color: #1b1d22; /* Dark scrollbar track background */
+}
+
+::-webkit-scrollbar-track {
+  background: #1b1d22 !important; /* Forces dark track */
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #383c48 !important; /* Dark slate draggable thumb */
+  border-radius: 4px;
+  border: 2px solid #1b1d22; /* Clean spacing around the thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4a4e5d !important; /* Hover highlight state */
+}
+
+::-webkit-scrollbar-corner {
+  background: #1b1d22 !important; /* Corner join block when both vertical and horizontal scrollbars appear */
+}
+	
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+</html>

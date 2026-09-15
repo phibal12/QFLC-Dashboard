@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quantum Entropy Interactive Widget</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <script type="module" crossorigin>
+    import { jsx, jsxs, Fragment } from 'https://widgetlibs.static.usercontent.goog/react/jsx-runtime-Dc9ViRTo.js';
+    import React, { useState, useRef, useEffect } from 'https://widgetlibs.static.usercontent.goog/react-Dd1pKoqe.js';
+    import ReactDOM from 'https://widgetlibs.static.usercontent.goog/react-dom/client-BTuQ-l8_.js';
+    import { ErrorBoundary } from 'https://widgetlibs.static.usercontent.goog/react-error-boundary-BY2GTZrN.js';
+    import * as Slider from 'https://widgetlibs.static.usercontent.goog/@radix-ui/react-slider-DXk-CvUR.js';
+
+    function ErrorFallback({ error }) {
+      return jsxs("div", { className: "p-5 text-error bg-card rounded-xl", children: [
+        jsx("p", { className: "text-sm font-medium", children: "Something went wrong:" }),
+        jsx("pre", { className: "text-xs mt-1", children: error.message })
+      ] });
+    }
+
+    function App() {
+      const [mode, setMode] = useState("qutrit");
+      const [temperature, setTemperature] = useState(1.2);
+      const [isPlaying, setIsPlaying] = useState(true);
+      const [dimensions, setDimensions] = useState({ width: 800, height: 420 });
+      const containerRef = useRef(null);
+      const isPlayingRef = useRef(isPlaying);
+	  // State for Particle Count N (starts at 3)
+const [particleCountN, setParticleCountN] = useState(3);
+
+      useEffect(() => {
+        isPlayingRef.current = isPlaying;
+      }, [isPlaying]);
+
+      // Inside App() inside QuBABE_Bitwise_Entropy.html
+// Inside App() in QuBABE_Bitwise_Entropy.html
+useEffect(() => {
+  if (!containerRef.current) return;
+  const resizeObserver = new ResizeObserver((entries) => {
+    for (let entry of entries) {
+      const { width: width2 } = entry.contentRect;
+      const targetWidth = Math.max(width2, 360);
+      
+      // Increased from 240 to 360px for full graph visibility
+      const targetHeight = 360; 
+      
+      setDimensions({ width: targetWidth, height: targetHeight });
+    }
+  });
+  resizeObserver.observe(containerRef.current);
+  return () => resizeObserver.disconnect();
+}, []);
+
+      // Calculates base quantum probabilities up to 4K + proportional bit scaling for T > 4K
+      // Physical Boltzmann distribution without a temperature ceiling
+const [driveMode, setDriveMode] = useState("thermal"); // "thermal" or "active"
+const [inversion, setInversion] = useState("cooling");  // "cooling" or "pumping"
+
+// Updated getProbabilities function supporting Quantum Double-Field / Laser Cooling
+const getProbabilities = (temp, currentMode, drive, inv) => {
+  if (drive === "active") {
+    if (inv === "cooling") {
+      // Laser Cooling: High ground state purity (>88% up to ~98%)
+      const p0_active = Math.min(0.98, 0.88 + 0.10 * Math.exp(-temp / 10));
+      if (currentMode === "qubit") {
+        return [p0_active, 1 - p0_active, 0];
+      } else {
+        const rem = (1 - p0_active) / 2;
+        return [p0_active, rem, rem]; // Excited states drop well below 33.3%
+      }
+    } else {
+      // Active Pumping / Population Inversion into Excited States |2> (>88%)
+      const p_ex = Math.min(0.98, 0.88 + 0.10 * Math.exp(-temp / 10));
+      if (currentMode === "qubit") {
+        return [1 - p_ex, p_ex, 0];
+      } else {
+        const rem = (1 - p_ex);
+        return [rem * 0.5, rem * 0.5, p_ex]; // p0 + p1 = rem (~12%), p2 = p_ex (88%+); Dominantly excited |1> and |2>
+      }
+    }
+  }
+
+  // Fallback to Thermal Boltzmann Distribution
+  const dE = 1.5;
+  if (currentMode === "qubit") {
+    const z = 1 + Math.exp(-dE / temp);
+    return [1 / z, Math.exp(-dE / temp) / z, 0];
+  } else {
+    const z = 1 + Math.exp(-dE / temp) + Math.exp((-2 * dE) / temp);
+    return [1 / z, Math.exp(-dE / temp) / z, Math.exp((-2 * dE) / temp) / z];
+  }
+};
+
+// Call getProbabilities with the new parameters inside App()
+const [p0, p1, p2] = getProbabilities(temperature, mode, driveMode, inversion);
+
+      const computeBaseEntropy = (probs) => {
+        return probs.reduce((acc, p) => {
+          if (p <= 0) return acc;
+          return acc - p * Math.log2(p);
+        }, 0);
+      };
+
+      // Proportional 1-bit addition for every 4K step above 4K (approaching infinity towards 300K)
+      const baseEntropy = computeBaseEntropy([p0, p1, p2]);
+      const addedBits = temperature > 4.0 ? (temperature - 4.0) / 4.0 : 0;
+      const entropy = baseEntropy + addedBits;
+// Step 2: Dynamic Max Entropy & Tier Lines Generator
+const baseMax = mode === "qubit" ? 1.0 : 1.58;
+
+// Calculate ceiling limit based on thermal + field bits // Dynamic y-axis max that scales neatly in 1-bit tiers as temperature rises above 4K
+const dynamicMaxEntropy = Math.max(
+  baseMax + 1,
+  Math.ceil(baseEntropy + (temperature > 4.0 ? (temperature - 4.0) / 4.0 : 0))
+);
+     
+      const isHealthyUncertainty = entropy >= 0.5;
+	  const isHighUncertainty = entropy > 2;
+      const [particles, setParticles] = useState([]);
+	  
+	  
+	  // Step 1: Calculate dynamic min/max bounds for the temperature slider
+const getPermittedTempBounds = (drive, inv) => {
+  if (drive === "active") {
+    if (inv === "cooling") {
+      // Ground state cooling regime: Restrict T so P0 >= 88% (e.g., 0.05 K to 2.17 K)
+      return { min: 0.05, max: 2.17 };
+    } else {
+      // Active pumping regime: High field-driven regime (e.g., 2.17 K to 15.0 K)
+      return { min: 2.17, max: 15.0 };
+    }
+  }
+  // Full thermal bath range
+  return { min: 0.05, max: 300.0 };
+};
+
+const currentBounds = getPermittedTempBounds(driveMode, inversion);
+
+// Automatically clamp temperature whenever driveMode or inversion changes
+useEffect(() => {
+  if (temperature < currentBounds.min) setTemperature(currentBounds.min);
+  if (temperature > currentBounds.max) setTemperature(currentBounds.max);
+}, [driveMode, inversion]);
+	  
+	  
+
+      useEffect(() => {
+  // Generate exactly N particles populating the left energy level channels
+  const initialParticles = Array.from({ length: particleCountN }).map((_, i) => {
+    const rand = Math.random();
+    let state = 0;
+    if (mode === "qubit") {
+      state = rand < p0 ? 0 : 1;
+    } else {
+      if (rand < p0) state = 0;
+      else if (rand < p0 + p1) state = 1;
+      else state = 2;
+    }
+    let yTarget = 75;
+    if (state === 1) yTarget = 50;
+    if (state === 2) yTarget = 25;
+    return {
+      id: `p-${i}`,
+      x: 15 + Math.random() * 30,
+      y: yTarget,
+      targetY: yTarget,
+      state,
+      phase: Math.random() * Math.PI * 2,
+      speed: 0.02 + Math.random() * 0.03
+    };
+  });
+  setParticles(initialParticles);
+}, [mode, temperature, particleCountN, p0, p1, p2]); // <-- particleCountN forces immediate re-render
+	  
+	  
+	  // Add inside the App() component in QuBABE_Entropy.html
+
+// Listen for messages from parent window
+// Sync listener inside QuBABE_Entropy.html
+// Ensure state variable is particleCountN inside QuBABE_Bitwise_Entropy.html
+//const [particleCountN, setParticleCountN] = useState(3);
+
+useEffect(() => {
+  const handleParentMessage = (event) => {
+    if (!event.data) return;
+
+    // 1. Sync Temperature
+    if (event.data.type === "SYNC_TEMP") {
+      setTemperature(parseFloat(event.data.temp));
+    }
+
+    // 2. Sync Play/Pause
+    if (event.data.type === "SYNC_PLAY") {
+      setIsPlaying(Boolean(event.data.playing));
+    }
+
+    // 3. Sync Particle Count N (Supports all key variations with robust integer casting)
+    if (
+      event.data.type === "SYNC_N" || 
+      event.data.type === "SYNC_PARTICLES" || 
+      event.data.type === "SYNC_QDF" ||
+      event.data.n !== undefined || 
+      event.data.particleCountN !== undefined
+    ) {
+      const rawN = event.data.n ?? event.data.particleCountN ?? event.data.particleCount;
+      if (rawN !== undefined && rawN !== null) {
+        const parsedN = Math.max(1, parseInt(rawN, 10));
+        if (!isNaN(parsedN)) {
+          setParticleCountN(parsedN);
+        }
+      }
+    }
+	
+	
+	
+	
+  // Process incoming thermodynamic state package from Grandparent/Parent
+    if (event.data.type === "SYNC_THERMO_STATE") {
+      const { isPowerOn, g, s, prob, temp, playing, n } = event.data;
+
+      if (temp !== undefined) setTemperature(parseFloat(temp));
+      if (playing !== undefined) setIsPlaying(Boolean(playing));
+      if (n !== undefined) setParticleCountN(parseInt(n, 10));
+
+      // --- DYNAMIC MODE SWITCHING LOGIC ---
+      if (!isPowerOn) {
+        setDriveMode("thermal");
+      } else {
+        const isHighProb = prob >= 0.6667;
+        const isGHigh = g >= 0.5;
+        const isSHigh = s >= 0.5;
+
+        if ((isGHigh && !isSHigh) || (!isGHigh && !isSHigh)) {
+          // P(1,0) or P(0,0) -> Ground State Laser Cooling
+          setDriveMode("active");
+          setInversion("cooling");
+        } else if (!isGHigh && isSHigh) {
+          // P(0,1) with High Probability -> Excited State Population Inversion
+          setDriveMode("active");
+          setInversion("pumping");
+        } else {
+          // P(1,1) [Spanning Complement / Thermal Fight] or Low Probability -> Thermal Bath
+          setDriveMode("thermal");
+        }
+      }
+    }
+  };
+
+  window.addEventListener("message", handleParentMessage);
+  return () => window.removeEventListener("message", handleParentMessage);
+}, []);
+
+// Update local toggle handler inside QuBABE_Entropy.html
+const handleLocalPlayToggle = () => {
+  const nextState = !isPlaying;
+  setIsPlaying(nextState);
+  if (window.parent) {
+    window.parent.postMessage({ type: "SYNC_PLAY", playing: nextState }, "*");
+  }
+  // Listen for N-particle updates from grandparent/parent
+    if (event.data.type === "SYNC_N" || event.data.type === "SYNC_PARTICLES") {
+      const newN = Math.max(1, parseInt(event.data.n, 10) || 1);
+      setParticleCountN(newN);
+    }
+};
+
+      useEffect(() => {
+        let frameId;
+        const tick = () => {
+          if (!isPlayingRef.current) {
+            frameId = requestAnimationFrame(tick);
+            return;
+          }
+          setParticles(
+            (prevParticles) => prevParticles.map((p) => {
+              let currentState = p.state;
+              // Step 2: In the tick function of particle animation useEffect
+if (Math.random() < 0.08) { // Increased transition rate for responsive visual feedback
+  const rand = Math.random();
+  if (mode === "qubit") {
+    currentState = rand < p0 ? 0 : 1;
+  } else {
+    if (rand < p0) currentState = 0;
+    else if (rand < p0 + p1) currentState = 1;
+    else currentState = 2;
+  }
+}
+              let targetY = 75;
+              if (mode === "qubit") {
+                targetY = currentState === 0 ? 75 : 25;
+              } else {
+                if (currentState === 0) targetY = 75;
+                else if (currentState === 1) targetY = 50;
+                else targetY = 25;
+              }
+              const nextY = p.y + (targetY - p.y) * 0.12;
+              const nextPhase = p.phase + p.speed;
+              return {
+                ...p,
+                y: nextY,
+                targetY,
+                state: currentState,
+                phase: nextPhase
+              };
+            })
+          );
+          frameId = requestAnimationFrame(tick);
+        };
+        frameId = requestAnimationFrame(tick);
+        return () => cancelAnimationFrame(frameId);
+      }, [temperature, mode, p0, p1, p2]);
+
+      const { width, height } = dimensions;
+      const points = [];
+      const resolution = 60;
+      
+      // Plot entropy path adapted dynamically for current temperature range
+      const maxPlotTemp = Math.max(5.0, temperature * 1.15);
+	  
+	  // Graph point generation to match permitted slider bounds
+const thermalPoints = [];
+for (let i = 0; i <= resolution; i++) {
+  const t = 0.05 + (i / resolution) * maxPlotTemp;
+  const simProbs = getProbabilities(t, mode, "thermal", "cooling"); // Force thermal properties
+  const simBaseH = computeBaseEntropy(simProbs);
+  const simAddBits = t > 4.0 ? (t - 4.0) / 4.0 : 0;
+  const simH = simBaseH + simAddBits;
+  
+  const gx = width * 0.55 + (i / resolution) * (width * 0.35);
+  const gy = height * 0.85 - (simH / dynamicMaxEntropy) * (height * 0.6);
+  thermalPoints.push(`${gx},${gy}`);
+}
+const thermalEntropyPath = thermalPoints.join(" ");
+
+// 2. Calculate the Active Laser Drive path (Overlay)
+let activeEntropyPath = "";
+if (driveMode === "active") {
+  const activePoints = [];
+  for (let i = 0; i <= resolution; i++) {
+    const t = 0.05 + (i / resolution) * maxPlotTemp;
+    const simProbs = getProbabilities(t, mode, "active", inversion); // Force active properties
+    const simBaseH = computeBaseEntropy(simProbs);
+    const simAddBits = t > 4.0 ? (t - 4.0) / 4.0 : 0;
+    const simH = simBaseH + simAddBits;
+    
+    const gx = width * 0.55 + (i / resolution) * (width * 0.35);
+    const gy = height * 0.85 - (simH / dynamicMaxEntropy) * (height * 0.6);
+    activePoints.push(`${gx},${gy}`);
+  }
+  activeEntropyPath = activePoints.join(" ");
+}
+
+// 3. Current Dot Position based on dynamic scale
+const currentX = width * 0.55 + ((temperature - 0.05) / maxPlotTemp) * (width * 0.35);
+const currentY = height * 0.85 - (entropy / dynamicMaxEntropy) * (height * 0.6);
+
+      // Generate horizontal threshold lines (0.5 bit, T --> 4K max base bit, and T --> 8K (2bit), 12K, 16K... 4K+ bit tiers)
+      const bitTiers = [0.5, baseMax];
+for (let b = 2; b <= dynamicMaxEntropy; b++) {
+  if (!bitTiers.includes(b)) bitTiers.push(b);
+}
+	  
+	  
+
+      return jsx(ErrorBoundary, { FallbackComponent: ErrorFallback, children: jsxs("div", { ref: containerRef, className: "w-full bg-card text-foreground flex flex-col select-none overflow-hidden", children: [
+        jsxs("div", { className: "flex flex-wrap items-center justify-between p-3 z-10 border-b border-border bg-background/50 backdrop-blur-sm gap-2", children: [
+  jsxs("div", { className: "flex items-center gap-2", children: [
+    // Existing Qubit / Qutrit Toggle
+    jsxs("div", { className: "flex items-center gap-1 bg-muted p-1 rounded-full", children: [
+      jsx(
+        "button",
+        {
+          onClick: () => setMode("qubit"),
+          className: `px-3 py-1 text-xs font-medium rounded-full transition-all cursor-pointer ${mode === "qubit" ? "bg-primary text-white shadow-sm" : "text-muted-foreground hover:text-foreground"}`,
+          children: "2-State Qubit (1.0 bit)"
+        }
+      ),
+      jsx(
+        "button",
+        {
+          onClick: () => setMode("qutrit"),
+          className: `px-3 py-1 text-xs font-medium rounded-full transition-all cursor-pointer ${mode === "qutrit" ? "bg-primary text-white shadow-sm" : "text-muted-foreground hover:text-foreground"}`,
+          children: "3-State Qutrit (1.58 bit)"
+        }
+      )
+    ] }),
+
+    // Drive Mode Toggle: Thermal vs Laser Drive/QDF
+    jsxs("div", { className: "flex items-center gap-1 bg-muted p-1 rounded-full", children: [
+      jsx(
+        "button",
+        {
+          onClick: () => setDriveMode("thermal"),
+          className: `px-3 py-1 text-xs font-medium rounded-full transition-all cursor-pointer ${driveMode === "thermal" ? "bg-primary text-white shadow-sm" : "text-muted-foreground hover:text-foreground"}`,
+          children: "Thermal Bath"
+        }
+      ),
+      // Update the Laser Drive button onClick inside your top menu header:
+jsx(
+  "button",
+  {
+    onClick: () => {
+      setDriveMode("active");
+      setTemperature(0.05); // Fixes temperature to low-noise base line upon activation
+    },
+    className: `px-3 py-1 text-xs font-medium rounded-full transition-all cursor-pointer ${driveMode === "active" ? "bg-primary text-white shadow-sm" : "text-muted-foreground hover:text-foreground"}`,
+    children: "Laser Drive / QDF"
+  }
+)
+    ] }),
+
+    // Inversion Mode Toggle (Visible only in Active/QDF Mode)
+    driveMode === "active" && jsxs("div", { className: "flex items-center gap-1 bg-muted p-1 rounded-full", children: [
+      jsx(
+        "button",
+        {
+          onClick: () => setInversion("cooling"),
+          className: `px-3 py-1 text-xs font-medium rounded-full transition-all cursor-pointer ${inversion === "cooling" ? "bg-success text-white shadow-sm" : "text-muted-foreground hover:text-foreground"}`,
+          children: "Cooling (Ground >88%)"
+        }
+      ),
+      jsx(
+        "button",
+        {
+          onClick: () => setInversion("pumping"),
+          className: `px-3 py-1 text-xs font-medium rounded-full transition-all cursor-pointer ${inversion === "pumping" ? "bg-warning text-white shadow-sm" : "text-muted-foreground hover:text-foreground"}`,
+          children: "Pumping (Excited ~100%)"
+        }
+      )
+    ] })
+  ] }),
+
+  // Animation Play/Pause Button
+  jsx(
+    "button",
+    {
+      onClick: handleLocalPlayToggle, // <-- MUST call handleLocalPlayToggle
+      className: "w-8 h-8 rounded-full flex items-center justify-center cursor-pointer bg-muted hover:bg-muted/80 text-foreground transition-colors",
+      "aria-label": isPlaying ? "Pause animation" : "Play animation",
+      children: jsx("span", { className: "material-icons !text-sm", children: isPlaying ? "pause" : "play_arrow" })
+    }
+  )
+] }),
+        jsxs("div", { className: "w-full relative overflow-hidden", children: [
+          jsxs(
+            "svg",
+            {
+              role: "img",
+              "aria-label": "Quantum decay and Shannon entropy distribution chart",
+              viewBox: `0 0 ${width} ${height}`,
+              className: "w-full h-auto block transparent",
+              children: [
+                // Render horizontal grid lines and 4K+ bit tier boundary lines dynamically
+                bitTiers.map((val) => {
+                  if (val > dynamicMaxEntropy) return null;
+                  const gy = height * 0.85 - (val / dynamicMaxEntropy) * (height * 0.6);
+                  const isPrimaryLine = val === 0.5 || val === baseMax || val > baseMax;
+                  const labelText = val === 0.5 
+                    ? "0.5 Bit Boundary" 
+                    : val === baseMax 
+                    ? `4K Limit (${baseMax} bit)` 
+                    : `${4 + (val - Math.floor(baseMax)) * 4}K Tier (${val} bit)`;
+
+                  return jsxs("g", { children: [
+                    jsx(
+                      "line",
+                      {
+                        x1: width * 0.55,
+                        y1: gy,
+                        x2: width * 0.9,
+                        y2: gy,
+                        stroke: isPrimaryLine ? "var(--color-primary)" : "var(--color-border)",
+                        strokeWidth: isPrimaryLine ? 1.5 : 1,
+                        strokeDasharray: isPrimaryLine ? "5 3" : "2 4",
+                        opacity: isPrimaryLine ? 0.85 : 0.4
+                      }
+                    ),
+                    jsx(
+                      "text",
+                      {
+                        x: width * 0.91,
+                        y: gy + 3,
+                        fontSize: 9,
+                        className: "fill-primary font-medium",
+                        textAnchor: "start",
+                        children: labelText
+                      }
+                    )
+                  ] }, `h-grid-${val}`);
+                }),
+                [1, 2, 3, 4, 5].map((tVal) => {
+                  const gx = width * 0.55 + ((tVal - 0.05) / maxPlotTemp) * (width * 0.35);
+                  return jsx(
+                    "line",
+                    {
+                      x1: gx,
+                      y1: height * 0.25,
+                      x2: gx,
+                      y2: height * 0.85,
+                      stroke: "var(--color-border)",
+                      strokeWidth: 1,
+                      strokeDasharray: "2 4",
+                      opacity: 0.4
+                    },
+                    `v-grid-${tVal}`
+                  );
+                }),
+                jsx(
+                  "line",
+                  {
+                    x1: width * 0.55,
+                    y1: height * 0.85,
+                    x2: width * 0.9,
+                    y2: height * 0.85,
+                    className: "stroke-border",
+                    strokeWidth: 1.5
+                  }
+                ),
+                jsx(
+                  "line",
+                  {
+                    x1: width * 0.55,
+                    y1: height * 0.25,
+                    x2: width * 0.55,
+                    y2: height * 0.85,
+                    className: "stroke-border",
+                    strokeWidth: 1.5
+                  }
+                ),
+                jsx(
+                  "line",
+                  {
+                    x1: width * 0.1,
+                    y1: height * 0.75,
+                    x2: width * 0.45,
+                    y2: height * 0.75,
+                    stroke: "var(--color-success)",
+                    strokeWidth: 2.5,
+                    strokeLinecap: "round"
+                  }
+                ),
+                jsx("text", { x: width * 0.08, y: height * 0.76, fontSize: 11, className: "fill-muted-foreground font-medium", textAnchor: "end", children: "|0⟩ Ground" }),
+                jsx(
+                  "line",
+                  {
+                    x1: width * 0.1,
+                    y1: mode === "qubit" ? height * 0.25 : height * 0.5,
+                    x2: width * 0.45,
+                    y2: mode === "qubit" ? height * 0.25 : height * 0.5,
+                    stroke: "var(--color-warning)",
+                    strokeWidth: 2.5,
+                    strokeLinecap: "round"
+                  }
+                ),
+                jsxs(
+                  "text",
+                  {
+                    x: width * 0.08,
+                    y: mode === "qubit" ? height * 0.26 : height * 0.51,
+                    fontSize: 11,
+                    className: "fill-muted-foreground font-medium",
+                    textAnchor: "end",
+                    children: [
+                      "|1⟩ ",
+                      mode === "qubit" ? "Excited" : "First Excited"
+                    ]
+                  }
+                ),
+                mode === "qutrit" && jsxs(Fragment, { children: [
+                  jsx(
+                    "line",
+                    {
+                      x1: width * 0.1,
+                      y1: height * 0.25,
+                      x2: width * 0.45,
+                      y2: height * 0.25,
+                      stroke: "var(--color-error)",
+                      strokeWidth: 2.5,
+                      strokeLinecap: "round"
+                    }
+                  ),
+                  jsx("text", { x: width * 0.08, y: height * 0.26, fontSize: 11, className: "fill-muted-foreground font-medium", textAnchor: "end", children: "|2⟩ Second Excited" })
+                ] }),
+                jsx(
+                  "rect",
+                  {
+                    x: width * 0.47,
+                    y: height * 0.75 - Math.max(p0 * (height * 0.4), 2),
+                    width: 10,
+                    height: Math.max(p0 * (height * 0.4), 2),
+                    fill: "var(--color-success)",
+                    rx: 2,
+                    opacity: 0.85
+                  }
+                ),
+                jsx(
+                  "rect",
+                  {
+                    x: width * 0.47,
+                    y: mode === "qubit" ? height * 0.25 : height * 0.5 - Math.max(p1 * (height * 0.2), 2),
+                    width: 10,
+                    height: mode === "qubit" ? Math.max(p1 * (height * 0.4), 2) : Math.max(p1 * (height * 0.2), 2),
+                    fill: "var(--color-warning)",
+                    rx: 2,
+                    opacity: 0.85
+                  }
+                ),
+                mode === "qutrit" && jsx(
+                  "rect",
+                  {
+                    x: width * 0.47,
+                    y: height * 0.25,
+                    width: 10,
+                    height: Math.max(p2 * (height * 0.2), 2),
+                    fill: "var(--color-error)",
+                    rx: 2,
+                    opacity: 0.85
+                  }
+                ),
+                particles.map((p) => {
+                  const offsetAngle = p.phase;
+                  const ox = Math.sin(offsetAngle) * 7;
+                  const oy = Math.cos(offsetAngle) * 4;
+                  const cx = width * p.x / 100 + ox;
+                  const cy = height * p.y / 100 + oy;
+                  let color = "var(--color-success)";
+                  if (p.state === 1) color = "var(--color-warning)";
+                  if (p.state === 2) color = "var(--color-error)";
+                  return jsx(
+                    "circle",
+                    {
+                      cx,
+                      cy,
+                      r: 3.5,
+                      fill: color,
+                      opacity: 0.8
+                    },
+                    p.id
+                  );
+                }),
+                // Step 2: Replace the old entropyPath <path> inside your SVG block
+jsx(
+  "path",
+  {
+    d: `M ${thermalEntropyPath}`,
+    fill: "none",
+    stroke: "var(--color-primary)",
+    strokeWidth: 2.5,
+    strokeLinecap: "round",
+    opacity: driveMode === "active" ? 0.3 : 1 // Dims the thermal baseline when laser is active
+  }
+),
+driveMode === "active" && jsx(
+  "path",
+  {
+    d: `M ${activeEntropyPath}`,
+    fill: "none",
+    stroke: inversion === "cooling" ? "var(--color-success)" : "var(--color-error)", // Green for cooling, Red for pumping
+    strokeWidth: 2.5,
+    strokeLinecap: "round",
+    opacity: 0.9
+  }
+),
+                currentX >= width * 0.55 && currentX <= width * 0.9 && jsxs(Fragment, { children: [
+                  jsx(
+                    "circle",
+                    {
+                      cx: currentX,
+                      cy: currentY,
+                      r: 8,
+                      fill: "var(--color-primary)",
+                      opacity: 0.25,
+                      className: "animate-ping"
+                    }
+                  ),
+                  jsx(
+                    "circle",
+                    {
+                      cx: currentX,
+                      cy: currentY,
+                      r: 4.5,
+                      fill: "var(--color-primary)",
+                      stroke: "var(--color-card)",
+                      strokeWidth: 1.5
+                    }
+                  )
+                ] }),
+                jsxs("text", { x: width * 0.56, y: height * 0.16, fontSize: 11, className: "fill-muted-foreground font-medium", textAnchor: "start", children: [
+                  "Shannon Entropy H(ρ) (Dynamic limit: ",
+                  entropy.toFixed(2),
+                  " bits)"
+                ] }) ,
+               jsxs("text", {
+  x: width * 0.56,
+  y: height * 0.22,
+  fontSize: 10,
+  className: `${
+    isHighUncertainty 
+      ? "fill-red" 
+      : isHealthyUncertainty 
+        ? "fill-warning text-warning" 
+        : "fill-success text-success"
+  } font-medium`,
+  textAnchor: "start",
+  children: [
+    "Current Zone: ",
+    isHighUncertainty
+      ? "High Uncertainty Zone (>2.0 bit) --> [ QDF Use Case ]"
+      : isHealthyUncertainty
+        ? "Healthy / Uncertainty Zone"
+        : "Classical Predictability Zone (<0.5 bits)"
+  ]
+}) ,
+                jsx("text", { x: width * 0.88, y: height * 0.89, fontSize: 11, className: "fill-muted-foreground font-medium", textAnchor: "end", children: "Temperature (T)" })
+              ]
+            }
+          ),
+          jsx("div", { className: "absolute left-4 bottom-2 bg-custom text-foreground rounded-md px-2 py-0.5 text-[11px] font-medium pointer-events-none border border-border/40", children: mode === "qubit" ? "2-Level System" : "3-Level Qutrit" }),
+          jsx("div", { className: "absolute right-4 bottom-2 bg-custom text-foreground rounded-md px-2 py-0.5 text-[11px] font-medium pointer-events-none border border-border/40", children: "Entropy Space" })
+        ] }),
+        jsxs("div", { className: "grid grid-cols-3 gap-x-2 border-y border-border px-4 py-2.5 bg-muted/40", children: [
+          jsxs("div", { className: "flex flex-col items-center", children: [
+            jsx("span", { className: "text-[11px] text-muted-foreground font-medium truncate text-center w-full", children: "Ground State p₀" }),
+            jsxs("span", { className: "text-xs font-semibold text-success tabular-nums truncate text-center w-full", children: [
+              (p0 * 100).toFixed(1),
+              "%"
+            ] })
+          ] }),
+          jsxs("div", { className: "flex flex-col items-center", children: [
+            jsxs("span", { className: "text-[11px] text-muted-foreground font-medium truncate text-center w-full", children: [
+              "Excited p₁ ",
+              mode === "qutrit" && "(+ p₂)"
+            ] }),
+            jsx("span", { className: "text-xs font-semibold text-warning tabular-nums truncate text-center w-full", children: mode === "qubit" ? `${(p1 * 100).toFixed(1)}%` : `${((p1 + p2) * 100).toFixed(1)}%` })  // Correctly sums p1 + p2 (88%+ in Qutrit mode)
+          ] }),
+          jsxs("div", { className: "flex flex-col items-center", children: [
+            jsxs("span", { className: "text-[11px] text-muted-foreground font-medium truncate text-center w-full", children: [
+              "Total Entropy (",
+              isHealthyUncertainty ? "High Uncertainty Zone" : "Predictability Zone",
+              ")"
+            ] }),
+            jsxs("span", { className: `text-xs font-semibold tabular-nums truncate text-center w-full transition-colors ${isHealthyUncertainty ? "text-success" : "text-warning"}`, children: [
+              entropy.toFixed(3),
+              " bits"
+            ] })
+          ] })
+        ] }),
+/* --- BOTTOM CONTROL PANEL CONTAINER --- */
+        jsxs("div", { className: "p-4 flex flex-col gap-2", children: [
+
+          /* --- 1. PARTICLE COUNT (N) CONTROL CARD --- */
+          jsxs("div", { className: "flex justify-between items-center bg-muted/60 px-3 py-1.5 rounded-lg border border-border/50 mb-1", children: [
+            jsxs("div", { className: "flex items-center gap-2", children: [
+              jsx("span", { className: "text-xs font-medium text-foreground", children: "Particle Count (N)" }),
+              jsx("span", { className: "text-[10px] text-muted-foreground", children: "Populates Energy Levels" })
+            ] }),
+            jsxs("div", { className: "flex items-center gap-1.5", children: [
+              jsx("span", { className: "text-xs font-mono text-cyan-400 font-bold", children: "N =" }),
+              jsx("input", {
+                type: "number",
+                min: "1",
+                max: "1000",
+                value: particleCountN,
+                onChange: (e) => {
+                  const rawVal = parseInt(e.target.value, 10);
+                  if (isNaN(rawVal)) {
+                    setParticleCountN("");
+                    return;
+                  }
+                  const val = Math.max(1, rawVal);
+                  setParticleCountN(val);
+                },
+                onBlur: () => {
+                  if (!particleCountN || particleCountN < 1) setParticleCountN(1);
+                },
+                className: "w-16 bg-background border border-primary/50 rounded px-2 py-0.5 text-right font-mono font-bold text-cyan-400 text-xs outline-none focus:border-primary"
+              })
+            ] })
+          ] }),
+
+          /* --- 2. THERMAL BATH TEMPERATURE SLIDER CARD --- */
+          jsxs("div", { className: "flex flex-col gap-1 w-full", children: [
+            jsxs("label", { 
+              className: "text-xs font-medium text-muted-foreground flex justify-between", 
+              children: [
+                jsx("span", { 
+                  children: driveMode === "active" 
+                    ? `Active Field Range (${inversion === "cooling" ? "Ground State >88% Regime" : "Excited State >88% Regime"})` 
+                    : "Thermal Bath Temperature (T)" 
+                }),
+                jsx("span", { 
+                  className: "text-[10px] text-primary font-mono", 
+                  children: `Permitted: [${currentBounds.min}K - ${currentBounds.max}K]` 
+                })
+              ] 
+            }),
+            jsxs("div", { className: "flex items-center gap-4 w-full", children: [
+              jsxs(
+                Slider.Root,
+                {
+                  className: "relative flex items-center select-none touch-none w-full h-8 cursor-pointer grow",
+                  value: [Math.max(currentBounds.min, Math.min(temperature, currentBounds.max))],
+                  onValueChange: (val) => setTemperature(val[0]),
+                  min: currentBounds.min,
+                  max: currentBounds.max,
+                  step: 0.05,
+                  "aria-label": "Thermal temperature slider",
+                  children: [
+                    jsx(Slider.Track, { className: "relative h-1 grow rounded-full bg-muted", children: jsx(Slider.Range, { className: "absolute h-full rounded-full bg-primary" }) }),
+                    jsx(
+                      Slider.Thumb,
+                      {
+                        className: "block w-4 h-4 bg-primary rounded-full focus:outline-none transition-transform active:scale-110",
+                        "aria-label": "Temperature control thumb"
+                      }
+                    )
+                  ]
+                }
+              ),
+              jsxs("span", { className: "text-xs font-medium tabular-nums bg-muted px-2 py-1 rounded min-w-[55px] text-center", children: [
+                `${temperature.toFixed(2)} K`
+              ] })
+            ] })
+          ] })
+
+        ] }) /* --- CLOSE OF CONTAINER CHILDREN ARRAY & DIV --- */
+      ] }) }); /* --- CLOSE OF INNER & OUTER WRAPPERS --- */
+    }
+
+    ReactDOM.createRoot(document.getElementById("root")).render(
+      jsx(React.StrictMode, { children: jsx(App, {}) })
+    );
+  </script>
+
+  <style>
+    :root {
+      --font-sans: "Google Sans", "Roboto", sans-serif;
+      --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      --color-white: #fff;
+      --spacing: .25rem;
+      --text-xs: .75rem;
+      --text-sm: .875rem;
+      --text-base: 1rem;
+      --font-weight-normal: 400;
+      --font-weight-medium: 500;
+      --font-weight-semibold: 600;
+      --radius-md: .375rem;
+      --radius-xl: .75rem;
+      --blur-sm: 8px;
+      --default-transition-duration: .15s;
+      --default-font-family: var(--font-sans);
+      --color-primary: var(--primary, #336ef3);
+      --color-error: var(--brand-red, #ea4335);
+      --color-warning: var(--brand-yellow, #fbbc04);
+      --color-success: var(--brand-green, #34a853);
+      --color-background: #181a1f;      /* Outer dark canvas background */
+  --color-muted: #2a2d35;           /* Button & toggle container background */
+  --color-muted-foreground: #a0a5b5;/* Subtle text & icon color */
+  --color-foreground: #f0f2f5;      /* Main text color */
+  --color-border: #333742;          /* Component divider lines */
+  --color-secondary-hover: #383c48;  /* Play/Pause button hover state */
+    }
+	
+	/* Radix UI Toggle Group Off-State Dark Styling Override */
+[data-state="off"],
+[data-state="inactive"] {
+  background-color: transparent !important;
+  color: var(--color-muted-foreground) !important;
+}
+
+/* Ensure active/selected buttons retain their accent highlight */
+[data-state="on"],
+[data-state="active"] {
+  background-color: var(--color-primary) !important;
+  color: #ffffff !important;
+}
+
+/* Clear default HTML button white browser styling */
+button {
+  background-color: transparent;
+  color: inherit;
+  border: none;
+}
+
+/* Ensure muted container track stays dark slate */
+.bg-muted {
+  background-color: #1b1d22 !important;
+}
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --color-background: #272930;
+        --color-card: #272930;
+        --color-border: #363840;
+        --color-muted: #2c2e35;
+        --color-muted-foreground: #adafb8;
+        --color-foreground: #e6e8f0;
+      }
+    }
+
+    *, ::after, ::before {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+	/* Force dark theme overrides regardless of system preference */
+body {
+   font-family: var(--font-sans);
+  background-color: var(--color-background) !important;
+  color: var(--color-foreground) !important;
+}
+
+/* Dark background overrides for buttons, sliders, and controls */
+.bg-card, .bg-card\/50 {
+  background-color: #1e2025 !important;
+}
+
+
+/* Custom SVG Fill & Text Colors for Zone States */
+.fill-red {
+  fill: var(--color-error, #ea4335) !important;
+  color: var(--color-error, #ea4335) !important;
+}
+
+.bg-custom {
+  background-color: gray !important;
+}
+
+.bg-muted, .bg-muted\/90, .bg-muted\/40 {
+  background-color: #2a2d35 !important;
+}
+
+button {
+  color: var(--color-foreground);
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  /*  overflow: hidden !important;  Prevents internal iframe scrolling */
+}
+
+/* Constrain SVG rendering height */
+svg {
+  max-height: 320px !important;
+  width: 100%;
+  height: auto;
+}
+
+    .pointer-events-none { pointer-events: none; }
+    .absolute { position: absolute; }
+    .relative { position: relative; }
+    .left-4 { left: 1rem; }
+    .right-4 { right: 1rem; }
+    .bottom-2 { bottom: 0.5rem; }
+    .z-10 { z-index: 10; }
+    .block { display: block; }
+    .flex { display: flex; }
+    .grid { display: grid; }
+    .h-1 { height: 0.25rem; }
+    .h-4 { height: 1rem; }
+    .h-8 { height: 2rem; }
+    .h-auto { height: auto; }
+    .h-full { height: 100%; }
+    .w-4 { width: 1rem; }
+    .w-8 { width: 2rem; }
+    .w-full { width: 100%; }
+    .min-w-\[55px\] { min-width: 55px; }
+    .flex-1 { flex: 1; }
+    .grow { flex-grow: 1; }
+    .cursor-pointer { cursor: pointer; }
+    .touch-none { touch-action: none; }
+    .grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .flex-col { flex-direction: column; }
+    .items-center { align-items: center; }
+    .justify-between { justify-content: space-between; }
+    .justify-center { justify-content: center; }
+    .gap-1 { gap: 0.25rem; }
+    .gap-2 { gap: 0.5rem; }
+    .gap-4 { gap: 1rem; }
+    .gap-x-2 { column-gap: 0.5rem; }
+    .truncate { text-overflow: ellipsis; white-space: nowrap; overflow: hidden; }
+    .overflow-hidden { overflow: hidden; }
+    .rounded { border-radius: 0.25rem; }
+    .rounded-full { border-radius: 9999px; }
+    .rounded-md { border-radius: var(--radius-md); }
+    .rounded-xl { border-radius: var(--radius-xl); }
+    .border { border: 1px solid var(--color-border); }
+    .border-y { border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); }
+    .border-b { border-bottom: 1px solid var(--color-border); }
+    .bg-card { background-color: var(--color-card); }
+    .bg-card\/60 { background-color: rgba(247, 248, 250, 0.6); }
+    .bg-muted { background-color: var(--color-muted); }
+    .bg-muted\/40 { background-color: rgba(240, 242, 245, 0.4); }
+    .bg-primary { background-color: var(--color-primary); }
+    .fill-muted-foreground { fill: var(--color-muted-foreground); }
+    .fill-primary { fill: var(--color-primary); }
+    .fill-success { fill: var(--color-success); }
+    .fill-warning { fill: var(--color-warning); }
+    .stroke-border { stroke: var(--color-border); }
+    .p-1 { padding: 0.25rem; }
+    .p-3 { padding: 0.75rem; }
+    .p-4 { padding: 1rem; }
+    .p-5 { padding: 1.25rem; }
+    .px-2 { padding-inline: 0.5rem; }
+    .px-3 { padding-inline: 0.75rem; }
+    .px-4 { padding-inline: 1rem; }
+    .py-0\.5 { padding-block: 0.125rem; }
+    .py-1 { padding-block: 0.25rem; }
+    .py-2\.5 { padding-block: 0.625rem; }
+    .text-center { text-align: center; }
+    .text-right { text-align: right; }
+    .\!text-sm { font-size: 0.875rem !important; }
+    .text-sm { font-size: 0.875rem; }
+    .text-xs { font-size: 0.75rem; }
+    .text-\[11px\] { font-size: 11px; }
+    .font-medium { font-weight: 500; }
+    .font-semibold { font-weight: 600; }
+    .text-error { color: var(--color-error); }
+    .text-foreground { color: var(--color-foreground); }
+    .text-muted-foreground { color: var(--color-muted-foreground); }
+    .text-primary { color: var(--color-primary); }
+    .text-success { color: var(--color-success); }
+    .text-warning { color: var(--color-warning); }
+    .text-white { color: var(--color-white); }
+    .tabular-nums { font-variant-numeric: tabular-nums; }
+    .backdrop-blur-sm { backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+    .transition-all { transition: all 0.15s; }
+    .transition-colors { transition: background-color 0.15s, color 0.15s; }
+    .select-none { user-select: none; }
+
+    @keyframes ping {
+      75%, 100% {
+        opacity: 0;
+        transform: scale(2);
+      }
+    }
+    .animate-ping { animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite; }
+	
+	
+	
+	@media print {
+  /* 1. Global Light Background & Black Text Override */
+  :root {
+    --color-background: #ffffff !important;
+    --color-card: #ffffff !important;
+    --color-muted: #f4f5f8 !important;
+    --color-foreground: #000000 !important;
+    --color-muted-foreground: #333333 !important;
+    --color-border: #cccccc !important;
+  }
+
+  /* Force ALL structural containers to white */
+  html, body, #root, div, section, article, header, footer {
+    background-color: #ffffff !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    box-shadow: none !important;
+  }
+
+  /* 2. Fix Dark Buttons, Toggle Containers, and Control Cards */
+  .bg-card, .bg-card\/50, .bg-muted, .bg-muted\/90, .bg-muted\/40,
+  button, [role="button"], [data-state], .rounded-full {
+    background-color: #f0f2f5 !important;
+    background: #f0f2f5 !important;
+    color: #000000 !important;
+    border: 1px solid #cccccc !important;
+  }
+
+  /* Active/Selected buttons retain high-contrast dark blue highlight */
+  [data-state="on"], [data-state="active"], .bg-primary {
+    background-color: #2563eb !important;
+    color: #ffffff !important;
+  }
+
+  /* Unselected toggle options keep crisp black text on light grey */
+  [data-state="off"], [data-state="inactive"] {
+    background-color: #f0f2f5 !important;
+    color: #4b5563 !important;
+  }
+
+  /* 3. Invert Play/Pause Buttons & Temperature Badge Readouts */
+  .material-icons, button span {
+    color: #000000 !important;
+  }
+
+  /* 4. Ensure SVG Vectors, Phase Graphs, and Curves Remain Vivid */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  svg {
+    background-color: #ffffff !important;
+  }
+
+  svg text {
+    fill: #000000 !important;
+    font-weight: 600 !important;
+  }
+
+  line[stroke="var(--color-border)"] {
+    stroke: #b0b5c0 !important;
+  }
+
+  /* 5. Clean iFrame Border and Layout for Paper Output */
+  iframe {
+    border: 1px solid #cccccc !important;
+    background-color: #ffffff !important;
+    page-break-inside: avoid;
+  }
+}
+
+
+/* 1. Global CSS Variable Override: Green -> Cyan */
+:root {
+  --color-success: #00d8f6 !important; /* Replaces brand green with cyan */
+  --brand-green: #00d8f6 !important;
+}
+
+/* 2. Direct SVG Green-to-Cyan Repainting Overrides */
+svg [fill="#34a853"],
+svg [fill="#22c55e"],
+svg [fill="#10b981"],
+svg [fill="var(--color-success)"],
+.text-success,
+.bg-success {
+  fill: #00d8f6 !important;
+  color: #00d8f6 !important;
+}
+
+svg [stroke="#34a853"],
+svg [stroke="#22c55e"],
+svg [stroke="#10b981"],
+svg [stroke="var(--color-success)"] {
+  stroke: #00d8f6 !important;
+}
+
+/* Print view override: retain deep cyan for legibility on white paper */
+@media print {
+  :root {
+    --color-success: #008ba3 !important;
+  }
+  svg [fill="#00d8f6"], .text-success {
+    fill: #008ba3 !important;
+    color: #008ba3 !important;
+  }
+}
+
+/* Custom Global Dark Scrollbar Styles */
+/* 1. Firefox Scrollbar Support */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #383c48 #1b1d22; /* Thumb color (dark slate), Track color (canvas dark) */
+}
+
+/* 2. WebKit Browsers (Chrome, Edge, Safari, Brave) */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  background-color: #1b1d22; /* Dark scrollbar track background */
+}
+
+::-webkit-scrollbar-track {
+  background: #1b1d22 !important; /* Forces dark track */
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #383c48 !important; /* Dark slate draggable thumb */
+  border-radius: 4px;
+  border: 2px solid #1b1d22; /* Clean spacing around the thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4a4e5d !important; /* Hover highlight state */
+}
+
+::-webkit-scrollbar-corner {
+  background: #1b1d22 !important; /* Corner join block when both vertical and horizontal scrollbars appear */
+}
+	
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+</html>
