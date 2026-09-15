@@ -3028,9 +3028,27 @@ if (cvPhaseWidgetRef.current && cvPhaseWidgetRef.current.contentWindow) {
       </li>
     </ul>
   </div>
+
+  {/* ========================================================================= */}
+  {/* MOBILE FALLBACK IMAGE (Visible on small screens: hidden md:block)          */}
+  {/* ========================================================================= */}
+  <div className="block md:hidden w-full my-2">
+    <img 
+      src="./webpage_assets/Screenshot_2xQuBABE_06.jpeg" 
+      alt="2xQuBABE System Monospace Diagram" 
+      className="w-full h-auto rounded border border-slate-700 shadow-md object-contain"
+    />
+    <span className="block text-center text-[10px] text-cyan-500/70 pt-2 font-mono">
+      © Copyright 2026, Dr. P. B. Alipour. All Rights Reserved.
+    </span>
+  </div>
+
+  {/* ========================================================================= */}
+  {/* DESKTOP MONOSPACE ASCII (Hidden on mobile: hidden md:block)                */}
+  {/* ========================================================================= */}
   <pre 
     spellCheck="false" 
-    className="font-mono text-[11px] leading-snug tracking-normal antialiased text-slate-300 print:text-black print:opacity-100 overflow-x-auto whitespace-pre select-all"
+    className="hidden md:block font-mono text-[11px] leading-snug tracking-normal antialiased text-slate-300 print:text-black print:opacity-100 overflow-x-auto whitespace-pre select-all"
   >
 {` ┌──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
  │ [ `}<span className="inline-block overflow-hidden leading-none align-bottom bg-orange-400 text-black font-bold select-all rounded-md"> 2xQuBABE™ SYSTEM </span>{` ]                                                                                                           │  
