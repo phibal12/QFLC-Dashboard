@@ -3030,18 +3030,18 @@ if (cvPhaseWidgetRef.current && cvPhaseWidgetRef.current.contentWindow) {
   </div>
 
   {/* ========================================================================= */}
-  {/* MOBILE FALLBACK IMAGE (Visible on small screens: hidden md:block)          */}
-  {/* ========================================================================= */}
-  <div className="block md:hidden w-full my-2">
-    <img 
-      src="./webpage_assets/Screenshot_2xQuBABE_06.jpeg" 
-      alt="2xQuBABE System Monospace Diagram" 
-      className="w-full h-auto rounded border border-slate-700 shadow-md object-contain"
-    />
-    <span className="block text-center text-[10px] text-cyan-500/70 pt-2 font-mono">
-      © Copyright 2026, Dr. P. B. Alipour. All Rights Reserved.
-    </span>
-  </div>
+{/* SYSTEM BLUEPRINT IMAGE (Visible on ALL Screen Sizes)                     */}
+{/* ========================================================================= */}
+<div className="w-full my-2 flex flex-col items-center">
+  <img 
+    src="./webpage_assets/Screenshot_2xQuBABE_06.jpeg" 
+    alt="2xQuBABE System Monospace Diagram" 
+    className="w-full h-auto rounded border border-slate-700 shadow-md object-contain"
+  />
+  <span className="block text-center text-[10px] text-cyan-500/70 pt-2 font-mono">
+    © Copyright 2026, Dr. P. B. Alipour. All Rights Reserved.
+  </span>
+</div>
 
 
 </div>
