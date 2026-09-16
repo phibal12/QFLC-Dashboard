@@ -125,6 +125,22 @@ ol.ieee-list > li::before {
 }
 
 @media print {
+  /* 1. Invert image colors: Dark background becomes white, cyan/white lines become dark/black */
+  .print-invert, 
+  img[src*="Screenshot_2xQuBABE_06"] {
+    filter: invert(1) hue-rotate(180deg) !important;
+    -webkit-filter: invert(1) hue-rotate(180deg) !important;
+    background-color: #ffffff !important;
+  }
+
+  /* 2. Force exact color reproduction for print rendering engines */
+  img {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
+
+@media print {
   /* Force clean white background and clear forced dark mode background colors */
   body, 
   #root, 
@@ -3030,73 +3046,17 @@ if (cvPhaseWidgetRef.current && cvPhaseWidgetRef.current.contentWindow) {
   </div>
 
   {/* ========================================================================= */}
-  {/* MOBILE FALLBACK IMAGE (Visible on small screens: hidden md:block)          */}
-  {/* ========================================================================= */}
-  <div className="block md:hidden w-full my-2">
-    <img 
+{/* SYSTEM BLUEPRINT IMAGE (Visible on ALL Screen Sizes)                     */}
+{/* ========================================================================= */}
+<div className="w-3/4 my-2 flex flex-col items-center">
+  <img 
     src="./webpage_assets/Screenshot_2xQuBABE_06.jpeg" 
     alt="2xQuBABE System Monospace Diagram" 
     className="w-3/4 h-auto rounded border border-slate-700 shadow-md object-contain print-invert print:border-none print:shadow-none"
   />
-    <span className="block text-center text-[10px] text-cyan-500/70 pt-2 font-mono">
-      © Copyright 2026, Dr. P. B. Alipour. All Rights Reserved.
-    </span>
-  </div>
+</div>
 
-  {/* ========================================================================= */}
-  {/* DESKTOP MONOSPACE ASCII (Hidden on mobile: hidden md:block)                */}
-  {/* ========================================================================= */}
-  <pre 
-    spellCheck="false" 
-    className="hidden md:block font-mono text-[11px] leading-snug tracking-normal antialiased text-slate-300 print:text-black print:opacity-100 overflow-x-auto whitespace-pre select-all"
-  >
-{` ┌──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
- │ [ `}<span className="inline-block overflow-hidden leading-none align-bottom bg-orange-400 text-black font-bold select-all rounded-md"> 2xQuBABE™ SYSTEM </span>{` ]                                                                                                           │  
- │                                       [ `}<span className="inline-block bg-black text-purple-400 font-bold select-all rounded-md"> STAGE 3: </span>{`  PROCESS & MEASUREMENT                ]                                       │
- │  [ `}<span className="inline-block bg-black text-cyan-400 font-bold select-all rounded-md">STAGES 1 & 2:</span>{` GENERATION & FEED ]  [ CO-PROCESSING  +  4-STATE LOGIC REGISTER         ]              [ `}<span className="inline-block overflow-hidden leading-none align-bottom bg-gray-800 text-emerald-300 font-bold select-all rounded-md"> OUTPUT </span>{` ]             │
- │  [ `}<span className="inline-block overflow-hidden leading-none align-bottom bg-gray-800 text-emerald-300 font-bold select-all rounded-md"> INPUT </span>{` ] + [ PRE-PROCESS ]        [ QFLC Algorithm: QUANTUM FIELD LENS CODING / WORK ]                                       │
- │                                       [ QDF LENS PRE-CNOT / Entanglement | CNOT    ]        [ QDF LENS POST-CNOT : EE Readout ]  │
- │                                                                                                                                  │
- │                                                ┌───────────────────────────────────┐                                             │
- │                                                │     QDF  │<ΦΨ>│² Co-Processor     │                Wavevector Product           │
- │                [ 940 nm Laser Pump ]   `}<span className="inline-block h-[1.2em] w-[12px] overflow-hidden leading-none align-bottom select-all">✺</span>{`      │    └──────────────────────────┘   │                    𝔎 = `}
-<span className="font-sans">κ</span>
-<span className="inline-block text-[8px] -translate-y-[3px] font-sans">±2</span>
-{`𝔓`}
-<span className="inline-block text-[11px] -translate-y-[3px] font-sans">⁻¹</span><span className="inline-block w-[2px]"></span>
-{`               │                 
- │  ┌──────────────────────────┐  ◄─~~~─● │ ●─~~► ┌──▼ |κF → Σ 2d| = Σ 2Nc • time  ▲──┐                 Computation Result          │
- │  │  (SWCNTs on Substrate)   │◄─────────┘▒▒▒~~► │  Qubit Register |-► Slave BECs    │──┐                                          │
- │  │        ● Excitons        │  ● Photoprobes   └───────────────────────────────────┘  │     ┌───────────────────────────────┐    │
- │  └───────────`}<span className="inline-block h-[0.55em] overflow-hidden leading-none align-bottom select-all">▒▒▒▒▒</span>{`──────────┘  [ INTERACTION ZONE ]     det(Σ) = 0 Matrix             │     │            P(state)           │    │
- │  [SLIT] ───► ▒▒▒▒▒             [ LENS STATE ENCODING | REGISTER + COUNTING ZONE ]     ├────►│                =              │    │
- │              ▒▒▒▒▒                                                                    ├────►│           P(Φ ⟷ Ψ)`}<span className="inline-block h-[1.2em] w-[11px] overflow-hidden leading-none align-bottom select-all"> </span>{`         │    │
- │  ┌────────── ▒▒▒▒▒──────────┐                  ┌────────────────────────────┐         │     │         OUTPUT Matrix         │    │
- │  │      *    *    *    *    │                  │      SBC Co-processor      │─────────┘     └───────────────────────────────┘    │
- │  │ Slowed N ≥ 3 Atoms Feed  │▒▒▒▒▒▒▒▒▒▒▒▒▒▒──► │ (Symplectic Balancer Card) │                P(Φ ⟷ Ψ) = P`} <span className="inline-block text-[8px] translate-y-[2px] font-sans -mr-[1px]">{"| ij >"} </span>{`                   │
- │  └──────────────────────────┘ Superconducting  └────────────────────────────┘              = { <P`}<span className="inline-block text-[8px] translate-y-[2px] font-sans -mr-[1px]">{"| i 0₁0₂ ... 0\u0274> "}</span>{` ≥ |√2/3|²} bin(|ij>)   │
- │   [ ATOM INTERACTION ZONE ]    Coax Cables ▲          det(σ) = 1 Matrix                    = { <P\u0274> ≥ 2/3 } bin(q\u2080q\u2081 ... q\u0274)     │
- │   [ FROM CRYOSTAT CHAMBER ]    & Sensors   │             [ PIG WORK ]                      = b\u2080b\u2081 ... b\u0274 ,  N → ∞                │
- │               ▲            `}<span className="inline-block overflow-hidden leading-none align-bottom select-all">▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒</span>{`│          Phase Inverter Gate                 [  PRIORI PRED. MSG. / SYS. StATE ]    │
- │               │            ▼ [ SBC INTERNAL ACCESS ]   \u005C_______________________________  `}<span className="inline-block h-[0.5em] transform rotate-90 align-[-80%]">&gt;</span>{`____________________________________\u002F  │
- │  ┌──────────▒▒▒▒▒──────────┐                             \u005C                                                                       │  
- │  │   ███████████████████   <-- Vacuum Wall (Outer Vessel) │                 Internal System    Posteriori / Priori               │ 
- │  │   ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓   <-- Upper Flange               │                [ `}<span className="inline-block overflow-hidden leading-none align-bottom  text-orange-400 bg-black font-bold select-all rounded-md"> SUBSYSTEM B </span>{` ]   Decoded Data | MSG. Stored        │          
- │  │   ─────────▲─────────   <-- Upper Seal Edge            │                        ▲          .-------------------------.        │ 
- │  │  ▩▩▩▩▩▩▩▩▩▩▩▩▩▩  <-- Metal Gasket`}<span className="inline-block h-[1.2em] w-[11px] overflow-hidden leading-none align-bottom select-all"> </span>{`             >  External System      ¦|───────► │         QuBABE DB         │       │
- │  │   ─────────▼─────────   <-- Lower Seal Edge            │   [ `}<span className="inline-block overflow-hidden leading-none align-bottom  text-orange-400 bg-black font-bold select-all rounded-md"> SUBSYSTEM A </span>{` ] ◄──┘          '-------------------------'        │
- │  │   `}<span className="inline-block h-[0.55em] overflow-hidden leading-none align-bottom select-all">▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓</span>{`   <-- Lower Flange / Base Plate  │                                                          │           │
- │  └─────────────────────────┘                              │   [ I/O SYSTEM LOGIC + STATE PROCESS + CTRL ]            │           │
- │      [ CRYOSTAT CHAMBER ]                                \u002F    [ QUANTUM-CLASSICAL                                    │           │
- │      ─── ── ──▲── ── ───                                ▲── ── ─ / HYBRID COMM. ZONE ] ◄── ── ── ───►`}<span className="inline-block h-[1.2em] w-[12px] overflow-hidden leading-none align-bottom select-all"> </span>{`┌ ── ─── ── ──▼           │
- └-> ( `}<span className="inline-block overflow-hidden leading-none align-bottom bg-gray-800 text-cyan-500 font-bold select-all rounded-md"> START / POWER ON TERMINAL </span>{``}<span className="inline-block overflow-hidden leading-none align-bottom bg-zinc-800 text-cyan-400 font-bold select-all">{" >_"}</span>{` ) >──────────────────┘         `}<span className="inline-block h-[1.2em] w-[8px] overflow-hidden leading-none align-bottom select-all"> </span>{`                                    └< ( `}<span className="inline-block overflow-hidden leading-none align-bottom bg-gray-800 text-blue-400 font-bold select-all rounded-md"> HALT / EOT 🔚 </span>{` ) >─┐
- └──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘`}
-<span 
-  className="block text-left w-full text-[10px] text-cyan-500/70 print:text-black pt-1 select-all"
->
-  {`\u00A0\u00A0\u00A0\u00A0© Copyright 2026, Dr. P. B. Alipour. All Rights Reserved.`}    │   {`🖶 | This Design Recommends (A4 / Letter) Landscape Print Setting.`}
-</span>
-</pre>
+
 </div>
 
 
