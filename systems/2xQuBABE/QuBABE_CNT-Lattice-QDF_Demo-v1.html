@@ -59,6 +59,84 @@
     -moz-osx-font-smoothing: grayscale;
     font-feature-settings: 'liga';
   }
+  
+  @media print {
+  /* 1. Invert image colors: Dark background becomes white, cyan/white lines become dark/black */
+  .print-invert, 
+  img[src*="Screenshot_2xQuBABE_06"] {
+    filter: invert(1) hue-rotate(180deg) !important;
+    -webkit-filter: invert(1) hue-rotate(180deg) !important;
+    background-color: #ffffff !important;
+  }
+
+  /* 2. Force exact color reproduction for print rendering engines */
+  img {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}  
+
+@media print {
+  /* ========================================================================= */
+  /* SVG BACKGROUND RECTANGLE PRINT OVERRIDES                                 */
+  /* ========================================================================= */
+  
+@media print {
+  /* ========================================================================= */
+  /* FORCE ALL SVG RECTS, PATHS & CARDS TO WHITE IN PRINT                       */
+  /* ========================================================================= */
+
+  /* 1. Target all SVG rects and shapes regardless of inline presentation attributes */
+  svg rect, 
+  svg path, 
+  svg circle,
+  .print-svg-rect {
+    fill: #ffffff !important;
+    fill-opacity: 1 !important;
+    stroke: #475569 !important; /* Crisp dark slate border */
+  }
+
+  /* 2. Preserve text visibility on top of newly whitened rectangles */
+  svg text,
+  .print-svg-text {
+    fill: #0f172a !important; /* Dark navy / off-black text */
+    text-shadow: none !important;
+  }
+
+  /* 3. Override HTML cards and div containers in Stage 3 */
+  div[class*="bg-slate-"],
+  div[class*="bg-zinc-"],
+  div[class*="bg-gray-"],
+  .diagram-block {
+    background-color: #ffffff !important;
+    background: #ffffff !important;
+    color: #0f172a !important;
+    border-color: #94a3b8 !important;
+  }
+}
+
+  svg rect[stroke="#10b981"],
+  svg rect[stroke="emerald"] {
+    stroke: #059669 !important; /* Deep green border */
+  }
+}
+
+@media print {
+  /* Automatically inverts the QDF Lens iframe from black background to clean white */
+  iframe[src*="QDF-Lens"],
+  .qdf-lens-iframe-container {
+    filter: invert(1) hue-rotate(180deg) !important;
+    -webkit-filter: invert(1) hue-rotate(180deg) !important;
+    background-color: #ffffff !important;
+  }
+}
+
+
+@media print {
+  /* Hides ONLY this specific coolant overlay rect */
+  rect[fill*="coolantGrad"] { display: none !important; }
+}
+  
 </style>
 
 
@@ -205,6 +283,7 @@ ol.ieee-list > li::before {
   .print-symbol-emerald { color: #059669 !important; }
   .print-symbol-sky { color: #0284c7 !important; }
 }
+
   
 </style>
 </head>
@@ -249,6 +328,21 @@ const [midlineParticles, setMidlineParticles] = useState([]);
 const [isRecording, setIsRecording] = useState(false);
 const [recordedData, setRecordedData] = useState([]);
 
+
+// Default to image view on mobile (< 768px), ASCII view on desktop (system blueprint solution)
+const [blueprintView, setBlueprintView] = useState("image");
+
+// Sync view default if user resizes browser window
+useEffect(() => {
+  const handleResize = () => {
+    // Only auto-switch if user hasn't explicitly toggled
+    if (window.innerWidth < 768 && blueprintView === "ascii") {
+      setBlueprintView("image");
+    }
+  };
+  window.addEventListener('resize', handleResize);
+  return () => window.removeEventListener('resize', handleResize);
+}, []);
 
 // Function to handle toggling and saving
 const handleRecordToggle = () => {
@@ -556,7 +650,7 @@ let dissipationFactor = (
 
 let orderParameter = Math.max(0, 1 - entropy * 1.25).toFixed(2);
 
-// 3. Expected transition probability calculation incorporating flow impact; Calculate Expected Transition Probability P(S,G) based on asymptotic Eq (53)
+// 3. Expected transition probability calculation incorporating flow impact; Calculate Expected Transition Probability P(S,G) based on asymptotic Eq. (53)
 let expectedProbability = (8 / (9 * (1 + 2.9 * parseFloat(dissipationFactor)))).toFixed(4);
 let expectedProbPercent = (expectedProbability * 100).toFixed(1);
 
@@ -1524,6 +1618,7 @@ const [lensZoom2, setLensZoom2] = useState(0.62); // Default zoomed out slightly
     fillOpacity="0.95"
     stroke="#38bdf8"
     strokeWidth="1.5"
+	className="print-svg-rect"
   />
   
   {/* Box Title */}
@@ -1582,6 +1677,7 @@ const [lensZoom2, setLensZoom2] = useState(0.62); // Default zoomed out slightly
     fillOpacity="0.95"
     stroke="#c084fc"
     strokeWidth="1.5"
+	className="print-svg-rect"
   />
   <text 
     x="71" 
@@ -1625,7 +1721,8 @@ const [lensZoom2, setLensZoom2] = useState(0.62); // Default zoomed out slightly
     rx="4" 
     fill="#1e293b" 
     stroke="#475569" 
-    strokeWidth="1" 
+    strokeWidth="1"
+className="print-svg-rect"	
   />
   <text 
     x="72" 
@@ -1775,11 +1872,12 @@ const [lensZoom2, setLensZoom2] = useState(0.62); // Default zoomed out slightly
     y={cyLeft - rCryo * 0.8} 
     width={rCryo * 1.6} 
     height={rCryo * 1.6} 
-    rx={8} 
+    rx={8}  
     fill="url(#coolantGrad)" 
     stroke="#0284c7" 
     strokeWidth="1.5" 
     opacity={coolantFlow === "low" ? 0.35 : coolantFlow === "high" ? 0.75 : 0.5} 
+    className="print:hidden"
   />
 
   {/* NOTE: Copper cylinder (<rect x={cxLeft - 16}...>) is completely removed */}
@@ -1830,7 +1928,7 @@ const [lensZoom2, setLensZoom2] = useState(0.62); // Default zoomed out slightly
 {/* RIGHT PANEL: SWCNT CHIP IMAGE + CORE LATTICE COMPONENT    */}
 {/* ========================================================= */}
 
-{/* 1. TOP LAYER OF RIGHT PANEL: SWCNT Chip Reference Diagram */}
+{/* TOP LAYER OF RIGHT PANEL: STAGE 2: Microscopic Sampling Diagram */}
 <image
   href="img_swcnt_chip.png"
   x={cxLeft + rCryo * 2.6}
@@ -1839,6 +1937,11 @@ const [lensZoom2, setLensZoom2] = useState(0.62); // Default zoomed out slightly
   height={rCryo * 3.7}
   opacity="0.85"
   preserveAspectRatio="xMidYMid meet"
+  className="transition-opacity duration-300"
+  style={{
+    filter: "none", // Ensures crisp text rendering at all times (Power ON or OFF)
+    opacity: !isPowerOn ? 0.8 : 1.0 // Smooth dimming without sacrificing resolution or sharpness
+  }}
 />
 
 {/* Laser Pump Graphic Stack */}
@@ -3012,8 +3115,10 @@ if (cvPhaseWidgetRef.current && cvPhaseWidgetRef.current.contentWindow) {
   </div>
 
 
-{/* Three-Stage Operation Monospace Block Diagram */}
+{/* Three-Stage Operation Scheme & Interactive Blueprint Viewport */}
 <div className="diagram-block bg-slate-900/80 border border-slate-800 rounded-md p-3 print:bg-white print:border-slate-700">
+  
+  {/* Scheme Overview List */}
   <div className="font-bold mb-2 text-[11px] font-sans text-cyan-400 print:text-black">
     <div className="text-cyan-300 font-bold mb-1">Three-Stage Operation Scheme:</div>
     <ul className="list-disc pl-4 space-y-0.5 text-slate-300 font-normal text-[10.5px]">
@@ -3030,26 +3135,63 @@ if (cvPhaseWidgetRef.current && cvPhaseWidgetRef.current.contentWindow) {
   </div>
 
   {/* ========================================================================= */}
-  {/* MOBILE FALLBACK IMAGE (Visible on small screens: hidden md:block)          */}
+  {/* INTERACTIVE TOGGLE CONTROL BAR (Print Hidden)                             */}
   {/* ========================================================================= */}
-  <div className="block md:hidden w-full my-2">
-    <img 
-    src="./webpage_assets/Screenshot_2xQuBABE_06.jpeg" 
-    alt="2xQuBABE System Monospace Diagram" 
-    className="w-3/4 h-auto rounded border border-slate-700 shadow-md object-contain print-invert print:border-none print:shadow-none"
-  />
-    <span className="block text-center text-[10px] text-cyan-500/70 pt-2 font-mono">
-      © Copyright 2026, Dr. P. B. Alipour. All Rights Reserved.
+  <div className="flex items-center justify-between bg-slate-950/80 border border-slate-800 rounded-lg px-3 py-1.5 my-2 print:hidden">
+    <span className="text-[10.5px] font-mono text-cyan-400/90 font-medium flex items-center gap-1.5">
+      <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+      System Blueprint Rendering Mode:
     </span>
+
+    <div className="flex items-center gap-1 bg-slate-900 p-0.5 rounded-md border border-slate-700/60">
+      <button
+        type="button"
+        onClick={() => setBlueprintView("image")}
+        className={`px-2.5 py-1 text-[10px] font-mono rounded transition-all cursor-pointer ${
+          blueprintView === "image"
+            ? "bg-cyan-500 text-slate-950 font-bold shadow-sm"
+            : "text-slate-400 hover:text-slate-200"
+        }`}
+      >
+        📷 Captured Schema (Image)
+      </button>
+
+      <button
+        type="button"
+        onClick={() => setBlueprintView("ascii")}
+        className={`px-2.5 py-1 text-[10px] font-mono rounded transition-all cursor-pointer ${
+          blueprintView === "ascii"
+            ? "bg-cyan-500 text-slate-950 font-bold shadow-sm"
+            : "text-slate-400 hover:text-slate-200"
+        }`}
+      >
+        ⌨ Raw ASCII
+      </button>
+    </div>
   </div>
 
   {/* ========================================================================= */}
-  {/* DESKTOP MONOSPACE ASCII (Hidden on mobile: hidden md:block)                */}
+  {/* VIEWPORT 1: CAPTURED SCHEMA IMAGE                                        */}
   {/* ========================================================================= */}
-  <pre 
-    spellCheck="false" 
-    className="hidden md:block font-mono text-[11px] leading-snug tracking-normal antialiased text-slate-300 print:text-black print:opacity-100 overflow-x-auto whitespace-pre select-all"
-  >
+  {/* ========================================================================= */}
+{/* SYSTEM BLUEPRINT IMAGE (High-Fidelity Schema with Print Color Inversion)    */}
+{/* ========================================================================= */}
+  {blueprintView === "image" ? (
+    <div className="w-full my-2 flex flex-col items-start print:my-0"> 
+  <img 
+    src="./webpage_assets/Screenshot_2xQuBABE_06.jpeg" 
+    alt="2xQuBABE System Monospace Diagram" 
+    className="w-full h-auto rounded border border-slate-700 shadow-md object-contain print-invert print:border-none print:shadow-none" 
+  /> 
+</div>
+  ) : (
+    /* ========================================================================= */
+    /* VIEWPORT 2: RAW DESKTOP MONOSPACE ASCII                                  */
+    /* ========================================================================= */
+    <pre
+      spellCheck="false"
+      className="font-mono text-[11px] leading-snug tracking-normal antialiased text-slate-300 print:text-black print:opacity-100 overflow-x-auto whitespace-pre select-all my-2"
+    >
 {` ┌──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
  │ [ `}<span className="inline-block overflow-hidden leading-none align-bottom bg-orange-400 text-black font-bold select-all rounded-md"> 2xQuBABE™ SYSTEM </span>{` ]                                                                                                           │  
  │                                       [ `}<span className="inline-block bg-black text-purple-400 font-bold select-all rounded-md"> STAGE 3: </span>{`  PROCESS & MEASUREMENT                ]                                       │
@@ -3097,6 +3239,7 @@ if (cvPhaseWidgetRef.current && cvPhaseWidgetRef.current.contentWindow) {
   {`\u00A0\u00A0\u00A0\u00A0© Copyright 2026, Dr. P. B. Alipour. All Rights Reserved.`}    │   {`🖶 | This Design Recommends (A4 / Letter) Landscape Print Setting.`}
 </span>
 </pre>
+)}
 </div>
 
 
