@@ -32,7 +32,7 @@
   <p style="font-style: italic !important;"><i>Real-time Quantum State Monitoring, Entanglement Visualization of Qubits and Client Data</i></p>
 </div>
 
-<meta property="og:title" content="QFLC-Dashboard: Quantum Field Lens Coding">
+<meta property="og:title" content="2xQuBABE™ via QFLCA Dashboard Dashboard: Quantum Bell-Alice-Bob-Eve/Field Lens Coding">
 <meta property="og:description" content="A specialized simulator and validator for Quantum Double-Field (QDF) models and logic stability.">
 <meta property="og:image" content="https://github-readme-stats.shion.dev/api/pin/?username=phibal12&repo=QFLC-Dashboard&theme=tokyonight">
 
