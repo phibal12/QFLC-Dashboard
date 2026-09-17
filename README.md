@@ -28,11 +28,11 @@
  <p style="font-style: italic !important;"><i>Banner description: The $QDF$ Dual-Lens architecture ($L^+$ focus / $L^-$ defocus) applied to $ABE$ (Alice--Bob--Eve) tripartite state discrimination. Eve's ancilla qubit can decode and reveal the hidden Bell state information from this three-way entanglemet (quantum information) network.</i></p>
 
   
-  <h1>🖥️📊 QFLC Dashboard <span class="live-dot" style="color: red;"> 🔵 Live </span></h1>
+  <h1>🖥️📊 2xQuBABE™ via QFLCA Dashboard <span class="live-dot" style="color: red;"> 🔵 Live </span></h1>
   <p style="font-style: italic !important;"><i>Real-time Quantum State Monitoring, Entanglement Visualization of Qubits and Client Data</i></p>
 </div>
 
-<meta property="og:title" content="2xQuBABE™ via QFLCA Dashboard Dashboard: Quantum Bell-Alice-Bob-Eve/Field Lens Coding">
+<meta property="og:title" content="2xQuBABE™ via QFLCA Dashboard: Quantum Bell-Alice-Bob-Eve/Field Lens Coding">
 <meta property="og:description" content="A specialized simulator and validator for Quantum Double-Field (QDF) models and logic stability.">
 <meta property="og:image" content="https://github-readme-stats.shion.dev/api/pin/?username=phibal12&repo=QFLC-Dashboard&theme=tokyonight">
 
