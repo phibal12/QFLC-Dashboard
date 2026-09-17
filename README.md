@@ -12,7 +12,7 @@
 
 <div align="center">
 <div>
-  <h1>🖥️📊 QFLC Dashboard <span class="live-dot" style="color: red;"> 🔵 Live </span></h1>
+  <h1>🖥️📊 2xQuBABE™ via QFLCA Dashboard <span class="live-dot" style="color: red;"> 🔵 Live </span></h1>
   <p style="font-style: italic !important; text-align: center !important;" ><i>Real-time Quantum State Monitoring, Entanglement Visualization of Qubits and Client Data</i></p>
 </div>
 </div>
@@ -20,7 +20,7 @@
 ---
 
 <div align="center">
-  <h1 style="font-size: 42px;"> QF-LCD: Quantum Field Lens Coding Dashboard </h1>
+  <h1 style="font-size: 42px;"> 2xQuBABE™ via QFLCA Dashboard: Quantum Bell-Alice-Bob-Eve/Field Lens Coding </h1>
   <!-- Use the image below by right-clicking it to 'Copy Image Address' and pasting it below -->
    <a href="https://github.com/phibal12/QFLC-Dashboard" target="_blank" rel="noopener noreferrer" style="display: block; text-decoration: none;">
   <img src="./assets/ABE_QDFImage_Banner.png" alt="QFLC Banner: Quantum Three-Way Entanglement Banner" height="100%" width="100%" style="border-radius: 10px;" title="Dual-Field Lensing: L⁺ (Convex/Focus) and L⁻ (Concave/Defocus) operators revealing hidden ABE Bell states. By including the third particle as an ancilla system, you’re visually representing the mechanism where Eve interacts with the transit state. In compatible quantum model, the composite system is represented as a tripartite state: Ψ_ABE = Σ_(i,j) α_(i,j) |i⟩_A ⊗ |j⟩_B ⊗ |E_(i,j)⟩_E" ></a>
