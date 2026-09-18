@@ -1192,26 +1192,19 @@ body:not(.light-mode) #main_content span[style*="color: #ff7b72"] {
    WIDE SIMULATION BANNER FRAME (Pulsing Glow & No Scrollbars)
    ============================================================ */
 
-/* Apply pulsing cyan glowing frame to the outer wide banner container */
 .profile-image-frame.wide-banner-frame {
   max-width: 1000px !important;
   width: 100% !important;
   height: 380px !important;
-  margin: 20px 0 !important;
+  aspect-ratio: 16 / 9 !important;
+  overflow: hidden !important; /* Completely eliminates browser scrollbars */
   position: relative !important;
+  margin: 20px 0 !important;
   border-radius: 8px !important;
-  border: 1px solid #00ffff !important; /* Explicit cyan border line */
-  box-shadow: 0 0 20px rgba(0, 255, 255, 0.4) !important; /* Ambient cyan glow */
-  animation: containerCyberPulse 4s ease-in-out infinite !important; /* Restores pulsing loop */
-  overflow: hidden !important;
+  border: 1px solid #30363d !important;
   background-color: #0d1117 !important;
-}
-
-/* Hover intensifies glow */
-.profile-image-frame.wide-banner-frame:hover {
-  animation: none !important;
-  border-color: #00ffff !important;
-  box-shadow: 0 0 35px rgba(0, 255, 255, 0.75) !important;
+  /* Retains cyber pulsing animation loop */
+  animation: containerCyberPulse 4s ease-in-out infinite !important;
 }
 
 .profile-image-frame.wide-banner-frame img {
@@ -1294,74 +1287,6 @@ body:not(.light-mode) #main_content span[style*="color: #ff7b72"] {
   box-shadow: 0 0 35px rgba(0, 255, 255, 0.75) !important;
   transform: scale(1.02) !important;
 }
-
-
-
-/* ============================================================
-   PORTFOLIO PRINT / PDF EXPORT RESETS
-   ============================================================ */
-@media print {
-  /* 1. Hide interactive elements */
-  .top-nav, .bottom-nav, #theme-toggle, .terminal-cursor, .btn-return, [data-tooltip]::after {
-    display: none !important;
-  }
-
-  /* 2. Reset page dimensions */
-  html, body, #main_content_wrap, #main_content {
-    background: #ffffff !important;
-    color: #000000 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    width: 100% !important;
-    max-width: 100% !important;
-  }
-
-  /* 3. Lock Title Sizing on Paper (Prevents huge wrapping) */
-  #main_content h1#portfolio_main_title,
-  #main_content h1#portfolio_main_title span {
-    font-size: 22pt !important;        /* Fixed printable point size */
-    line-height: 1.2 !important;
-    letter-spacing: normal !important;
-    color: #000000 !important;
-    text-shadow: none !important;      /* Removes cyan blur on paper */
-    display: inline !important;
-  }
-
-  /* 4. Keep Subtitles and Section Headers Proportional */
-  #main_content h2.section_header,
-  #main_content h3 {
-    font-size: 14pt !important;
-    color: #000000 !important;
-    text-shadow: none !important;
-  }
-
-  #main_content p, 
-  #main_content li, 
-  #main_content td {
-    font-size: 10.5pt !important;
-    color: #000000 !important;
-    line-height: 1.4 !important;
-  }
-}
-
-/* Tighten spacing between chapter headers, cyan terms, and body lines */
-.timeline-node h3,
-.timeline-node h3.accent-cyan {
-  margin-top: 4px !important;
-  margin-bottom: 2px !important; /* Reduces gap under chapter title */
-  line-height: 1.25 !important;
-}
-
-.timeline-node p {
-  margin-top: 2px !important;
-  margin-bottom: 8px !important; /* Reduces gap between paragraphs */
-  line-height: 1.45 !important;
-}
-
-.timeline-node .meta-tag {
-  margin-bottom: 2px !important;
-  display: block;
-}
   </style>
 
 
@@ -1389,7 +1314,7 @@ body:not(.light-mode) #main_content span[style*="color: #ff7b72"] {
         <tr>
           <!-- Circular Profile Frame Column (Moved to Left) -->
          <td style="width: 220px; text-align: left; vertical-align: top; padding-right: 30px;">
-  <img src="./assets/PBA_portrait.jpg" alt="Dr. Philip B. Alipour" style="width: 220px; height: 220px; border-radius: 50% !important; border: 2px solid #00ffff !important; box-shadow: 0 0 15px rgba(0, 255, 255, 0.5) !important; object-fit: cover !important; margin: 60px auto 0 0 !important;" /> 
+  <img src="./assets/PBA_portrait.jpg" alt="Dr. Philip B. Alipour" style="width: 220px; height: 220px;  border-radius: 50% !important; border: 2px solid #00ffff !important; box-shadow: 0 0 15px rgba(0, 255, 255, 0.5) !important; object-fit: cover !important; margin: 160px auto 0 0 !important;" /> 
 </td>
  
           <!-- Text Metadata Column (Moved to Right) -->
@@ -1453,7 +1378,7 @@ body:not(.light-mode) #main_content span[style*="color: #ff7b72"] {
         <div class="name-container">
           <h2 class="profile-name">Dr. Philip B. Alipour</h2>
         </div>
-        <p class="profile-headline">Experienced Professional on <img class="linkedin-asset-logo" src="assets/LinkedIn.svg" alt="LinkedIn Logo"> <br> Ph.D. in Electrical, Computer Engineering and Quantum Physics (University of Victoria) </p>
+        <p class="profile-headline">Experienced Professional on <img class="linkedin-asset-logo" src="assets/LinkedIn.jpg" alt="LinkedIn Logo"> <br> Ph.D. in Electrical, Computer Engineering and Quantum Physics (University of Victoria) </p>
         <p class="profile-location">Victoria BC, Canada</p>
       </div>
     </div>
@@ -1791,18 +1716,94 @@ function secureEmail(event) {
   <div class="accordion-item interactive-card">
     <button class="accordion-trigger" aria-expanded="false">
       <span class="accordion-icon">&gt;</span>
-      <span class="publication-title">Quantum Field Lens Coding (QF-LC): An Interdisciplinary Engineering Approach...</span>
+      <span class="publication-title">Quantum Field Lens Coding (QF-LC): An Interdisciplinary Engineering Method for Strong State Predictions...</span>
     </button>
     <div class="accordion-content">
       <div class="accordion-inner-text">
-        <p><strong><span style="color: #ff7b72;">Abstract:</span></strong> This research presents the synthesis of the Quantum Field Lens Coding Algorithm (QF-LCA)...</p>
-        <p style="margin-top: 10px;">
+	  <p style="margin-top: 10px;">
           <span style="color: #a6e22e;">[URI Link]:</span> 
          <a href="https://hdl.handle.net/1828/23705" target="_blank">hdl.handle.net/1828/23705</a>
         </p>
+		<b><span style="color: #ff7b72;">Files:</span></b><span>
+Alipour_Philip_PhD_2026.pdf (77.32 MB)
+Date
+2026 | 
+<b><span style="color: #ff7b72;">Authors:</span></b><span> Alipour, Philip B.
+	  
+        <p><strong><span style="color: #ff7b72;">Abstract:</span></strong> This research presents the synthesis of the Quantum Field Lens Coding Algorithm (QF-LCA), the foundational work and thermodynamics of the 2xQuBABE™ system...</p>
+        
+
+
+<p>This dissertation introduces Quantum Field Lens Coding (QF-LC) and its thermodynamic metrics, expanding scalar theory across multidisciplinary fields. Prior research in thermodynamics and statistical mechanics has not explored these QF-LC concepts and project.</p>
+
+<p>The QF-LC project comprises of 1- the quantum double-field (QDF) model, 2- QDF model’s code as the QF-LC algorithm (QF-LCA), 3- application software as the QF-LC simulator (QF-LCS), simulating a QDF system with its, 4- QF-LCA/QDF dataset. </p>
+
+<p>QF-LCA is a QF lens distance-based algorithm implemented on N-qubit machines to simulate and predict thermodynamic system events. This algorithm makes strong predictions on system state transitions and phase transitions (STs and PTs), which are based on the QDF model and its QF-LC data. In a QDF-based system, QDF transformations are simulated by a DF computation model to simulate systems as QF-LCS, and generate a QDF dataset.</p>
+
+<p>QDF datasets are generated by a QDF circuit where QF-LCS simulates. The QF-LCS analyzes the measurement outcome probability P data from these datasets to predict STs and PTs. This includes classifying system states, their ST probabilities, and entanglement entropy (EE) values which determine entanglement. This EE measure quantifies the degree of entanglement between qubit pairs and other sampled particles from the system.</p>
+
+<p>QDF datasets are compared between the excited and ground states (ES and GS), as a P indicator generated for measurement samples. These samples denote </p>
+
+<p><ul><li> 1) A particle pair energy state |ij⟩ superposing between QDF points (sublevels of a GS), </li>
+<li> 2) a single field (SF) or particle state i, which is an ES relative to a GS, prior to its transform into a QDF, and spin order change (magnetization), </li>
+<li> 3) the expected transformation of fields (ES ←→ GS) and their expected P|ij⟩ value. </li></ul></p>
+
+<p>QF-LCA encodes system states as data points represented by qubit pairs, which are counted and recorded in a QDF dataset. The QDF circuit uses at minimum a qubit pair to generate this dataset. This circuit samples particles and counts entangled qubits. One qubit is for a sampled particle from the thermodynamic system that entangles with a trapped particle within each pair. The circuit has a 3rd particle which complements the entangled state of the pair, decoding their hidden Bell state information through qubit exchange. This quantifiably maximizes the correlation (entanglement) between all three particles. This process establishes a three-way entanglement, creating a unique quantum information exchange network among these particles. The 3rd particle in a three-way entanglement can exhibit orthogonal and non-orthogonal relationships, allowing for qubit pairs complementarity. Their pairwise state is detected by a photonic probe that is used to encode-decode qubits.</p>
+
+<p>The decoding process of data corresponding to system STs and PTs is observed as the macrostate change within the system. The QDF circuit functions as an encoding-decoding mechanism, which is a heat engine to process the hidden information of the particle-pair state via the 3rd particle. The encoding process occurs at near absolute zero temperatures (≈ 0 K) on microscopic scales as a GS matter, while decoding occurs on macroscopic scales at low and high temperatures (≳ 0 K), given the system target state (TS). This TS is the desired Hamiltonian set by the QF-LCA user to achieve the expected system outcome.</p>
+
+<p>A strong system state prediction is achieved by computing the QF lens distance-based variables associated to ST probabilities from a QDF dataset. Thermal events are predicted by implementing a QDF lens function in the heat engine. The function (de-)focuses the distribution of energy states via QF lenses which encode the system state and produce the dataset. The energy path of an unfocused distribution of states is determined via EE values from the dataset. Particles not reaching a desired energy state (or TS) by observing a GS/ES probability outcome and entanglement (EE classification) at the decoding step can be rerouted by the engine for a TS outcome. This is achieved by focusing the energy state distribution through the lenses and qubit pair entanglement. At this step, the GS/ES energy profile is generated and accessed to classify states by a QF-LC classifier (QF-LCC) and predict the next system state. An ST probability space doubles in prediction at this step, e.g., P|ij⟩ ≥ 1/3 into P|ij⟩ ≥ 2/3 via (1)-(3), as SF − κ → QDF, where κ is a field scalar. Scalar κ, scales a particle QF during interactions or diffusion of a GS matter in this system.</p>
+
+<p>QDF datasets can be used to train a QF-LCA. This is done by running a quantum AI (QAI) algorithm on qubit machines which combines a QDF dataset with external datasets. The data points (qubits) in the QDF dataset are inverse distance-based that quantify EE, and are labelled for specific states by a QF-LCC. After learning this profile, the QF-LCC decodes and predicts the next system state suggesting an efficient energy path to choose by the user.</p>
+
+<p>A QDF game Alice & Bob Quantum Doubles is developed to validate the dataset as the P|ij⟩ map for a strong prediction, where the P|ij⟩ and user probabilities correlate in their value difference, ∆P. Dataset validation results are mapped to a decision simulator as a QAI map, which maximizes system efficiency on a TS via the EE of energy states.</p>
+
+<p>QF-LCA applications are mostly in data science and particle physics, where particle states from an evidence sample are classified based on their QDF probabilities. Examples are reconstructing damaged DNA strands of cells to predict a virus (TS) or cancer cell, its spread and growth against healthy cells, identify forged documents from genuine based on their P|ij⟩. The top sustainable development goal (SDG) for the QF-LCA, as assessed by SDG AI classifiers, is access to affordable and clean energy in society.</p>
+
+
+<p><b><span style="color: #ff7b72;">Keywords:</span></b>
+Quantum field, scalar field, artificial intelligence, qubit, machine learning, lens coding, quantum double-field, classical bit, quantum circuit, entanglement entropy, hybrid machine, sustainable development goal, quantum algorithm, QDF dataset, entangled pair, state transition, target state.</p></span>
       </div>
     </div>
   </div>
+
+
+<div class="sdg-wheel" data-wheel-height="200" data-model="aurora-sdg-multi" data-text="Quantum field lens coding
+
+Abstract
+
+This dissertation introduces Quantum Field Lens Coding (QF-LC) and its thermodynamic metrics, expanding scalar theory across multidisciplinary fields. Prior research in thermodynamics and statistical mechanics has not explored these QF-LC concepts and project.
+
+The QF-LC project comprises of 1- the quantum double-field (QDF) model, 2- QDF model’s code as the QF-LC algorithm (QF-LCA), 3- application software as the QF-LC simulator (QF-LCS), simulating a QDF system with its, 4- QF-LCA/QDF dataset.
+
+QF-LCA is a QF lens distance-based algorithm implemented on N-qubit machines to simulate and predict thermodynamic system events. This algorithm makes strong predictions on system state transitions and phase transitions (STs and PTs), which are based on the QDF model and its QF-LC data. In a QDF-based system, QDF transformations are simulated by a DF computation model to simulate systems as QF-LCS, and generate a QDF dataset.
+
+QDF datasets are generated by a QDF circuit where QF-LCS simulates. The QF-LCS analyzes the measurement outcome probability P data from these datasets to predict STs and PTs. This includes classifying system states, their ST probabilities, and entanglement entropy (EE) values which determine entanglement. This EE measure quantifies the degree of entanglement between qubit pairs and other sampled particles from the system.
+
+QDF datasets are compared between the excited and ground states (ES and GS), as a P indicator generated for measurement samples. These samples denote
+1) A particle pair energy state |ij⟩ superposing between QDF points (sublevels of a GS),
+2) a single field (SF) or particle state i, which is an ES relative to a GS, prior to its transform into a QDF, and spin order change (magnetization),
+3) the expected transformation of fields (ES ←→ GS) and their expected P|ij⟩ value.
+
+QF-LCA encodes system states as data points represented by qubit pairs, which are counted and recorded in a QDF dataset. The QDF circuit uses at minimum a qubit pair to generate this dataset. This circuit samples particles and counts entangled qubits. One qubit is for a sampled particle from the thermodynamic system that entangles with a trapped particle within each pair. The circuit has a 3rd particle which complements the entangled state of the pair, decoding their hidden Bell state information through qubit exchange. This quantifiably maximizes the correlation (entanglement) between all three particles. This process establishes a three-way entanglement, creating a unique quantum information exchange network among these particles. The 3rd particle in a three-way entanglement can exhibit orthogonal and non-orthogonal relationships, allowing for qubit pairs complementarity. Their pairwise state is detected by a photonic probe that is used to encode-decode qubits.
+
+The decoding process of data corresponding to system STs and PTs is observed as the macrostate change within the system. The QDF circuit functions as an encoding-decoding mechanism, which is a heat engine to process the hidden information of the particle-pair state via the 3rd particle. The encoding process occurs at near absolute zero temperatures (≈ 0 K) on microscopic scales as a GS matter, while decoding occurs on macroscopic scales at low and high temperatures (≳ 0 K), given the system target state (TS). This TS is the desired Hamiltonian set by the QF-LCA user to achieve the expected system outcome.
+
+A strong system state prediction is achieved by computing the QF lens distance-based variables associated to ST probabilities from a QDF dataset. Thermal events are predicted by implementing a QDF lens function in the heat engine. The function (de-)focuses the distribution of energy states via QF lenses which encode the system state and produce the dataset. The energy path of an unfocused distribution of states is determined via EE values from the dataset. Particles not reaching a desired energy state (or TS) by observing a GS/ES probability outcome and entanglement (EE classification) at the decoding step can be rerouted by the engine for a TS outcome. This is achieved by focusing the energy state distribution through the lenses and qubit pair entanglement. At this step, the GS/ES energy profile is generated and accessed to classify states by a QF-LC classifier (QF-LCC) and predict the next system state. An ST probability space doubles in prediction at this step, e.g., P|ij⟩ ≥ 1/3 into P|ij⟩ ≥ 2/3 via (1)-(3), as SF − κ → QDF, where κ is a field scalar. Scalar κ, scales a particle QF during interactions or diffusion of a GS matter in this system.
+
+QDF datasets can be used to train a QF-LCA. This is done by running a quantum AI (QAI) algorithm on qubit machines which combines a QDF dataset with external datasets. The data points (qubits) in the QDF dataset are inverse distance-based that quantify EE, and are labelled for specific states by a QF-LCC. After learning this profile, the QF-LCC decodes and predicts the next system state suggesting an efficient energy path to choose by the user.
+
+A QDF game Alice & Bob Quantum Doubles is developed to validate the dataset as the P|ij⟩ map for a strong prediction, where the P|ij⟩ and user probabilities correlate in their value difference, ∆P. Dataset validation results are mapped to a decision simulator as a QAI map, which maximizes system efficiency on a TS via the EE of energy states.
+
+QF-LCA applications are mostly in data science and particle physics, where particle states from an evidence sample are classified based on their QDF probabilities. Examples are reconstructing damaged DNA strands of cells to predict a virus (TS) or cancer cell, its spread and growth against healthy cells, identify forged documents from genuine based on their P|ij⟩. The top sustainable development goal (SDG) for the QF-LCA, as assessed by SDG AI classifiers, is access to affordable and clean energy in society.
+
+Keywords
+quantum field, scalar field, artificial intelligence, qubit, machine learning, lens coding, quantum double-field, classical bit, quantum circuit, entanglement entropy, hybrid machine, sustainable development goal, quantum algorithm, QDF dataset, entangled pair, state transition, target state.">
+
+</div>
+
+<script src="https://aurora-sdg.labs.vu.nl/resources/widget.js" type="text/javascript"></script>
+
 
   <!-- Accordion Item 2 (Duplicate this structure for more papers) -->
   <div class="accordion-item interactive-card" style="margin-top: 15px;">
@@ -1817,6 +1818,8 @@ function secureEmail(event) {
     </div>
   </div>
 </div>
+
+
 
 
 <!-- REPLACEMENT FOR BASE FOOTER -->
@@ -2128,6 +2131,7 @@ document.addEventListener("DOMContentLoaded", () => {
   <a href="#contact_card">📩 Contact</a>
     <a href="#">↑ Back to Top</a>
 </div><br>
+
 
 <!--
 </body>
