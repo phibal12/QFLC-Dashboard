@@ -1192,19 +1192,26 @@ body:not(.light-mode) #main_content span[style*="color: #ff7b72"] {
    WIDE SIMULATION BANNER FRAME (Pulsing Glow & No Scrollbars)
    ============================================================ */
 
+/* Apply pulsing cyan glowing frame to the outer wide banner container */
 .profile-image-frame.wide-banner-frame {
   max-width: 1000px !important;
   width: 100% !important;
   height: 380px !important;
-  aspect-ratio: 16 / 9 !important;
-  overflow: hidden !important; /* Completely eliminates browser scrollbars */
-  position: relative !important;
   margin: 20px 0 !important;
+  position: relative !important;
   border-radius: 8px !important;
-  border: 1px solid #30363d !important;
+  border: 1px solid #00ffff !important; /* Explicit cyan border line */
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.4) !important; /* Ambient cyan glow */
+  animation: containerCyberPulse 4s ease-in-out infinite !important; /* Restores pulsing loop */
+  overflow: hidden !important;
   background-color: #0d1117 !important;
-  /* Retains cyber pulsing animation loop */
-  animation: containerCyberPulse 4s ease-in-out infinite !important;
+}
+
+/* Hover intensifies glow */
+.profile-image-frame.wide-banner-frame:hover {
+  animation: none !important;
+  border-color: #00ffff !important;
+  box-shadow: 0 0 35px rgba(0, 255, 255, 0.75) !important;
 }
 
 .profile-image-frame.wide-banner-frame img {
@@ -1286,6 +1293,74 @@ body:not(.light-mode) #main_content span[style*="color: #ff7b72"] {
   border-color: #00ffff !important;
   box-shadow: 0 0 35px rgba(0, 255, 255, 0.75) !important;
   transform: scale(1.02) !important;
+}
+
+
+
+/* ============================================================
+   PORTFOLIO PRINT / PDF EXPORT RESETS
+   ============================================================ */
+@media print {
+  /* 1. Hide interactive elements */
+  .top-nav, .bottom-nav, #theme-toggle, .terminal-cursor, .btn-return, [data-tooltip]::after {
+    display: none !important;
+  }
+
+  /* 2. Reset page dimensions */
+  html, body, #main_content_wrap, #main_content {
+    background: #ffffff !important;
+    color: #000000 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* 3. Lock Title Sizing on Paper (Prevents huge wrapping) */
+  #main_content h1#portfolio_main_title,
+  #main_content h1#portfolio_main_title span {
+    font-size: 22pt !important;        /* Fixed printable point size */
+    line-height: 1.2 !important;
+    letter-spacing: normal !important;
+    color: #000000 !important;
+    text-shadow: none !important;      /* Removes cyan blur on paper */
+    display: inline !important;
+  }
+
+  /* 4. Keep Subtitles and Section Headers Proportional */
+  #main_content h2.section_header,
+  #main_content h3 {
+    font-size: 14pt !important;
+    color: #000000 !important;
+    text-shadow: none !important;
+  }
+
+  #main_content p, 
+  #main_content li, 
+  #main_content td {
+    font-size: 10.5pt !important;
+    color: #000000 !important;
+    line-height: 1.4 !important;
+  }
+}
+
+/* Tighten spacing between chapter headers, cyan terms, and body lines */
+.timeline-node h3,
+.timeline-node h3.accent-cyan {
+  margin-top: 4px !important;
+  margin-bottom: 2px !important; /* Reduces gap under chapter title */
+  line-height: 1.25 !important;
+}
+
+.timeline-node p {
+  margin-top: 2px !important;
+  margin-bottom: 8px !important; /* Reduces gap between paragraphs */
+  line-height: 1.45 !important;
+}
+
+.timeline-node .meta-tag {
+  margin-bottom: 2px !important;
+  display: block;
 }
   </style>
 
