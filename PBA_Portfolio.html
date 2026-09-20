@@ -4,6 +4,7 @@ title: Technical Documentation
 permalink: /PBA_Portfolio
 standalone: true
 ---
+
 <!-- HTML code starts here 
 <!DOCTYPE html>
 <html lang="en">
@@ -1092,8 +1093,8 @@ body.light-mode #main_content h1#portfolio_main_title {
   max-width: 1200px !important;       /* Caps width so large screens get side margins */
   width: 90% !important;             /* Ensures 5% breathing margin on each side */
   padding-top: 85px !important;      /* Clears top fixed nav bar */
-  padding-bottom: 90px !important;   /* Clears bottom fixed nav bar */
-  padding-left: 25px !important;     /* Inner side padding */
+  padding-bottom: 20px !important;   /* Clears bottom fixed nav bar */
+  padding-left: 25px !important;     /* Inner side bottom page padding */ /* CHANGED FROM 90px TO 20px */
   padding-right: 25px !important;
   box-sizing: border-box !important;
 }
@@ -1293,18 +1294,26 @@ body:not(.light-mode) #main_content span[style*="color: #ff7b72"] {
    ============================================================ */
 
 /* 1. Force the root container into a single horizontal row */
-.sdg-wheel,
-.sdg-wheel > div, 
-.aurora-sdg-widget {
+.sdg-wheel, .sdg-wheel > div, .aurora-sdg-widget {
   display: flex !important;
   flex-direction: row !important;
   flex-wrap: nowrap !important;
   align-items: center !important;
   justify-content: flex-start !important;
   gap: 20px !important;
-  margin: 10px 0 !important;
+  margin: 15px 0 !important;
   padding: 0 !important;
+  width: 100% !important;     /* Expands container fully */
   max-width: 16% !important;
+}
+
+/* Suppress broken widget icons and force local fallback image */
+.sdg-wheel img,
+.aurora-sdg-widget img {
+  content: url("assets/sdg_fallback.png") !important;
+  width: 24px !important;
+  height: 24px !important;
+  object-fit: contain !important;
 }
 
 /* 2. Lock the Canvas Wheel to the far left */
@@ -1856,7 +1865,7 @@ Quantum field, scalar field, artificial intelligence, qubit, machine learning, l
   </div>
 
 
-<div class="sdg-wheel" data-wheel-height="200" data-model="aurora-sdg-multi" data-custom-uri="https://hdl.handle.net/1828/23705" data-text="Quantum field lens coding.
+<div class="sdg-wheel" data-wheel-height="200" data-model="aurora-sdg-multi" data-image-path="https://aurora-sdg.labs.vu.nl/resources/assets/" data-custom-uri="https://hdl.handle.net/1828/23705" data-text="Quantum field lens coding.
 
 Abstract
 
@@ -1911,7 +1920,7 @@ quantum field, scalar field, artificial intelligence, qubit, machine learning, l
 1-s2.0-S221501612300136X-main.pdf (6.85 MB)
 Date
 2023 | 
-<b><span style="color: #ff7b72;">Authors:</span></b><span> Alipour, Philip B.; Gulliver T. Aaron
+<b><span style="color: #ff7b72;">Authors:</span></b><span> Alipour, Philip B.; Gulliver, T. Aaron
 	  
         <p><strong><span style="color: #ff7b72;">Abstract:</span></strong> This work presents the Quantum Field Lens Coding Algorithm (QF-LCA), the foundational work and thermodynamics of the 2xQuBABE™ system...</p>
         
@@ -1931,7 +1940,7 @@ Quantum double-field, QDF Transformation, QDF Lens coding, DF Computation, Entan
     </div>
   </div>
   
-<div class="sdg-wheel" data-wheel-height="200" data-model="aurora-sdg-multi" data-custom-uri="https://doi.org/10.1016/j.mex.2023.102136" data-text="Quantum field lens coding and classification algorithm to predict measurement outcomes.
+<div class="sdg-wheel" data-wheel-height="200" data-model="aurora-sdg-multi" data-image-path="https://aurora-sdg.labs.vu.nl/resources/assets/" data-custom-uri="https://doi.org/10.1016/j.mex.2023.102136" data-text="Quantum field lens coding and classification algorithm to predict measurement outcomes.
 
 Abstract
 This study develops a method to implement a quantum field lens coding and classification algorithm for two quantum double-field (QDF) system models: 1- a QDF model, and 2- a QDF lens coding model by a DF computation (DFC). This method determines entanglement entropy (EE) by implementing QDF operators in a quantum circuit. The physical link between the two system models is a quantum field lens coding algorithm (QF-LCA), which is a QF lens distance-based, implemented on real N-qubit machines. This is with the possibility to train the algorithm for making strong predictions on phase transitions as the shared objective of both models. In both system models, QDF transformations are simulated by a DFC algorithm where QDF data are collected and analyzed to represent energy states and transitions, and determine entanglement based on EE. The method gives a list of steps to simulate and optimize any thermodynamic system on macro and micro-scale observations, as presented in this article:
@@ -1966,7 +1975,7 @@ Quantum double-field (QDF), Quantum field lens coding, QDF Transformation, QDF L
 <i>preprint</i> ssrn-5427054.pdf (3.53 MB)
 Date
 2025... | 
-<b><span style="color: #ff7b72;">Authors:</span></b><span> Alipour, Philip B.
+<b><span style="color: #ff7b72;">Authors:</span></b><span> Alipour, Philip B.; Gulliver, T. Aaron
 	  
         <p><strong><span style="color: #ff7b72;">Abstract:</span></strong> This work (<i>under peer-review</i>) presents the integration of QF-LCA for optimization purposes to solve societal needs globally, predict, prevent and/or reverse negative global events (macro state transitions, +/- target states) and impacts on society...</p>
         
@@ -1982,7 +1991,7 @@ Sustainable Development Goals (SDGs), Quantum double-field (QDF), State transiti
     </div>
   </div>
   
-<div class="sdg-wheel" data-wheel-height="200" data-model="aurora-sdg-multi" data-custom-uri="https://dx.doi.org/10.2139/ssrn.5427054" data-text="Qusole Codes: Quantum Social Lensing for Global Sustainable Goals.
+<div class="sdg-wheel" data-wheel-height="200" data-model="aurora-sdg-multi" data-image-path="https://aurora-sdg.labs.vu.nl/resources/assets/" data-custom-uri="https://dx.doi.org/10.2139/ssrn.5427054" data-text="Qusole Codes: Quantum Social Lensing for Global Sustainable Goals.
 
 Abstract
 
@@ -1995,96 +2004,151 @@ Sustainable Development Goals (SDGs), Quantum double-field (QDF), State transiti
 
 
 <!-- Keep the next script lines after any SDG wheel set (MULTI-WHEEL) presentation --!>
+<!-- 1. SINGLE LOCAL FALLBACK IMAGE INTERCEPTOR -->
+<!-- 1. LOCAL FILE ERROR SUPPRESSOR (RUNS BEFORE WIDGET) -->
+<!-- ========================================== -->
+<!-- 1. DEEP DOM PROXY (KILLS ALL MISSING FILE ERRORS) -->
+<!-- ========================================== -->
+<script>
+(function() {
+  // 1. Point all widget image requests to your specific asset folder
+  const fallbackImage = "assets/sdg_fallback.png";
+  // 2. Provide a blank virtual data stream to instantly satisfy the widget.css request
+  const blankCss = "data:text/css;base64,";
+
+  // A. Intercept raw HTML injections (catches innerHTML before browser network requests it)
+  const origInnerHTML = Object.getOwnPropertyDescriptor(Element.prototype, 'innerHTML');
+  if (origInnerHTML) {
+    Object.defineProperty(Element.prototype, 'innerHTML', {
+      set: function(val) {
+        if (typeof val === 'string') {
+          // Rewrite missing image paths to the fallback image
+          val = val.replace(/src=["'][^"']*(sdg_icon_[\w-]+\.png|aurora_logo\.png)["']/gi, `src="${fallbackImage}"`);
+          // Rewrite missing CSS paths to the blank data stream
+          val = val.replace(/href=["'][^"']*(widget\.css)["']/gi, `href="${blankCss}"`);
+        }
+        return origInnerHTML.set.call(this, val);
+      },
+      get: function() { return origInnerHTML.get.call(this); }
+    });
+  }
+
+  // B. Intercept direct property assignments (e.g. img.src = "...")
+  if (typeof HTMLImageElement !== 'undefined') {
+    const origImgSrc = Object.getOwnPropertyDescriptor(HTMLImageElement.prototype, 'src');
+    if (origImgSrc) {
+      Object.defineProperty(HTMLImageElement.prototype, 'src', {
+        set: function(val) {
+          if (typeof val === 'string' && (val.includes('sdg_icon') || val.includes('aurora_logo'))) {
+            val = fallbackImage;
+          }
+          return origImgSrc.set.call(this, val);
+        },
+        get: function() { return origImgSrc.get.call(this); }
+      });
+    }
+  }
+
+  // C. Intercept AJAX/XHR Requests
+  const origOpen = XMLHttpRequest.prototype.open;
+  XMLHttpRequest.prototype.open = function(method, url, ...args) {
+    if (typeof url === 'string') {
+      if (url.includes('sdg_icon') || url.includes('aurora_logo')) url = fallbackImage;
+      if (url.includes('widget.css')) url = blankCss;
+    }
+    return origOpen.call(this, method, url, ...args);
+  };
+})();
+</script>
+
+<!-- ========================================== -->
+<!-- 2. AURORA WIDGET SCRIPT -->
+<!-- ========================================== -->
 <script src="https://aurora-sdg.labs.vu.nl/resources/widget.js" type="text/javascript"></script>
 
-<!-- BULLETPROOF LOOP-SAFE MULTI-WHEEL SDG LINK INTERCEPTOR -->
+<!-- ========================================== -->
+<!-- 3. URI LINK SYNCHRONIZER -->
+<!-- ========================================== -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   const defaultUri = "https://hdl.handle.net/1828/23705";
 
-  function processSdgLinks() {
-    const wheels = document.querySelectorAll(".sdg-wheel");
-    wheels.forEach(wheel => {
-      // 1. Skip wheels already fully processed to prevent re-triggering loops
-      if (wheel.getAttribute("data-uri-processed") === "true") return;
+  function syncSdgLinks() {
+    const sdgLinks = document.querySelectorAll(".sdg-wheel a, .aurora-sdg-widget a");
+    
+    sdgLinks.forEach(link => {
+      // ESCAPE HATCH: Skip already modified links to prevent freezing/loops
+      if (link.getAttribute("data-uri-processed") === "true") return;
 
-      const targetUrl = wheel.getAttribute("data-custom-uri") || defaultUri;
-      const sdgLinks = wheel.querySelectorAll("a");
+      const text = link.textContent.toLowerCase();
+      const href = link.href.toLowerCase();
 
-      sdgLinks.forEach(link => {
-        // Find target link generated by Aurora widget
-        if (link.textContent.toLowerCase().includes("learn more") || link.href.includes("aurora-sdg")) {
-          const originalAuroraUrl = link.href;
-          
-          // Determine DOI vs URI label
-          const isDoi = targetUrl.toLowerCase().includes("doi.org") || targetUrl.toLowerCase().includes("doi");
-          const labelPrefix = isDoi ? "DOI Link" : "URI Link";
-          const shortDisplayUrl = targetUrl.replace(/^https?:\/\//, "");
+      // Target dynamically generated "Learn more" or Aurora links
+      if (text.includes("learn more") || href.includes("aurora-sdg")) {
+        
+        // FIX: Broaden the search to guarantee it finds the specific DOI or URI for this exact wheel
+        const parentWheel = link.closest('.sdg-wheel, [data-custom-uri]');
+        const targetUrl = parentWheel ? (parentWheel.getAttribute("data-custom-uri") || defaultUri) : defaultUri;
+        const originalAuroraUrl = link.href;
+        
+        const isDoi = targetUrl.toLowerCase().includes("doi.org");
+        const labelPrefix = isDoi ? "DOI Link" : "URI Link";
+        const shortDisplayUrl = targetUrl.replace(/^https?:\/\//, "");
 
-          // Create wrapper container
-          const linkWrapper = document.createElement("div");
-          linkWrapper.style.display = "flex";
-          linkWrapper.style.flexDirection = "column";
-          linkWrapper.style.gap = "4px";
-          linkWrapper.style.marginTop = "6px";
+        // Build the stacked link container
+        const wrapper = document.createElement("div");
+        wrapper.className = "sdg-custom-link-group";
+        wrapper.style.display = "flex";
+        wrapper.style.flexDirection = "column";
+        wrapper.style.gap = "4px";
+        wrapper.style.marginTop = "6px";
 
-          // Line 1: Primary DOI/URI Link
-          const primaryLink = document.createElement("a");
-          primaryLink.href = targetUrl;
-          primaryLink.target = "_blank";
-          primaryLink.rel = "noopener noreferrer";
-          primaryLink.textContent = `[${labelPrefix}: ${shortDisplayUrl}]`;
-          primaryLink.style.setProperty("color", "#00ffff", "important");
-          primaryLink.style.setProperty("font-weight", "bold", "important");
-          primaryLink.style.setProperty("text-decoration", "underline", "important");
+        // Link 1: The specific DOI or URI
+        const primaryLink = document.createElement("a");
+        primaryLink.href = targetUrl;
+        primaryLink.target = "_blank";
+        primaryLink.rel = "noopener noreferrer";
+        primaryLink.textContent = `[${labelPrefix}: ${shortDisplayUrl}]`;
+        primaryLink.style.setProperty("color", "#00ffff", "important");
+        primaryLink.style.setProperty("font-weight", "bold", "important");
+        primaryLink.style.setProperty("text-decoration", "underline", "important");
+        primaryLink.setAttribute("data-uri-processed", "true");
 
-          // Line 2: Aurora SDG Classifier "Learn More" evaluation link
-          const auroraLink = document.createElement("a");
-          auroraLink.href = originalAuroraUrl;
-          auroraLink.target = "_blank";
-          auroraLink.rel = "noopener noreferrer";
-          auroraLink.textContent = "↳ Learn More at Aurora-SDG-Classifier";
-          auroraLink.style.setProperty("color", "#58a6ff", "important");
-          auroraLink.style.setProperty("font-size", "0.85rem", "important");
-          auroraLink.style.setProperty("text-decoration", "underline", "important");
+        // Link 2: The original Aurora link
+        const auroraLink = document.createElement("a");
+        auroraLink.href = originalAuroraUrl;
+        auroraLink.target = "_blank";
+        auroraLink.rel = "noopener noreferrer";
+        auroraLink.textContent = "↳ Learn More at Aurora-SDG-Classifier";
+        auroraLink.style.setProperty("color", "#58a6ff", "important");
+        auroraLink.style.setProperty("font-size", "0.85rem", "important");
+        auroraLink.style.setProperty("text-decoration", "underline", "important");
+        auroraLink.setAttribute("data-uri-processed", "true");
 
-          // Assemble wrapper and replace original link
-          linkWrapper.appendChild(primaryLink);
-          linkWrapper.appendChild(auroraLink);
+        wrapper.appendChild(primaryLink);
+        wrapper.appendChild(auroraLink);
 
-          // Mark wheel as processed BEFORE replacing child node to prevent observer loops
-          wheel.setAttribute("data-uri-processed", "true");
+        // Mark the old link as processed before replacing it
+        link.setAttribute("data-uri-processed", "true"); 
 
-          // Replace target link safely
-          if (link.parentNode) {
-            link.parentNode.replaceChild(linkWrapper, link);
-          }
+        if (link.parentNode) {
+          link.parentNode.replaceChild(wrapper, link);
         }
-      });
+      }
     });
   }
 
-  // 2. Observer with Mutation Lock to prevent infinite recursion
-  let isModifying = false;
-  const observer = new MutationObserver(() => {
-    if (isModifying) return; // Ignore mutations triggered by our own script
-    
-    isModifying = true;
-    processSdgLinks();
-    
-    // Release mutation lock on next browser tick
-    setTimeout(() => { isModifying = false; }, 100);
+  // 1. Catch initial page load renders
+  [1000, 2500, 3500, 4500].forEach(delay => setTimeout(syncSdgLinks, delay));
+
+  // 2. Catch dynamic hover renders safely (prevents browser freezing)
+  document.body.addEventListener('mouseover', (e) => {
+    if (e.target.closest('.sdg-wheel') || e.target.closest('.aurora-sdg-widget')) {
+      setTimeout(syncSdgLinks, 50); // Slight delay allows the widget to draw the link before we swap it
+    }
   });
-
-  // Observe only .sdg-wheel nodes instead of global document.body
-  const sdgWheels = document.querySelectorAll(".sdg-wheel");
-  sdgWheels.forEach(w => observer.observe(w, { childList: true, subtree: true }));
-
-  // Timed fallback execution for late-rendering widget scripts
-  setTimeout(processSdgLinks, 2800);
-  setTimeout(processSdgLinks, 4000);
 });
-</script>
+</script> 
 <!-- EOScripts --!>
 
 
