@@ -659,12 +659,12 @@ This dashboard is the practical implementation of research published at the **Un
 
 **System Architecture Nomenclature and IP Notice**
 > <details>
-> <summary> <b>2xQuBABE™</b> operates as a unified dual-definition quantum framework:</summary>
-> * **Physical Engine Platform (Academic):** Implements the 3-way entanglement (Alice-Bob-Eve or ABE) exchange system defined in Chapter 2 of Philip B. Alipour's Ph.D. dissertation: <a href="https://hdl.handle.net/1828/23705" target="_blank">hdl.handle.net/1828/23705</a>, where **E**ve's decoding matrix successfully extracts hidden **B**ell information to double transition probability limits ($P \ge 1/3 \rightarrow P \ge 2/3$).
-> * **Hardware Core Identity (Commercial):** Represents the proprietary next-gen quantum computers designed and trademarked by Philip **B**aback **A**lipour (**B.A.**). 
-> * The above-mentioned inherits **QuBABE™ Systems** as **Qu**antum **B**aback **A**lipour's **B**ell-**E**ve Systems proprietary trademark ownership as defined under Section 6 of <a href="https://ised-isde.canada.ca/site/canadian-intellectual-property-office/en/trademarks" target="_blank"> Canadian Intellectual Property Office (CIPO) </a>, and Classes 9 (Goods) and 42 (Services) of <a href="https://ised-isde.canada.ca/site/canadian-intellectual-property-office/en/trademarks/goods-and-services-manual-class-headings" target="_blank">Trademarks Act and Trademarks Regulations</a>.
-> 🛰 **[EXPLORE THE HARDWARE INTERFACE →]** *(This link will redirect to the standalone hardware platform page as live telemetry streams expand)*
-</details><br>
+> <summary> <b>▼ 2xQuBABE™ operates as a unified dual-definition quantum framework:</b></summary>
+* **Physical Engine Platform (Academic):** Implements the 3-way entanglement (Alice-Bob-Eve or ABE) exchange system defined in Chapter 2 of Philip B. Alipour's Ph.D. dissertation: <a href="https://hdl.handle.net/1828/23705" target="_blank">hdl.handle.net/1828/23705</a>, where **E**ve's decoding matrix successfully extracts hidden **B**ell information to double transition probability limits ($P \ge 1/3 \rightarrow P \ge 2/3$).
+* **Hardware Core Identity (Commercial):** Represents the proprietary next-gen quantum computers designed and trademarked by Philip **B**aback **A**lipour (**B.A.**). 
+* The above-mentioned inherits **QuBABE™ Systems** as **Qu**antum **B**aback **A**lipour's **B**ell-**E**ve Systems proprietary trademark ownership as defined under Section 6 of <a href="https://ised-isde.canada.ca/site/canadian-intellectual-property-office/en/trademarks" target="_blank"> Canadian Intellectual Property Office (CIPO) </a>, and Classes 9 (Goods) and 42 (Services) of <a href="https://ised-isde.canada.ca/site/canadian-intellectual-property-office/en/trademarks/goods-and-services-manual-class-headings" target="_blank">Trademarks Act and Trademarks Regulations</a>.
+🛰 **[EXPLORE THE HARDWARE INTERFACE →]** *(This link will redirect to the standalone hardware platform page as live telemetry streams expand)*
+</details>
 
 **Application and Dataset Layer Nomenclature and IP Notice**
 > The software widgets and their datasets provided in this dashboard as **QFLCD** components **are** intended for academic, industrial, societal, and research purposes. These QFLCD components are the practical implementation of research defended and archived at the University of Victoria: <a href="https://hdl.handle.net/1828/23705" target="_blank">hdl.handle.net/1828/23705</a>. Please cite the original dissertation and the associated Elsevier papers (**MethodsX**, **Software Impacts**, **Data in Brief**,**Societal Impacts**, etc.) when utilizing the **QDF** logic or datasets in your own work.
