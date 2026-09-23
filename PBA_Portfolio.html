@@ -1955,62 +1955,95 @@ function secureEmail(event) {
 <img src="./assets/portfolio_rep_tree.jpeg" class="print-only-tree-image" alt="Repository Tree Structure">
 
 
-<div class="interactive-card directory-tree-container" style="margin-top: 25px;">
-  <h3 class="accent-cyan" style="margin-bottom: 20px; color: #00ffff;">[SYS // REPOSITORY_OBJECT_TREE]</h3>
+<div class="interactive-card directory-tree-container" style="margin-top: 25px; background: #111827; border: 1px solid #30363d; border-radius: 8px; padding: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+  <h3 class="accent-cyan" style="margin-bottom: 20px; color: #00ffff; font-family: monospace; font-size: 1.3em; letter-spacing: 0.5px;">[SYS // REPOSITORY_OBJECT_TREE]</h3>
   
-  <ul class="tree-root">
+  <ul class="tree-root" style="list-style-type: none; padding-left: 5px; margin: 0; font-family: monospace; font-size: 14px; color: #c9d1d9; line-height: 1.6;">
     <!-- Main Root Node -->
     <li class="tree-item folder is-open">
-      <span class="tree-toggle"><span class="folder-icon">▼</span> QFLC-Dashboard/</span>
+      <span class="tree-toggle" style="font-weight: bold; color: #58a6ff;"><span class="folder-icon" style="margin-right: 5px;">▼</span>QFLC-Dashboard/</span>
       
-      <ul class="tree-branch">
+      <ul class="tree-branch" style="list-style-type: none; padding-left: 20px; border-left: 1px dashed #21262d; margin-top: 5px; margin-bottom: 5px;">
+        
         <!-- Subfolder: assets -->
-        <li class="tree-item folder">
-          <span class="tree-toggle"><span class="folder-icon">▶</span> assets/</span>
-          <ul class="tree-branch">
-            <li class="tree-item file"><span class="file-icon">📄</span> PBA_Portfolio.html</li>
-            <li class="tree-item file"><span class="file-icon">🖼️</span> PBA_portrait.jpg</li>
-            <li class="tree-item file"><span class="file-icon">🖼️</span> PBA_portrait02.png</li>
+        <li class="tree-item folder is-open" style="margin-top: 3px;">
+          <span class="tree-toggle" style="color: #66d9ef;"><span class="folder-icon" style="margin-right: 5px;">▼</span>assets/</span>
+          <ul class="tree-branch" style="list-style-type: none; padding-left: 20px; border-left: 1px dashed #21262d;">
+            <li class="tree-item file" style="color: #8b949e;"><span class="file-icon" style="margin-right: 5px;">🖼️</span>image_cPAhBg.png (Illustrated Graphical Abstract)</li>
+            <li class="tree-item file" style="color: #8b949e;"><span class="file-icon" style="margin-right: 5px;">🖼️</span>image_iH6lvh.png (System Architecture Block Diagram)</li>
+            <li class="tree-item file" style="color: #8b949e;"><span class="file-icon" style="margin-right: 5px;">🖼️</span>image_8kuBOq.png (Mechanical Hydro-Fluid Siphon Graph)</li>
+            <li class="tree-item file" style="color: #8b949e;"><span class="file-icon" style="margin-right: 5px;">🖼️</span>image_huOhiT.png (Resource Capacity Draining Tank Infographic)</li>
+            <li class="tree-item file"><span class="file-icon" style="margin-right: 5px;">📄</span>PBA_Portfolio.html</li>
+            <li class="tree-item file"><span class="file-icon" style="margin-right: 5px;">🖼️</span>PBA_portrait.jpg</li>
+            <li class="tree-item file"><span class="file-icon" style="margin-right: 5px;">🖼️</span>PBA_portrait02.png</li>
           </ul>
         </li>
 
         <!-- Subfolder: labs -->
-        <li class="tree-item folder is-open">
-          <span class="tree-toggle"><span class="folder-icon">▼</span> labs/</span>
-          <ul class="tree-branch">
-            <!-- Nested Active Module -->
-            <li class="tree-item folder">
+        <li class="tree-item folder is-open" style="margin-top: 6px;">
+          <span class="tree-toggle" style="color: #e6db74;"><span class="folder-icon" style="margin-right: 5px;">▼</span>labs/</span>
+          <ul class="tree-branch" style="list-style-type: none; padding-left: 20px; border-left: 1px dashed #21262d;">
+            <!-- Nested Active Module: QuSole -->
+            <li class="tree-item folder" style="margin-top: 3px;">
               <span class="tree-toggle"><span class="folder-icon">▶</span> QuSole/</span>
-              <ul class="tree-branch">
+              <ul class="tree-branch" style="list-style-type: none; padding-left: 20px;">
                 <li class="tree-item file computational-node">
-                  <span class="file-icon">⚡</span> 
-                  <a href="https://github.io" target="_blank">index.html (Live QuSole Sim)</a>
+                  <span class="file-icon" style="color: #ffa500; margin-right: 5px;">⚡</span> 
+                  <a href="labs/QuSole/index.html" target="_blank" style="color: #ffa500; text-decoration: none; border-bottom: 1px dashed rgba(255,165,0,0.4);">index.html (Live QuSole Sim)</a>
                 </li>
               </ul>
             </li>
-			<li class="tree-item folder">
+            <!-- Nested Active Module: QFLCS -->
+            <li class="tree-item folder" style="margin-top: 3px;">
               <span class="tree-toggle"><span class="folder-icon">▶</span> QFLCS/</span>
-              <ul class="tree-branch">
+              <ul class="tree-branch" style="list-style-type: none; padding-left: 20px;">
                 <li class="tree-item file computational-node">
-                  <span class="file-icon">⚡</span> 
-                  <a href="https://codeocean.com/capsule/6853712/tree/v2?run=run" target="_blank">index.html (Basic Live QFLC Sim)</a>
+                  <span class="file-icon" style="color: #ffa500; margin-right: 5px;">⚡</span> 
+                  <a href="labs/QFLCS/index.html" target="_blank" style="color: #ffa500; text-decoration: none; border-bottom: 1px dashed rgba(255,165,0,0.4);">index.html (Basic Live QFLC Sim)</a>
                 </li>
               </ul>
             </li>
-            <li class="tree-item file computational-node">
-              <span class="file-icon">⚡</span> 
-              <a href="https://phibal12.github.io/QFLC-Dashboard/labs/QFLCH" target="_blank">QFLCH (Hypercube Compiler)</a>
+            <!-- Compiler Anchor -->
+            <li class="tree-item file computational-node" style="margin-top: 3px; margin-bottom: 3px;">
+              <span class="file-icon" style="color: #ffa500; margin-right: 5px;">⚡</span> 
+              <a href="labs/QFLCH" target="_blank" style="color: #ffa500; text-decoration: none; border-bottom: 1px dashed rgba(255,165,0,0.4);">QFLCH (Hypercube Compiler)</a>
             </li>
           </ul>
         </li>
 
+        <!-- Subfolder: widgets -->
+        <li class="tree-item folder is-open" style="margin-top: 6px;">
+          <span class="tree-toggle" style="color: #f92672;"><span class="folder-icon" style="margin-right: 5px;">▼</span>widgets/</span>
+          <ul class="tree-branch" style="list-style-type: none; padding-left: 20px; border-left: 1px dashed #21262d;">
+            <li class="tree-item file computational-node" style="margin-top: 3px; margin-bottom: 3px;">
+              <span class="file-icon" style="color: #ffa500; margin-right: 5px;">⚡</span> 
+              <a href="widgets/qdf_abe_telemetry.html" target="_blank" style="color: #ffa500; text-decoration: none; border-bottom: 1px dashed rgba(255,165,0,0.4);">qdf_abe_telemetry.html (6-Qubit PQC-QDF Telemetry Panel)</a>
+            </li>
+          </ul>
+        </li>
+
+        <!-- Subfolder: systems -->
+        <li class="tree-item folder is-open" style="margin-top: 6px;">
+          <span class="tree-toggle" style="color: #a6e22e;"><span class="folder-icon" style="margin-right: 5px;">▼</span>systems/</span>
+          <ul class="tree-branch" style="list-style-type: none; padding-left: 20px; border-left: 1px dashed #21262d;">
+            <li class="tree-item folder is-open" style="margin-top: 3px;">
+              <span class="tree-toggle" style="color: #c9d1d9;"><span class="folder-icon" style="margin-right: 5px;">▼</span>2xQuBABE/</span>
+              <ul class="tree-branch" style="list-style-type: none; padding-left: 20px;">
+                <li class="tree-item file computational-node" style="margin-top: 3px; margin-bottom: 3px;">
+                  <span class="file-icon" style="color: #ffa500; margin-right: 5px;">⚡</span> 
+                  <a href="systems/2xQuBABE/QuBABE_CNT-Lattice-QDF_Demo-v1.html" target="_blank" style="color: #ffa500; text-decoration: none; border-bottom: 1px dashed rgba(255,165,0,0.4);">QuBABE_CNT-Lattice-QDF_Demo-v1.html (2xQuBABE Engine)</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
 
         <!-- Core Root Level Artifact Files -->
-        <li class="tree-item file"><span class="file-icon">📄</span> core_stack.json</li>
-        <li class="tree-item file"><span class="file-icon">📄</span> README.md</li>
-        <li class="tree-item file academic-node">
-          <span class="file-icon">🎓</span> 
-          <a href="https://hdl.handle.net/1828/23705" target="_blank">QFLC_Dissertation_Archive.pdf</a>
+        <li class="tree-item file" style="margin-top: 6px;"><span class="file-icon" style="margin-right: 5px;">📄</span>core_stack.json</li>
+        <li class="tree-item file" style="margin-top: 3px;"><span class="file-icon" style="margin-right: 5px;">📄</span>README.md</li>
+        <li class="tree-item academic-node" style="margin-top: 3px; margin-bottom: 3px;">
+          <span class="file-icon" style="color: #a6e22e; margin-right: 5px;">🎓</span> 
+          <a href="https://hdl.handle.net/1828/23705" target="_blank" style="color: #a6e22e; text-decoration: none; border-bottom: 1px dashed rgba(166,226,46,0.4); font-weight: bold;">QFLC_Dissertation_Archive.pdf</a>
         </li>
       </ul>
     </li>
@@ -2602,21 +2635,32 @@ document.addEventListener("DOMContentLoaded", () => {
       appendHistoryLine("Loading repository filesystem metrics via branch context...", "#a6e22e");
       
       // Constructing an authentic Unix-like indentation grid mapping the folder hierarchy
-      const textTreeOutput = 
-        `<strong>QFLC-Dashboard/</strong><br>` +
-        `├── <strong>assets/</strong><br>` +
-        `│   ├── PBA_Portfolio.html<br>` +
-        `│   ├── PBA_portrait.jpg<br>` +
-        `│   └── PBA_portrait02.png<br>` +
-        `├── <strong>labs/</strong><br>` +
-        `│   ├── <strong>QuSole/</strong><br>` +
-        `│   │   └── <span style="color: #ffa500;">index.html (Live QuSole Sim)</span><br>` +
-		`│   ├── <strong>QFLCS/</strong><br>` +
-        `│   │   └── <span style="color: #ffa500;">index.html (Basic Live QFLC Sim)</span><br>` +
-        `│   └── <span style="color: #ffa500;">QFLCH (Hypercube Compiler)</span><br>` +
-        `├── core_stack.json<br>` +
-        `├── README.md<br>` +
-        `└── <span style="color: #a6e22e;">QFLC_Dissertation_Archive.pdf</span>`;
+     const textTreeOutput = 
+    `<strong>QFLC-Dashboard/</strong><br>` +
+    `├── <strong>assets/</strong><br>` +
+    `│   ├── <span style="color: #66d9ef;">image_cPAhBg.png (Illustrated Graphical Abstract)</span><br>` +
+    `│   ├── <span style="color: #66d9ef;">image_iH6lvh.png (System Architecture Block Diagram)</span><br>` +
+    `│   ├── <span style="color: #66d9ef;">image_8kuBOq.png (Mechanical Hydro-Fluid Siphon Graph)</span><br>` +
+    `│   ├── <span style="color: #66d9ef;">image_huOhiT.png (Resource Capacity Draining Tank Infographic)</span><br>` +
+    `│   ├── PBA_Portfolio.html<br>` +
+    `│   ├── PBA_portrait.jpg<br>` +
+    `│   └── PBA_portrait02.png<br>` +
+    `├── <strong>labs/</strong><br>` +
+    `│   ├── <strong>QuSole/</strong><br>` +
+    `│   │   └── <span style="color: #ffa500;">index.html (Live QuSole Sim)</span><br>` +
+    `│   └── <strong>QFLCS/</strong><br>` +
+    `│       └── <span style="color: #ffa500;">index.html (Basic Live QFLC Sim)</span><br>` +
+    `├── <strong>widgets/</strong><br>` +
+    `│   └── <span style="color: #ffa500;">qdf_abe_telemetry.html (6-Qubit PQC-QDF Telemetry Panel)</span><br>` +
+    `├── <strong>systems/</strong><br>` +
+    `│   └── <strong>2xQuBABE/</strong><br>` +
+    `│       └── <span style="color: #ffa500;">QuBABE_CNT-Lattice-QDF_Demo-v1.html (2xQuBABE Engine)</span><br>` +
+    `├── core_stack.json<br>` +
+    `├── README.md<br>` +
+    `├── <span style="color: #ffa500;">QFLCH (Hypercube Compiler)</span><br>` +
+    `└── <span style="color: #a6e22e;">QFLC_Dissertation_Archive.pdf</span>`;
+
+		
       
       // Inject the tree output string block into the screen context logs
       setTimeout(() => {

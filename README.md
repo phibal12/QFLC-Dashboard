@@ -28,11 +28,11 @@
  <p style="font-style: italic !important;"><i>Banner description: The $QDF$ Dual-Lens architecture ($L^+$ focus / $L^-$ defocus) applied to $ABE$ (Alice--Bob--Eve) tripartite state discrimination. Eve's ancilla qubit can decode and reveal the hidden Bell state information from this three-way entanglemet (quantum information) network.</i></p>
 
   
-  <h1>🖥️📊 2xQuBABE™ via QFLCA Dashboard <span class="live-dot" style="color: red;"> 🔵 Live </span></h1>
+  <h1>🖥️📊 2xQuBABE™ via QFLC Dashboard <span class="live-dot" style="color: red;"> 🔵 Live </span></h1>
   <p style="font-style: italic !important;"><i>Real-time Quantum State Monitoring, Entanglement Visualization of Qubits and Client Data</i></p>
 </div>
 
-<meta property="og:title" content="2xQuBABE™ via QFLCA Dashboard: Quantum Bell-ABE Field Lens Coding">
+<meta property="og:title" content="2xQuBABE™ via QFLC Dashboard: Quantum Bell-ABE Field Lens Coding">
 <meta property="og:description" content="A specialized simulator and validator for Quantum Double-Field (QDF) models and logic stability.">
 <meta property="og:image" content="https://github-readme-stats.shion.dev/api/pin/?username=phibal12&repo=QFLC-Dashboard&theme=tokyonight">
 
@@ -121,7 +121,7 @@ It acts as a direct visualizer for the ST probabilities and error rates discusse
 
 **Functionality:** QF-LCA acts as a "lens" by focusing energy state distributions to distinguish between GS/ES, allowing for the classification of particles and re-routing of energy paths to meet a target state (TS). 
 
-**Prediction:** The algorithm improves prediction accuracy from $\(P \ge 1/3\)$ to $\(P \ge 2/3\)$ (or similar enhancements) by transforming single-field (SF) data into a QDF.
+**Prediction:** The algorithm improves prediction accuracy from $(P \ge 1/3 )$ to $(P \ge 2/3)$ (or similar enhancements) by transforming single-field (SF) data into a QDF.
 
 **Applications:** Physics/Thermodynamics: Simulating particle behavior, managing energy transitions in systems, and analyzing entanglement entropy. AI/Machine Learning: The QF-LC algorithm (QF-LCA) can be combined with quantum AI (QAI) to classify states. Hardware Synthesis: FPGA-QASM and hybrid design solutions via QF-LCA QDF circuit design and application via three-way entanglement design solution, distribution and optimization. 
 
@@ -136,6 +136,43 @@ This simulation environment showcases the **QF-LC Algorithm (QF-LCA)**, which pr
 - **Phase Transition (PT) Identification:** Automated detection of critical points using the $P \geq 2/3$ threshold.
 - **Entanglement Entropy (EE) Analysis:** Visualization of thermodynamic metrics and system entropy during state evolution.
 - **Hardware Agnostic:** Designed for integration with NISQ-era devices and simulated quantum environments (Python/Qiskit based).
+
+
+# 🚀 2xQuBABE™ via QFLC Dashboard
+### Real-Time Quantum State Emulation & Multi-Scale Telemetry Monitoring
+[![UN SDG 7: Affordable and Clean Energy](https://shields.io)](https://handle.net)
+[![Institutional Audit: UVic ETD Repository](https://shields.io)](https://handle.net)
+
+
+The newly-finalized 2xQuBABE™ Macro/Microscopic Sampling Simulator — built on underlying Quantum Double-Field (QDF) framework — is designed to address **high-dimensional design-space optimization** and **surrogate modeling**. 
+
+By evaluating multi-variable systems under a peak subspace resonance condition of $\nu = 8/9$, the QF-LCA framework cancels out standard constant coefficient barriers, driving prediction and state transition (ST) probabilities to $P = 8(N-1)/9N\nu$. 
+
+The 2xQuBABE predictive engine via QF-LCA and QDF model can be directly adapted to accelerate the fitting of surrogate models for volatile urban energy grids. 
+It provides a robust, stochastic modeling framework that maps massive, fluctuating climate and occupancy data patterns into deterministic, high-probability convergence profiles $P ≥ 2/3$. This is far more efficiently than standard black-box machine learning methods. 
+
+<details>
+<summary><b>Click to expand Global SDG Project Targets & Engine Demonstration Table</b></summary>
+
+| External Project SDG Target | What Your 2xQuBABE™ Engine Demonstrates | Portfolio Alignment & Pitch |
+| :--- | :--- | :--- |
+| Fits statistical approximations to complex simulation design spaces. | resolves them into clean, predictable classical datasets. | with accelerated, high-probability surrogate approximations. |
+| **Find Meaning in Hourly Smart Meter Data**<br><br>Analyzing patterns across single vs. multiple multi-variable configurations. | **Multi-Scale Tri-Core Parsing:** Ingests large-scale data matrices and extracts localized signatures (like decoding hidden parameters from noise). | Demonstrates that your code can scale from a single building's micro-meter reading up to macro-scale urban distribution grids. |
+| **Probabilistic & Stochastic Modelling**<br><br>Accounting for highly volatile environmental fluctuations (weather, occupancy). | **Irreducible Fraction Sampling ($\nu = 8/9$):** Your framework uses a calibrated resonance matrix to force highly volatile, random arrays into stable convergence paths. | Proves you have a functional mathematical framework capable of handling chaotic, multi-variable environmental fluctuations more efficiently than mainstream models. |
+| **Postdoc Research: Online Platform Coordination**<br><br>Combining these sub-projects into an interactive web-based platform. | **WebGL/HTML5/PyScript UI Stack:** Your dashboard runs client-side simulation code seamlessly in any web browser layout. | Serves as direct proof of your software engineering coordination and data visualization mastery. |
+
+</details>
+
+Furthermore, as demonstrated by the following interactive telemetry dashboards and OpenQASM compilation interfaces, extensive experience in software development coordination and interactive data visualization methods, makes uniquely equipped to oversee the integration of these underlying mathematical models into any hybrid (classical-quantum) and quantum research group’s target platform (online, lab-based and offline systems).
+
+
+<p align="center">
+  <!-- Interactive Alignment Node -->
+  <img src="https://githubusercontent.com" alt="United Nations SDG Global Innovation Wheel" width="120" height="120" />
+</p>
+
+> 📝 **System Architecture Mapping:**
+> As established in Chapters I & II of Dr. Alipour's dissertation, the **Quantum Field Lens Coding (QF-LC)** ecosystem functions as a computational heat engine  calibrates to resolve high-dimensional multi-variable stochastic data spaces. Independent institutional classification engines verify that the underlying **Quantum Double-Field (QDF)** state transition (ST) logic targets **UN Sustainable Development Goal 7 (Affordable and Clean Energy) at a baseline of $\geq$ 77% confidence interval**, providing a verified, scalable optimization layer for regional **NetZero** urban infrastructure layouts.
 
 ## 📊 Interactive Modules: QFLC Widgets, Datasets, and Presentations
 
@@ -211,21 +248,6 @@ Based on the Post-Ph.D. Defence Seminar and the accompanying transcript, this co
 ## 🖲️⊞ Interactive 2xQuBABE™ System 
 
 . . . The theoretical concepts discussed in the seminar have been synthesized into the following interactive dashboards and simulators. 
-
-# 🚀 2xQuBABE™ via QFLCA Dashboard
-### Real-Time Quantum State Emulation & Multi-Scale Telemetry Monitoring
-[![UN SDG 7: Affordable and Clean Energy](https://shields.io)](https://handle.net)
-[![Institutional Audit: UVic ETD Repository](https://shields.io)](https://handle.net)
-
-<p align="center">
-  <!-- Interactive Alignment Node -->
-  <img src="https://githubusercontent.com" alt="United Nations SDG Global Innovation Wheel" width="120" height="120" />
-</p>
-
-> 📝 **System Architecture Compliance Mapping:**
-> As established in Chapters I & II of Dr. Alipour's dissertation, the **Quantum Field Lens Coding (QF-LC)** ecosystem functions as a computational heat engine explicitly calibrated to resolve high-dimensional multi-variable stochastic data spaces. Independent institutional classification engines verify that the underlying **Quantum Double-Field (QDF)** state transition logic targets **UN Sustainable Development Goal 7 (Affordable and Clean Energy) at a 77% confidence interval**, providing a verified, scalable optimization layer for regional NetZero urban infrastructure layouts.
-
-
 
 ---
 
@@ -628,18 +650,22 @@ This dashboard is the practical implementation of research published at the **Un
 ---
 
 
-## ⚖ Attribution & IP Notice
+## ⚖ Attribution & IP Notice 
 
-**Legal Framework and Trademark Notice** 
-> © 2026 Dr. Philip B. Alipour. All Rights Reserved. 
-> * This legal framework formulates the QF-LCA for <i>strong and robust real-time system state predictions</i>. <i>Next-generation quantum computers</i> as **QuBABE™** and **2xQuBABE™** computing architectures—encompassing **2xQuFL-BABE™ Computer**, **2xQuFL-BABE™ Computing**, **2xQuFL-BABE™ Systems**, and **Quantum Field Lens Coding™**—are proprietary trademarks used in conjunction with Quantum Double-Field (QDF) processing architectures. **2xQuFL-BABE™** represents the commercial implementation of the Quantum Field Lens Coding Algorithm (QF-LCA), successfully defended and archived under university intellectual repository standards at the University of Victoria, BC, Canada.
+**Legal Framework and Trademark Notice (Expand: Click ►)** 
+> <details>
+> <summary> © 2026 Dr. Philip B. Alipour. All Rights Reserved. </summary>
+>  This legal framework formulates the QF-LCA for <i>strong and robust real-time system state predictions</i>. <i>Next-generation quantum computers</i> as <b>QuBABE™</b> and <b>2xQuBABE™</b> computing architectures—encompassing <b>2xQuBABE™ Computer</b>, <b>2xQuBABE™ Computing</b>, <b>2xQuBABE™ Systems</b>, and <b>Quantum Field Lens Coding™</b>—are proprietary trademarks used in conjunction with Quantum Double-Field (QDF) processing architectures. <b>2xQuBABE™</b> represents the commercial implementation of the Quantum Field Lens Coding Algorithm (QF-LCA), successfully defended and archived under university intellectual repository standards at the University of Victoria, BC, Canada. 
+</details><br>
 
 **System Architecture Nomenclature and IP Notice**
-> **2xQuFL-BABE™** operates as a unified dual-definition quantum framework:
+> <details>
+> <summary> **2xQuBABE™** operates as a unified dual-definition quantum framework:</summary>
 > * **Physical Engine Platform (Academic):** Implements the 3-way entanglement (Alice-Bob-Eve or ABE) exchange system defined in Chapter 2 of Philip B. Alipour's Ph.D. dissertation: <a href="https://hdl.handle.net/1828/23705" target="_blank">hdl.handle.net/1828/23705</a>, where **E**ve's decoding matrix successfully extracts hidden **B**ell information to double transition probability limits ($P \ge 1/3 \rightarrow P \ge 2/3$).
 > * **Hardware Core Identity (Commercial):** Represents the proprietary next-gen quantum computers designed and trademarked by Philip **B**aback **A**lipour (**B.A.**). 
 > * The above-mentioned inherits **QuBABE™ Systems** as **Qu**antum **B**aback **A**lipour's **B**ell-**E**ve Systems proprietary trademark ownership as defined under Section 6 of <a href="https://ised-isde.canada.ca/site/canadian-intellectual-property-office/en/trademarks" target="_blank"> Canadian Intellectual Property Office (CIPO) </a>, and Classes 9 (Goods) and 42 (Services) of <a href="https://ised-isde.canada.ca/site/canadian-intellectual-property-office/en/trademarks/goods-and-services-manual-class-headings" target="_blank">Trademarks Act and Trademarks Regulations</a>.
 > 🛰 **[EXPLORE THE HARDWARE INTERFACE →]** *(This link will redirect to the standalone hardware platform page as live telemetry streams expand)*
+</details><br>
 
 **Application and Dataset Layer Nomenclature and IP Notice**
 > The software widgets and their datasets provided in this dashboard as **QFLCD** components **are** intended for academic, industrial, societal, and research purposes. These QFLCD components are the practical implementation of research defended and archived at the University of Victoria: <a href="https://hdl.handle.net/1828/23705" target="_blank">hdl.handle.net/1828/23705</a>. Please cite the original dissertation and the associated Elsevier papers (**MethodsX**, **Software Impacts**, **Data in Brief**,**Societal Impacts**, etc.) when utilizing the **QDF** logic or datasets in your own work.
@@ -665,6 +691,3 @@ This work is licensed under a
 [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License](https://creativecommons.org/licenses/by-nc-nd/4.0).
     
 © 2026 Philip B. Alipour. All Rights Reserved.
-
-
-
