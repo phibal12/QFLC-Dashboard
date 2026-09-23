@@ -1432,16 +1432,20 @@ body:not(.light-mode) #main_content span[style*="color: #ff7b72"] {
   /* ==========================================================================
      EXPLICIT REPOSITORY TREE & PANEL PRINT COMPRESSION
      ========================================================================== */ 
-  #portfolio_main_title {
-  display: block !important;          /* 1. Destroys the flexbox alignment causing the gap */
-  line-height: 1.15 !important;       /* 2. Snaps the top and bottom lines tight together */
-  margin-top: 45px !important;           /* 3. Removes vertical overhead canyon spacing */
-  margin-bottom: 2px !important;      /* 4. Pulls the description underneath up close */
+/* Multi-selector rule to force all three header levels to sit completely flush */
+#portfolio_main_title,
+#portfolio_main_title h1,
+#portfolio_main_title h2,
+#portfolio_main_title h3,
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3 {
+  margin-top: 45px !important;    /* Forces minimum empty space above each line */
+  margin-bottom: 2px !important; /* Forces minimum empty space below each line */
   padding-top: 0 !important;
   padding-bottom: 0 !important;
-  height: auto !important;            /* 5. Prevents container height stretching */
+  line-height: 1.15 !important;
 }
-
 
   /* By default on the live web browser, hide our print backup image */
   .print-only-tree-image {
@@ -1454,15 +1458,16 @@ body:not(.light-mode) #main_content span[style*="color: #ff7b72"] {
      ========================================================================== */
   @media print {
     /* 1. CRITICAL TITLE SIZE LOCK: Shrinks the text down to fit elegantly on one page */
-    #portfolio_main_title,
-    #portfolio_main_title *,
-    .markdown-body h1,
-    h1 {
-      font-size: 24pt !important;       /* Hard-locks the name to a clean, crisp print size */
-      line-height: 1.2 !important;       /* Snaps lines tight vertically */
-      margin-top: -100px !important;
-      margin-bottom: 4px !important;
-    }
+    @media print {
+  #portfolio_main_title,
+  .markdown-body h1,
+  .markdown-body h2,
+  .markdown-body h3 {
+    margin-top: -100px !important;
+    margin-bottom: 2px !important;
+    padding: 0 !important;
+    font-size: 20pt !important; /* Limits massive text expansion on physical paper */
+  }
 
     /* Shrinks the accompanying academic text and degrees block */
     #portfolio_main_title + h2,
