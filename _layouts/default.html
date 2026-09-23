@@ -112,32 +112,72 @@ body.standalone-page #main_content td {
   }
 
 
+
   /* ==========================================================================
-     2. DARK MODE
-     Activates only when system or browser dark mode is explicitly enabled.
-     Restores the color choices you liked, while adding rounded corners.
+     1. GLOBAL BLOCKQUOTE STYLING (LIGHT MODE BY DEFAULT)
+     ========================================================================== */
+  blockquote {
+    background-color: transparent !important; /* Hides background */
+    border: 1px solid #000000 !important;     /* Boxed outline rectangle */
+    border-left: 4px solid #3b82f6 !important; /* Blue accent bar */
+    border-radius: 8px !important;            /* Rounded corners */
+    padding: 12px 16px !important;
+  }
+
+  /* Safely targets ONLY elements located directly inside a blockquote container */
+  blockquote,
+  blockquote p,
+  blockquote span,
+  blockquote ul,
+  blockquote ol,
+  blockquote li,
+  blockquote strong,
+  blockquote b {
+    color: #000000 !important; /* Forces lists and text to be crisp black */
+  }
+
+  /* Ensures hyperlinks inside light mode blockquotes remain accessible blue */
+  blockquote a, 
+  blockquote a * {
+    color: #0066cc !important;
+    text-decoration: underline !important;
+  }
+
+  /* ==========================================================================
+     2. DARK MODE STYLING 
+     Activates only when system or browser dark mode is enabled.
      ========================================================================== */
   @media (prefers-color-scheme: dark) {
     blockquote {
-      background-color: #1f2937 !important;     /* Restores the dark background you liked */
-      border: none !important;                  /* Removes the light mode black outline border */
+      background-color: #1f2937 !important;     /* Dark background theme */
+      border: none !important;                  /* Clears the light mode black border */
       border-left: 4px solid #3b82f6 !important; /* Retains blue accent bar */
-      border-radius: 8px !important;            /* Curves the dark mode corners too */
+      border-radius: 8px !important;            /* Curves dark mode corners */
     }
-    
-    /* Forces unbolded paragraphs and spans to stay light and visible */
-    blockquote, 
-    blockquote p, 
-    blockquote span {
-      color: #e5e7eb !important;                /* Soft light grey */
+
+    /* Safely forces text & nested lists inside dark blockquotes to turn bright */
+    blockquote,
+    blockquote p,
+    blockquote span,
+    blockquote ul,
+    blockquote ol,
+    blockquote li {
+      color: #e5e7eb !important; /* Soft light grey text for easy reading */
     }
-    
-    /* Forces bold text elements to stay crisp white */
-    blockquote strong, 
+
+    /* Keeps bold identifiers stark white */
+    blockquote strong,
     blockquote b {
       color: #ffffff !important;
     }
+
+    /* Adjusts dark mode links for comfortable contrast */
+    blockquote a, 
+    blockquote a * {
+      color: #60a5fa !important;
+    }
   }
+
 
 
 
@@ -498,39 +538,6 @@ details code {
 }
 
 
-/* ==========================================================================
-   GLOBAL PANELS & CONTAINERS LIGHT MODE CORRECTION
-   Forces all nested text variants inside theme panels to render clear black.
-   ========================================================================== */
-
-/* This targets list items, links, paragraphs, and generic text blocks */
-div[class*="notice"], 
-div[class*="callout"], 
-div[class*="card"],
-div[class*="panel"],
-.markdown-body ul,
-.markdown-body li,
-.markdown-body p,
-.markdown-body a {
-  /* Only overrides text color if the container element itself is rendering a dark gray backdrop */
-  background-color: transparent !important;
-}
-
-/* Specific text visibility override when the page is in light mode */
-blockquote, 
-blockquote *,
-ul li, 
-ol li, 
-p, 
-span {
-  color: #000000 !important; /* Forces total dark text visibility */
-}
-
-/* Protects and ensures hyperlinks remain readable blue instead of flat black */
-a, a * {
-  color: #0066cc !important; 
-  text-decoration: underline;
-}
   
 </style>
 </head>
