@@ -14,27 +14,12 @@ standalone: true
   <title>Dr. Philip Baback Alipour — Research Portfolio</title>
   <style>
   
+  
+  
+
   /* ========================================= */
   /* 0. DEFAULT LAYOUT FROM LAYOUTS DASHBOARD FILE */
   /* ========================================= */
-
-/* Snaps the lines tightly together when the title breaks onto a second line during resize */
-#portfolio_main_title {
-  display: inline-block !important;
-  line-height: 1.10 !important;       /* Forces the second wrapped line to pull up tightly */
-  height: auto !important;            /* Stops the container box from expanding vertically */
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
-  margin-top: 0 !important;
-  margin-bottom: 4px !important;      /* Controls the small gap below the entire title block */
-}
-
-/* Forces any nested spans or link tags inside the title to obey the tight line height */
-#portfolio_main_title * {
-  line-height: 1.10 !important;
-  padding: 0 !important;
-  margin: 0 !important;
-}
 
 
 
@@ -749,7 +734,7 @@ body.light-mode #main_content h1#portfolio_main_title {
 
 /* 2. Fix Image One (Narrow): Explicitly center it horizontally */
 .profile-image-frame img.img-one {
-  width: 100% !important;
+  width: 200% !important;
   left: 0 !important;
   right: 0 !important;
   margin: 0 auto !important; /* Forces the browser to distribute whitespace equally on both sides */
@@ -802,53 +787,66 @@ body.light-mode #main_content h1#portfolio_main_title {
 
 
 
+
+
+
+
 @media print {
   /* ==========================================================================
      SIDE-BY-SIDE PRINT MATRIX (Forces horizontal alignment on paper)
      ========================================================================== */
      
-  .profile-image-frame {
-    aspect-ratio: auto !important;
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-    
-    /* NEW: Converts the container box into a side-by-side row layout */
-    /* display: flex !important;
-    flex-direction: row !important;
-    gap: 15px !important;          
-    max-width: 100% !important;
-    width: auto !important;
-    overflow: visible !important;
-  } */
+  /* ==========================================================================
+     HYPER-SPECIFIC SIDE-BY-SIDE PRINT FORCE
+     Overrides the outer container layout to force images parallel.
+     ========================================================================== */
   
-  /* CHANGED: Converts the container box into a vertical stacked layout */
+  /* ==========================================================================
+     ISOLATED SIDE-BY-SIDE PRINT FORCE (SAFE FOR TEXT LAYOUT)
+     ========================================================================== */
+  
+  /* Restores the parent container layout back to standard vertical flow */
+  .portfolio-hero-container {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  /* Forces ONLY the image frame container box to format horizontally */
+  .profile-image-frame {
     display: flex !important;
-    flex-direction: column !important; /* Forces frames to stack vertically */
-    gap: 20px !important;              /* Spacing between vertical frames */
+    flex-direction: row !important;    /* Forces images side-by-side */
+    flex-wrap: nowrap !important;      /* Prevents them from dropping vertical */
+    justify-content: center !important; /* Centers the image pair on paper */
+    gap: 12px !important;              /* Spacing between the two slides */
+    
+    width: 100% !important;
     max-width: 100% !important;
-    width: auto !important;
+    height: auto !important;           /* Kills the inline web 400px height constraint */
     overflow: visible !important;
   }
   
+  /* Formats the individual sliding images inside their frame block */
   .profile-image-frame img.img-one,
   .profile-image-frame img.img-two {
-    /* NEW: Strips absolute tracking so the pictures flow side-by-side naturally */
     position: static !important;     
-    display: block !important;
-    animation: none !important;      /* Kills if none is selected where it kills all digital loop animation engines */
-    opacity: 1 !important;           /* Forces full toner ink visibility for both layers */
+    left: auto !important;             
+    transform: none !important;        
+    display: inline-block !important; /* Forces inline structural mapping */
+    visibility: visible !important;    
+    animation: none !important;      
+    opacity: 1 !important;           
     
-    /* NEW: Scales down dimensions so both photos comfortably fit paper margins */
-    max-width: 300px !important;    
-    width: 100% !important;
+    /* Perfect width division: each takes up 47% of the horizontal bounding box */
+    width: 47% !important;             
+    max-width: 47% !important;
     height: auto !important; 
-	
     
-    /* Ensures the browser preserves the raw photographic aspect scaling */
     object-fit: contain !important; 
-    border: 1px solid #707070 !important; /* Optional: Clean, thin dark grey print border line */
+    border: 1px solid #707070 !important; 
   }
+
+
 }
 
 
@@ -1460,7 +1458,7 @@ body:not(.light-mode) #main_content span[style*="color: #ff7b72"] {
 .markdown-body h1,
 .markdown-body h2,
 .markdown-body h3 {
-  margin-top: 45px !important;    /* Forces minimum empty space above each line */
+  margin-top: -15px !important;    /* Forces minimum empty space above each line */
   margin-bottom: 2px !important; /* Forces minimum empty space below each line */
   padding-top: 0 !important;
   padding-bottom: 0 !important;
@@ -1559,6 +1557,131 @@ body:not(.light-mode) #main_content span[style*="color: #ff7b72"] {
   </style> <!-- END OF STYLES -->
 
 
+
+<!-- 1. THE TOGGLE BUTTON HTML STRUCTURE -->
+<div class="theme-toggle-container">
+  <button id="local-theme-toggle" onclick="toggleLocalTheme()">☾ |Switch to Dark Mode</button>
+</div>
+
+<!-- 2. THE LOCAL THEME STYLING (SCREEN & PRINT COMPACTNESS) -->
+<style>
+
+
+  /* Base Light Mode Colors (Matching your clean look) */
+  body {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+
+  /* Fixed Floating Button Container Styling */
+  .theme-toggle-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 99999;
+  }
+
+  #local-theme-toggle {
+    background-color: #1f2937;
+    color: #ffffff;
+    border: 1px solid #374151;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: all 0.2s ease;
+  }
+
+  #local-theme-toggle:hover {
+    background-color: #374151;
+  }
+
+  /* ---------------------------------------------------------
+     DARK MODE CLASS DEFINITIONS
+     Triggered globally across your clean HTML structures
+     --------------------------------------------------------- */
+  body.local-dark-mode {
+    background-color: #0d1117 !important; /* GitHub standard dark background */
+    color: #c9d1d9 !important;            /* Soft white dark mode text */
+  }
+
+  /* Keeps your bold elements stark white when Dark Mode is active */
+  body.local-dark-mode strong,
+  body.local-dark-mode b,
+  body.local-dark-mode h1,
+  body.local-dark-mode h2,
+  body.local-dark-mode h3 {
+    color: #ffffff !important;
+  }
+
+  /* Adjusts link colors for dark contrast reading safety */
+  body.local-dark-mode a {
+    color: #58a6ff !important;
+  }
+
+  /* Swaps button styles when dark mode is enabled */
+  body.local-dark-mode #local-theme-toggle {
+    background-color: #f0f6fc;
+    color: #0d1117;
+    border-color: #d0d7de;
+  }
+
+  /* ---------------------------------------------------------
+     PRINT LAYOUT RULES
+     Strictly hides the toggle menu entirely to preserve page limits
+     --------------------------------------------------------- */
+  @media print {
+    .theme-toggle-container, 
+    #local-theme-toggle {
+      display: none !important;
+      visibility: hidden !important;
+      height: 0 !important;
+    }
+    
+    /* Forces the printed paper copy to ALWAYS be light mode */
+    body {
+      background-color: #ffffff !important;
+      color: #000000 !important;
+    }
+  }
+</style>
+
+
+
+<!-- 3. THE LIGHTWEIGHT TOGGLE JAVASCRIPT MECHANISM -->
+<script>
+  function toggleLocalTheme() {
+    const body = document.body;
+    const button = document.getElementById('local-theme-toggle');
+    
+    // Toggle the theme class on the body element
+    body.classList.toggle('local-dark-mode');
+    
+    // Dynamically update the button label based on current mode
+    if (body.classList.contains('local-dark-mode')) {
+      button.innerText = '☉ | Switch to Bright Mode';
+      localStorage.setItem('portfolio-theme', 'dark'); // Remembers setting on refresh
+    } else {
+      button.innerText = '☾ | Switch to Dark Mode';
+      localStorage.setItem('portfolio-theme', 'light');
+    }
+  }
+
+  // Auto-load client's historical theme choice natively on render
+  window.addEventListener('DOMContentLoaded', () => {
+    const savedTheme = localStorage.getItem('portfolio-theme');
+    if (savedTheme === 'dark') {
+      document.body.classList.add('local-dark-mode');
+      document.getElementById('local-theme-toggle').innerText = '☉ | Switch to Bright Mode';
+    }
+  });
+</script>
+
+
+
 <!-- Tell MathJax to recognize single dollar signs -->
 	<script> window.MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] } }; </script>
   <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"> </script> 
@@ -1579,11 +1702,11 @@ body:not(.light-mode) #main_content span[style*="color: #ff7b72"] {
       
 	        <!-- REPLACEMENT FOR SECTION 1 HERO AREA -->
       <!-- REPLACEMENT FOR SECTION 1 HERO AREA -->
-      <table style="width:100%; border-collapse:collapse; margin-top: 20px;">
+      <table style="width:100%; border-collapse:collapse; margin-top: 10px;">
         <tr>
           <!-- Circular Profile Frame Column (Moved to Left) -->
          <td style="width: 220px; text-align: left; vertical-align: top; padding-right: 30px;">
-  <img src="./assets/PBA_portrait.jpg" alt="Dr. Philip B. Alipour" style="width: 220px; height: 220px;  border-radius: 50% !important; border: 2px solid #00ffff !important; box-shadow: 0 0 15px rgba(0, 255, 255, 0.5) !important; object-fit: cover !important; margin: 130px auto 0 0 !important;" /> 
+  <img src="./assets/PBA_portrait.jpg" alt="Dr. Philip B. Alipour" style="width: 220px; height: 220px;  border-radius: 50% !important; border: 2px solid #00ffff !important; box-shadow: 0 0 15px rgba(0, 255, 255, 0.5) !important; object-fit: cover !important; margin: -10px auto 0 0 !important;" /> 
 </td>
  
           <!-- Text Metadata Column (Moved to Right) -->
@@ -1780,10 +1903,13 @@ function secureEmail(event) {
 	  <img src="./assets/QFLCACodingBanner.png" alt="Labwork Simulation Example" class="img-two" style="max-width: 100% !important; height: 100% !important; object-fit: contain; position: absolute; left: 50%; transform: translateX(-50%);">
       </div> -->
 	  <!-- AFTER: Clean, responsive banner frame wrapper -->
-<div class="profile-image-frame wide-banner-frame">
-  <img src="./assets/ABE_QDFTango_Banner.png" alt="Labwork Simulation Example" class="img-one">
-  <img src="./assets/QFLCACodingBanner.png" alt="Labwork Simulation Example" class="img-two">
+<div class="portfolio-hero-container">
+<div class="profile-image-frame"style="width: 100%; max-width: 800px !important; height: 400px !important; overflow: hidden !important; position: relative;">
+  <img src="./assets/ABE_QDFTango_Banner.png" alt="Labwork Simulation Example" class="img-one" style="max-width: 100% !important; height: 100% !important; object-fit: contain; position: absolute; left: 50%; transform: translateX(-50%);">
+  <img src="./assets/QFLCACodingBanner.png" alt="Labwork Simulation Example" class="img-two" style="max-width: 100% !important; height: 100% !important; object-fit: contain; position: absolute; left: 50%; transform: translateX(-50%);">
 </div>
+</div>
+
 	</p>  
 	
 	 <!-- FIX: Replaced flexbox reliance with explicit absolute coordinate centering 
