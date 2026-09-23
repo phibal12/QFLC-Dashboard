@@ -1384,11 +1384,7 @@ body:not(.light-mode) #main_content span[style*="color: #ff7b72"] {
 }
 
 
-
-  /* ==========================================================================
-     GLOBAL PRINT TIGHTNESS OVERRIDE
-     Compresses excessive margins, padding, and huge line-height vertical gaps.
-     ========================================================================== */
+/* Global print override */
   @media print {
     /* 1. Reset all elements to remove empty vertical space */
     *, html, body, main, div, p, li, h1, h2, h3, h4, h5, h6 {
@@ -1425,34 +1421,34 @@ body:not(.light-mode) #main_content span[style*="color: #ff7b72"] {
     }
   }
 
+ 
 
-  /* ==========================================================================
-     TARGETED MAIN TITLE GAP FIX ONLY
-     Tightens ONLY the profile name and degrees without affecting the body text.
-     ========================================================================= */
-  
 
-  /* ==========================================================================
-     ISOLATED MAIN TITLE LINE-GAP CORRECTION
-     Targets the unique title ID directly to compress wrapped text spacing.
-     ========================================================================== */
-  
+  /* Fixes the live web text wrapping line spacing safely */
   #portfolio_main_title {
-    line-height: 1.15 !important;    /* Drastically snaps wrapped lines close together */
-    margin-top: 0 !important;        /* Pulls text flush to the top of its table cell */
-    margin-bottom: 2px !important;   /* Tightens the gap before the meta-tag description below */
+    line-height: 1.15 !important;
+    margin-top: 0 !important;
+    margin-bottom: 2px !important;
     padding-top: 0 !important;
     padding-bottom: 0 !important;
   }
 
-  /* Ensures identical crisp alignment when translating to print layout views */
+  /* Explicit instruction for print preview layouts */
   @media print {
+    /* Snaps the main profile title tight on paper */
     #portfolio_main_title {
       line-height: 1.15 !important;
       margin-top: 0 !important;
       margin-bottom: 2px !important;
     }
+    
+    /* CRITICAL SAFETY: Permanently ensures style code blocks cannot render as printed text */
+    style, script, head {
+      display: none !important;
+    }
   }
+
+
 
 
   </style> <!-- END OF STYLES --!>
