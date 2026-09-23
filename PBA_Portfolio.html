@@ -1425,7 +1425,29 @@ body:not(.light-mode) #main_content span[style*="color: #ff7b72"] {
     }
   }
 
-
+/* Fixes the live web text wrapping line spacing safely */
+  #portfolio_main_title {
+    line-height: 1.15 !important;
+    margin-top: 20px !important;
+    margin-bottom: 2px !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+  
+   /* Explicit instruction for print preview layouts */
+  @media print {
+    /* Snaps the main profile title tight on paper */
+    #portfolio_main_title {
+      line-height: 1.15 !important;
+      margin-top: 0 !important;
+      margin-bottom: 2px !important;
+    }
+    
+    /* CRITICAL SAFETY: Permanently ensures style code blocks cannot render as printed text */
+    style, script, head {
+      display: none !important;
+    }
+  }
 
   </style> <!-- END OF STYLES -->
 
