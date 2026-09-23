@@ -1429,7 +1429,9 @@ body:not(.light-mode) #main_content span[style*="color: #ff7b72"] {
   
   
   
-
+  /* ==========================================================================
+     EXPLICIT REPOSITORY TREE & PANEL PRINT COMPRESSION
+     ========================================================================== */
   /* Fixes the live web text wrapping line spacing safely */
   #portfolio_main_title {
     line-height: 1.15 !important;
@@ -1441,7 +1443,7 @@ body:not(.light-mode) #main_content span[style*="color: #ff7b72"] {
 
 
   /* ==========================================================================
-     EXPLICIT REPOSITORY TREE & PANEL PRINT COMPRESSION
+     HYPER-SPECIFIC TREE OVERRIDE TO ELIMINATE PRINT GAPS
      ========================================================================== */
   @media print {
     #portfolio_main_title {
@@ -1450,54 +1452,58 @@ body:not(.light-mode) #main_content span[style*="color: #ff7b72"] {
       margin-bottom: 2px !important;
     }
 
-    /* 1. Target the tree container card and force it to collapse tight around items */
-    .directory-tree-container, 
-    tive-card {
+    /* 1. Reset the parent directory container card completely */
+    tive-card.directory-tree-container,
+    .directory-tree-container {
+      height: auto !important;
+      min-height: 0 !important;
+      display: block !important;
+      padding: 10px !important;
+      page-break-inside: avoid !important; /* Prevents splitting across pages */
+    }
+
+    /* 2. Target the exact root list container path */
+    tive-card.directory-tree-container ul.tree-root,
+    .directory-tree-container .tree-root {
+      margin: 0 !important;
+      padding: 0 0 0 15px !important;
+      display: block !important;
+      height: auto !important;
+    }
+
+    /* 3. HYPER-SPECIFIC MATCH: Forces every single tree line to collapse vertically */
+    tive-card.directory-tree-container ul.tree-root li.tree-item,
+    tive-card.directory-tree-container ul.tree-root li.tree-item *,
+    .directory-tree-container .tree-root .tree-item,
+    li.tree-item {
+      /* Overrides any earlier fixed heights or padding blocks completely */
       height: auto !important;
       min-height: 0 !important;
       max-height: none !important;
-      padding-top: 5px !important;
-      padding-bottom: 5px !important;
-      margin-top: 5px !important;
-      margin-bottom: 10px !important;
-      display: block !important;
-      page-break-inside: avoid !important; /* Forces the tree to stay together on one page */
-    }
-
-    /* 2. Target the exact tree structure from your inspector view */
-    ul.tree-root, 
-    .tree-root {
-      margin: 0 !important;
-      padding: 0 0 0 15px !important; /* Only left indentation padding */
-      display: block !important;
-    }
-
-    /* 3. Deeply compress every single item/folder line in the tree list */
-    li.tree-item, 
-    .tree-item,
-    .tree-item * {
+      
+      /* Crushes the empty vertical spacing completely */
       margin-top: 0 !important;
-      margin-bottom: 2px !important;  /* Tiny 2px gap between rows */
+      margin-bottom: 2px !important; 
       padding-top: 0 !important;
       padding-bottom: 0 !important;
-      line-height: 1.15 !important;  /* Snaps lines tight */
-      height: auto !important;
-      display: list-item !important; /* Reverts modern flex spacing back to clean rows */
+      
+      /* Normalizes flex layout models stretching rows across pages */
+      display: flex !important;
+      flex-direction: row !important;
+      align-items: center !important;
+      justify-content: flex-start !important;
+      align-content: flex-start !important;
+      gap: 4px !important; /* Tight spacing between icons and file names */
+      
+      line-height: 1.15 !important;
     }
 
-    /* Ensures icon graphics or small nested flex layouts inside the line stay in-line */
-    .tree-item span, 
-    .tree-item i, 
-    .tree-item a {
-      display: inline-block !important;
-      vertical-align: middle !important;
-    }
-
-    /* 4. Strict safety rule: Hide styling block texts from rendering on paper copies */
+    /* 4. Strict safety rule: Hidden layout guards */
     style, script, head {
       display: none !important;
     }
   }
+
 
 
 
