@@ -1442,15 +1442,6 @@ body:not(.light-mode) #main_content span[style*="color: #ff7b72"] {
   }
 
 
-  /* Keeps your live web text wrapping line spacing safely intact */
-  #portfolio_main_title {
-    line-height: 1.15 !important;
-    margin-top: 0 !important;
-    margin-bottom: 2px !important;
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
-  }
-
   /* By default on the live web browser, hide our print backup image */
   .print-only-tree-image {
     display: none !important;
@@ -1462,7 +1453,7 @@ body:not(.light-mode) #main_content span[style*="color: #ff7b72"] {
   @media print {
     #portfolio_main_title {
       line-height: 1.15 !important;
-      margin-top: 0 !important;
+      margin-top: -100px !important;
       margin-bottom: 2px !important;
     }
 
@@ -1795,7 +1786,7 @@ function secureEmail(event) {
 
 
 <!-- This image will ONLY display when someone triggers Print Mode -->
-<img src="https://githubusercontent.com" class="print-only-tree-image" alt="Repository Tree Structure">
+<img src="./assets/portfolio_rep_tree.jpeg" class="print-only-tree-image" alt="Repository Tree Structure">
 
 
 <div class="interactive-card directory-tree-container" style="margin-top: 25px;">
