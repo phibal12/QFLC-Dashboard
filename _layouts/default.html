@@ -87,6 +87,20 @@ body.standalone-page #main_content td {
 }
 
 
+  /* Detects if the browser/device is utilizing dark mode */
+  @media (prefers-color-scheme: dark) {
+    blockquote {
+      color: #f3f4f6 !important;            /* Forces a bright, off-white text color */
+      border-left-color: #3b82f6 !important; /* Optional: Sets a clean blue accent bar */
+      background-color: #1f2937 !important;  /* Optional: Dark gray background container */
+    }
+    /* Ensures bold/strong items inside blockquotes also inherit full brightness */
+    blockquote strong, blockquote b {
+      color: #ffffff !important;
+    }
+  }
+
+
 
 
 /* Force original compact card height globally in default layout */

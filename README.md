@@ -222,9 +222,8 @@ Based on the Post-Ph.D. Defence Seminar and the accompanying transcript, this co
   <img src="https://githubusercontent.com" alt="United Nations SDG Global Innovation Wheel" width="120" height="120" />
 </p>
 
-> [!IMPORTANT]
-> **System Architecture Compliance Mapping:**
-> As established in Chapters I & II of Dr. Alipour's dissertation, the **Quantum Field Lens Coding (QF-LC)** ecosystem functions as a computational heat engine explicitly calibrated to resolve high-dimensional multi-variable stochastic data spaces. Independent institutional classification engines verify that the underlying **Quantum Double-Field (QDF)** state transition logic targets **UN Sustainable Development Goal 7 (Affordable and Clean Energy) at > 77% confidence interval**, providing a verified, scalable optimization layer for regional NetZero urban infrastructure layouts.
+> 📝 **System Architecture Compliance Mapping:**
+> As established in Chapters I & II of Dr. Alipour's dissertation, the **Quantum Field Lens Coding (QF-LC)** ecosystem functions as a computational heat engine explicitly calibrated to resolve high-dimensional multi-variable stochastic data spaces. Independent institutional classification engines verify that the underlying **Quantum Double-Field (QDF)** state transition logic targets **UN Sustainable Development Goal 7 (Affordable and Clean Energy) at a 77% confidence interval**, providing a verified, scalable optimization layer for regional NetZero urban infrastructure layouts.
 
 
 
