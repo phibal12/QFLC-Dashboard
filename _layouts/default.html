@@ -88,44 +88,28 @@ body.standalone-page #main_content td {
 
 
   /* Detects if the browser/device is utilizing dark mode */
-  /* 1. Bright Mode (Default / When theme is light) */
-  blockquote {
-    background-color: #f9fafb !important;   /* Soft light gray background */
-    color: #1f2937 !important;              /* High-contrast dark text */
-    border-left: 4px solid #3b82f6 !important; /* Blue accent bar */
-    padding: 12px 16px;
-    border-radius: 4px;
-  }
-  blockquote strong, blockquote b {
-    color: #111827 !important;              /* Crisp black for bold text */
-  }
-
-  /* 2. Dark Mode (Triggers when the site toggle class is active OR system preference matches) */
-  html.dark blockquote, 
-  body.dark-mode blockquote, 
-  [data-theme="dark"] blockquote,
   @media (prefers-color-scheme: dark) {
-    /* If the site is manually toggled to Bright Mode, we override system dark settings */
-    html:not(.dark):not(.dark-mode):not([data-theme="dark"]) blockquote {
-      background-color: #f9fafb !important;
-      color: #1f2937 !important;
+    /* 1. Keeps the dark background container you liked */
+    blockquote {
+      background-color: #1f2937 !important;  
+      border-left-color: #3b82f6 !important; 
     }
     
-    /* True Dark Mode Styling */
-    html.dark blockquote, 
-    body.dark-mode blockquote, 
-    [data-theme="dark"] blockquote,
-    :root:not([data-theme="light"]) blockquote {
-      background-color: #1f2937 !important; /* Dark container */
-      color: #f3f4f6 !important;            /* Brighter off-white text */
-      border-left-color: #3b82f6 !important;
+    /* 2. FIX: Targets the unbolded text inside paragraphs specifically */
+    blockquote, 
+    blockquote p, 
+    blockquote span {
+      color: #e5e7eb !important; /* Brighter, high-contrast light text */
     }
-    html.dark blockquote strong, 
-    body.dark-mode blockquote strong, 
-    [data-theme="dark"] blockquote strong {
-      color: #ffffff !important;            /* Pure white for bold text */
+    
+    /* 3. Keeps the bold text crisp white */
+    blockquote strong, 
+    blockquote b {
+      color: #ffffff !important;
     }
   }
+
+
 
 
 /* Force original compact card height globally in default layout */
