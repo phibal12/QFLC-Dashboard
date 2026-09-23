@@ -1431,31 +1431,28 @@ body:not(.light-mode) #main_content span[style*="color: #ff7b72"] {
      Tightens ONLY the profile name and degrees without affecting the body text.
      ========================================================================= */
   
-  /* 1. Target the top main name and immediate following degree subheaders */
-  .markdown-body > h1:first-of-type,
-  .markdown-body > h1:first-of-type + h2,
-  .markdown-body > h1:first-of-type + p,
-  h1:contains("Philip"),
-  h2:contains("B.Sc.") {
-    line-height: 1.15 !important;    /* Force tightly-bound text wrapper lines */
-    margin-top: 2px !important;      /* Eliminate the large top canyon gap */
-    margin-bottom: 4px !important;   /* Pull the next line up closely */
-    padding-bottom: 0 !important;
+
+  /* ==========================================================================
+     ISOLATED MAIN TITLE LINE-GAP CORRECTION
+     Targets the unique title ID directly to compress wrapped text spacing.
+     ========================================================================== */
+  
+  #portfolio_main_title {
+    line-height: 1.15 !important;    /* Drastically snaps wrapped lines close together */
+    margin-top: 0 !important;        /* Pulls text flush to the top of its table cell */
+    margin-bottom: 2px !important;   /* Tightens the gap before the meta-tag description below */
     padding-top: 0 !important;
+    padding-bottom: 0 !important;
   }
 
-  /* 2. Apply the identical isolated restriction during print preview */
+  /* Ensures identical crisp alignment when translating to print layout views */
   @media print {
-    .markdown-body > h1:first-of-type,
-    .markdown-body > h1:first-of-type + h2,
-    .markdown-body > h1:first-of-type + p {
+    #portfolio_main_title {
       line-height: 1.15 !important;
-      margin-top: 2px !important;
-      margin-bottom: 4px !important;
+      margin-top: 0 !important;
+      margin-bottom: 2px !important;
     }
   }
-
-
 
 
   </style> <!-- END OF STYLES --!>
