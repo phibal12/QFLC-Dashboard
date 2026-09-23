@@ -88,26 +88,58 @@ body.standalone-page #main_content td {
 
 
   /* Detects if the browser/device is utilizing dark mode */
+  
+  /* ==========================================================================
+     1. LIGHT MODE (DEFAULT)
+     Hides background background, adds a black outline rectangle with rounded corners,
+     and forces all text inside to be crisp black.
+     ========================================================================== */
+  blockquote {
+    background-color: transparent !important; /* Hides background */
+    border: 1px solid #000000 !important;     /* Boxed in a black outline rectangle */
+    border-left: 4px solid #3b82f6 !important; /* Keeps the clean blue accent bar */
+    border-radius: 8px !important;            /* Curves the corners */
+    padding: 12px 16px !important;
+  }
+  
+  /* Forces all variations of unbolded & bold text to display as black */
+  blockquote, 
+  blockquote p, 
+  blockquote span,
+  blockquote strong, 
+  blockquote b {
+    color: #000000 !important;
+  }
+
+
+  /* ==========================================================================
+     2. DARK MODE
+     Activates only when system or browser dark mode is explicitly enabled.
+     Restores the color choices you liked, while adding rounded corners.
+     ========================================================================== */
   @media (prefers-color-scheme: dark) {
-    /* 1. Keeps the dark background container you liked */
     blockquote {
-      background-color: #1f2937 !important;  
-      border-left-color: #3b82f6 !important; 
+      background-color: #1f2937 !important;     /* Restores the dark background you liked */
+      border: none !important;                  /* Removes the light mode black outline border */
+      border-left: 4px solid #3b82f6 !important; /* Retains blue accent bar */
+      border-radius: 8px !important;            /* Curves the dark mode corners too */
     }
     
-    /* 2. FIX: Targets the unbolded text inside paragraphs specifically */
+    /* Forces unbolded paragraphs and spans to stay light and visible */
     blockquote, 
     blockquote p, 
     blockquote span {
-      color: #e5e7eb !important; /* Brighter, high-contrast light text */
+      color: #e5e7eb !important;                /* Soft light grey */
     }
     
-    /* 3. Keeps the bold text crisp white */
+    /* Forces bold text elements to stay crisp white */
     blockquote strong, 
     blockquote b {
       color: #ffffff !important;
     }
   }
+
+
 
 
 
