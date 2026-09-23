@@ -1384,47 +1384,44 @@ body:not(.light-mode) #main_content span[style*="color: #ff7b72"] {
 }
 
 
+
   /* ==========================================================================
-     LOCAL PORTFOLIO SUBPAGE PRINT RESIZE PATCH
-     Overrides flex/grid bottlenecks inside this specific file when printing.
+     GLOBAL PRINT TIGHTNESS OVERRIDE
+     Compresses excessive margins, padding, and huge line-height vertical gaps.
      ========================================================================== */
   @media print {
-    /* 1. Forces the squeezed center columns to stretch to the paper margins */
-    body, 
-    main, 
-    article, 
-    .markdown-body,
-    div {
-      width: 100% !important;
-      max-width: 100% !important;
-      min-width: 100% !important;
+    /* 1. Reset all elements to remove empty vertical space */
+    *, html, body, main, div, p, li, h1, h2, h3, h4, h5, h6 {
+      margin: 0 !important;
       padding: 0 !important;
-      margin: 0 auto !important;
-      float: none !important;
-      display: block !important;
-    }
-
-    /* 2. Fixes the top header section to display your photo and name side-by-side smoothly */
-    h1, h2, h3, h4, .profile-title {
-      display: block !important;
-      width: 100% !important;
-      clear: both !important;
-      text-align: left !important;
-    }
-
-    /* 3. Forces json stacks and design grid blocks to use the full horizontal space */
-    pre, code, ul, ol, li, blockquote {
+      line-height: 1.2 !important; /* Compresses large line heights tightly */
       width: 100% !important;
       max-width: 100% !important;
       display: block !important;
-      word-wrap: break-word !important;
-      white-space: pre-wrap !important;
     }
 
-    /* 4. Fixes multi-level bullet points from being choked into a tight line */
+    /* 2. Add highly-controlled, uniform spacing between major content sections only */
+    p, li {
+      margin-bottom: 6px !important; /* Tiny, clean spacing below text blocks */
+    }
+    
+    h1, h2, h3, h4 {
+      margin-top: 12px !important;    /* Tight gap before a brand new section header */
+      margin-bottom: 6px !important;  /* Tight gap below headers */
+      font-weight: bold !important;
+    }
+
+    /* 3. Keep list items indented slightly without throwing off alignment */
     li {
-      margin-left: 20px !important;
-      text-align: left !important;
+      margin-left: 15px !important;
+      display: list-item !important; /* Restores clean bullet behavior compressed tightly */
+    }
+
+    /* 4. Keeps structural containers like json matrices tight and readable */
+    pre, code, blockquote {
+      margin: 8px 0 !important;
+      padding: 8px !important;
+      line-height: 1.1 !important;
     }
   }
 
@@ -1432,7 +1429,7 @@ body:not(.light-mode) #main_content span[style*="color: #ff7b72"] {
 
 
 
-</style>  <!-- END OF STYLE -->
+  </style> <!-- END OF STYLES --!>
 
 
 <!-- Tell MathJax to recognize single dollar signs -->
@@ -1916,7 +1913,6 @@ Quantum field, scalar field, artificial intelligence, qubit, machine learning, l
 <div class="sdg-wheel" data-wheel-height="200" data-model="aurora-sdg-multi" data-image-path="https://aurora-sdg.labs.vu.nl/resources/assets/" data-custom-uri="https://hdl.handle.net/1828/23705" data-text="Quantum field lens coding.
 
 Abstract
-
 This dissertation introduces Quantum Field Lens Coding (QF-LC) and its thermodynamic metrics, expanding scalar theory across multidisciplinary fields. Prior research in thermodynamics and statistical mechanics has not explored these QF-LC concepts and project.
 
 The QF-LC project comprises of 1- the quantum double-field (QDF) model, 2- QDF model’s code as the QF-LC algorithm (QF-LCA), 3- application software as the QF-LC simulator (QF-LCS), simulating a QDF system with its, 4- QF-LCA/QDF dataset.
@@ -1938,12 +1934,12 @@ A strong system state prediction is achieved by computing the QF lens distance-b
 
 QDF datasets can be used to train a QF-LCA. This is done by running a quantum AI (QAI) algorithm on qubit machines which combines a QDF dataset with external datasets. The data points (qubits) in the QDF dataset are inverse distance-based that quantify EE, and are labelled for specific states by a QF-LCC. After learning this profile, the QF-LCC decodes and predicts the next system state suggesting an efficient energy path to choose by the user.
 
-A QDF game Alice & Bob Quantum Doubles is developed to validate the dataset as the P|ij⟩ map for a strong prediction, where the P|ij⟩ and user probabilities correlate in their value difference, ∆P. Dataset validation results are mapped to a decision simulator as a QAI map, which maximizes system efficiency on a TS via the EE of energy states.
+A QDF game Alice and Bob Quantum Doubles is developed to validate the dataset as the P|ij⟩ map for a strong prediction, where the P|ij⟩ and user probabilities correlate in their value difference, ∆P. Dataset validation results are mapped to a decision simulator as a QAI map, which maximizes system efficiency on a TS via the EE of energy states.
 
 QF-LCA applications are mostly in data science and particle physics, where particle states from an evidence sample are classified based on their QDF probabilities. Examples are reconstructing damaged DNA strands of cells to predict a virus (TS) or cancer cell, its spread and growth against healthy cells, identify forged documents from genuine based on their P|ij⟩. The top sustainable development goal (SDG) for the QF-LCA, as assessed by SDG AI classifiers, is access to affordable and clean energy in society.
-
 Keywords
-quantum field, scalar field, artificial intelligence, qubit, machine learning, lens coding, quantum double-field, classical bit, quantum circuit, entanglement entropy, hybrid machine, sustainable development goal, quantum algorithm, QDF dataset, entangled pair, state transition, target state.">
+quantum field, scalar field, artificial intelligence, qubit, machine learning, lens coding, quantum double-field, classical bit, quantum circuit, entanglement entropy, hybrid machine, sustainable development goal, quantum algorithm, QDF dataset, entangled pair, state transition, target state
+">
 
 </div>
 
@@ -2134,10 +2130,14 @@ document.addEventListener("DOMContentLoaded", () => {
       // Target dynamically generated "Learn more" or Aurora links
       if (text.includes("learn more") || href.includes("aurora-sdg")) {
         
-        // FIX: Broaden the search to guarantee it finds the specific DOI or URI for this exact wheel
         const parentWheel = link.closest('.sdg-wheel, [data-custom-uri]');
         const targetUrl = parentWheel ? (parentWheel.getAttribute("data-custom-uri") || defaultUri) : defaultUri;
-        const originalAuroraUrl = link.href;
+        
+        // SECURE AURORA URL: If the link was already overwritten, force it back to Aurora
+        let originalAuroraUrl = link.href;
+        if (!originalAuroraUrl.includes("aurora-sdg")) {
+          originalAuroraUrl = "https://aurora-sdg.labs.vu.nl/";
+        }
         
         const isDoi = targetUrl.toLowerCase().includes("doi.org");
         const labelPrefix = isDoi ? "DOI Link" : "URI Link";
@@ -2162,7 +2162,7 @@ document.addEventListener("DOMContentLoaded", () => {
         primaryLink.style.setProperty("text-decoration", "underline", "important");
         primaryLink.setAttribute("data-uri-processed", "true");
 
-        // Link 2: The original Aurora link
+        // Link 2: The secured Aurora link
         const auroraLink = document.createElement("a");
         auroraLink.href = originalAuroraUrl;
         auroraLink.target = "_blank";
@@ -2186,17 +2186,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 1. Catch initial page load renders
-  [1000, 2500, 3500, 4500].forEach(delay => setTimeout(syncSdgLinks, delay));
-
-  // 2. Catch dynamic hover renders safely (prevents browser freezing)
+  // 1. Catch dynamic hover renders safely (prevents browser freezing)
   document.body.addEventListener('mouseover', (e) => {
     if (e.target.closest('.sdg-wheel') || e.target.closest('.aurora-sdg-widget')) {
       setTimeout(syncSdgLinks, 50); // Slight delay allows the widget to draw the link before we swap it
     }
   });
 });
-</script> 
+</script>
 <!-- EOScripts --!>
 
 
@@ -2530,30 +2527,98 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 <!-- REPLACEMENT SCRIPT FOR SDG "LEARN MORE" LINK -->
+<!-- ========================================== -->
+<!-- 3. URI & AURORA DUAL-LINK SYNCHRONIZER -->
+<!-- ========================================== -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-  const targetUri = "https://hdl.handle.net/1828/23705";
+  const defaultUri = "https://hdl.handle.net/1828/23705";
 
-  // Watch for dynamic widget elements rendering on screen
-  const observer = new MutationObserver(() => {
+  function syncSdgLinks() {
     const sdgLinks = document.querySelectorAll(".sdg-wheel a, .aurora-sdg-widget a");
+    
     sdgLinks.forEach(link => {
-      // Intercept "Learn more" anchor links
-      if (link.textContent.toLowerCase().includes("learn more") || link.href.includes("aurora-sdg")) {
-        link.href = targetUri;
-        link.target = "_blank";
-        link.rel = "noopener noreferrer";
-        //link.textContent = "[URI Link: hdl.handle.net/1828/23705]";
-        link.style.setProperty("color", "#00ffff", "important");
-        link.style.setProperty("font-weight", "bold", "important");
+      // Skip already modified links
+      if (link.getAttribute("data-uri-processed") === "true") return;
+
+      const text = link.textContent.toLowerCase();
+      const href = link.href.toLowerCase();
+
+      // Target "Learn more" or Aurora links
+      if (text.includes("learn more") || href.includes("aurora-sdg")) {
+        
+        const parentWheel = link.closest('.sdg-wheel, [data-custom-uri]');
+        const targetUrl = parentWheel ? (parentWheel.getAttribute("data-custom-uri") || defaultUri) : defaultUri;
+        
+        // BUILD CRASH-PROOF AURORA URL
+        let safeAuroraUrl = "https://aurora-sdg.labs.vu.nl/";
+        if (link.href.includes("aurora-sdg")) {
+          if (parentWheel && parentWheel.hasAttribute("data-text")) {
+            const rawText = parentWheel.getAttribute("data-text");
+            // Truncate to 800 characters (expands to ~2000 bytes when URL-encoded, staying under server limits)
+            const safeText = "Abstract..." + rawText.substring(539, 2008) + "...";
+            // Extract the base URL (ignoring the widget's broken query strings)
+            const baseUrl = link.href.split('?')[0]; 
+            safeAuroraUrl = `${baseUrl}?text=${encodeURIComponent(safeText)}`;
+          } else {
+            // Fallback for wheels missing data-text
+            safeAuroraUrl = link.href.substring(0, 500); 
+          }
+        }
+        
+        const isDoi = targetUrl.toLowerCase().includes("doi.org");
+        const labelPrefix = isDoi ? "DOI Link" : "URI Link";
+        const shortDisplayUrl = targetUrl.replace(/^https?:\/\//, "");
+
+        // Build the stacked link container
+        const wrapper = document.createElement("div");
+        wrapper.className = "sdg-custom-link-group";
+        wrapper.style.display = "flex";
+        wrapper.style.flexDirection = "column";
+        wrapper.style.gap = "4px";
+        wrapper.style.marginTop = "6px";
+
+        // Link 1: The specific DOI or URI
+        const primaryLink = document.createElement("a");
+        primaryLink.href = targetUrl;
+        primaryLink.target = "_blank";
+        primaryLink.rel = "noopener noreferrer";
+        primaryLink.textContent = `[${labelPrefix}: ${shortDisplayUrl}]`;
+        primaryLink.style.setProperty("color", "#00ffff", "important");
+        primaryLink.style.setProperty("font-weight", "bold", "important");
+        primaryLink.style.setProperty("text-decoration", "underline", "important");
+        primaryLink.setAttribute("data-uri-processed", "true");
+
+        // Link 2: The secured & length-optimized Aurora link
+        const auroraLink = document.createElement("a");
+        auroraLink.href = safeAuroraUrl;
+        auroraLink.target = "_blank";
+        auroraLink.rel = "noopener noreferrer";
+        auroraLink.textContent = "↳ Learn More at Aurora-SDG-Classifier";
+        auroraLink.style.setProperty("color", "#58a6ff", "important");
+        auroraLink.style.setProperty("font-size", "0.85rem", "important");
+        auroraLink.style.setProperty("text-decoration", "underline", "important");
+        auroraLink.setAttribute("data-uri-processed", "true");
+
+        wrapper.appendChild(primaryLink);
+        wrapper.appendChild(auroraLink);
+
+        link.setAttribute("data-uri-processed", "true"); 
+
+        if (link.parentNode) {
+          link.parentNode.replaceChild(wrapper, link);
+        }
       }
     });
-  });
-
-  const sdgContainer = document.querySelector(".sdg-wheel");
-  if (sdgContainer) {
-    observer.observe(sdgContainer, { childList: true, subtree: true });
   }
+
+  [100, 500, 1500, 3000].forEach(delay => setTimeout(syncSdgLinks, delay));
+
+  document.body.addEventListener('mouseover', (e) => {
+    if (e.target.closest('.sdg-wheel') || e.target.closest('.aurora-sdg-widget')) {
+      setTimeout(syncSdgLinks, 50); 
+    }
+  });
 });
 </script>
 
