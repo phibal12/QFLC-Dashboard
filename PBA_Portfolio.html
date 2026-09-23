@@ -1431,15 +1431,16 @@ body:not(.light-mode) #main_content span[style*="color: #ff7b72"] {
   
   /* ==========================================================================
      EXPLICIT REPOSITORY TREE & PANEL PRINT COMPRESSION
-     ========================================================================== */
-  /* Fixes the live web text wrapping line spacing safely */
+     ========================================================================== */ 
   #portfolio_main_title {
-    line-height: 1.15 !important;
-    margin-top: 40px !important;
-    margin-bottom: 2px !important;
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
-  }
+  display: block !important;          /* 1. Destroys the flexbox alignment causing the gap */
+  line-height: 1.15 !important;       /* 2. Snaps the top and bottom lines tight together */
+  margin-top: 45px !important;           /* 3. Removes vertical overhead canyon spacing */
+  margin-bottom: 2px !important;      /* 4. Pulls the description underneath up close */
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  height: auto !important;            /* 5. Prevents container height stretching */
+}
 
 
   /* By default on the live web browser, hide our print backup image */
