@@ -1424,30 +1424,58 @@ body:not(.light-mode) #main_content span[style*="color: #ff7b72"] {
       text-align: left !important;
     }
   }
+  
+  
+  
+  
+  
 
-/* Fixes the live web text wrapping line spacing safely */
+  /* Fixes the live web text wrapping line spacing safely */
   #portfolio_main_title {
     line-height: 1.15 !important;
-    margin-top: 20px !important;
+    margin-top: 0 !important;
     margin-bottom: 2px !important;
     padding-top: 0 !important;
     padding-bottom: 0 !important;
   }
-  
-   /* Explicit instruction for print preview layouts */
+
+  /* ==========================================================================
+     GITHUB PAGES LIVE PRINT OPTIMIZATION (TARGETS UNDER 10 PAGES)
+     ========================================================================== */
   @media print {
-    /* Snaps the main profile title tight on paper */
+    /* 1. Force the wrapped main title to stay tightly bound on paper */
     #portfolio_main_title {
       line-height: 1.15 !important;
       margin-top: 0 !important;
       margin-bottom: 2px !important;
     }
-    
-    /* CRITICAL SAFETY: Permanently ensures style code blocks cannot render as printed text */
+
+    /* 2. CRITICAL TREE COMPRESSION: Smashes huge gaps in the repository list tree */
+    div[class*="tree"], 
+    div[class*="object"], 
+    .repository-tree, 
+    ul, ol, li {
+      margin-top: 0 !important;
+      margin-bottom: 2px !important;
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+      line-height: 1.1 !important; /* Forces file names close together vertically */
+    }
+
+    /* 3. Forces table containers enclosing your titles and links to sit completely flush */
+    table, tbody, tr, td {
+      margin: 0 !important;
+      padding-top: 2px !important;
+      padding-bottom: 2px !important;
+      height: auto !important;
+    }
+
+    /* 4. Permanently hides raw styling artifacts from writing onto paper copies */
     style, script, head {
       display: none !important;
     }
   }
+
 
   </style> <!-- END OF STYLES -->
 
