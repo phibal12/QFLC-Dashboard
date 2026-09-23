@@ -1447,17 +1447,34 @@ body:not(.light-mode) #main_content span[style*="color: #ff7b72"] {
     display: none !important;
   }
 
+
   /* ==========================================================================
      FINAL CLEAN PRINT MODE OVERRIDE
      ========================================================================== */
   @media print {
-    #portfolio_main_title {
-      line-height: 1.15 !important;
+    /* 1. CRITICAL TITLE SIZE LOCK: Shrinks the text down to fit elegantly on one page */
+    #portfolio_main_title,
+    #portfolio_main_title *,
+    .markdown-body h1,
+    h1 {
+      font-size: 24pt !important;       /* Hard-locks the name to a clean, crisp print size */
+      line-height: 1.2 !important;       /* Snaps lines tight vertically */
       margin-top: -100px !important;
-      margin-bottom: 2px !important;
+      margin-bottom: 4px !important;
     }
 
-    /* 1. HIDES THE TOP NAV AND BOTTOM MENUBARS TO SAVE MASSIVE PAGE SPACE */
+    /* Shrinks the accompanying academic text and degrees block */
+    #portfolio_main_title + h2,
+    #portfolio_main_title + p,
+    .markdown-body h2,
+    h2 {
+      font-size: 14pt !important;       /* Keeps credentials proportionate to the name */
+      line-height: 1.2 !important;
+      margin-top: 2px !important;
+      margin-bottom: 6px !important;
+    }
+
+    /* 2. HIDES THE TOP AND BOTTOM MENU BARS AND BUTTONS ENTIRELY */
     nav, 
     footer, 
     header.site-header, 
@@ -1466,14 +1483,17 @@ body:not(.light-mode) #main_content span[style*="color: #ff7b72"] {
     div[class*="nav"],
     div[class*="menu"],
     footer[class*="bar"],
-    .theme-toggle-btn {
+    .theme-toggle-btn,
+    button,
+    input[type="button"],
+    a[class*="button"] {
       display: none !important;
       height: 0 !important;
       padding: 0 !important;
       margin: 0 !important;
     }
 
-    /* 2. COMPLETELY ERASES THE STUBBORN CODE TEXT TREE FROM PAPER */
+    /* 3. COMPLETELY ERASES THE STUBBORN CODE TEXT TREE FROM PAPER */
     .directory-tree-container, 
     ul.tree-root, 
     li.tree-item, 
@@ -1483,17 +1503,17 @@ body:not(.light-mode) #main_content span[style*="color: #ff7b72"] {
       visibility: hidden !important;
     }
 
-    /* 3. SURFACES AND RESIZES YOUR CLEAN TREE SCREENSHOT ONTO THE PRINTED COPY */
+    /* 4. SURFACES AND RESIZES YOUR CLEAN TREE SCREENSHOT ONTO THE PRINTED COPY */
     img.print-only-tree-image {
       display: block !important;
       visibility: visible !important;
       width: 100% !important;
-      max-width: 550px !important; /* Limits size so it doesn't spill into extra pages */
+      max-width: 550px !important;
       margin: 15px auto !important;
-      page-break-inside: avoid !important; /* Keeps the whole photo on a single sheet */
+      page-break-inside: avoid !important;
     }
 
-    /* 4. PROTECTS MATH STRINGS FROM EXTRA LAYOUT GAPS */
+    /* 5. PROTECTS MATH STRINGS FROM EXTRA LAYOUT GAPS */
     p, span, li, a, em, strong, b {
       display: inline !important;
       height: auto !important;
@@ -1504,17 +1524,11 @@ body:not(.light-mode) #main_content span[style*="color: #ff7b72"] {
       margin-bottom: 6px !important;
     }
 
-    /* 5. Hidden layout guards */
+    /* 6. Hidden layout guards */
     style, script, head {
       display: none !important;
     }
   }
-
-
-
-
-
-
 
   </style> <!-- END OF STYLES -->
 
