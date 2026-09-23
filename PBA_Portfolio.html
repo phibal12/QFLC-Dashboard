@@ -18,6 +18,26 @@ standalone: true
   /* 0. DEFAULT LAYOUT FROM LAYOUTS DASHBOARD FILE */
   /* ========================================= */
 
+/* Snaps the lines tightly together when the title breaks onto a second line during resize */
+#portfolio_main_title {
+  display: inline-block !important;
+  line-height: 1.10 !important;       /* Forces the second wrapped line to pull up tightly */
+  height: auto !important;            /* Stops the container box from expanding vertically */
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  margin-top: 0 !important;
+  margin-bottom: 4px !important;      /* Controls the small gap below the entire title block */
+}
+
+/* Forces any nested spans or link tags inside the title to obey the tight line height */
+#portfolio_main_title * {
+  line-height: 1.10 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+
+
 /* HIDE THE DYNAMIC BANNER ON THIS PAGE ONLY */
 .banner-container, .banner-widget, .banner-widget-text {
   display: none !important;
@@ -1981,7 +2001,7 @@ function secureEmail(event) {
 Alipour_Philip_PhD_2026.pdf (77.32 MB)
 Date
 2026 | 
-<b><span style="color: #ff7b72;">Authors:</span></b><span> Alipour, Philip B.; Gulliver T. Aaron
+<b><span style="color: #ff7b72;">Authors:</span></b><span> Alipour, Philip B.
 	  
         <p><strong><span style="color: #ff7b72;">Abstract:</span></strong> This research presents the synthesis of the Quantum Field Lens Coding Algorithm (QF-LCA), the foundational work and thermodynamics of the 2xQuBABE™ system...</p>
         
