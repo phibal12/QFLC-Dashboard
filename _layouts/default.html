@@ -114,75 +114,68 @@ body.standalone-page #main_content td {
 
 
   
- 
   /* ==========================================================================
-     1. LIGHT MODE SPECIFIC ADJUSTMENTS
+     1. GLOBAL BLOCKQUOTE STYLING (LIGHT MODE BY DEFAULT)
      ========================================================================== */
-  
-  /* Restores and forces the solid dark-gray background panel you like */
   blockquote {
-    background-color: #1f2937 !important; /* Keep preferred dark container */
-    border: none !important;              /* Removes the harsh black outline box */
-    border-left: 4px solid #3b82f6 !important; /* Retains clean blue accent bar */
-    border-radius: 8px !important;        /* Smooth rounded corners */
+    background-color: transparent !important;   /* Hides background container */
+    border: 1px solid #000000 !important;       /* Outlined black rectangle */
+    border-left: 4px solid #3b82f6 !important;   /* Clean blue accent bar */
+    border-radius: 8px !important;              /* Rounded corners */
     padding: 12px 16px !important;
+    
+    /* FIX: Targets top-level text color strictly without bleeding into nested tags */
+    color: #000000 !important; 
   }
 
-  /* Targets nested bulleted elements to force full light text readability */
-  blockquote ul,
-  blockquote ol,
-  blockquote li,
-  blockquote p {
-    color: #e5e7eb !important; /* Forces unbolded bullet text to show as crisp off-white */
+  /* Explicitly fixes bullet lists and paragraphs inside Light Mode panels only */
+  blockquote > p,
+  blockquote > ul > li,
+  blockquote > ol > li,
+  blockquote > span {
+    color: #000000 !important;
   }
 
-  /* Keeps bold keyword indicators looking crisp and pure white inside the panel */
-  blockquote strong, 
-  blockquote b,
-  blockquote code,
-  blockquote kbd {
-    color: #ffffff !important; 
-    background-color: rgba(255, 255, 255, 0.1) !important; /* Soft backdrop for key highlights */
-  }
-
-  /* Ensures hyperlinks inside the panels retain comfortable light contrast */
-  blockquote a, 
-  blockquote a * {
-    color: #60a5fa !important;
+  /* Ensures hyperlinks inside light mode blocks use standard accessible blue */
+  blockquote a {
+    color: #0066cc !important;
     text-decoration: underline !important;
   }
 
 
   /* ==========================================================================
-     2. DARK MODE STYLING (MATCHES PERFECTLY)
+     2. DARK MODE STYLING 
      ========================================================================== */
   @media (prefers-color-scheme: dark) {
     blockquote {
-      background-color: #1f2937 !important;
-      border: none !important;
-      border-left: 4px solid #3b82f6 !important;
-      border-radius: 8px !important;
+      background-color: #1f2937 !important;     /* Restores the dark background panel */
+      border: none !important;                  /* Clears light mode black border outline */
+      border-left: 4px solid #3b82f6 !important; /* Retains blue accent bar */
+      border-radius: 8px !important;            /* Curves dark mode corners */
+      
+      /* FIX: Restores standard light gray text strictly for the panel layer */
+      color: #e5e7eb !important; 
     }
 
-    blockquote ul,
-    blockquote ol,
-    blockquote li,
-    blockquote p {
-      color: #e5e7eb !important;
+    /* Sets specific direct-child layout rules so it won't break custom colored strings */
+    blockquote > p,
+    blockquote > ul > li,
+    blockquote > ol > li,
+    blockquote > span {
+      color: #e5e7eb !important; /* Muted off-white text color */
     }
 
-    blockquote strong, 
-    blockquote b,
-    blockquote code,
-    blockquote kbd {
+    /* Keeps bold section titles pure white */
+    blockquote strong,
+    blockquote b {
       color: #ffffff !important;
     }
 
+    /* Sets highly legible link contrast for dark mode */
     blockquote a {
       color: #60a5fa !important;
     }
   }
-
 
 
 
