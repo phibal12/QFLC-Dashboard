@@ -113,70 +113,70 @@ body.standalone-page #main_content td {
 
 
 
+  
   /* ==========================================================================
      1. GLOBAL BLOCKQUOTE STYLING (LIGHT MODE BY DEFAULT)
      ========================================================================== */
   blockquote {
-    background-color: transparent !important; /* Hides background */
-    border: 1px solid #000000 !important;     /* Boxed outline rectangle */
-    border-left: 4px solid #3b82f6 !important; /* Blue accent bar */
-    border-radius: 8px !important;            /* Rounded corners */
+    background-color: transparent !important;   /* Hides background container */
+    border: 1px solid #000000 !important;       /* Outlined black rectangle */
+    border-left: 4px solid #3b82f6 !important;   /* Clean blue accent bar */
+    border-radius: 8px !important;              /* Rounded corners */
     padding: 12px 16px !important;
+    
+    /* FIX: Targets top-level text color strictly without bleeding into nested tags */
+    color: #000000 !important; 
   }
 
-  /* Safely targets ONLY elements located directly inside a blockquote container */
-  blockquote,
-  blockquote p,
-  blockquote span,
-  blockquote ul,
-  blockquote ol,
-  blockquote li,
-  blockquote strong,
-  blockquote b {
-    color: #000000 !important; /* Forces lists and text to be crisp black */
+  /* Explicitly fixes bullet lists and paragraphs inside Light Mode panels only */
+  blockquote > p,
+  blockquote > ul > li,
+  blockquote > ol > li,
+  blockquote > span {
+    color: #000000 !important;
   }
 
-  /* Ensures hyperlinks inside light mode blockquotes remain accessible blue */
-  blockquote a, 
-  blockquote a * {
+  /* Ensures hyperlinks inside light mode blocks use standard accessible blue */
+  blockquote a {
     color: #0066cc !important;
     text-decoration: underline !important;
   }
 
+
   /* ==========================================================================
      2. DARK MODE STYLING 
-     Activates only when system or browser dark mode is enabled.
      ========================================================================== */
   @media (prefers-color-scheme: dark) {
     blockquote {
-      background-color: #1f2937 !important;     /* Dark background theme */
-      border: none !important;                  /* Clears the light mode black border */
+      background-color: #1f2937 !important;     /* Restores the dark background panel */
+      border: none !important;                  /* Clears light mode black border outline */
       border-left: 4px solid #3b82f6 !important; /* Retains blue accent bar */
       border-radius: 8px !important;            /* Curves dark mode corners */
+      
+      /* FIX: Restores standard light gray text strictly for the panel layer */
+      color: #e5e7eb !important; 
     }
 
-    /* Safely forces text & nested lists inside dark blockquotes to turn bright */
-    blockquote,
-    blockquote p,
-    blockquote span,
-    blockquote ul,
-    blockquote ol,
-    blockquote li {
-      color: #e5e7eb !important; /* Soft light grey text for easy reading */
+    /* Sets specific direct-child layout rules so it won't break custom colored strings */
+    blockquote > p,
+    blockquote > ul > li,
+    blockquote > ol > li,
+    blockquote > span {
+      color: #e5e7eb !important; /* Muted off-white text color */
     }
 
-    /* Keeps bold identifiers stark white */
+    /* Keeps bold section titles pure white */
     blockquote strong,
     blockquote b {
       color: #ffffff !important;
     }
 
-    /* Adjusts dark mode links for comfortable contrast */
-    blockquote a, 
-    blockquote a * {
+    /* Sets highly legible link contrast for dark mode */
+    blockquote a {
       color: #60a5fa !important;
     }
   }
+
 
 
 
