@@ -498,6 +498,39 @@ details code {
 }
 
 
+/* ==========================================================================
+   GLOBAL PANELS & CONTAINERS LIGHT MODE CORRECTION
+   Forces all nested text variants inside theme panels to render clear black.
+   ========================================================================== */
+
+/* This targets list items, links, paragraphs, and generic text blocks */
+div[class*="notice"], 
+div[class*="callout"], 
+div[class*="card"],
+div[class*="panel"],
+.markdown-body ul,
+.markdown-body li,
+.markdown-body p,
+.markdown-body a {
+  /* Only overrides text color if the container element itself is rendering a dark gray backdrop */
+  background-color: transparent !important;
+}
+
+/* Specific text visibility override when the page is in light mode */
+blockquote, 
+blockquote *,
+ul li, 
+ol li, 
+p, 
+span {
+  color: #000000 !important; /* Forces total dark text visibility */
+}
+
+/* Protects and ensures hyperlinks remain readable blue instead of flat black */
+a, a * {
+  color: #0066cc !important; 
+  text-decoration: underline;
+}
   
 </style>
 </head>
