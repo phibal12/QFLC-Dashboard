@@ -146,7 +146,7 @@ This simulation environment showcases the **QF-LC Algorithm (QF-LCA)**, which pr
 
 The newly-finalized 2xQuBABE™ Macro/Microscopic Sampling Simulator — built on underlying Quantum Double-Field (QDF) framework — is designed to address **high-dimensional design-space optimization** and **surrogate modeling**. 
 
-By evaluating multi-variable systems under a peak subspace resonance condition of $\nu = 8/9$, the QF-LCA framework cancels out standard constant coefficient barriers, driving prediction and state transition (ST) probabilities to $P = 8(N-1)/9N\nu$. 
+By evaluating multi-variable systems under a peak subspace resonance condition of $\nu = 8/9$, the QF-LCA framework cancels out standard constant coefficient barriers, driving prediction and state transition (ST) probabilities to $P = 8(N-1)/9N\nu$ as $N \ge 3$ particles as $ABE$ (<i>Alice-Bob-Eve</i>) entangled particles performing the irreducible $\langle P \rangle \ge 2/3$ expected meaurment outome. 
 
 The 2xQuBABE predictive engine via QF-LCA and QDF model can be directly adapted to accelerate the fitting of surrogate models for volatile urban energy grids. 
 It provides a robust, stochastic modeling framework that maps massive, fluctuating climate and occupancy data patterns into deterministic, high-probability convergence profiles $P ≥ 2/3$. This is far more efficiently than standard black-box machine learning methods. 
@@ -650,25 +650,42 @@ This dashboard is the practical implementation of research published at the **Un
 ---
 
 
-## ⚖ Attribution & IP Notice 
+## ⚖ Attribution & IP Notice
 
-**Legal Framework and Trademark Notice (Expand: Click ►)** 
-> <details>
-> <summary> © 2026 Dr. Philip B. Alipour. All Rights Reserved. </summary>
->  This legal framework formulates the QF-LCA for <i>strong and robust real-time system state predictions</i>. <i>Next-generation quantum computers</i> as <b>QuBABE™</b> and <b>2xQuBABE™</b> computing architectures—encompassing <b>2xQuBABE™ Computer</b>, <b>2xQuBABE™ Computing</b>, <b>2xQuBABE™ Systems</b>, and <b>Quantum Field Lens Coding™</b>—are proprietary trademarks used in conjunction with Quantum Double-Field (QDF) processing architectures. <b>2xQuBABE™</b> represents the commercial implementation of the Quantum Field Lens Coding Algorithm (QF-LCA), successfully defended and archived under university intellectual repository standards at the University of Victoria, BC, Canada. </details>
+**Legal Framework and Trademark Notice (Expand: Click ▶)** 
+
+<details>
+<summary><b>© 2026 Dr. Philip B. Alipour. All Rights Reserved.</b></summary>
+<blockquote>
+This legal framework formulates the QF-LCA for <i>strong and robust real-time system state predictions</i>. <i>Next-generation quantum computers</i> as <b>QuBABE™</b> and <b>2xQuBABE™</b> computing architectures—encompassing <b>2xQuBABE™ Computer</b>, <b>2xQuBABE™ Computing</b>, <b>2xQuBABE™ Systems</b>, and <b>Quantum Field Lens Coding™</b>—are proprietary trademarks used in conjunction with Quantum Double-Field (QDF) processing architectures. <b>2xQuBABE™</b> represents the commercial implementation of the Quantum Field Lens Coding Algorithm (QF-LCA), successfully defended and archived under university intellectual repository standards at the University of Victoria, BC, Canada.
+</blockquote>
+</details>
 
 **System Architecture Nomenclature and IP Notice**
-> <details>
-> <summary> **2xQuBABE™** operates as a unified dual-definition quantum framework:</summary>
-> * **Physical Engine Platform (Academic):** Implements the 3-way entanglement (Alice-Bob-Eve or ABE) exchange system defined in Chapter 2 of Philip B. Alipour's Ph.D. dissertation: <a href="https://hdl.handle.net/1828/23705" target="_blank">hdl.handle.net/1828/23705</a>, where **E**ve's decoding matrix successfully extracts hidden **B**ell information to double transition probability limits ($P \ge 1/3 \rightarrow P \ge 2/3$).
-> * **Hardware Core Identity (Commercial):** Represents the proprietary next-gen quantum computers designed and trademarked by Philip **B**aback **A**lipour (**B.A.**). 
-> * The above-mentioned inherits **QuBABE™ Systems** as **Qu**antum **B**aback **A**lipour's **B**ell-**E**ve Systems proprietary trademark ownership as defined under Section 6 of <a href="https://ised-isde.canada.ca/site/canadian-intellectual-property-office/en/trademarks" target="_blank"> Canadian Intellectual Property Office (CIPO) </a>, and Classes 9 (Goods) and 42 (Services) of <a href="https://ised-isde.canada.ca/site/canadian-intellectual-property-office/en/trademarks/goods-and-services-manual-class-headings" target="_blank">Trademarks Act and Trademarks Regulations</a>.
-> 🛰 **[EXPLORE THE HARDWARE INTERFACE →]** *(This link will redirect to the standalone hardware platform page as live telemetry streams expand)*
+
+<details>
+<summary><b>2xQuBABE™ operates as a unified dual-definition quantum framework:</b></summary>
+<blockquote>
+<ul>
+  <li><b>Physical Engine Platform (Academic):</b> Implements the 3-way entanglement (Alice-Bob-Eve or ABE) exchange system defined in Chapter 2 of Philip B. Alipour's Ph.D. dissertation: <a href="https://handle.net" target="_blank">hdl.handle.net/1828/23705</a>, where <b>Eve's</b> decoding matrix successfully extracts hidden <b>Bell</b> information to double transition probability limits ($P \geq 1/3 \rightarrow P \geq 2/3$).</li>
+  <br>
+  <li><b>Hardware Core Identity (Commercial):</b> Represents the proprietary next-gen quantum computers designed and trademarked by Philip <b>B</b>aback <b>A</b>lipour (<b>B.A.</b>). The above-mentioned inherits <b>QuBABE™ Systems</b> as <b>Quantum Baback Alipour's Bell-Eve Systems</b> proprietary trademark ownership as defined under Section 6 of <a href="https://ic.gc.ca" target="_blank">Canadian Intellectual Property Office (CIPO)</a>, and Classes 9 (Goods) and 42 (Services) of <a href="https://justice.gc.ca" target="_blank">Trademarks Act and Trademarks Regulations</a>. 🌟 <b><i><a href="#" target="_blank">[EXPLORE THE HARDWARE INTERFACE ->]</a></i></b> <i>(This link will redirect to the standalone hardware platform page as live telemetry streams expand)</i></li>
+</ul>
+</blockquote>
 </details>
 
 **Application and Dataset Layer Nomenclature and IP Notice**
-> The software widgets and their datasets provided in this dashboard as **QFLCD** components **are** intended for academic, industrial, societal, and research purposes. These QFLCD components are the practical implementation of research defended and archived at the University of Victoria: <a href="https://hdl.handle.net/1828/23705" target="_blank">hdl.handle.net/1828/23705</a>. Please cite the original dissertation and the associated Elsevier papers (**MethodsX**, **Software Impacts**, **Data in Brief**,**Societal Impacts**, etc.) when utilizing the **QDF** logic or datasets in your own work.
-> * The above-mentioned inherits **QFLCD™ Applications** as **Quantum Field Lens Coding Dashboard** computers proprietary trademark ownership as defined under Section 6 of <a href="https://ised-isde.canada.ca/site/canadian-intellectual-property-office/en/trademarks" target="_blank"> Canadian Intellectual Property Office (CIPO) </a>, and Classes 9 (Goods) and 42 (Services) of <a href="https://ised-isde.canada.ca/site/canadian-intellectual-property-office/en/trademarks/goods-and-services-manual-class-headings" target="_blank">Trademarks Act and Trademarks Regulations</a>.
+
+<details>
+<summary><b>Click to expand section content</b></summary>
+<blockquote>
+The software widgets and their datasets provided in this dashboard as <b>QFLCD components</b> are intended for academic, industrial, societal, and research purposes. These QFLCD components are the practical implementation of research defended and archived at the University of Victoria: <a href="https://handle.net" target="_blank">hdl.handle.net/1828/23705</a>. Please cite the original dissertation and the associated Elsevier papers (<b>MethodsX, Software Impacts, Data in Brief, Societal Impacts</b>, etc.) when utilizing the QDF logic or datasets in your own work.
+<br><br>
+<ul>
+  <li>The above-mentioned inherits <b>QFLCD™ Applications</b> as <b>Quantum Field Lens Coding Dashboard</b> computers proprietary trademark ownership as defined under Section 6 of <a href="https://ic.gc.ca" target="_blank">Canadian Intellectual Property Office (CIPO)</a>, and Classes 9 (Goods) and 42 (Services) of <a href="https://justice.gc.ca" target="_blank">Trademarks Act and Trademarks Regulations</a>.</li>
+</ul>
+</blockquote>
+</details>
 
 
 <div style="text-align: left !important; display: block; width: 100%; margin-top: 50px;">
