@@ -1385,45 +1385,54 @@ body:not(.light-mode) #main_content span[style*="color: #ff7b72"] {
 
 
 
+
   /* ==========================================================================
-     GLOBAL PRINT TIGHTNESS OVERRIDE
-     Compresses excessive margins, padding, and huge line-height vertical gaps.
+     ULTIMATE VERTICAL GAP ELIMINATION (SCREEN & PRINT)
+     Forces text containers to snap tightly together and stops vertical stretching.
      ========================================================================== */
+  
+  /* 1. Targets the parent columns/containers next to your photo */
+  header,
+  div[class*="profile"],
+  div[class*="author"],
+  .profile-section,
+  .markdown-body {
+    height: auto !important;          /* Destroys any rigid vertical height constraints */
+    min-height: 0 !important;
+    display: block !important;        /* Breaks flexible grid stretching models */
+    gap: 0 !important;                /* Eliminates layout gaps entirely */
+  }
+
+  /* 2. Forces your name, degrees, and subtitle blocks to sit perfectly flush */
+  h1, h2, h3, h4, h5, h6, p, span {
+    display: block !important;
+    height: auto !important;
+    margin-top: 2px !important;       /* Minimizes spacing above text */
+    margin-bottom: 4px !important;    /* Minimizes spacing below text */
+    padding: 0 !important;
+    line-height: 1.2 !important;      /* Snaps wrapped lines tight together */
+    text-align: left !important;
+  }
+
+  /* 3. Re-injects these exact same rules during Print Mode to guarantee execution */
   @media print {
-    /* 1. Reset all elements to remove empty vertical space */
-    *, html, body, main, div, p, li, h1, h2, h3, h4, h5, h6 {
-      margin: 0 !important;
+    *, html, body, main, header, div, p, li, h1, h2, h3, span {
+      height: auto !important;
+      min-height: 0 !important;
+      margin: 0 0 4px 0 !important;
       padding: 0 !important;
-      line-height: 1.2 !important; /* Compresses large line heights tightly */
-      width: 100% !important;
-      max-width: 100% !important;
+      line-height: 1.2 !important;
       display: block !important;
     }
-
-    /* 2. Add highly-controlled, uniform spacing between major content sections only */
-    p, li {
-      margin-bottom: 6px !important; /* Tiny, clean spacing below text blocks */
-    }
     
-    h1, h2, h3, h4 {
-      margin-top: 12px !important;    /* Tight gap before a brand new section header */
-      margin-bottom: 6px !important;  /* Tight gap below headers */
-      font-weight: bold !important;
-    }
-
-    /* 3. Keep list items indented slightly without throwing off alignment */
+    /* Keeps bullet points formatted cleanly while tight */
     li {
+      display: list-item !important;
       margin-left: 15px !important;
-      display: list-item !important; /* Restores clean bullet behavior compressed tightly */
-    }
-
-    /* 4. Keeps structural containers like json matrices tight and readable */
-    pre, code, blockquote {
-      margin: 8px 0 !important;
-      padding: 8px !important;
-      line-height: 1.1 !important;
     }
   }
+
+
 
 
 
