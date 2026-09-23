@@ -1443,7 +1443,8 @@ body:not(.light-mode) #main_content span[style*="color: #ff7b72"] {
 
 
   /* ==========================================================================
-     HYPER-SPECIFIC TREE OVERRIDE TO ELIMINATE PRINT GAPS
+     ULTIMATE PRINT MODE VERTICAL LAYOUT COMPRESSION
+     Forces all global flex grids to collapse tightly into clean, compact blocks.
      ========================================================================== */
   @media print {
     #portfolio_main_title {
@@ -1452,57 +1453,77 @@ body:not(.light-mode) #main_content span[style*="color: #ff7b72"] {
       margin-bottom: 2px !important;
     }
 
-    /* 1. Reset the parent directory container card completely */
-    tive-card.directory-tree-container,
-    .directory-tree-container {
-      height: auto !important;
-      min-height: 0 !important;
-      display: block !important;
-      padding: 10px !important;
-      page-break-inside: avoid !important; /* Prevents splitting across pages */
-    }
-
-    /* 2. Target the exact root list container path */
-    tive-card.directory-tree-container ul.tree-root,
-    .directory-tree-container .tree-root {
-      margin: 0 !important;
-      padding: 0 0 0 15px !important;
-      display: block !important;
-      height: auto !important;
-    }
-
-    /* 3. HYPER-SPECIFIC MATCH: Forces every single tree line to collapse vertically */
-    tive-card.directory-tree-container ul.tree-root li.tree-item,
-    tive-card.directory-tree-container ul.tree-root li.tree-item *,
-    .directory-tree-container .tree-root .tree-item,
-    li.tree-item {
-      /* Overrides any earlier fixed heights or padding blocks completely */
+    /* 1. FORCE THE WHOLE DOM TREE TO FLATTEN AND STOP VERTICAL STRETCHING */
+    *, html, body, main, section, article, header, footer, 
+    div, tive-card, .markdown-body, form {
       height: auto !important;
       min-height: 0 !important;
       max-height: none !important;
       
-      /* Crushes the empty vertical spacing completely */
+      /* Overrides the flexbox rules causing the gaps */
+      display: block !important; 
+      flex-direction: initial !important;
+      justify-content: flex-start !important;
+      align-items: flex-start !important;
+      align-content: flex-start !important;
+      gap: 0 !important;
+      
+      /* Strips out excessive default padding and margin heights */
       margin-top: 0 !important;
-      margin-bottom: 2px !important; 
+      margin-bottom: 4px !important; /* Tiny, clean gap below blocks */
       padding-top: 0 !important;
       padding-bottom: 0 !important;
-      
-      /* Normalizes flex layout models stretching rows across pages */
+    }
+
+    /* 2. RE-ESTABLISH ESSENTIAL HORIZONTAL FLEX FOR COMPACT INNER ROW ELEMENTS */
+    tive-card.directory-tree-container ul.tree-root li.tree-item,
+    .tree-item,
+    div[class*="row"],
+    .flex-row-items {
       display: flex !important;
       flex-direction: row !important;
       align-items: center !important;
       justify-content: flex-start !important;
-      align-content: flex-start !important;
-      gap: 4px !important; /* Tight spacing between icons and file names */
-      
-      line-height: 1.15 !important;
+      gap: 6px !important; /* Small tight gap between folder icons and text */
+      margin-bottom: 2px !important;
+      height: auto !important;
     }
 
-    /* 4. Strict safety rule: Hidden layout guards */
+    /* 3. ENSURE LISTS AND TREES STACK PERFECTLY TIGHT */
+    ul, ol, .tree-root {
+      display: block !important;
+      margin: 0 0 4px 0 !important;
+      padding: 0 0 0 16px !important; /* Left alignment indentation only */
+      height: auto !important;
+    }
+
+    li, p, span, pre, code {
+      display: block !important;
+      line-height: 1.2 !important; /* Snaps text lines completely close together */
+      margin: 0 0 2px 0 !important;
+      padding: 0 !important;
+      height: auto !important;
+    }
+
+    /* Keeps structural list bullets visible while tight */
+    ul > li, ol > li {
+      display: list-item !important;
+    }
+
+    /* 4. AVOID GRAPHICAL BLOCKS OR CARDS BREAKING MID-PAGE */
+    tive-card, .directory-tree-container, table, pre {
+      page-break-inside: avoid !important;
+      border: 1px solid #dddddd !important; /* Subtle box bounds for clean print records */
+      padding: 8px !important;
+    }
+
+    /* 5. Clean safety guard to hide printing artifacts */
     style, script, head {
       display: none !important;
     }
   }
+
+
 
 
 
