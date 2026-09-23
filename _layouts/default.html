@@ -538,60 +538,6 @@ details code {
 }
 
 
-  /* ==========================================================================
-     GLOBAL PRINT MODE LAYOUT REPAIR
-     Triggers exclusively during printing to prevent narrow/squeezed text columns.
-     ========================================================================== */
-  @media print {
-    /* 1. Force the page container to span across the entire available paper width */
-    html, 
-    body, 
-    main, 
-    #content, 
-    .wrapper, 
-    .container, 
-    .markdown-body {
-      width: 100% !important;
-      max-width: 100% !important;
-      min-width: 100% !important;
-      margin: 0 !important;
-      padding: 0 !important;
-      float: none !important;
-      display: block !important;
-    }
-
-    /* 2. Fix the split layout profile section (Avatar + Header block alignment) */
-    .profile-section,
-    header,
-    div[class*="author"],
-    div[class*="profile"] {
-      display: flex !important;
-      flex-direction: row !important; /* Forces image and name side-by-side */
-      align-items: center !important;
-      justify-content: flex-start !important;
-      width: 100% !important;
-      margin-bottom: 20px !important;
-      page-break-inside: avoid !important; /* Prevents splitting name across pages */
-    }
-
-    /* 3. Ensure text paragraphs use comfortable line breaks across the broad page area */
-    p, li, h1, h2, h3, h4, h5, h6 {
-      width: 100% !important;
-      max-width: 100% !important;
-      text-align: left !important; /* Prevents awkward centering spacing */
-    }
-
-    /* 4. Strip out unnecessary web components that clutter paper prints */
-    nav, 
-    footer, 
-    .sidebar, 
-    .theme-toggle-btn, 
-    button {
-      display: none !important;
-    }
-  }
-
-
   
 </style>
 </head>

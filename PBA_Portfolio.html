@@ -1384,7 +1384,55 @@ body:not(.light-mode) #main_content span[style*="color: #ff7b72"] {
 }
 
 
-  </style>
+  /* ==========================================================================
+     LOCAL PORTFOLIO SUBPAGE PRINT RESIZE PATCH
+     Overrides flex/grid bottlenecks inside this specific file when printing.
+     ========================================================================== */
+  @media print {
+    /* 1. Forces the squeezed center columns to stretch to the paper margins */
+    body, 
+    main, 
+    article, 
+    .markdown-body,
+    div {
+      width: 100% !important;
+      max-width: 100% !important;
+      min-width: 100% !important;
+      padding: 0 !important;
+      margin: 0 auto !important;
+      float: none !important;
+      display: block !important;
+    }
+
+    /* 2. Fixes the top header section to display your photo and name side-by-side smoothly */
+    h1, h2, h3, h4, .profile-title {
+      display: block !important;
+      width: 100% !important;
+      clear: both !important;
+      text-align: left !important;
+    }
+
+    /* 3. Forces json stacks and design grid blocks to use the full horizontal space */
+    pre, code, ul, ol, li, blockquote {
+      width: 100% !important;
+      max-width: 100% !important;
+      display: block !important;
+      word-wrap: break-word !important;
+      white-space: pre-wrap !important;
+    }
+
+    /* 4. Fixes multi-level bullet points from being choked into a tight line */
+    li {
+      margin-left: 20px !important;
+      text-align: left !important;
+    }
+  }
+
+
+
+
+
+</style>  <!-- END OF STYLE -->
 
 
 <!-- Tell MathJax to recognize single dollar signs -->
