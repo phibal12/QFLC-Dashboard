@@ -112,74 +112,82 @@ body.standalone-page #main_content td {
   }
 
 
+
+  
+ 
   /* ==========================================================================
-     1. GLOBAL BLOCKQUOTE STYLING (LIGHT MODE BY DEFAULT)
+     1. LIGHT MODE SPECIFIC ADJUSTMENTS
      ========================================================================== */
+  
+  /* Restores and forces the solid dark-gray background panel you like */
   blockquote {
-    background-color: transparent !important;   /* Hides the block container background */
-    border: 1px solid #000000 !important;       /* Outlined black rectangle */
-    border-left: 4px solid #3b82f6 !important;   /* Clean blue accent bar */
-    border-radius: 8px !important;              /* Rounded corners */
+    background-color: #1f2937 !important; /* Keep preferred dark container */
+    border: none !important;              /* Removes the harsh black outline box */
+    border-left: 4px solid #3b82f6 !important; /* Retains clean blue accent bar */
+    border-radius: 8px !important;        /* Smooth rounded corners */
     padding: 12px 16px !important;
   }
 
-  /* FIX: Deep-targets ALL text elements anywhere inside a blockquote */
-  blockquote,
-  blockquote p,
-  blockquote span,
+  /* Targets nested bulleted elements to force full light text readability */
   blockquote ul,
   blockquote ol,
   blockquote li,
-  blockquote strong,
-  blockquote b {
-    background-color: transparent !important;   /* Strips away accidental gray background strips */
-    color: #000000 !important;                  /* Forces high-contrast black text */
+  blockquote p {
+    color: #e5e7eb !important; /* Forces unbolded bullet text to show as crisp off-white */
   }
 
-  /* Ensures hyperlinks inside light mode blocks use standard accessible blue */
-  blockquote a,
+  /* Keeps bold keyword indicators looking crisp and pure white inside the panel */
+  blockquote strong, 
+  blockquote b,
+  blockquote code,
+  blockquote kbd {
+    color: #ffffff !important; 
+    background-color: rgba(255, 255, 255, 0.1) !important; /* Soft backdrop for key highlights */
+  }
+
+  /* Ensures hyperlinks inside the panels retain comfortable light contrast */
+  blockquote a, 
   blockquote a * {
-    color: #0066cc !important;
+    color: #60a5fa !important;
     text-decoration: underline !important;
-    background-color: transparent !important;
   }
 
 
   /* ==========================================================================
-     2. DARK MODE STYLING 
+     2. DARK MODE STYLING (MATCHES PERFECTLY)
      ========================================================================== */
   @media (prefers-color-scheme: dark) {
     blockquote {
-      background-color: #1f2937 !important;     /* Restores your preferred dark panel container */
-      border: none !important;                  /* Removes the light mode black outline */
-      border-left: 4px solid #3b82f6 !important; /* Retains blue accent bar */
-      border-radius: 8px !important;            /* Curves dark mode corners */
+      background-color: #1f2937 !important;
+      border: none !important;
+      border-left: 4px solid #3b82f6 !important;
+      border-radius: 8px !important;
     }
 
-    /* Deep-targets ALL text elements inside dark mode blockquotes */
-    blockquote,
-    blockquote p,
-    blockquote span,
     blockquote ul,
     blockquote ol,
-    blockquote li {
-      background-color: transparent !important; /* Erases any light mode artifacts */
-      color: #e5e7eb !important;                /* Soft light grey text */
+    blockquote li,
+    blockquote p {
+      color: #e5e7eb !important;
     }
 
-    /* Keeps bold section titles pure white */
-    blockquote strong,
-    blockquote b {
+    blockquote strong, 
+    blockquote b,
+    blockquote code,
+    blockquote kbd {
       color: #ffffff !important;
     }
 
-    /* Sets highly legible link contrast for dark mode */
-    blockquote a,
-    blockquote a * {
+    blockquote a {
       color: #60a5fa !important;
-      background-color: transparent !important;
     }
   }
+
+
+
+
+
+
 
 
 
