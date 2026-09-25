@@ -20,8 +20,6 @@
 ---
 
 <div align="center">
-  <h1 style="font-size: 42px; line-height: 1.1; margin: 0;">  2xQuBABE™ via QFLC Dashboard: Quantum <i>Bell-ABE</i> Field Lens Coding </h1>
-  <!-- Use the image below by right-clicking it to 'Copy Image Address' and pasting it below -->
    <a href="https://github.com/phibal12/QFLC-Dashboard" target="_blank" rel="noopener noreferrer" style="display: block; text-decoration: none;">
   <img src="./assets/ABE_QDFImage_Banner.png" alt="QFLC Banner: Quantum Three-Way Entanglement Banner" height="100%" width="100%" style="border-radius: 10px;" title="Dual-Field Lensing: L⁺ (Convex/Focus) and L⁻ (Concave/Defocus) operators revealing hidden ABE Bell states. By including the third particle as an ancilla system, you’re visually representing the mechanism where Eve interacts with the transit state. In compatible quantum model, the composite system is represented as a tripartite state: Ψ_ABE = Σ_(i,j) α_(i,j) |i⟩_A ⊗ |j⟩_B ⊗ |E_(i,j)⟩_E" ></a>
 
@@ -72,39 +70,6 @@ Math Mode:  <a href="https://www.mathjax.org" target="_blank">
 <details><summary>⚛️⚙️ <span>⚡<a href="README_Technical.html">Project Setup & System Requirements</a></span></summary>The QFLC Dashboard executes primarily client-side via WebGL/HTML5. However, specific modules (like the **QFLCH Synthesis Engine**) may require external connectivity for hybrid quantum-classical operations. Please refer to the relevant notes on project setup and system requirements. </details>
 
 
-<!-- ========================================================= -->
-<!-- 2. WIDGET BUTTON ATTACHMENTS FOR YOUR TEXTS                -->
-<!-- ========================================================= -->
-
-<!-- Section 1: About the Author 
-<div class="qflc-audio-wrapper">
-    <div class="qflc-controls">
-        <button class="qflc-btn qflc-play-btn" data-audio="audio/about-me.mp3">
-            <span>🔊</span> <span class="btn-text">Listen Section</span>
-        </button>
-        <button class="qflc-btn qflc-speed-btn">1.0x (Author-based AI Gnenerated Voice)</button>
-    </div>
-    <div class="qflc-progress-container">
-        <div class="qflc-progress-bar"></div>
-    </div>
-</div> -->
-
-<!-- Section 2: Project Description 
-<div class="qflc-audio-wrapper">
-    <div class="qflc-controls">
-        <button class="qflc-btn qflc-play-btn" data-audio="audio/project-desc.mp3">
-            <span>🔊</span> <span class="btn-text">Listen Section</span>
-        </button>
-        <button class="qflc-btn qflc-speed-btn">1.0x (Author-based AI Gnenerated Voice)</button>
-    </div>
-    <div class="qflc-progress-container">
-        <div class="qflc-progress-bar"></div>
-    </div>
-</div> -->
-
-<!-- ========================================================= -->
-<!-- 3. LIGHTWEIGHT AUDIO ENGINE LOOPS WITH SPEED MANAGEMENT    -->
-<!-- ========================================================= -->
 
 
 ---
@@ -158,7 +123,7 @@ It provides a robust, stochastic modeling framework that maps massive, fluctuati
 | :--- | :--- | :--- |
 | Fits statistical approximations to complex simulation design spaces. | resolves them into clean, predictable classical datasets. | with accelerated, high-probability surrogate approximations. |
 | **Find Meaning in Hourly Smart Meter Data**<br><br>Analyzing patterns across single vs. multiple multi-variable configurations. | **Multi-Scale Tri-Core Parsing:** Ingests large-scale data matrices and extracts localized signatures (like decoding hidden parameters from noise). | Demonstrates that the code can scale from a single building's micro-meter reading up to macro-scale urban distribution grids. |
-| **Probabilistic & Stochastic Modelling**<br><br>Accounting for highly volatile environmental fluctuations (weather, occupancy). | **Irreducible Fraction Sampling ($\nu = 8/9$):** The framework uses a calibrated resonance matrix to force highly volatile, random arrays into stable convergence paths. | Proves you have a functional mathematical framework capable of handling chaotic, multi-variable environmental fluctuations more efficiently than mainstream models. |
+| **Probabilistic & Stochastic Modelling**<br><br>Accounting for highly volatile environmental fluctuations (weather, occupancy). | **Irreducible Fraction Sampling ($\nu = 8/9$):** The framework uses a calibrated resonance matrix to force highly volatile, random arrays into stable convergence paths. | Proves a functional mathematical framework capable of handling chaotic, multi-variable environmental fluctuations more efficiently than mainstream models. |
 | **Industrial + Postdoc Research: Online Platform Coordination**<br><br>Combining these sub-projects into an interactive web-based platform. | **WebGL/HTML5/PyScript UI Stack:** QFLC dashboard runs client-side simulation code seamlessly in any web browser layout. | Serves as direct proof of software engineering coordination and data visualization in modern areas of NetZero and SDG areas. |
 
 </details>
@@ -192,7 +157,7 @@ This collection serves as a unified portfolio, translating the theoretical frame
 *Explore the widgets below to interact with the QF-LCS (Simulator) engine:*
 
 1. **The QDF Engine:** Adjust system parameters to see how the Double-Field approach enhances prediction values during the decoding step.
-2. **Phase Transition Tracker:** Monitor how your $N$ qubits reach critical thresholds.
+2. **Phase Transition Tracker:** Monitor how $N$ qubits reach critical thresholds.
 3. **Comparative Benchmarking:** Toggle between QF-LCA and standard QFT outputs to visualize the "Lens Coding" advantage.
 
 ---
@@ -580,7 +545,7 @@ stability window ($|\kappa^2| ρ \leq 2$).</li>
 
 <br>
 <p><b>Method 1: Direct Offline Launch</b><br>
-To run QF-LC widget assets offline, download the HTML widget(s) of your choice along with their dependent files. Simply double-click the file to run it in your browser (e.g., Edge, Chrome).</p> 
+To run QF-LC widget assets offline, download the HTML widget(s) of  choice along with their dependent files. Simply double-click the file to run it in your browser (e.g., Edge, Chrome).</p> 
 
 <hr>
 
@@ -653,7 +618,7 @@ This dashboard is the practical implementation of research published at the **Un
 
 **Legal Framework and Trademark Notice (Expand: Click ▶)** 
 
-<details>
+<details markdown="1">
 <summary><b>© 2026 Dr. Philip B. Alipour. All Rights Reserved.</b></summary>
 <blockquote>
 This legal framework formulates the QF-LCA for <i>strong and robust real-time system state predictions</i>. <i>Next-generation quantum computers</i> as <b>QuBABE™</b> and <b>2xQuBABE™</b> computing architectures—encompassing <b>2xQuBABE™ Computer</b>, <b>2xQuBABE™ Computing</b>, <b>2xQuBABE™ Systems</b>, and <b>Quantum Field Lens Coding™</b>—are proprietary trademarks used in conjunction with Quantum Double-Field (QDF) processing architectures. <b>2xQuBABE™</b> represents the commercial implementation of the Quantum Field Lens Coding Algorithm (QF-LCA), successfully defended and archived under university intellectual repository standards at the University of Victoria, BC, Canada.
@@ -662,7 +627,7 @@ This legal framework formulates the QF-LCA for <i>strong and robust real-time sy
 
 **System Architecture Nomenclature and IP Notice**
 
-<details>
+<details markdown="1">
 <summary><b>2xQuBABE™ operates as a unified dual-definition quantum framework:</b></summary>
 <blockquote>
 <ul>
@@ -675,7 +640,7 @@ This legal framework formulates the QF-LCA for <i>strong and robust real-time sy
 
 **Application and Dataset Layer Nomenclature and IP Notice**
 
-<details>
+<details markdown="1">
 <summary><b>Click to expand section content</b></summary>
 <blockquote>
 The software widgets and their datasets provided in this dashboard as <b>QFLCD components</b> are intended for academic, industrial, societal, and research purposes. These QFLCD components are the practical implementation of research defended and archived at the University of Victoria: <a href="https://handle.net" target="_blank">hdl.handle.net/1828/23705</a>. Please cite the original dissertation and the associated Elsevier papers (<b>MethodsX, Software Impacts, Data in Brief, Societal Impacts</b>, etc.) when utilizing the QDF logic or datasets in your own work.
