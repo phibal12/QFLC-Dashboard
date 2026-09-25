@@ -154,12 +154,12 @@ It provides a robust, stochastic modeling framework that maps massive, fluctuati
 <details  markdown="1">
 <summary><b>Click to expand Global SDG Project Targets & Engine Demonstration Table</b></summary>
 
-| External Project SDG Target | What Your 2xQuBABE™ Engine Demonstrates | Portfolio Alignment & Pitch |
+| External Project SDG Target | What 2xQuBABE™ Engine Demonstrates | Portfolio Alignment & Pitch |
 | :--- | :--- | :--- |
 | Fits statistical approximations to complex simulation design spaces. | resolves them into clean, predictable classical datasets. | with accelerated, high-probability surrogate approximations. |
-| **Find Meaning in Hourly Smart Meter Data**<br><br>Analyzing patterns across single vs. multiple multi-variable configurations. | **Multi-Scale Tri-Core Parsing:** Ingests large-scale data matrices and extracts localized signatures (like decoding hidden parameters from noise). | Demonstrates that your code can scale from a single building's micro-meter reading up to macro-scale urban distribution grids. |
-| **Probabilistic & Stochastic Modelling**<br><br>Accounting for highly volatile environmental fluctuations (weather, occupancy). | **Irreducible Fraction Sampling ($\nu = 8/9$):** Your framework uses a calibrated resonance matrix to force highly volatile, random arrays into stable convergence paths. | Proves you have a functional mathematical framework capable of handling chaotic, multi-variable environmental fluctuations more efficiently than mainstream models. |
-| **Postdoc Research: Online Platform Coordination**<br><br>Combining these sub-projects into an interactive web-based platform. | **WebGL/HTML5/PyScript UI Stack:** Your dashboard runs client-side simulation code seamlessly in any web browser layout. | Serves as direct proof of your software engineering coordination and data visualization mastery. |
+| **Find Meaning in Hourly Smart Meter Data**<br><br>Analyzing patterns across single vs. multiple multi-variable configurations. | **Multi-Scale Tri-Core Parsing:** Ingests large-scale data matrices and extracts localized signatures (like decoding hidden parameters from noise). | Demonstrates that the code can scale from a single building's micro-meter reading up to macro-scale urban distribution grids. |
+| **Probabilistic & Stochastic Modelling**<br><br>Accounting for highly volatile environmental fluctuations (weather, occupancy). | **Irreducible Fraction Sampling ($\nu = 8/9$):** The framework uses a calibrated resonance matrix to force highly volatile, random arrays into stable convergence paths. | Proves you have a functional mathematical framework capable of handling chaotic, multi-variable environmental fluctuations more efficiently than mainstream models. |
+| **Industrial + Postdoc Research: Online Platform Coordination**<br><br>Combining these sub-projects into an interactive web-based platform. | **WebGL/HTML5/PyScript UI Stack:** QFLC dashboard runs client-side simulation code seamlessly in any web browser layout. | Serves as direct proof of software engineering coordination and data visualization in modern areas of NetZero and SDG areas. |
 
 </details>
 
