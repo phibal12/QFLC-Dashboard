@@ -12,7 +12,7 @@
 
 <div align="center">
 <div>
-  <h1>🖥️📊 2xQuBABE™ via QFLC Dashboard <span class="live-dot" style="color: red;"> 🔵 Live </span></h1>
+  <h1>🖥️📊 QFLC Dashboard <span class="live-dot" style="color: red;"> 🔵 Live </span></h1>
   <p style="font-style: italic !important; text-align: center !important;" ><i>Real-time Quantum State Monitoring, Entanglement Visualization of Qubits and Client Data</i></p>
 </div>
 </div>
@@ -28,7 +28,7 @@
  <p style="font-style: italic !important;"><i>Banner description: The $QDF$ Dual-Lens architecture ($L^+$ focus / $L^-$ defocus) applied to $ABE$ (Alice--Bob--Eve) tripartite state discrimination. Eve's ancilla qubit can decode and reveal the hidden Bell state information from this three-way entanglemet (quantum information) network.</i></p>
 
   
-  <h1>🖥️📊 2xQuBABE™ via QFLC Dashboard <span class="live-dot" style="color: red;"> 🔵 Live </span></h1>
+  <h1>🖥️📊 QFLC Dashboard <span class="live-dot" style="color: red;"> 🔵 Live </span></h1>
   <p style="font-style: italic !important;"><i>Real-time Quantum State Monitoring, Entanglement Visualization of Qubits and Client Data</i></p>
 </div>
 
@@ -151,7 +151,7 @@ By evaluating multi-variable systems under a peak subspace resonance condition o
 The 2xQuBABE predictive engine via QF-LCA and QDF model can be directly adapted to accelerate the fitting of surrogate models for volatile urban energy grids. 
 It provides a robust, stochastic modeling framework that maps massive, fluctuating climate and occupancy data patterns into deterministic, high-probability convergence profiles $P ≥ 2/3$. This is far more efficiently than standard black-box machine learning methods. 
 
-<details>
+<details  markdown="1">
 <summary><b>Click to expand Global SDG Project Targets & Engine Demonstration Table</b></summary>
 
 | External Project SDG Target | What Your 2xQuBABE™ Engine Demonstrates | Portfolio Alignment & Pitch |
@@ -241,7 +241,6 @@ Based on the Post-Ph.D. Defence Seminar and the accompanying transcript, this co
 ---
 **Current Status:** Generalizing for academic R&D, industrial and societal applications. Two new publications regarding high-fidelity state-classification are currently in preparation, and another under peer-review by Societal Impacts journal.
 
-[GitHub Repository](https://github.com) | [Contact Developer](mailto:phibal12@uvic.ca)
 
 ---
 
