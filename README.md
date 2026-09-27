@@ -75,14 +75,17 @@ Math Mode:  <a href="https://www.mathjax.org" target="_blank">
 ---
 ### Predictive State Simulation for <i>N</i>-Qubit Machines
 
-Welcome to the interactive portal for **Quantum Field Lens Coding (QF-LC)**. This dashboard demonstrates the implementation of the **Quantum Double-Field (QDF)** model, a novel framework for predicting state transitions (ST) and phase transitions (PT) in quantum and classical systems.
-The dashboard provides a robust, granular look into the mathematical engine of the QF-LC system. 
-It allows users to manipulate the baseline metrics of the complex/scalar field and observe the optimized hardware routing in real-time. 
-It acts as a direct visualizer for the ST probabilities and error rates discussed in the Ph.D. dissertation defence seminar's "Energy Paths" section.
+Welcome to the interactive portal for **Quantum Field Lens Coding (QF-LC)**. This dashboard demonstrates the implementation of the **Quantum Double-Field (QDF)** model, a novel framework for predicting state transitions (STs) and phase transitions (PTs) in quantum, classical and hybrid quantum-classical systems.
+This dashboard provides a robust, granular look into the mathematical engine of the QF-LC system. 
+It allows users to control the baseline metrics of the complex/scalar field and observe the optimized hardware routing in real-time. 
+It acts as a direct visualizer for the ST probabilities and error rates discussed in the Ph.D. dissertation "Energy Paths" rerouted in any system on any scale and optimazition chapters <a href="https://hdl.handle.net/1828/23705" target="_blank">I--V</a>, and seminars at <a href="https://www.uvic.ca/ecs/ece/current/graduate/events/event.php?id=1360" target="_blank">https://www.uvic.ca/ecs/ece/current/graduate/events/event.php?id=1360</a>.
 
-**Quantum Field Lens Coding Algorithm (QF-LCA):** is an advanced quantum simulation and classification algorithm that utilizes QDF circuits to encode-decode, (de)focus, and analyze particle energy states. By using entanglement and QF lenses to map Ground States (GS) and Excited States (ES), the algorithm projects and predicts system events with high probability, often doubling prediction accuracy.
 
-**Key Aspects of QF-LC Mechanism:** QF-LCA uses qubit pair entanglement (specifically CNOT operators) to create QDFs that represent energy states, often applied to thermodynamic system simulations.
+<details markdown="1">
+<summary><b>Quantum Field Lens Coding Algorithm (QF-LCA)</b></summary> This is an advanced quantum simulation and classification algorithm that utilizes QDF circuits to encode-decode, (de)focus, and analyze particle energy states. By using entanglement and QF lenses to map Ground States (GS) and Excited States (ES), the algorithm projects and predicts system events with high probability, often doubling prediction accuracy.
+
+<details markdown="1">
+<summary><b>Key Aspects of QF-LC Mechanism</b></summary> QF-LCA uses qubit pair entanglement (specifically CNOT operators) to create QDFs that represent energy states, often applied to thermodynamic system simulations.
 
 **Functionality:** QF-LCA acts as a "lens" by focusing energy state distributions to distinguish between GS/ES, allowing for the classification of particles and re-routing of energy paths to meet a target state (TS). 
 
@@ -93,6 +96,7 @@ It acts as a direct visualizer for the ST probabilities and error rates discusse
 **Data Analysis:** The QF-LCS (Quantum Field Lens Coding Simulator) uses CLI/GUI tools to analyze measurement data from quantum computers to predict system events and propose efficient energy pathways, system design and performance as a target state (a desired Hamiltonian).
 
 **Context:** The method, often termed QF-LCA, has been validated using quantum hardware, for example, through methods detailed in this ScienceDirect article.This approach is highly relevant for quantum computing, providing a way to handle high-dimensional datasets and improve the reliability of quantum simulations.
+</details>
 
 ## ⚙️🚀 Core Capabilities
 This simulation environment showcases the **QF-LC Algorithm (QF-LCA)**, which provides a significant advantage in predictive fidelity compared to traditional benchmarks like the Quantum Fourier Transform (QFT).
