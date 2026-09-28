@@ -82,7 +82,9 @@ It acts as a direct visualizer for the ST probabilities and error rates discusse
 
 
 <details  markdown="block">
-<summary><b>Quantum Field Lens Coding Algorithm (QF-LCA)</b></summary> This is an advanced quantum simulation and classification algorithm that utilizes QDF circuits to encode-decode, (de)focus, and analyze particle energy states. By using entanglement and QF lenses to map Ground States (GS) and Excited States (ES), the algorithm projects and predicts system events with high probability, often doubling prediction accuracy. </details>
+<summary><b>Quantum Field Lens Coding Algorithm (QF-LCA)</b></summary> This is an advanced quantum simulation and classification algorithm that utilizes QDF circuits to encode-decode, (de)focus, and analyze particle energy states. By using entanglement and QF lenses to map Ground States (GS) and Excited States (ES), the algorithm projects and predicts system events with high probability, often doubling prediction accuracy. 
+
+</details>
 
 <details  markdown="block">
 
@@ -625,16 +627,17 @@ This dashboard is the practical implementation of research published at the **Un
 
 **Legal Framework and Trademark Notice (Expand: Click ▶)** 
 
-<details markdown="1">
+<details  markdown="block">
 <summary><b>© 2026 Dr. Philip B. Alipour. All Rights Reserved.</b></summary>
 <blockquote>
 This legal framework formulates the QF-LCA for <i>strong and robust real-time system state predictions</i>. <i>Next-generation quantum computers</i> as <b>QuBABE™</b> and <b>2xQuBABE™</b> computing architectures—encompassing <b>2xQuBABE™ Computer</b>, <b>2xQuBABE™ Computing</b>, <b>2xQuBABE™ Systems</b>, and <b>Quantum Field Lens Coding™</b>—are proprietary trademarks used in conjunction with Quantum Double-Field (QDF) processing architectures. <b>2xQuBABE™</b> represents the commercial implementation of the Quantum Field Lens Coding Algorithm (QF-LCA), successfully defended and archived under university intellectual repository standards at the University of Victoria, BC, Canada.
 </blockquote>
+
 </details>
 
 **System Architecture Nomenclature and IP Notice**
 
-<details markdown="1">
+<details  markdown="block">
 <summary><b>2xQuBABE™ operates as a unified dual-definition quantum framework:</b></summary>
 <blockquote>
 <ul>
@@ -643,11 +646,12 @@ This legal framework formulates the QF-LCA for <i>strong and robust real-time sy
   <li><b>Hardware Core Identity (Commercial):</b> Represents the proprietary next-gen quantum computers designed and trademarked by Philip <b>B</b>aback <b>A</b>lipour (<b>B.A.</b>). The above-mentioned inherits <b>QuBABE™ Systems</b> as <b>Quantum Baback Alipour's Bell-Eve Systems</b> proprietary trademark ownership as defined under Section 6 of <a href="https://ic.gc.ca" target="_blank">Canadian Intellectual Property Office (CIPO)</a>, and Classes 9 (Goods) and 42 (Services) of <a href="https://justice.gc.ca" target="_blank">Trademarks Act and Trademarks Regulations</a>. 🌟 <b><i><a href="#" target="_blank">[EXPLORE THE HARDWARE INTERFACE ->]</a></i></b> <i>(This link will redirect to the standalone hardware platform page as live telemetry streams expand)</i></li>
 </ul>
 </blockquote>
+
 </details>
 
 **Application and Dataset Layer Nomenclature and IP Notice**
 
-<details markdown="1">
+<details  markdown="block">
 <summary><b>Click to expand section content</b></summary>
 <blockquote>
 The software widgets and their datasets provided in this dashboard as <b>QFLCD components</b> are intended for academic, industrial, societal, and research purposes. These QFLCD components are the practical implementation of research defended and archived at the University of Victoria: <a href="https://hdl.handle.net/1828/23705" target="_blank">hdl.handle.net/1828/23705</a>. Please cite the original dissertation and the associated Elsevier papers (<b>MethodsX, Software Impacts, Data in Brief, Societal Impacts</b>, etc.) when utilizing the QDF logic or datasets in your own work.
@@ -656,6 +660,7 @@ The software widgets and their datasets provided in this dashboard as <b>QFLCD c
   <li>The above-mentioned inherits <b>QFLCD™ Applications</b> as <b>Quantum Field Lens Coding Dashboard</b> computers proprietary trademark ownership as defined under Section 6 of <a href="https://ic.gc.ca" target="_blank">Canadian Intellectual Property Office (CIPO)</a>, and Classes 9 (Goods) and 42 (Services) of <a href="https://justice.gc.ca" target="_blank">Trademarks Act and Trademarks Regulations</a>.</li>
 </ul>
 </blockquote>
+
 </details>
 
 
