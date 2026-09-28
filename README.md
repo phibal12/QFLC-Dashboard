@@ -88,7 +88,7 @@ It acts as a direct visualizer for the ST probabilities and error rates discusse
 
 <details  markdown="block">
 
-<summary style="font-weight: bold; cursor: pointer;">Key Aspects of QF-LC Mechanism</summary> QF-LCA uses qubit pair entanglement (specifically CNOT operators) to create QDFs that represent energy states, often applied to thermodynamic system simulations. 
+<summary style="font-weight: bold; cursor: pointer;">Key Aspects of QF-LC Mechanism: <span style="font-weight: normal; cursor: pointer;"> Functionality, Prediction, Application, Data Analysis</span></summary> QF-LCA uses qubit pair entanglement (specifically CNOT operators) to create QDFs that represent energy states, often applied to thermodynamic system simulations. 
 
 * **Functionality:** QF-LCA acts as a "lens" by focusing energy state distributions to distinguish between GS/ES, allowing for the classification of particles and re-routing of energy paths to meet a target state (TS). 
 
@@ -125,7 +125,7 @@ By evaluating multi-variable systems under a peak subspace resonance condition o
 The 2xQuBABE predictive engine via QF-LCA and QDF model can be directly adapted to accelerate the fitting of surrogate models for volatile urban energy grids. 
 It provides a robust, stochastic modeling framework that maps massive, fluctuating climate and occupancy data patterns into deterministic, high-probability convergence profiles $P ≥ 2/3$. This is far more efficiently than standard black-box machine learning methods. 
 
-<details  markdown="1">
+<details  markdown="block">
 <summary><b>Click to expand Global SDG Project Targets & Engine Demonstration Table</b></summary>
 
 | External Project SDG Target | What 2xQuBABE™ Engine Demonstrates | Portfolio Alignment & Pitch |
