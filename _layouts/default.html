@@ -180,15 +180,23 @@ body.standalone-page #main_content td {
 
 
 .toggle-btn {
-  padding: 6px 12px;
+  /* Anchoring properties */
+  position: fixed;
+  top: 20px;          /* Distance from the top viewport edge */
+  right: 20px;        /* Distance from the right viewport edge */
+  z-index: 9999;      /* Forces the button to stay on top of background content */
+
+  /* Presentation styles */
+  padding: 8px 14px;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: bold;
   color: #24292f;
   background-color: #f6f8fa;
   border: 1px solid rgba(27, 31, 36, 0.15);
   border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.2s;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Adds a shadow to separate it from background text */
+  transition: background-color 0.2s, transform 0.1s;
 }
 
 .toggle-btn:hover {
@@ -196,8 +204,9 @@ body.standalone-page #main_content td {
 }
 
 .toggle-btn:active {
-  background-color: #ebecf0;
+  transform: scale(0.98); /* Tactile click feedback */
 }
+
 
 
 
@@ -556,6 +565,10 @@ details code {
   }
 }
 
+.force-orange {
+  color: #ffa500 !important; /* Uses a standard high-visibility orange hex code */
+  font-weight: bold !important;
+}
 
   
 </style>
