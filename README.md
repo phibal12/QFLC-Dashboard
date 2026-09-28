@@ -81,10 +81,10 @@ It allows users to control the baseline metrics of the complex/scalar field and 
 It acts as a direct visualizer for the ST probabilities and error rates discussed in the Ph.D. dissertation "Energy Paths" rerouted in any system on any scale and optimazition chapters <a href="https://hdl.handle.net/1828/23705" target="_blank">I--V</a>, and seminars at <a href="https://www.uvic.ca/ecs/ece/current/graduate/events/event.php?id=1360" target="_blank">https://www.uvic.ca/ecs/ece/current/graduate/events/event.php?id=1360</a>.
 
 
-<details>
+<details  markdown="block">
 <summary><b>Quantum Field Lens Coding Algorithm (QF-LCA)</b></summary> This is an advanced quantum simulation and classification algorithm that utilizes QDF circuits to encode-decode, (de)focus, and analyze particle energy states. By using entanglement and QF lenses to map Ground States (GS) and Excited States (ES), the algorithm projects and predicts system events with high probability, often doubling prediction accuracy. </details>
 
-<details>
+<details  markdown="block">
 
 <summary><b>Key Aspects of QF-LC Mechanism</b></summary> QF-LCA uses qubit pair entanglement (specifically CNOT operators) to create QDFs that represent energy states, often applied to thermodynamic system simulations. 
 
