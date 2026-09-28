@@ -85,6 +85,7 @@ It acts as a direct visualizer for the ST probabilities and error rates discusse
 <summary><b>Quantum Field Lens Coding Algorithm (QF-LCA)</b></summary> This is an advanced quantum simulation and classification algorithm that utilizes QDF circuits to encode-decode, (de)focus, and analyze particle energy states. By using entanglement and QF lenses to map Ground States (GS) and Excited States (ES), the algorithm projects and predicts system events with high probability, often doubling prediction accuracy. </details>
 
 <details>
+
 <summary><b>Key Aspects of QF-LC Mechanism</b></summary> QF-LCA uses qubit pair entanglement (specifically CNOT operators) to create QDFs that represent energy states, often applied to thermodynamic system simulations. 
 
 * **Functionality:** QF-LCA acts as a "lens" by focusing energy state distributions to distinguish between GS/ES, allowing for the classification of particles and re-routing of energy paths to meet a target state (TS). 
@@ -95,7 +96,9 @@ It acts as a direct visualizer for the ST probabilities and error rates discusse
 
 * **Data Analysis:** The QF-LCS (Quantum Field Lens Coding Simulator) uses CLI/GUI tools to analyze measurement data from quantum computers to predict system events and propose efficient energy pathways, system design and performance as a target state (a desired Hamiltonian).
 
-* **Context:** The method, often termed QF-LCA, has been validated using quantum hardware, for example, through methods detailed in this ScienceDirect article.This approach is highly relevant for quantum computing, providing a way to handle high-dimensional datasets and improve the reliability of quantum simulations. </details>
+* **Context:** The method, often termed QF-LCA, has been validated using quantum hardware, for example, through methods detailed in this ScienceDirect article.This approach is highly relevant for quantum computing, providing a way to handle high-dimensional datasets and improve the reliability of quantum simulations. 
+
+</details>
 
 
 ## ⚙️🚀 Core Capabilities
