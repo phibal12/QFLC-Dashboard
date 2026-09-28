@@ -82,13 +82,13 @@ It acts as a direct visualizer for the ST probabilities and error rates discusse
 
 
 <details  markdown="block">
-<summary>**Quantum Field Lens Coding Algorithm (QF-LCA)**</summary> This is an advanced quantum simulation and classification algorithm that utilizes QDF circuits to encode-decode, (de)focus, and analyze particle energy states. By using entanglement and QF lenses to map Ground States (GS) and Excited States (ES), the algorithm projects and predicts system events with high probability, often doubling prediction accuracy. 
+<summary style="font-weight: bold; cursor: pointer;">Quantum Field Lens Coding Algorithm (QF-LCA)</summary> This is an advanced quantum simulation and classification algorithm that utilizes QDF circuits to encode-decode, (de)focus, and analyze particle energy states. By using entanglement and QF lenses to map Ground States (GS) and Excited States (ES), the algorithm projects and predicts system events with high probability, often doubling prediction accuracy. 
 
 </details>
 
 <details  markdown="block">
 
-<summary><b>Key Aspects of QF-LC Mechanism</b></summary> QF-LCA uses qubit pair entanglement (specifically CNOT operators) to create QDFs that represent energy states, often applied to thermodynamic system simulations. 
+<summary style="font-weight: bold; cursor: pointer;">Key Aspects of QF-LC Mechanism</summary> QF-LCA uses qubit pair entanglement (specifically CNOT operators) to create QDFs that represent energy states, often applied to thermodynamic system simulations. 
 
 * **Functionality:** QF-LCA acts as a "lens" by focusing energy state distributions to distinguish between GS/ES, allowing for the classification of particles and re-routing of energy paths to meet a target state (TS). 
 
