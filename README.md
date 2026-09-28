@@ -81,11 +81,11 @@ It allows users to control the baseline metrics of the complex/scalar field and 
 It acts as a direct visualizer for the ST probabilities and error rates discussed in the Ph.D. dissertation "Energy Paths" rerouted in any system on any scale and optimazition chapters <a href="https://hdl.handle.net/1828/23705" target="_blank">I--V</a>, and seminars at <a href="https://www.uvic.ca/ecs/ece/current/graduate/events/event.php?id=1360" target="_blank">https://www.uvic.ca/ecs/ece/current/graduate/events/event.php?id=1360</a>.
 
 
-<details markdown="0">
+<details>
 <summary><b>Quantum Field Lens Coding Algorithm (QF-LCA)</b></summary> This is an advanced quantum simulation and classification algorithm that utilizes QDF circuits to encode-decode, (de)focus, and analyze particle energy states. By using entanglement and QF lenses to map Ground States (GS) and Excited States (ES), the algorithm projects and predicts system events with high probability, often doubling prediction accuracy. </details>
 
-<details markdown="1">
-<summary><b>Key Aspects of QF-LC Mechanism</b></summary> QF-LCA uses qubit pair entanglement (specifically CNOT operators) to create QDFs that represent energy states, often applied to thermodynamic system simulations. </details>
+<details>
+<summary><b>Key Aspects of QF-LC Mechanism</b></summary> QF-LCA uses qubit pair entanglement (specifically CNOT operators) to create QDFs that represent energy states, often applied to thermodynamic system simulations. 
 
 * **Functionality:** QF-LCA acts as a "lens" by focusing energy state distributions to distinguish between GS/ES, allowing for the classification of particles and re-routing of energy paths to meet a target state (TS). 
 
@@ -93,9 +93,9 @@ It acts as a direct visualizer for the ST probabilities and error rates discusse
 
 * **Applications:** Physics/Thermodynamics: Simulating particle behavior, managing energy transitions in systems, and analyzing entanglement entropy. AI/Machine Learning: The QF-LC algorithm (QF-LCA) can be combined with quantum AI (QAI) to classify states. Hardware Synthesis: FPGA-QASM and hybrid design solutions via QF-LCA QDF circuit design and application via three-way entanglement design solution, distribution and optimization. 
 
-**Data Analysis:** The QF-LCS (Quantum Field Lens Coding Simulator) uses CLI/GUI tools to analyze measurement data from quantum computers to predict system events and propose efficient energy pathways, system design and performance as a target state (a desired Hamiltonian).
+* **Data Analysis:** The QF-LCS (Quantum Field Lens Coding Simulator) uses CLI/GUI tools to analyze measurement data from quantum computers to predict system events and propose efficient energy pathways, system design and performance as a target state (a desired Hamiltonian).
 
-**Context:** The method, often termed QF-LCA, has been validated using quantum hardware, for example, through methods detailed in this ScienceDirect article.This approach is highly relevant for quantum computing, providing a way to handle high-dimensional datasets and improve the reliability of quantum simulations.
+* **Context:** The method, often termed QF-LCA, has been validated using quantum hardware, for example, through methods detailed in this ScienceDirect article.This approach is highly relevant for quantum computing, providing a way to handle high-dimensional datasets and improve the reliability of quantum simulations. </details>
 
 
 ## ⚙️🚀 Core Capabilities
