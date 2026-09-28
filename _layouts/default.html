@@ -585,7 +585,7 @@ details code {
   Switch to Bright Mode
 </button>
 
-<!-- Put this where you want the button to appear in your template -->
+<!-- Global Toggle Button -->
 <button id="global-toggle-btn" class="toggle-btn">Expand All Content</button>
 
 <!-- Put this right before your </body> tag -->
@@ -595,19 +595,25 @@ details code {
     if (!toggleBtn) return;
 
     toggleBtn.addEventListener('click', () => {
-      const detailsElements = document.querySelectorAll('main details, article details'); // Adjust selectors to match your layout content container
+      // Selects all details blocks EXCEPT the hidden MathJax engine block
+      const detailsElements = document.querySelectorAll('details:not([style*="display:none"])');
       
-      // If at least one details block is closed, we expand all. Otherwise, we collapse all.
+      if (detailsElements.length === 0) return;
+
+      // Check if at least one visible block is currently closed
       const hasClosed = Array.from(detailsElements).some(el => !el.open);
       
+      // Synchronize all visible blocks
       detailsElements.forEach(el => {
         el.open = hasClosed;
       });
       
-      toggleBtn.textContent = hasClosed ? 'Collapse All' : 'Expand All';
+      // Update button text
+      toggleBtn.textContent = hasClosed ? 'Collapse All Content' : 'Expand All Content';
     });
   });
 </script>
+
 
 
 
