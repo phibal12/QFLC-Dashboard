@@ -179,6 +179,25 @@ body.standalone-page #main_content td {
 
 
 
+.toggle-btn {
+  padding: 6px 12px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #24292f;
+  background-color: #f6f8fa;
+  border: 1px solid rgba(27, 31, 36, 0.15);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.toggle-btn:hover {
+  background-color: #f3f4f6;
+}
+
+.toggle-btn:active {
+  background-color: #ebecf0;
+}
 
 
 
@@ -545,7 +564,7 @@ details code {
 <!-- AFTER: Automatically isolates portfolio / subpage styling -->
 <body class="{% if page.standalone or page.permalink == '/PBA Portfolio' %}standalone-page{% endif %}"> 
 
-<h1 style="font-size: 42px; line-height: 1.1; margin: 0;">  2xQuBABE™ via QFLC Dashboard: Quantum <i>Bell-ABE</i> Field Lens Coding </h1><br>
+<h1 style="font-size: 42px; line-height: 1.1; margin: 0;">  QFLC: Quantum Field Lens Coding Dashboard </h1><br>
   <div align="center" style="width: 100%;">
   <!-- 1. The anchor tag must open with > and close down below with </a> -->
   <a href="#-visual-directory" style="display: block; text-decoration: none;">
@@ -565,6 +584,33 @@ details code {
 <button id="theme-toggle" style="position: fixed; top: 80px; right: 20px; z-index: 9999; padding: 10px 15px; cursor: pointer; background: #24292f; color: white; border: 1px solid #444c56; border-radius: 6px; font-weight: bold; display: block !important; visibility: visible !important;">
   Switch to Bright Mode
 </button>
+
+<!-- Put this where you want the button to appear in your template -->
+<button id="global-toggle-btn" class="toggle-btn">Expand All Content</button>
+
+<!-- Put this right before your </body> tag -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const toggleBtn = document.getElementById('global-toggle-btn');
+    if (!toggleBtn) return;
+
+    toggleBtn.addEventListener('click', () => {
+      const detailsElements = document.querySelectorAll('main details, article details'); // Adjust selectors to match your layout content container
+      
+      // If at least one details block is closed, we expand all. Otherwise, we collapse all.
+      const hasClosed = Array.from(detailsElements).some(el => !el.open);
+      
+      detailsElements.forEach(el => {
+        el.open = hasClosed;
+      });
+      
+      toggleBtn.textContent = hasClosed ? 'Collapse All' : 'Expand All';
+    });
+  });
+</script>
+
+
+
 
 <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.time | relative_url }}">
 

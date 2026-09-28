@@ -78,7 +78,7 @@ Math Mode:  <a href="https://www.mathjax.org" target="_blank">
 Welcome to the interactive portal for **Quantum Field Lens Coding (QF-LC)**. This dashboard demonstrates the implementation of the **Quantum Double-Field (QDF)** model, a novel framework for predicting state transitions (STs) and phase transitions (PTs) in quantum, classical and hybrid quantum-classical systems.
 This dashboard provides a robust, granular look into the mathematical engine of the QF-LC system. 
 It allows users to control the baseline metrics of the complex/scalar field and observe the optimized hardware routing in real-time. 
-It acts as a direct visualizer for the ST probabilities and error rates discussed in the Ph.D. dissertation "Energy Paths" rerouted in any system on any scale and optimazition chapters <a href="https://hdl.handle.net/1828/23705" target="_blank">I--V</a>, and seminars at <a href="https://www.uvic.ca/ecs/ece/current/graduate/events/event.php?id=1360" target="_blank">https://www.uvic.ca/ecs/ece/current/graduate/events/event.php?id=1360</a>.
+It acts as a direct visualizer for the ST probabilities and error rates discussed in the Ph.D. dissertation "Energy Paths" rerouted in any system on any scale and optimization chapters <a href="https://hdl.handle.net/1828/23705" target="_blank">I--V</a>, and seminars at <a href="https://www.uvic.ca/ecs/ece/current/graduate/events/event.php?id=1360" target="_blank">https://www.uvic.ca/ecs/ece/current/graduate/events/event.php?id=1360</a>.
 
 
 <details  markdown="block">
@@ -112,7 +112,7 @@ This simulation environment showcases the **QF-LC Algorithm (QF-LCA)**, which pr
 - **Hardware Agnostic:** Designed for integration with NISQ-era devices and simulated quantum environments (Python/Qiskit based).
 
 
-# 🚀 2xQuBABE™ via QFLC Dashboard
+# 🚀 2xQuBABE™ via QFLC Dashboard: Quantum Bell<i>-ABE</i> Field Lens Coding 
 ### Real-Time Quantum State Emulation & Multi-Scale Telemetry Monitoring
 [![UN SDG 7: Affordable and Clean Energy](https://shields.io)](https://handle.net)
 [![Institutional Audit: UVic ETD Repository](https://shields.io)](https://handle.net)
@@ -120,7 +120,7 @@ This simulation environment showcases the **QF-LC Algorithm (QF-LCA)**, which pr
 
 The newly-finalized 2xQuBABE™ Macro/Microscopic Sampling Simulator — built on underlying Quantum Double-Field (QDF) framework — is designed to address **high-dimensional design-space optimization** and **surrogate modeling**. 
 
-By evaluating multi-variable systems under a peak subspace resonance condition of $\nu = 8/9$, the QF-LCA framework cancels out standard constant coefficient barriers, driving prediction and state transition (ST) probabilities to $P = 8(N-1)/9N\nu$ as $N \ge 3$ particles as $ABE$ (<i>Alice-Bob-Eve</i>) entangled particles performing the irreducible $\langle P \rangle \ge 2/3$ expected meaurment outome. 
+By evaluating multi-variable systems under a peak subspace resonance condition of $\nu = 8/9$, the QF-LCA framework cancels out standard constant coefficient barriers, driving prediction and state transition (ST) probabilities to $P = 8(N-1)/9N\nu$ as $N \ge 3$ particles as $ABE$ (<i>Alice-Bob-Eve</i>) entangled particles performing the irreducible $\langle P \rangle \ge 2/3$ expected measurement outcome. 
 
 The 2xQuBABE predictive engine via QF-LCA and QDF model can be directly adapted to accelerate the fitting of surrogate models for volatile urban energy grids. 
 It provides a robust, stochastic modeling framework that maps massive, fluctuating climate and occupancy data patterns into deterministic, high-probability convergence profiles $P ≥ 2/3$. This is far more efficiently than standard black-box machine learning methods. 
@@ -146,7 +146,7 @@ Furthermore, as demonstrated by the following interactive telemetry dashboards a
 </p>
 
 > 📝 **System Architecture Mapping:**
-> As established in Chapters I & II of Dr. Alipour's dissertation, the **Quantum Field Lens Coding (QF-LC)** ecosystem functions as a computational heat engine  calibrates to resolve high-dimensional multi-variable stochastic data spaces. Independent institutional classification engines verify that the underlying **Quantum Double-Field (QDF)** state transition (ST) logic targets **UN Sustainable Development Goal 7 (Affordable and Clean Energy) at a baseline of $\geq$ 77% confidence interval**, providing a verified, scalable optimization layer for regional **NetZero** urban infrastructure layouts.
+> As established in Chapters I & II of Dr. Alipour's dissertation, the **Quantum Field Lens Coding (QF-LC)** ecosystem functions as a computational heat engine  calibrates to resolve high-dimensional multi-variable stochastic data spaces. Independent institutional classification engines verify that the underlying **Quantum Double-Field (QDF)** state transition (ST) logic targets **UN Sustainable Development Goal 7 (Affordable and Clean Energy) at an average baseline of 77% confidence interval**, providing a verified, scalable optimization layer for regional **NetZero** urban infrastructure layouts.
 
 ## 📊 Interactive Modules: QFLC Widgets, Datasets, and Presentations
 
@@ -643,7 +643,7 @@ This legal framework formulates the QF-LCA for <i>strong and robust real-time sy
 <ul>
   <li><b>Physical Engine Platform (Academic):</b> Implements the 3-way entanglement (Alice-Bob-Eve or ABE) exchange system defined in Chapter 2 of Philip B. Alipour's Ph.D. dissertation: <a href="https://hdl.handle.net/1828/23705" target="_blank">hdl.handle.net/1828/23705</a>, where <b>Eve's</b> decoding matrix successfully extracts hidden <b>Bell</b> information to double transition probability limits ($P \geq 1/3 \rightarrow P \geq 2/3$).</li>
   <br>
-  <li><b>Hardware Core Identity (Commercial):</b> Represents the proprietary next-gen quantum computers designed and trademarked by Philip <b>B</b>aback <b>A</b>lipour (<b>B.A.</b>). The above-mentioned inherits <b>QuBABE™ Systems</b> as <b>Quantum Baback Alipour's Bell-Eve Systems</b> proprietary trademark ownership as defined under Section 6 of <a href="https://ic.gc.ca" target="_blank">Canadian Intellectual Property Office (CIPO)</a>, and Classes 9 (Goods) and 42 (Services) of <a href="https://justice.gc.ca" target="_blank">Trademarks Act and Trademarks Regulations</a>. 🌟 <b><i><a href="#" target="_blank">[EXPLORE THE HARDWARE INTERFACE ->]</a></i></b> <i>(This link will redirect to the standalone hardware platform page as live telemetry streams expand)</i></li>
+  <li><b>Hardware Core Identity (Commercial):</b> Represents the proprietary next-gen quantum computers designed and trademarked by Philip <span style="font-weight: bold; cursor: pointer;">B</span>aback <span style="font-weight: bold; cursor: pointer;">A</span>lipour (<span style="font-weight: bold; cursor: pointer;">B.A.</span>). The above-mentioned inherits <span style="font-weight: bold; cursor: pointer;">QuBABE™ Systems</span> as <span style="font-weight: bold; cursor: pointer;">Quantum Baback Alipour's Bell-Eve Systems</span> proprietary trademark ownership as defined under Section 6 of <a href="https://ic.gc.ca" target="_blank">Canadian Intellectual Property Office (CIPO)</a>, and Classes 9 (Goods) and 42 (Services) of <a href="https://justice.gc.ca" target="_blank">Trademarks Act and Trademarks Regulations</a>. 🌟 <b><i><a href="#" target="_blank">[EXPLORE THE HARDWARE INTERFACE ->]</a></i></b> <i>(This link will redirect to the standalone hardware platform page as live telemetry streams expand)</i></li>
 </ul>
 </blockquote>
 
