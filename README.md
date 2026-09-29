@@ -203,8 +203,8 @@ Based on the Post-Ph.D. Defence Seminar and the accompanying transcript, this co
 
 # 🚀 2xQuBABE™ via QFLC Dashboard: Quantum Bell<i>-ABE</i> Field Lens Coding 
 ### Real-Time Quantum State Emulation & Multi-Scale Telemetry Monitoring
-[![UN SDG 7: Affordable and Clean Energy](./assets/SDG_wheel01.png)](https://handle.net)
-[![Institutional Audit: UVic ETD Repository](https://shields.io)](https://hdl.handle.net/1828/23705)
+[![UN SDG 7: Affordable and Clean Energy via Institutional Audit: UVic ETD Repository](./assets/SDG_wheel01.png)](https://hdl.handle.net/1828/23705)
+
 
 
 The newly-finalized 2xQuBABE™ Macro/Microscopic Sampling Simulator — built on underlying Quantum Double-Field (QDF) framework — is designed to address **high-dimensional design-space optimization** and **surrogate modeling** with **strong system state prediction** and **computational performance**. 
