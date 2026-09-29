@@ -559,14 +559,15 @@ details code {
 <!-- AFTER: Automatically isolates portfolio / subpage styling -->
 <body class="{% if page.standalone or page.permalink == '/PBA Portfolio' %}standalone-page{% endif %}"> 
 
-<div style="text-align: center;">
-  <h1 style="font-size: 42px; line-height: 1.1; margin: 0;">QFLC Dashboard</h1>
+<div style="text-align: center; line-height: 1.1;">
+  <h1 style="font-size: 42px; margin: 0; padding: 0;">QFLC Dashboard</h1>
   
-  <!-- Short, centered horizontal line -->
-  <hr style="width: 100px; border: 1px solid #444c56; margin: 15px auto;" />
+  <!-- Short, tightly-spaced, centered divider line -->
+  <hr style="width: 100px; border: none; border-top: 2px solid #444c56; margin: 6px auto;" />
   
-  <h2 style="font-size: 24px; margin: 0; font-weight: normal;">Quantum Field Lens Coding Dashboard</h2>
+  <h2 style="font-size: 24px; margin: 0; padding: 0; font-weight: normal;">Quantum Field Lens Coding Dashboard</h2>
 </div>
+
 <br>
   <div align="center" style="width: 100%;">
   <!-- 1. The anchor tag must open with > and close down below with </a> -->
@@ -584,12 +585,12 @@ details code {
   </div>
   </div>
 
-<button id="theme-toggle" style="position: fixed; top: 80px; right: 20px; z-index: 9999; padding: 10px 15px; cursor: pointer; background: #24292f; color: white; border: 1px solid #444c56; border-radius: 6px; font-weight: bold; display: block !important; visibility: visible !important;">
+<button id="theme-toggle" style="position: fixed; top: 60px; right: 20px; z-index: 9999; padding: 9px 15px; cursor: pointer; background: #24292f; color: white; border: 1px solid #444c56; border-radius: 6px; font-weight: bold; display: block !important; visibility: visible !important;">
   Switch to Bright Mode
 </button>
 
 <!-- Global Toggle Button -->
-<button id="global-toggle-btn" class="toggle-btn" style="position: fixed; top: 120px; right: 20px; z-index: 9999; padding: 10px 15px; cursor: pointer; background: #24292f; color: white; border: 1px solid #444c56; border-radius: 6px; font-weight: bold; display: block !important; visibility: visible !important;">▼ | Expand All Content</button>
+<button id="global-toggle-btn" class="toggle-btn" style="position: fixed; top: 110px; right: 20px; z-index: 9999; padding: 9px 15px; cursor: pointer; background: #24292f; color: white; border: 1px solid #444c56; border-radius: 6px; font-weight: bold; display: block !important; visibility: visible !important;">▼ | Expand All Content</button>
 
 <!-- Put this right before your </body> tag -->
 <script>
