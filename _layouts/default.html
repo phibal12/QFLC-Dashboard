@@ -559,8 +559,15 @@ details code {
 <!-- AFTER: Automatically isolates portfolio / subpage styling -->
 <body class="{% if page.standalone or page.permalink == '/PBA Portfolio' %}standalone-page{% endif %}"> 
 
-<h1 style="font-size: 42px; line-height: 1.1; margin: 0;">  QFLC Dashboard </h1><br>
-<h2> Quantum Field Lens Coding Dashboard </h2><br>
+<div style="text-align: center;">
+  <h1 style="font-size: 42px; line-height: 1.1; margin: 0;">QFLC Dashboard</h1>
+  
+  <!-- Short, centered horizontal line -->
+  <hr style="width: 100px; border: 1px solid #444c56; margin: 15px auto;" />
+  
+  <h2 style="font-size: 24px; margin: 0; font-weight: normal;">Quantum Field Lens Coding Dashboard</h2>
+</div>
+<br>
   <div align="center" style="width: 100%;">
   <!-- 1. The anchor tag must open with > and close down below with </a> -->
   <a href="#-visual-directory" style="display: block; text-decoration: none;">
