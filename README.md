@@ -68,7 +68,7 @@ Math Mode:  <a href="https://www.mathjax.org" target="_blank">
   src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"> </script>
 </details>
 <details markdown="block">
-<summary style="cursor: pointer;">⚛️⚙️ <span>⚡<a href="README_Technical.html">Project Setup & System Requirements</a></span></summary>The QFLC Dashboard executes primarily client-side via WebGL/HTML5. However, specific modules (like the <b>QFLCH Synthesis Engine</b>) and systems (like the <b>2xQuBABE™</b>) may require external connectivity for hybrid quantum-classical operations. Please refer to the relevant notes on project setup and system requirements. 
+<summary style="cursor: pointer; font-weight: bold;">⚛️⚙️ <span>⚡<a href="README_Technical.html">Project Setup & System Requirements</a></span></summary>The QFLC Dashboard executes primarily client-side via WebGL/HTML5. However, specific modules (like the <b>QFLCH Synthesis Engine</b>) and systems (like the <b>2xQuBABE™</b>) may require external connectivity for hybrid quantum-classical operations. Please refer to the relevant notes on project setup and system requirements. 
 
 </details>
 
@@ -120,7 +120,7 @@ Furthermore, as demonstrated by the following interactive telemetry dashboards a
 
 <p align="center">
   <!-- Interactive Alignment Node -->
-  <img src="https://githubusercontent.com" alt="United Nations SDG Global Innovation Wheel" width="120" height="120" />
+  <img src="./assets/SDG7_wheel.png" alt="United Nations SDG Global Innovation Wheel Favored 7" width="120" height="120" />
 </p>
 
 > 📝 **System Architecture Mapping:**
@@ -203,7 +203,7 @@ Based on the Post-Ph.D. Defence Seminar and the accompanying transcript, this co
 
 # 🚀 2xQuBABE™ via QFLC Dashboard: Quantum Bell<i>-ABE</i> Field Lens Coding 
 ### Real-Time Quantum State Emulation & Multi-Scale Telemetry Monitoring
-[![UN SDG 7: Affordable and Clean Energy](https://shields.io)](https://handle.net)
+[![UN SDG 7: Affordable and Clean Energy](./assets/SDG_wheel01.png)](https://handle.net)
 [![Institutional Audit: UVic ETD Repository](https://shields.io)](https://hdl.handle.net/1828/23705)
 
 
@@ -212,7 +212,7 @@ The newly-finalized 2xQuBABE™ Macro/Microscopic Sampling Simulator — built o
 By evaluating multi-variable systems under a peak subspace resonance condition of $\nu = 8/9$, the QF-LCA framework cancels out standard constant coefficient barriers, driving prediction and state transition (ST) probabilities to $P = 8(N-1)/9N\nu$ as $N \ge 3$ particles as $ABE$ (<i>Alice-Bob-Eve</i>) entangled particles performing the irreducible $\langle P \rangle \ge 2/3$ expected measurement outcome. 
 
 The 2xQuBABE predictive engine via QF-LCA and QDF model can be directly adapted to accelerate the fitting of surrogate models for volatile urban energy grids. 
-It provides a robust, stochastic modeling framework that maps massive, fluctuating climate and occupancy data patterns into deterministic, high-probability convergence profiles $P ≥ 2/3$. This is far more efficiently than standard black-box machine learning methods. 
+It provides a robust, stochastic modeling framework that maps massive, fluctuating climate and occupancy data patterns into deterministic, high-probability convergence profiles $P ≥ 2/3$. This is far more efficient than standard black-box machine learning methods. 
 
 <details  markdown="block">
 <summary style="cursor: pointer;"><b>Click to expand Global SDG Project Targets & Engine Demonstration Table</b></summary>
@@ -220,7 +220,7 @@ It provides a robust, stochastic modeling framework that maps massive, fluctuati
 | External Project SDG Target | What 2xQuBABE™ Engine Demonstrates | Portfolio Alignment & Pitch |
 | :--- | :--- | :--- |
 | Fits statistical approximations to complex simulation design spaces. | resolves them into clean, predictable classical datasets. | with accelerated, high-probability surrogate approximations. |
-| **Find Meaning in Hourly Smart Meter Data**<br><br>Analyzing patterns across single vs. multiple multi-variable configurations. | **Multi-Scale Tri-Core Parsing:** Ingests large-scale data matrices and extracts localized signatures (like decoding hidden parameters from noise). | Demonstrates that the code can scale from a single building's micro-meter reading up to macro-scale urban distribution grids. |
+| **Find Meaning in Hourly Smart Meter Data**<br><br>Analyzing patterns across single vs. multi-variable configurations. | **Multi-Scale Tri-Core Parsing:** Ingests large-scale data matrices and extracts localized signatures (like decoding hidden parameters from noise). | Demonstrates that the code can scale from a single building's micro-meter reading up to macro-scale urban distribution grids. |
 | **Probabilistic & Stochastic Modelling**<br><br>Accounting for highly volatile environmental fluctuations (weather, occupancy). | **Irreducible Fraction Sampling ($\nu = 8/9$):** The framework uses a calibrated resonance matrix to force highly volatile, random arrays into stable convergence paths. | Proves a functional mathematical framework capable of handling chaotic, multi-variable environmental fluctuations more efficiently than mainstream models. |
 | **Industrial + Postdoc Research: Online Platform Coordination**<br><br>Combining these sub-projects into an interactive web-based platform. | **WebGL/HTML5/PyScript UI Stack:** QFLC dashboard runs client-side simulation code seamlessly in any web browser layout. | Serves as direct proof of software engineering coordination and data visualization in modern areas of NetZero and SDG areas. |
 
@@ -415,7 +415,7 @@ How does this relate to the QF-LCA Hypercube? This Geometry Lab visualizes the f
 
 
 ### 🔬 About Researcher
-* **Dr. Philip Baback Alipour:** earned his Ph.D. in Electrical Engineer with an Interdisciplinary R&D Focus from the University of Victoria.
+* **Dr. Philip Baback Alipour:** Earned his Ph.D. in Electrical Engineer with an Interdisciplinary R&D Focus from the University of Victoria.
 * **Interdisciplinary R&D Focus:** Quantum Physics, Computer Science, and Electrical Engineering.
 * **Core Core Expertise:** Merging Quantum Field Theory with Artificial Intelligence.
 * **The QF-LC Framework:** Developed a predictive methodology for high-fidelity state classification.
@@ -480,7 +480,7 @@ His doctoral dissertation at the **University of Victoria** introduced the **Qua
 * **Industrial Scale:** Advancing the QF-LC framework into performant hardware systems.
 * **NISQ Critical Bottleneck:** Solving state and phase transition prediction challenges and computation.
 * **Algorithmic Advantage:** Surpassing standard benchmarks like the Quantum Fourier Transform (QFT) by "lens coding" quantum fields: (de-)focus probability distribution of states and their distance.
-* **Proven Performance:** Achieving state transition probabilities over 2/3 in all cases.
+* **Proven Performance:** Achieving state transition probabilities ≥ 2/3 in all baseline cases of ≤ 1/3 probabilities.
 
 ### Moving Forward
 Based in British Columbia, Dr. Alipour is currently generalizing simulation framework for industrial applications in quantum networking and scalable hardware architectures relative to sustainable development goals (SDGs) in society. He is actively seeking collaborations and professional opportunities that bridge the gap between theoretical field modelling and practical quantum advantage.
