@@ -628,7 +628,7 @@ This dashboard is the practical implementation of research published at the **Un
 **Legal Framework and Trademark Notice (Expand: Click ▶)** 
 
 <details  markdown="block">
-<summary><b>© 2026 Dr. Philip B. Alipour. All Rights Reserved.</b></summary>
+<summary style="font-weight: bold; cursor: pointer;">© 2026 Dr. Philip B. Alipour. All Rights Reserved.</summary>
 <blockquote>
 This legal framework formulates the QF-LCA for <i>strong and robust real-time system state predictions</i>. <i>Next-generation quantum computers</i> as <b>QuBABE™</b> and <b>2xQuBABE™</b> computing architectures—encompassing <b>2xQuBABE™ Computer</b>, <b>2xQuBABE™ Computing</b>, <b>2xQuBABE™ Systems</b>, and <b>Quantum Field Lens Coding™</b>—are proprietary trademarks used in conjunction with Quantum Double-Field (QDF) processing architectures. <b>2xQuBABE™</b> represents the commercial implementation of the Quantum Field Lens Coding Algorithm (QF-LCA), successfully defended and archived under university intellectual repository standards at the University of Victoria, BC, Canada.
 </blockquote>
@@ -638,12 +638,12 @@ This legal framework formulates the QF-LCA for <i>strong and robust real-time sy
 **System Architecture Nomenclature and IP Notice**
 
 <details  markdown="block">
-<summary><b>2xQuBABE™ operates as a unified dual-definition quantum framework:</b></summary>
+<summary style="font-weight: bold; cursor: pointer;">2xQuBABE™ operates as a unified dual-definition quantum framework:</summary>
 <blockquote>
 <ul>
   <li><b>Physical Engine Platform (Academic):</b> Implements the 3-way entanglement (Alice-Bob-Eve or ABE) exchange system defined in Chapter 2 of Philip B. Alipour's Ph.D. dissertation: <a href="https://hdl.handle.net/1828/23705" target="_blank">hdl.handle.net/1828/23705</a>, where <b>Eve's</b> decoding matrix successfully extracts hidden <b>Bell</b> information to double transition probability limits ($P \geq 1/3 \rightarrow P \geq 2/3$).</li>
   <br>
-  <li><b>Hardware Core Identity (Commercial):</b> Represents the proprietary next-gen quantum computers designed and trademarked by Philip <span style="font-weight: bold; color: orange !important;" class="force-orange">B</span>aback <span style="font-weight: bold; color: orange !important;" class="force-orange">A</span>lipour (<span style="font-weight: bold; color: orange !important;" class="force-orange">B.A.</span>). The above-mentioned inherits <span style="font-weight: bold; color: orange !important;" class="force-orange">QuBABE™ Systems</span> as <span style="font-weight: bold; color: orange !important;" class="force-orange">Quantum Baback Alipour's Bell-Eve Systems</span> proprietary trademark ownership as defined under Section 6 of <a href="https://ic.gc.ca" target="_blank">Canadian Intellectual Property Office (CIPO)</a>, and Classes 9 (Goods) and 42 (Services) of <a href="https://justice.gc.ca" target="_blank">Trademarks Act and Trademarks Regulations</a>. 🌟 <b><i><a href="#" target="_blank">[EXPLORE THE HARDWARE INTERFACE ->]</a></i></b> <i>(This link will redirect to the standalone hardware platform page as live telemetry streams expand)</i></li>
+  <li><b>Hardware Core Identity (Commercial):</b> Represents the proprietary next-gen quantum computers designed and trademarked by Philip <span style="font-weight: bold; color: orange !important;" class="force-orange">B</span>aback <span style="font-weight: bold; color: orange !important;" class="force-orange">A</span>lipour (<span style="font-weight: bold; color: orange !important;" class="force-orange">B.A.</span>). The above-mentioned inherits <span style="font-weight: bold; color: orange !important;" class="force-orange">QuBABE™ Systems</span> as <span style="font-weight: bold; color: orange !important;" class="force-orange">Quantum Baback Alipour's Bell-Eve Systems</span> proprietary trademark ownership as defined under Section 6 of <a href="https://ic.gc.ca" target="_blank">Canadian Intellectual Property Office (CIPO)</a>, and Classes 9 (Goods) and 42 (Services) of <a href="https://justice.gc.ca" target="_blank">Trademarks Act and Trademarks Regulations</a>. 🌟 <b><a href="https://phibal12.github.io/QFLC-Dashboard/systems/2xQuBABE/QuBABE_CNT-Lattice-QDF_Demo-v1" target="_blank">[EXPLORE THE HARDWARE INTERFACE -->]</a></b> <i>(This link will redirect to the standalone hardware platform page as live telemetry streams expand)</i></li>
 </ul>
 </blockquote>
 
@@ -652,7 +652,7 @@ This legal framework formulates the QF-LCA for <i>strong and robust real-time sy
 **Application and Dataset Layer Nomenclature and IP Notice**
 
 <details  markdown="block">
-<summary><b>Click to expand section content</b></summary>
+<summary style="font-weight: bold; cursor: pointer;">Click to expand section content</summary>
 <blockquote>
 The software widgets and their datasets provided in this dashboard as <b>QFLCD components</b> are intended for academic, industrial, societal, and research purposes. These QFLCD components are the practical implementation of research defended and archived at the University of Victoria: <a href="https://hdl.handle.net/1828/23705" target="_blank">hdl.handle.net/1828/23705</a>. Please cite the original dissertation and the associated Elsevier papers (<b>MethodsX, Software Impacts, Data in Brief, Societal Impacts</b>, etc.) when utilizing the QDF logic or datasets in your own work.
 <br><br>
