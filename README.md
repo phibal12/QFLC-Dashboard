@@ -67,7 +67,10 @@ Math Mode:  <a href="https://www.mathjax.org" target="_blank">
 </script><script type="text/javascript" id="MathJax-script" async
   src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"> </script>
 </details>
-<details><summary>⚛️⚙️ <span>⚡<a href="README_Technical.html">Project Setup & System Requirements</a></span></summary>The QFLC Dashboard executes primarily client-side via WebGL/HTML5. However, specific modules (like the **QFLCH Synthesis Engine**) may require external connectivity for hybrid quantum-classical operations. Please refer to the relevant notes on project setup and system requirements. </details>
+<details>
+<summary style="cursor: pointer;">⚛️⚙️ <span>⚡<a href="README_Technical.html">Project Setup & System Requirements</a></span></summary>The QFLC Dashboard executes primarily client-side via WebGL/HTML5. However, specific modules (like the **QFLCH Synthesis Engine**) may require external connectivity for hybrid quantum-classical operations. Please refer to the relevant notes on project setup and system requirements. 
+
+</details>
 
 
 
@@ -126,7 +129,7 @@ The 2xQuBABE predictive engine via QF-LCA and QDF model can be directly adapted 
 It provides a robust, stochastic modeling framework that maps massive, fluctuating climate and occupancy data patterns into deterministic, high-probability convergence profiles $P ≥ 2/3$. This is far more efficiently than standard black-box machine learning methods. 
 
 <details  markdown="block">
-<summary><b>Click to expand Global SDG Project Targets & Engine Demonstration Table</b></summary>
+<summary style="cursor: pointer;"><b>Click to expand Global SDG Project Targets & Engine Demonstration Table</b></summary>
 
 | External Project SDG Target | What 2xQuBABE™ Engine Demonstrates | Portfolio Alignment & Pitch |
 | :--- | :--- | :--- |
@@ -244,8 +247,11 @@ This is the flagship of the hardware engineering dashboard. It bypasses the visu
 
 ### 🧮🧊 Advanced Topological Insights
 The QFLC Hypercube serves as more than a visualization; it is a **Ty-map** or $\mathcal{T}_y$-map.
-<details><summary>🧊⚛️📍 <span><a href="https://hdl.handle.net/1828/23705">QFLCH Function as a Ty-Map via State Matrix $(x, y)$ Coordinates</a></span></summary> 
-The QF-LC algorithm (QFLCA) uses variable coordinates $x$ and $y$ to construct the QDF state arrays on the hypercube. The metric $y$ calculates the distance between a reference node $x$ and any target node $y$ on the hypercube that can represent tripartite (ABE) entangled particles. Together, these variables create random number matrices that encode passcodes, building the exact visual configuration of the quantum circuit ($z[i]$, where $i=0,1,2..$ is the $i$-th circuit element) across the hypercube's vertex network. This metric allows the **QFLCH** algorithm to run quantum lens distance-based classification program (QFLCS) by extracting the keys from $z[i]$ of the QDF circuit. This is after the QFLCS program loops through the index $i$. </details>
+<details>
+<summary style="cursor: pointer;">🧊⚛️📍 <span><a href="https://hdl.handle.net/1828/23705">QFLCH Function as a Ty-Map via State Matrix $(x, y)$ Coordinates</a></span></summary> 
+The QF-LC algorithm (QFLCA) uses variable coordinates $x$ and $y$ to construct the QDF state arrays on the hypercube. The metric $y$ calculates the distance between a reference node $x$ and any target node $y$ on the hypercube that can represent tripartite (ABE) entangled particles. Together, these variables create random number matrices that encode passcodes, building the exact visual configuration of the quantum circuit ($z[i]$, where $i=0,1,2..$ is the $i$-th circuit element) across the hypercube's vertex network. This metric allows the **QFLCH** algorithm to run quantum lens distance-based classification program (QFLCS) by extracting the keys from $z[i]$ of the QDF circuit. This is after the QFLCS program loops through the index $i$. 
+
+</details>
 By analyzing the vertex-to-vertex  transitions within the QDF model and QF lens distances between nodes, it achieves:
 *   **Predictive Pathing:** We can identify the most efficient "energy paths" for state changes.
 - **Quantum Thermodynamics:** Identifying low-entropy paths to maximize system efficiency. This distance tracks changes in Entanglement Entropy (EE) or thermodynamic state transitions.
@@ -307,7 +313,7 @@ How does this relate to the QF-LCA Hypercube? This Geometry Lab visualizes the f
 
 * **[📁 Presentation Files](./path/to/presentations):** Includes the full `QFLC_PhD_PBA_seminar.pptx` slide deck and the `GMT20260331-172345_Recording.transcript.vtt` transcript.
 <details id="widget-links">
-  <summary><b>⊞️ Widget Files & Links</b></summary>
+  <summary style="cursor: pointer;"><b>⊞️ Widget Files & Links</b></summary>
   <br>
   <!-- Intro Text -->
   <p>⊞ <b>Click on any widget link to run its program directly:</b></p>
@@ -367,6 +373,7 @@ How does this relate to the QF-LCA Hypercube? This Geometry Lab visualizes the f
       Generated baseline datasets mapping multi-dimensional collapses and QDF probabilities.
     </li>
   </ul>
+
 </details>
 
 ---
@@ -535,7 +542,7 @@ UVicSpace | Institutional Repository at  [https://hdl.handle.net/1828/23705](htt
 ### 🔍 Quick QF-LCA Dashboard Access Highlights
 
 <details id="core-objectives">
-<summary><b>📊🚀 Core Features & Objectives</b></summary>
+<summary style="cursor: pointer;"><b>📊🚀 Core Features & Objectives</b></summary>
   <ul style="text-align: left; margin-top: 10px; padding-left: 20px;">
     <li style="margin-bottom: 8px;"><strong>Probability Doubling:</strong> Shifting state transition predictions from $P \approx 1/3$ to $P \geq 2/3$.</li>
     <li style="margin-bottom: 8px;"><strong>Field Lens Scaling:</strong> Implementing the strict $\kappa$-<i>ρ</i>
@@ -544,13 +551,14 @@ stability window ($|\kappa^2| ρ \leq 2$).</li>
     <li style="margin-bottom: 8px;"><strong>Industrial Application:</strong> Employing QF-LCA and integrating with mainstream quantum and classical algorithms for cutting-edge technologies such as Industry 4.0 and AI hybrid applications</li>
     <li style="margin-bottom: 0px;"><strong>Global Societal Impact:</strong> Integrating QF-LCA for optimization purposes to solve societal needs globally, predict, prevent and/or reverse negative global events (macro state transitions, +/- target states) and impacts on society.</li>
   </ul>
+
 </details>
 
 <hr>
 
 <!-- ENVIRONMENTAL SETUP SECTION -->
 <details id="env-setup">
-<summary><b>🖥️🛠️&#9654; Environmental Setup & Execution</b></summary>
+<summary style="cursor: pointer;"><b>🖥️🛠️&#9654; Environmental Setup & Execution</b></summary>
 
 <br>
 <p><b>Method 1: Direct Offline Launch</b><br>
