@@ -10,9 +10,9 @@
 </div>
 
 
-<div align="center" style="display: flex; justify-content: center; width: 100%; margin-top: -18px !important;" >
+<div align="center" >
 <div>
-  <h1>🖥️📊 QFLC Dashboard <span class="live-dot" style="color: red;"> 🔵 Live </span></h1>
+  <h1 style="margin-top: -8px !important;">🖥️📊 QFLC Dashboard <span class="live-dot" style="color: red;"> 🔵 Live </span></h1>
   <p style="font-style: italic !important; text-align: center !important;" ><i>Real-time Quantum State Monitoring, Entanglement Visualization of Qubits and Client Data</i></p>
 </div>
 </div>
