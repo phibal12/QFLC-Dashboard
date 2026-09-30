@@ -123,6 +123,9 @@ Furthermore, as demonstrated by the following interactive telemetry dashboards a
   <img src="./assets/SDG7_wheel.png" alt="United Nations SDG Global Innovation Wheel Favored 7" width="120" height="120" />
 </p>
 
+[![UN SDG 7: Affordable and Clean Energy via Institutional Audit: UVic ETD Repository](./assets/SDG_wheel01.png)](https://hdl.handle.net/1828/23705)
+
+
 > 📝 **System Architecture Mapping:**
 > As established in Chapters I & II of Dr. Alipour's dissertation, the **Quantum Field Lens Coding (QF-LC)** ecosystem functions as a computational heat engine  calibrates to resolve high-dimensional multi-variable stochastic data spaces. Independent institutional classification engines verify that the underlying **Quantum Double-Field (QDF)** state transition (ST) logic targets **UN Sustainable Development Goal 7 (Affordable and Clean Energy) at an average baseline of 77% confidence interval**, providing a verified, scalable optimization layer for regional **NetZero** urban infrastructure layouts.
 
@@ -203,7 +206,7 @@ Based on the Post-Ph.D. Defence Seminar and the accompanying transcript, this co
 
 # 🚀 2xQuBABE™ via QFLC Dashboard: Quantum Bell<i>-ABE</i> Field Lens Coding 
 ### Real-Time Quantum State Emulation & Multi-Scale Telemetry Monitoring
-[![UN SDG 7: Affordable and Clean Energy via Institutional Audit: UVic ETD Repository](./assets/SDG_wheel01.png)](https://hdl.handle.net/1828/23705)
+[![UN SDG 7: Affordable and Clean Energy via Institutional Audit: UVic ETD Repository](./assets/SDG_wheel02.png)](https://phibal12.github.io/QFLC-Dashboard/PBA_Portfolio.html#2xqubabe-publication)
 
 
 

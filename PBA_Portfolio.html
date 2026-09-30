@@ -2490,7 +2490,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   <!-- Accordion Item 4 (Duplicate this structure for more papers) -->
-  <div class="accordion-item interactive-card" style="margin-top: 15px;">
+  <div class="accordion-item interactive-card" id="2xqubabe-publication" style="margin-top: 15px;">
     <button class="accordion-trigger" aria-expanded="false">
       <span class="accordion-icon">&gt;</span>
       <span class="publication-title">2xQuBABE™: Doubled Quantum Bell-Alice-Bob-Eve Systems <br><i>--> Next Generation Quantum Computers</i>  </span>
@@ -3004,7 +3004,29 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
-
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+  // Define a custom URL hash name, e.g., #qusole-publication
+  if (window.location.hash === '#2xqubabe-publication') {
+    // Wait briefly for the main document structure to parse completely
+    setTimeout(() => {
+      const targetSelector = '#main_content > div.publication-container > div.publication-container > div.publication-container > div:nth-child(7) > button';
+      const targetButton = document.querySelector(targetSelector);
+      
+      if (targetButton) {
+        // 1. Programmatically click the button to trigger its expansion routine
+        targetButton.click();
+        
+        // 2. Smoothly scroll the screen to center the newly opened content
+        targetButton.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        
+        // 3. Optional: apply a temporary high-fidelity focus indicator ring
+        targetButton.focus();
+      }
+    }, 400); // 400ms delay safely coordinates with asset rendering timelines
+  }
+});
+</script>
 
 <!--
 </body>
