@@ -634,19 +634,28 @@ This dashboard is the practical implementation of research published at the **Un
     <div style="font-size: 0.9em; font-weight: bold; color: teal; margin-top: 8px; width: 100%; text-align: center;" id="demo-set">
       Clip 01: QFLC Simulator Summary Demo
     </div>
-  <!-- COLLAPSIBLE CONTAINER FOR VIDEOS 2+ -->
   <details style="width: 100%; cursor: pointer; text-align: center; margin-top: 10px;">
     <summary style="font-weight: bold; color: teal; font-size: 1.1em; margin-bottom: 15px; list-style: none;" id="demo-set">
       ▶ <u>Click to view the remaining sequence of demos [Clips 02--06]</u>
     </summary>
-  <video style="border: 3px solid teal; width: 48%; max-width: 450px;" controls>
+  <div style="width: 48%; max-width: 450px; float: left; margin: 0 1%;">
+  <video style="border: 3px solid teal; width: 80%; max-width: 450px;" controls>
      <source src="https://github.com/phibal12/QFLC-Dashboard/raw/main/assets/QAI-www-Demo_small.mp4" type="video/mp4">
      Your browser does not support the video tag.
-  </video>{:title="Clip 02: QFLC Web System Interface Demo"}
-  <video style="border: 3px solid teal; width: 48%; max-width: 450px;" controls>
+  </video>
+   <div style="font-size: 0.9em; font-weight: bold; color: teal; margin-top: 6px; text-align: center; margin-bottom: 15px;">
+        Clip 02: QFLCA Project Website Demo
+   </div>
+   </div>
+   <div style="width: 48%; max-width: 450px; float: left; margin: 0 1%;">
+  <video style="border: 3px solid teal; width: 80%; max-width: 450px;" controls>
      <source src="https://github.com/phibal12/QFLC-Dashboard/raw/main/assets/QAI-Demo_01_small.mp4" type="video/mp4">
      Your browser does not support the video tag.
   </video> 
+   <div style="font-size: 0.9em; font-weight: bold; color: teal; margin-top: 6px; text-align: center; margin-bottom: 15px;">
+        Clip 03: QAI Chapter 01. QFLCC & Analysis
+      </div>
+    </div>
   <video style="border: 3px solid teal; width: 48%; max-width: 450px;" controls>
      <source src="https://github.com/phibal12/QFLC-Dashboard/raw/main/assets/QAI-Demo_02_small.mp4" type="video/mp4">
      Your browser does not support the video tag.
