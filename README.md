@@ -632,13 +632,13 @@ This dashboard is the practical implementation of research published at the **Un
      Your browser does not support the video tag.
   </video>
     <div style="font-size: 0.9em; font-weight: bold; color: teal; margin-top: 8px; width: 100%; text-align: center;" id="demo-set">
-      Clip 01: QFLC Simulator Summary Demo
+      <a href="https://github.com/phibal12/QFLC-Dashboard/raw/main/assets/QAI-COcean-Demo_small.mp4">Clip 01: QFLC Simulator Summary Demo</a>
     </div>
   <details style="width: 100%; cursor: pointer; text-align: center; margin-top: 10px;">
     <summary style="font-weight: bold; color: teal; font-size: 1.1em; margin-bottom: 15px; list-style: none;" id="demo-set">
       ▶ <u>Click to view the remaining sequence of demos [Clips No. 02--06]</u>
     </summary>
-  <div style="width: 50%; max-width: 450px; float: left; margin: 0 1%;">
+  <div style="width: 45%; max-width: 450px; float: left; margin: 0 1%;">
   <video id="demo-clip" style="border: 3px solid teal; width: 100%; max-width: 450px;" controls>
      <source src="https://github.com/phibal12/QFLC-Dashboard/raw/main/assets/QAI-www-Demo_small.mp4" type="video/mp4">
      Your browser does not support the video tag.
@@ -647,40 +647,40 @@ This dashboard is the practical implementation of research published at the **Un
         <a href="https://github.com/phibal12/QFLC-Dashboard/raw/main/assets/QAI-www-Demo_small.mp4">Clip 02: QFLCA Project Website Demo</a>
    </div>
    </div>
-   <div style="width: 50%; max-width: 450px; float: left; margin: 0 1%;">
+   <div style="width: 45%; max-width: 450px; float: left; margin: 0 1%;">
   <video id="demo-clip" style="border: 3px solid teal; width: 100%; max-width: 450px;" controls>
      <source src="https://github.com/phibal12/QFLC-Dashboard/raw/main/assets/QAI-Demo_01_small.mp4" type="video/mp4">
      Your browser does not support the video tag.
   </video> 
    <div style="font-size: 0.9em; font-weight: bold; color: teal; margin-top: 6px; text-align: center; margin-bottom: 15px;">
-        Clip 03: QAI Chapter 01 -- QFLCC & Analysis
+        <a href="https://github.com/phibal12/QFLC-Dashboard/raw/main/assets/QAI-Demo_01_small.mp4">Clip 03: QAI Chapter 01 -- QFLCC & Analysis</a>
       </div>
     </div>
-  <div style="width: 50%; max-width: 450px; float: left; margin: 0 1%;">
+  <div style="width: 45%; max-width: 450px; float: left; margin: 0 1%;">
   <video id="demo-clip" style="border: 3px solid teal; width: 100%; max-width: 450px;" controls>
      <source src="https://github.com/phibal12/QFLC-Dashboard/raw/main/assets/QAI-Demo_02_small.mp4" type="video/mp4">
      Your browser does not support the video tag.
   </video> 
        <div style="font-size: 0.9em; font-weight: bold; color: teal; margin-top: 6px; text-align: center; margin-bottom: 15px;">
-        Clip 04: QAI Chapter 02 -- QDF Game via QFLCC
+        <a href="https://github.com/phibal12/QFLC-Dashboard/raw/main/assets/QAI-Demo_02_small.mp4">Clip 04: QAI Chapter 02 -- Alice & Bob Quantum Doubles</a>
       </div>
     </div>
-  <div style="width: 50%; max-width: 450px; float: left; margin: 0 1%;">
+  <div style="width: 45%; max-width: 450px; float: left; margin: 0 1%;">
   <video id="demo-clip" style="border: 3px solid teal; width: 100%; max-width: 450px;" controls>
      <source src="https://github.com/phibal12/QFLC-Dashboard/raw/main/assets/QAI-Demo_03_small.mp4" type="video/mp4">
      Your browser does not support the video tag.
   </video> 
      <div style="font-size: 0.9em; font-weight: bold; color: teal; margin-top: 6px; text-align: center; margin-bottom: 15px;">
-        Clip 05: QAI Chapter 03 for Chapter 01 -- QFLCC & Analysis Updates
+        <a href="https://github.com/phibal12/QFLC-Dashboard/raw/main/assets/QAI-Demo_03_small.mp4">Clip 05: QAI Chapter 03 for Chapter 01 -- QFLCC & Analysis Updates</a>
       </div>
     </div>
-  <div style="width: 50%; max-width: 450px; float: left; margin: 0 1%;">
+  <div style="width: 45%; max-width: 450px; float: left; margin: 0 1%;">
   <video id="demo-clip" style="border: 3px solid teal; width: 100%; max-width: 450px;" controls>
      <source src="https://github.com/phibal12/QFLC-Dashboard/raw/main/assets/QAI-Demo_04_small.mp4" type="video/mp4">
      Your browser does not support the video tag.
   </video>
   <div style="font-size: 0.9em; font-weight: bold; color: teal; margin-top: 6px; text-align: center; margin-bottom: 15px;">
-        Clip 06: QAI Chapter 04 for Chapter 02 -- Alice & Bob Quantum Doubles (QDF Game)
+        <a href="https://github.com/phibal12/QFLC-Dashboard/raw/main/assets/QAI-Demo_04_small.mp4">Clip 06: QAI Chapter 04 for Chapter 02 -- QDF Game via QFLCC</a>
       </div>
     </div>
 </details> 
