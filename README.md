@@ -627,10 +627,13 @@ This dashboard is the practical implementation of research published at the **Un
 5.  **Software Implementation & Foundation:** P.B. Alipour, T.A. Gulliver, *QF-LCS: Quantum Field Lens Coding Simulator and Game Tool for Strong System State Predictions*, Software Impacts, Elsevier BV (2024), 100703. [DOI: 10.1016/j.simpa.2024.100703](https://doi.org/10.1016/j.simpa.2024.100703)
 6.  **QF-LC Simulator & Database:** P.B. Alipour, T.A. Gulliver, *Quantum Field Lens Coding Software for System State Simulation, Strong Prediction and Game Application*, Software Impacts, Elsevier BV (2024) [Source Code]. [DOI: 10.24433/CO.9905505.v2](https://doi.org/10.24433/CO.9905505.v2.) and [GitHub SIMPAC-2024-159](https://github.com/SoftwareImpacts/SIMPAC-2024-159). Video demos at: [GitHub QFLC-Dashboard/assets/QAI-COcean-Demo](https://github.com/phibal12/QFLC-Dashboard/raw/main/assets/QAI-COcean-Demo_small.mp4) [Accessed since 2024]: 
 <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin: 15px auto; width: 100%;">
-  <video style="border: 3px solid teal; width: 48%; max-width: 450px;" controls>
+  <video id="demo-clip" style="border: 3px solid teal; width: 48%; max-width: 450px;" controls>
      <source src="https://github.com/phibal12/QFLC-Dashboard/raw/main/assets/QAI-COcean-Demo_small.mp4" type="video/mp4">
      Your browser does not support the video tag.
   </video>
+    <div style="font-size: 0.9em; font-weight: bold; color: teal; margin-top: 8px; width: 100%; text-align: center;" id="demo-set">
+      Clip 01: QFLC Simulator Summary Demo
+    </div>
   <!-- COLLAPSIBLE CONTAINER FOR VIDEOS 2+ -->
   <details style="width: 100%; cursor: pointer; text-align: center; margin-top: 10px;">
     <summary style="font-weight: bold; color: teal; font-size: 1.1em; margin-bottom: 15px; list-style: none;" id="demo-set">
@@ -673,7 +676,7 @@ This dashboard is the practical implementation of research published at the **Un
 
    11\.  **QF-LC Societal Impacts & BI Datasets:** K. S. Søilen, P. B. Alipour, *Semantics, Classifications and Evidence in a Model for Global Catastrophic Risks*, Knowledge Organization, 38 (2011) 5, 438–454. [DOI: 10.5771/0943-7444-2011-5-438](https://doi.org/10.5771/0943-7444-2011-5-438) or [URI/URN: urn:nbn:se:hh:diva-18085](https://urn.kb.se/resolve?urn=urn%3Anbn%3Ase%3Ahh%3Adiva-18085) 
 
-   12\.  **QDF Information Theory (<i>hybrid  fuzzy classical-quantum model basics</i>, Appendix C):** P.B. Alipour, An Introduction and Evaluation of a Lossless Fuzzy Binary AND/OR Compressor, M.Sc. thesis, Dept.  Comput. Sci., BTH Univ., Karlskrona, Sweden (2010). [Online URI/URN] Available: [urn:nbn:se:bth-6141](https://urn.kb.se/resolve?urn=urn%3Anbn%3Ase%3Abth-6141) [Last updated: 2025-09-30] 
+   12\.  **QDF Information Theory (<i>hybrid  fuzzy classical-quantum model basics</i>, Appendix C):** P.B. Alipour, An Introduction and Evaluation of a Lossless Fuzzy Binary AND/OR Compressor, M.Sc. thesis, Dept.  Comput. Sci., BTH Univ., Karlskrona, Sweden (2010). [URI/URN: urn:nbn:se:bth-6141](https://urn.kb.se/resolve?urn=urn%3Anbn%3Ase%3Abth-6141) [Last updated: 2025-09-30] 
 </div>
 
 ---
