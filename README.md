@@ -639,7 +639,7 @@ This dashboard is the practical implementation of research published at the **Un
       ▶ <u>Click to view the remaining sequence of demos [Clips No. 02--06]</u>
     </summary>
   <div style="width: 50%; max-width: 450px; float: left; margin: 0 1%;">
-  <video style="border: 3px solid teal; width: 100%; max-width: 450px;" controls>
+  <video id="demo-clip" style="border: 3px solid teal; width: 100%; max-width: 450px;" controls>
      <source src="https://github.com/phibal12/QFLC-Dashboard/raw/main/assets/QAI-www-Demo_small.mp4" type="video/mp4">
      Your browser does not support the video tag.
   </video>
@@ -648,7 +648,7 @@ This dashboard is the practical implementation of research published at the **Un
    </div>
    </div>
    <div style="width: 50%; max-width: 450px; float: left; margin: 0 1%;">
-  <video style="border: 3px solid teal; width: 100%; max-width: 450px;" controls>
+  <video id="demo-clip" style="border: 3px solid teal; width: 100%; max-width: 450px;" controls>
      <source src="https://github.com/phibal12/QFLC-Dashboard/raw/main/assets/QAI-Demo_01_small.mp4" type="video/mp4">
      Your browser does not support the video tag.
   </video> 
