@@ -632,8 +632,8 @@ This dashboard is the practical implementation of research published at the **Un
 
 <div style="padding-left: 18px; margin-top: 10px;" markdown="1"> 
 
-   7\. **QDF-Based QAI Classifiers:** P.B. Alipour, T.A. Gulliver, *Quantum AI and hybrid simulators for a Universal Quantum Field Computation Model*, MethodsX, Elsevier BV (2023), Article 102366. [DOI: 10.1016/j.mex.2023.102366](https://doi.org/10.1016/j.mex.2023.102366)
-
+   <p style="text-indent: -20px; margin: 0 0 12px 0;"> 7\. **QDF-Based QAI Classifiers:** P.B. Alipour, T.A. Gulliver, *Quantum AI and hybrid simulators for a Universal Quantum Field Computation Model*, MethodsX, Elsevier BV (2023), Article 102366. [DOI: 10.1016/j.mex.2023.102366](https://doi.org/10.1016/j.mex.2023.102366) </p>
+   
    8\.  **QF-LC Societal Impacts:** P.B. Alipour, T.A. Gulliver, *Qusole Codes: Quantum Social Lensing for Global Sustainable Goals*, Societal Impacts (<i>under review</i>), <i>preprint</i> at SSRN, Elsevier BV (2025-2026), Article 5427054. [DOI: 10.2139/j.mex.2025.5427054](https://dx.doi.org/10.2139/ssrn.5427054)
 
    </div>
