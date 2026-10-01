@@ -625,20 +625,47 @@ This dashboard is the practical implementation of research published at the **Un
 3.  **Algorithm Mechanics:** P.B. Alipour, T.A. Gulliver, *Quantum Field Lens Coding and Classification Algorithm to Predict Measurement Outcomes*, MethodsX, Elsevier BV (2023), Article 102136. [DOI: 10.1016/j.mex.2023.102136](https://doi.org/10.1016/j.mex.2023.102136)
 4.  **Dataset Validation & Visualization:** P.B. Alipour, T.A. Gulliver, *QF-LCA dataset: Quantum Field Lens Coding Algorithm for system state simulation and strong predictions*, Data in Brief, Elsevier BV (2024), Article 110789. [DOI: 10.1016/j.dib.2024.110789](https://doi.org/10.1016/j.dib.2024.110789)
 5.  **Software Implementation & Foundation:** P.B. Alipour, T.A. Gulliver, *QF-LCS: Quantum Field Lens Coding Simulator and Game Tool for Strong System State Predictions*, Software Impacts, Elsevier BV (2024), 100703. [DOI: 10.1016/j.simpa.2024.100703](https://doi.org/10.1016/j.simpa.2024.100703)
-6.  **QF-LC Simulator & Database:** P.B. Alipour, T.A. Gulliver, *Quantum Field Lens Coding Software for System State Simulation, Strong Prediction and Game Application*, Software Impacts, Elsevier BV (2024) [Source Code]. [DOI: 10.24433/CO.9905505.v2](https://doi.org/10.24433/CO.9905505.v2.) and [GitHub SIMPAC-2024-159](https://github.com/SoftwareImpacts/SIMPAC-2024-159). Video demo at: [GitHub QFLC-Dashboard/assets/QAI-COcean-Demo](https://github.com/phibal12/QFLC-Dashboard/raw/main/assets/QAI-COcean-Demo_small.mp4) [Accessed since 2024]: 
-   <video style="display: block; margin: 0 auto; border: 3px solid teal; font-weight: bold; color: orange !important; width: 50%;" class="force-orange" controls>
-     <source src="https://github.com/phibal12/QFLC-Dashboard/raw/main/assets/QAI-COcean-Demo_small.mp4" type="video/mp4">Your browser does not support the video tag.
-   </video>
+6.  **QF-LC Simulator & Database:** P.B. Alipour, T.A. Gulliver, *Quantum Field Lens Coding Software for System State Simulation, Strong Prediction and Game Application*, Software Impacts, Elsevier BV (2024) [Source Code]. [DOI: 10.24433/CO.9905505.v2](https://doi.org/10.24433/CO.9905505.v2.) and [GitHub SIMPAC-2024-159](https://github.com/SoftwareImpacts/SIMPAC-2024-159). Video demos at: [GitHub QFLC-Dashboard/assets/QAI-COcean-Demo](https://github.com/phibal12/QFLC-Dashboard/raw/main/assets/QAI-COcean-Demo_small.mp4) [Accessed since 2024]: 
+<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin: 15px auto; width: 100%;">
+  <video style="border: 3px solid teal; width: 48%; max-width: 450px;" controls>
+     <source src="https://github.com/phibal12/QFLC-Dashboard/raw/main/assets/QAI-COcean-Demo_small.mp4" type="video/mp4">
+     Your browser does not support the video tag.
+  </video>
+  <!-- COLLAPSIBLE CONTAINER FOR VIDEOS 2+ -->
+  <details style="width: 100%; cursor: pointer; text-align: center; margin-top: 10px;">
+    <summary style="font-weight: bold; color: teal; font-size: 1.1em; margin-bottom: 15px; list-style: none;">
+      ▶ <u>Click to view more demo clips</u>
+    </summary>
+  <video style="border: 3px solid teal; width: 48%; max-width: 450px;" controls>
+     <source src="https://github.com/phibal12/QFLC-Dashboard/raw/main/assets/QAI-www-Demo_small.mp4" type="video/mp4">
+     Your browser does not support the video tag.
+  </video>
+  <video style="border: 3px solid teal; width: 48%; max-width: 450px;" controls>
+     <source src="https://github.com/phibal12/QFLC-Dashboard/raw/main/assets/QAI-Demo_01_small.mp4" type="video/mp4">
+     Your browser does not support the video tag.
+  </video> 
+  <video style="border: 3px solid teal; width: 48%; max-width: 450px;" controls>
+     <source src="https://github.com/phibal12/QFLC-Dashboard/raw/main/assets/QAI-Demo_02_small.mp4" type="video/mp4">
+     Your browser does not support the video tag.
+  </video> 
+  <video style="border: 3px solid teal; width: 48%; max-width: 450px;" controls>
+     <source src="https://github.com/phibal12/QFLC-Dashboard/raw/main/assets/QAI-Demo_03_small.mp4" type="video/mp4">
+     Your browser does not support the video tag.
+  </video> 
+  <video style="border: 3px solid teal; width: 48%; max-width: 450px;" controls>
+     <source src="https://github.com/phibal12/QFLC-Dashboard/raw/main/assets/QAI-Demo_04_small.mp4" type="video/mp4">
+     Your browser does not support the video tag.
+  </video> 
+</div>
 
 
 <div style="text-indent: -20px; margin-bottom: 12px; padding-left: 44px;" markdown="1"> 
 
    7\. **QDF-Based QAI Classifiers:** P.B. Alipour, T.A. Gulliver, *Quantum AI and hybrid simulators for a Universal Quantum Field Computation Model*, MethodsX, Elsevier BV (2023), Article 102366. [DOI: 10.1016/j.mex.2023.102366](https://doi.org/10.1016/j.mex.2023.102366) <br style="display: block; content: ''; margin-top: 6px;">
 
-   8\.  **QF-LC Societal Impacts:** P.B. Alipour, T.A. Gulliver, *Qusole Codes: Quantum Social Lensing for Global Sustainable Goals*, Societal Impacts (<i>under review</i>), <i>preprint</i> at SSRN, Elsevier BV (2025-2026), Article 5427054. [DOI: 10.2139/j.mex.2025.5427054](https://dx.doi.org/10.2139/ssrn.5427054)
+   8\.  **QF-LC Societal Impacts:** P.B. Alipour, T.A. Gulliver, *Qusole Codes: Quantum Social Lensing for Global Sustainable Goals*, Societal Impacts (<i>under review</i>), <i>preprint</i> at SSRN, Elsevier BV (2025-2026), Article 5427054. [DOI: 10.2139/j.mex.2025.5427054](https://dx.doi.org/10.2139/ssrn.5427054) <br style="display: block; content: ''; margin-top: 6px;">
 
-   
-   9\.  **QF-LC Societal Impacts Simulator & Database:** P.B. Alipour *QuSole: Quantum Social Lens Coding Simulator and Database:*, Societal Impacts (<i>under review</i>), Elsevier BV (2026). [Source Code]. [GitHub SOCIMP-D-25-00214](https://github.com/phibal12/QusoleCodes) and [Simulator Widget](https://phibal12.github.io/QFLC-Dashboard/labs/QuSole_QDF_v1-14) 
+  9\.  **QF-LC Societal Impacts Simulator & Database:** P.B. Alipour *QuSole: Quantum Social Lens Coding Simulator and Database:*, Societal Impacts (<i>under review</i>), Elsevier BV (2026). [Source Code]. [GitHub SOCIMP-D-25-00214](https://github.com/phibal12/QusoleCodes) and [Simulator Widget](https://phibal12.github.io/QFLC-Dashboard/labs/QuSole_QDF_v1-14) 
 
    10\.  **QF-LC Intelligent Decision Systems Datasets (<i>classical part</i>):** P. B. Alipour, M. Anwar, D. Zall, L. Henesey, *Country connectivity by container line shipping: A tool for analysing, simulating and visualising connectivity*, [UNCTAD Transport Newsletter, 51 (2011) p. 10](https://unctad.org/system/files/officialdocument/webdtltlb20114_en.pdf). Video demo at: [http://www.youtube.com/watch?v=dZ4Fl_KXm0Q](http://www.youtube.com/watch?v=dZ4Fl_KXm0Q) [Accessed since 2011] 
  
