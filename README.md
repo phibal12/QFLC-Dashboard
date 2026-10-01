@@ -633,8 +633,8 @@ This dashboard is the practical implementation of research published at the **Un
   </video>
   <!-- COLLAPSIBLE CONTAINER FOR VIDEOS 2+ -->
   <details style="width: 100%; cursor: pointer; text-align: center; margin-top: 10px;">
-    <summary style="font-weight: bold; color: teal; font-size: 1.1em; margin-bottom: 15px; list-style: none;">
-      ▶ <u>Click to view more demo clips</u>
+    <summary style="font-weight: bold; color: teal; font-size: 1.1em; margin-bottom: 15px; list-style: none;" id="demo-set">
+      ▶ <u>Click to view the remaining sequence of demos</u>
     </summary>
   <video style="border: 3px solid teal; width: 48%; max-width: 450px;" controls>
      <source src="https://github.com/phibal12/QFLC-Dashboard/raw/main/assets/QAI-www-Demo_small.mp4" type="video/mp4">

@@ -728,6 +728,20 @@ window.addEventListener('DOMContentLoaded', autoExpandBookmarks);
 window.addEventListener('hashchange', autoExpandBookmarks);
 
 </script>
-  
+
+<script>
+//This script is for the moment a user clicks Play on any video, the script instantly intercepts it, loops through the webpage, and pauses all other videos...
+  document.addEventListener('play', function(e){
+    var videos = document.getElementsByTagName('video');
+    for(var i = 0, len = videos.length; i < len;i++){
+        if(videos[i] != e.target){
+            videos[i].pause();
+        }
+    }
+  }, true);
+</script>
+
+
+
 </body>
 </html>
