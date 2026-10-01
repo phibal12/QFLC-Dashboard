@@ -656,18 +656,33 @@ This dashboard is the practical implementation of research published at the **Un
         Clip 03: QAI Chapter 01 -- QFLCC & Analysis
       </div>
     </div>
-  <video style="border: 3px solid teal; width: 48%; max-width: 450px;" controls>
+  <div style="width: 50%; max-width: 450px; float: left; margin: 0 1%;">
+  <video id="demo-clip" style="border: 3px solid teal; width: 100%; max-width: 450px;" controls>
      <source src="https://github.com/phibal12/QFLC-Dashboard/raw/main/assets/QAI-Demo_02_small.mp4" type="video/mp4">
      Your browser does not support the video tag.
   </video> 
-  <video style="border: 3px solid teal; width: 48%; max-width: 450px;" controls>
+       <div style="font-size: 0.9em; font-weight: bold; color: teal; margin-top: 6px; text-align: center; margin-bottom: 15px;">
+        Clip 04: QAI Chapter 02 -- QDF Game via QFLCC
+      </div>
+    </div>
+  <div style="width: 50%; max-width: 450px; float: left; margin: 0 1%;">
+  <video id="demo-clip" style="border: 3px solid teal; width: 100%; max-width: 450px;" controls>
      <source src="https://github.com/phibal12/QFLC-Dashboard/raw/main/assets/QAI-Demo_03_small.mp4" type="video/mp4">
      Your browser does not support the video tag.
   </video> 
-  <video style="border: 3px solid teal; width: 48%; max-width: 450px;" controls>
+     <div style="font-size: 0.9em; font-weight: bold; color: teal; margin-top: 6px; text-align: center; margin-bottom: 15px;">
+        Clip 05: QAI Chapter 03 for Chapter 01 -- QFLCC & Analysis Updates
+      </div>
+    </div>
+  <div style="width: 50%; max-width: 450px; float: left; margin: 0 1%;">
+  <video id="demo-clip" style="border: 3px solid teal; width: 100%; max-width: 450px;" controls>
      <source src="https://github.com/phibal12/QFLC-Dashboard/raw/main/assets/QAI-Demo_04_small.mp4" type="video/mp4">
      Your browser does not support the video tag.
   </video>
+  <div style="font-size: 0.9em; font-weight: bold; color: teal; margin-top: 6px; text-align: center; margin-bottom: 15px;">
+        Clip 06: QAI Chapter 04 for Chapter 02 -- Alice & Bob Quantum Doubles (QDF Game)
+      </div>
+    </div>
 </details> 
 </div>
 
