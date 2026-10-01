@@ -644,7 +644,7 @@ This dashboard is the practical implementation of research published at the **Un
      Your browser does not support the video tag.
   </video>
    <div style="font-size: 0.9em; font-weight: bold; color: teal; margin-top: 6px; text-align: center; margin-bottom: 15px;">
-        Clip 02: QFLCA Project Website Demo
+        <a href="https://github.com/phibal12/QFLC-Dashboard/raw/main/assets/QAI-www-Demo_small.mp4">Clip 02: QFLCA Project Website Demo</a>
    </div>
    </div>
    <div style="width: 50%; max-width: 450px; float: left; margin: 0 1%;">
