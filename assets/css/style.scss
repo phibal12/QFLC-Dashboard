@@ -132,8 +132,13 @@ a:hover { color: #00ffff !important; text-shadow: 0 0 8px rgba(0, 255, 255, 0.8)
 #demo-set {color: teal !important; transition: 0.3s; }
 #demo-set:hover { color: #00ffff !important; text-shadow: 0 0 8px rgba(0, 255, 255, 0.8); }
 
-#demo-clip {border: teal !important; transition: 0.3s; }
-#demo-clip:hover { border: #00ffff !important; }
+/* Default state with full border configuration */
+#demo-clip {border: 3px solid teal !important; transition: border-color 0.3s ease, box-shadow 0.3s ease;  }
+/* Hover state to change color and add a brightening glow */
+.demo-clip:hover { 
+  border-color: #00ffff !important; 
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.6); /* Adds a premium brightened glow */
+}
 
 /*5. --- STYLE THE GITHUB BUTTON --- */
 /* --- STYLE THE FORK ME BANNER WITH OCTOCAT --- */
