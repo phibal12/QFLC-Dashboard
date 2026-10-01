@@ -630,6 +630,7 @@ This dashboard is the practical implementation of research published at the **Un
    <video style="display: block; margin: 0 auto; border: 3px solid teal; font-weight: bold; color: orange !important; width: 50%;" class="force-orange" controls>
      <source src="https://github.com/phibal12/QFLC-Dashboard/raw/main/assets/QAI-COcean-Demo_small.mp4" type="video/mp4">Your browser does not support the video tag.
    </video>
+   
 7. **QDF-Based QAI Classifiers:** P.B. Alipour, T.A. Gulliver, *Quantum AI and hybrid simulators for a Universal Quantum Field Computation Model*, MethodsX, Elsevier BV (2023), Article 102366. [DOI: 10.1016/j.mex.2023.102366](https://doi.org/10.1016/j.mex.2023.102366)</li>
 8.  **QF-LC Societal Impacts:** P.B. Alipour, T.A. Gulliver, *Qusole Codes: Quantum Social Lensing for Global Sustainable Goals*, Societal Impacts (<i>under review</i>), <i>preprint</i> at SSRN, Elsevier BV (2025-2026), Article 5427054. [DOI: 10.2139/j.mex.2025.5427054](https://dx.doi.org/10.2139/ssrn.5427054)
 9.  **QF-LC Societal Impacts Simulator & Database:** P.B. Alipour *QuSole: Quantum Social Lens Coding Simulator and Database:*, Societal Impacts (<i>under review</i>), Elsevier BV (2026). [Source Code]. [GitHub SOCIMP-D-25-00214](https://github.com/phibal12/QusoleCodes) and [Simulator Widget](https://phibal12.github.io/QFLC-Dashboard/labs/QuSole_QDF_v1-14).
