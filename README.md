@@ -655,7 +655,8 @@ This dashboard is the practical implementation of research published at the **Un
   <video style="border: 3px solid teal; width: 48%; max-width: 450px;" controls>
      <source src="https://github.com/phibal12/QFLC-Dashboard/raw/main/assets/QAI-Demo_04_small.mp4" type="video/mp4">
      Your browser does not support the video tag.
-  </video> 
+  </video>
+</details> 
 </div>
 
 
