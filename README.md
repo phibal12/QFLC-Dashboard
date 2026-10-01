@@ -118,11 +118,6 @@ This simulation environment showcases the **QF-LC Algorithm (QF-LCA)**, which pr
 Furthermore, as demonstrated by the following interactive telemetry dashboards and OpenQASM compilation interfaces, extensive experience in software development coordination and interactive data visualization methods, makes uniquely equipped to oversee the integration of these underlying mathematical models into any hybrid (classical-quantum) and quantum research group’s target platform (online, lab-based and offline systems).
 
 
-<p align="center">
-  <!-- Interactive Alignment Node -->
-  <img src="./assets/SDG7_wheel.png" alt="United Nations SDG Global Innovation Wheel Favored 7" width="120" height="120" />
-</p>
-
 [![UN SDG 7: Affordable and Clean Energy via Institutional Audit: UVic ETD Repository](./assets/SDG_wheel01.png)](https://hdl.handle.net/1828/23705)
 
 
@@ -628,9 +623,16 @@ This dashboard is the practical implementation of research published at the **Un
 1.   **QF-LC Base:** P.B. Alipour, Quantum Field Lens Coding, Ph.D. dissertation, Dept. Elect. Comput. Eng., Univ. Victoria, Victoria, BC (2026). [Online URI] Available: [https://hdl.handle.net/1828/23705](https://hdl.handle.net/1828/23705)
 2.   **QDF Theoretical Base:** P.B. Alipour, T.A. Gulliver, *Quantum Double-field Model and Application*, SSRN, Elsevier BV (2024), Article 4595442. [DOI: 10.2139/ssrn.4595442](https://dx.doi.org/10.2139/ssrn.4595442)
 3.  **Algorithm Mechanics:** P.B. Alipour, T.A. Gulliver, *Quantum Field Lens Coding and Classification Algorithm to Predict Measurement Outcomes*, MethodsX, Elsevier BV (2023), Article 102136. [DOI: 10.1016/j.mex.2023.102136](https://doi.org/10.1016/j.mex.2023.102136)
-4.  **Dataset Validation:** P.B. Alipour, T.A. Gulliver, *QF-LCA dataset: Quantum Field Lens Coding Algorithm for system state simulation and strong predictions*, Data in Brief, Elsevier BV (2024), Article 110789. [DOI: 10.1016/j.dib.2024.110789](https://doi.org/10.1016/j.dib.2024.110789)
-5.  **Software Implementation/Foundation:** P.B. Alipour, T.A. Gulliver, *QF-LCS: Quantum Field Lens Coding Simulator and Game Tool for Strong System State Predictions*, Software Impacts, Elsevier BV (2024), 100703. [DOI: 10.1016/j.simpa.2024.100703](https://doi.org/10.1016/j.simpa.2024.100703)
-6.  **QAI Classifiers from a QDF Model:** P.B. Alipour, T.A. Gulliver, *Quantum AI and hybrid simulators for a Universal Quantum Field Computation Model*, MethodsX, Elsevier BV (2023), Article 10236. [DOI: 10.1016/j.mex.2023.102366](https://doi.org/10.1016/j.mex.2023.102366)
+4.  **Dataset Validation & Visualization:** P.B. Alipour, T.A. Gulliver, *QF-LCA dataset: Quantum Field Lens Coding Algorithm for system state simulation and strong predictions*, Data in Brief, Elsevier BV (2024), Article 110789. [DOI: 10.1016/j.dib.2024.110789](https://doi.org/10.1016/j.dib.2024.110789)
+5.  **Software Implementation & Foundation:** P.B. Alipour, T.A. Gulliver, *QF-LCS: Quantum Field Lens Coding Simulator and Game Tool for Strong System State Predictions*, Software Impacts, Elsevier BV (2024), 100703. [DOI: 10.1016/j.simpa.2024.100703](https://doi.org/10.1016/j.simpa.2024.100703)
+6.  **QF-LC Simulator & Database:** P.B. Alipour, T.A. Gulliver, *Quantum Field Lens Coding Software for System State Simulation, Strong Prediction and Game Application*, Software Impacts, Elsevier BV (2024) [Source Code]. [DOI: 10.24433/CO.9905505.v2](https://doi.org/10.24433/CO.9905505.v2.) and [GitHub SIMPAC-2024-159](https://github.com/SoftwareImpacts/SIMPAC-2024-159). Video demo at: [GitHub QFLC-Dashboard/assets/QAI-COcean-Demo](https://phibal12.github.io/QFLC-Dashboard/assets/QAI-COcean-Demo_small.mp4) [Accessed since 2024].
+7.  **QDF-Based QAI Classifiers:** P.B. Alipour, T.A. Gulliver, *Quantum AI and hybrid simulators for a Universal Quantum Field Computation Model*, MethodsX, Elsevier BV (2023), Article 102366. [DOI: 10.1016/j.mex.2023.102366](https://doi.org/10.1016/j.mex.2023.102366)
+8.  **QF-LC Societal Impacts:** P.B. Alipour, T.A. Gulliver, *Qusole Codes: Quantum Social Lensing for Global Sustainable Goals*, Societal Impacts (<i>under review</i>), <i>preprint</i> at SSRN, Elsevier BV (2025-2026), Article 5427054. [DOI: 10.2139/j.mex.2025.5427054](https://dx.doi.org/10.2139/ssrn.5427054)
+9.  **QF-LC Societal Impacts Simulator & Database:** P.B. Alipour *QuSole: Quantum Social Lens Coding Simulator and Database:*, Societal Impacts (<i>under review</i>), Elsevier BV (2026). [Source Code]. [GitHub SOCIMP-D-25-00214](https://github.com/phibal12/QusoleCodes) and [Simulator Widget](https://phibal12.github.io/QFLC-Dashboard/labs/QuSole_QDF_v1-14).
+10.  **QF-LC Intelligent Decision Systems Datasets (<i>classical part</i>):** P. B. Alipour, M. Anwar, D. Zall, L. Henesey, *Country connectivity by container line shipping: A tool for analysing, simulating and visualising connectivity*,
+[UNCTAD Transport Newsletter, 51 (2011) p. 10](https://unctad.org/system/files/officialdocument/webdtltlb20114_en.pdf). Video demo at: [http://www.youtube.com/watch?v=dZ4Fl_KXm0Q](http://www.youtube.com/watch?v=dZ4Fl_KXm0Q) [Accessed since 2011].
+11.  **QF-LC Societal Impacts & BI Datasets:** K. S. Søilen, P. B. Alipour, *Semantics, Classifications and Evidence in a Model for Global Catastrophic Risks*, Knowledge Organization, 38 (2011) 5, 438–454. [DOI: 10.5771/0943-7444-2011-5-438](https://doi.org/10.5771/0943-7444-2011-5-438) or [URI/URN: urn:nbn:se:hh:diva-18085](https://urn.kb.se/resolve?urn=urn%3Anbn%3Ase%3Ahh%3Adiva-18085) 
+12.  **QDF Information Theory (<i>hybrid  fuzzy classical-quantum model basics</i>, Appendix C):** P.B. Alipour, An Introduction and Evaluation of a Lossless Fuzzy Binary AND/OR Compressor, M.Sc. thesis, Dept.  Comput. Sci., BTH Univ., Karlskrona, Sweden (2010). [Online URI/URN] Available: [urn:nbn:se:bth-6141](https://urn.kb.se/resolve?urn=urn%3Anbn%3Ase%3Abth-6141) [Last updated: 2025-09-30]
 
 ---
 
@@ -640,9 +642,9 @@ This dashboard is the practical implementation of research published at the **Un
 **Legal Framework and Trademark Notice (Expand: Click ▶)** 
 
 <details  markdown="block">
-<summary style="font-weight: bold; cursor: pointer;">© 2026 Dr. Philip B. Alipour. All Rights Reserved.</summary>
+<summary style="font-weight: bold; cursor: pointer; color: orange !important;" class="force-orange">© 2026 Dr. Philip B. Alipour. All Rights Reserved.</summary>
 <blockquote>
-This legal framework formulates the QF-LCA for <i>strong and robust real-time system state predictions</i>. <i>Next-generation quantum computers</i> as <b>QuBABE™</b> and <b>2xQuBABE™</b> computing architectures—encompassing <b>2xQuBABE™ Computer</b>, <b>2xQuBABE™ Computing</b>, <b>2xQuBABE™ Systems</b>, and <b>Quantum Field Lens Coding™</b>—are proprietary trademarks used in conjunction with Quantum Double-Field (QDF) processing architectures. <b>2xQuBABE™</b> represents the commercial implementation of the Quantum Field Lens Coding Algorithm (QF-LCA), successfully defended and archived under university intellectual repository standards at the University of Victoria, BC, Canada.
+This legal framework formulates the QF-LCA for <span style="font-style: italic; color: orange !important;" class="force-italic-orange">strong and robust real-time system state predictions</span>. <span style="font-style: italic; color: orange !important;" class="force-italic-orange">Next-generation quantum computers</span> as <span style="font-weight: bold; color: orange !important;" class="force-orange">QuBABE™</span> and <span style="font-weight: bold; color: orange !important;" class="force-orange">2xQuBABE™</span> computing architectures—encompassing <span style="font-weight: bold; color: orange !important;" class="force-orange">2xQuBABE™ Computer</span>, <span style="font-weight: bold; color: orange !important;" class="force-orange">2xQuBABE™ Computing</span>, <span style="font-weight: bold; color: orange !important;" class="force-orange">2xQuBABE™ Systems</span>, and <span style="font-weight: bold; color: orange !important;" class="force-orange">Quantum Field Lens Coding™</span>—are proprietary trademarks used in conjunction with <span style="font-weight: bold; color: orange !important;" class="force-orange">Quantum Double-Field (QDF)</span> processing architectures. <span style="font-weight: bold; color: orange !important;" class="force-orange">2xQuBABE™</span> represents the commercial implementation of the <span style="font-weight: bold; color: orange !important;" class="force-orange">Quantum Field Lens Coding Algorithm (QF-LCA)</span>, successfully defended and archived under university intellectual repository standards at the University of Victoria, BC, Canada.
 </blockquote>
 
 </details>
@@ -650,12 +652,12 @@ This legal framework formulates the QF-LCA for <i>strong and robust real-time sy
 **System Architecture Nomenclature and IP Notice**
 
 <details  markdown="block">
-<summary style="font-weight: bold; cursor: pointer;">2xQuBABE™ operates as a unified dual-definition quantum framework:</summary>
+<summary style="font-weight: bold; cursor: pointer; color: orange !important;" class="force-orange">2xQuBABE™ operates as a unified dual-definition quantum framework:</summary>
 <blockquote>
 <ul>
-  <li><b>Physical Engine Platform (Academic):</b> Implements the 3-way entanglement (Alice-Bob-Eve or ABE) exchange system defined in Chapter 2 of Philip B. Alipour's Ph.D. dissertation: <a href="https://hdl.handle.net/1828/23705" target="_blank">hdl.handle.net/1828/23705</a>, where <b>Eve's</b> decoding matrix successfully extracts hidden <b>Bell</b> information to double transition probability limits ($P \geq 1/3 \rightarrow P \geq 2/3$).</li>
+  <li><span style="font-weight: bold; color: orange !important;" class="force-orange">Physical Engine Platform (Academic):</span> Implements the <span style="font-weight: bold; color: orange !important;" class="force-orange">3-way entanglement</span> (<span style="font-weight: bold; color: orange !important;" class="force-italic-orange">Alice-Bob-Eve</span> or <span style="font-style: italic; color: orange !important;" class="force-orange">ABE</span>) exchange system defined in Chapter 2 of Philip B. Alipour's Ph.D. dissertation: <a href="https://hdl.handle.net/1828/23705" target="_blank">hdl.handle.net/1828/23705</a>, where <span style="font-weight: bold; color: orange !important;" class="force-orange">Eve's</span> decoding matrix successfully extracts hidden <span style="font-weight: bold; color: orange !important;" class="force-orange">Bell</span> information to double transition probability limits (<span style="font-weight: bold; color: orange !important;" class="force-italic-orange">$P \geq 1/3 \rightarrow P \geq 2/3$</span>).</li>
   <br>
-  <li><b>Hardware Core Identity (Commercial):</b> Represents the proprietary next-gen quantum computers designed and trademarked by Philip <span style="font-weight: bold; color: orange !important;" class="force-orange">B</span>aback <span style="font-weight: bold; color: orange !important;" class="force-orange">A</span>lipour (<span style="font-weight: bold; color: orange !important;" class="force-orange">B.A.</span>). The above-mentioned inherits <span style="font-weight: bold; color: orange !important;" class="force-orange">QuBABE™ Systems</span> as <span style="font-weight: bold; color: orange !important;" class="force-orange">Quantum Baback Alipour's Bell-Eve Systems</span> proprietary trademark ownership as defined under Section 6 of <a href="https://ic.gc.ca" target="_blank">Canadian Intellectual Property Office (CIPO)</a>, and Classes 9 (Goods) and 42 (Services) of <a href="https://justice.gc.ca" target="_blank">Trademarks Act and Trademarks Regulations</a>. 🌟 <b><a href="https://phibal12.github.io/QFLC-Dashboard/systems/2xQuBABE/QuBABE_CNT-Lattice-QDF_Demo-v1" target="_blank">[EXPLORE THE HARDWARE INTERFACE -->]</a></b> <i>(This link will redirect to the standalone hardware platform page as live telemetry streams expand)</i></li>
+  <li><span style="font-weight: bold; color: orange !important;" class="force-orange">Hardware Core Identity (Commercial):</span> Represents the proprietary next-gen quantum computers designed and trademarked by Philip <span style="font-weight: bold; color: orange !important;" class="force-orange">B</span>aback <span style="font-weight: bold; color: orange !important;" class="force-orange">A</span>lipour (<span style="font-weight: bold; color: orange !important;" class="force-orange">B.A.</span>). The above-mentioned inherits <span style="font-weight: bold; color: orange !important;" class="force-orange">QuBABE™ Systems</span> as <span style="font-weight: bold; color: orange !important;" class="force-orange">Quantum Baback Alipour's Bell-Eve Systems</span> proprietary trademark ownership as defined under Section 6 of <a href="https://ic.gc.ca" target="_blank">Canadian Intellectual Property Office (CIPO)</a>, and Classes 9 (Goods) and 42 (Services) of <a href="https://justice.gc.ca" target="_blank">Trademarks Act and Trademarks Regulations</a>. 🌟 <b><a href="https://phibal12.github.io/QFLC-Dashboard/systems/2xQuBABE/QuBABE_CNT-Lattice-QDF_Demo-v1" target="_blank">[EXPLORE THE HARDWARE INTERFACE -->]</a></b> <i>(This link will redirect to the standalone hardware platform page as live telemetry streams expand)</i></li>
 </ul>
 </blockquote>
 
@@ -664,17 +666,16 @@ This legal framework formulates the QF-LCA for <i>strong and robust real-time sy
 **Application and Dataset Layer Nomenclature and IP Notice**
 
 <details  markdown="block">
-<summary style="font-weight: bold; cursor: pointer;">Click to expand section content</summary>
+<summary style="font-weight: bold; cursor: pointer; color: orange !important;" class="force-orange">Click to expand section content</summary>
 <blockquote>
-The software widgets and their datasets provided in this dashboard as <b>QFLCD components</b> are intended for academic, industrial, societal, and research purposes. These QFLCD components are the practical implementation of research defended and archived at the University of Victoria: <a href="https://hdl.handle.net/1828/23705" target="_blank">hdl.handle.net/1828/23705</a>. Please cite the original dissertation and the associated Elsevier papers (<b>MethodsX, Software Impacts, Data in Brief, Societal Impacts</b>, etc.) when utilizing the QDF logic or datasets in your own work.
+The software widgets and their datasets provided in this dashboard as <span style="font-weight: bold; color: orange !important;" class="force-orange">QFLCD components</span> are intended for academic, industrial, societal, and research purposes. These QFLCD components are the practical implementation of research defended and archived at the University of Victoria: <a href="https://hdl.handle.net/1828/23705" target="_blank">hdl.handle.net/1828/23705</a>. Please cite the original dissertation and the associated Elsevier papers (<span style="font-weight: bold; color: orange !important;" class="force-orange">MethodsX, Software Impacts, Data in Brief, Societal Impacts</span>, etc.) when utilizing the QDF logic or datasets in your own work.
 <br><br>
 <ul>
-  <li>The above-mentioned inherits <b>QFLCD™ Applications</b> as <b>Quantum Field Lens Coding Dashboard</b> computers proprietary trademark ownership as defined under Section 6 of <a href="https://ic.gc.ca" target="_blank">Canadian Intellectual Property Office (CIPO)</a>, and Classes 9 (Goods) and 42 (Services) of <a href="https://justice.gc.ca" target="_blank">Trademarks Act and Trademarks Regulations</a>.</li>
+  <li>The above-mentioned inherits <span style="font-weight: bold; color: orange !important;" class="force-orange">QFLCD™ Applications</span> as <span style="font-weight: bold; color: orange !important;" class="force-orange">Quantum Field Lens Coding Dashboard</span> computers proprietary trademark ownership as defined under <span style="font-weight: bold; color: cyan !important;" class="force-cyan">Section 6</span> of <a href="https://ic.gc.ca" target="_blank">Canadian Intellectual Property Office (CIPO)</a>, and <span style="font-weight: bold; color: cyan !important;" class="force-cyan">Classes 9 (Goods)</span> and <span style="font-weight: bold; color: cyan !important;" class="force-cyan">42 (Services)</span> of <a href="https://justice.gc.ca" target="_blank">Trademarks Act and Trademarks Regulations</a>.</li>
 </ul>
 </blockquote>
 
 </details>
-
 
 <div style="text-align: left !important; display: block; width: 100%; margin-top: 50px;">
   <hr style="border-top: 1px solid #444c56; margin-bottom: 20px;">
@@ -694,4 +695,4 @@ The software widgets and their datasets provided in this dashboard as <b>QFLCD c
 This work is licensed under a
 [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License](https://creativecommons.org/licenses/by-nc-nd/4.0).
     
-© 2026 Philip B. Alipour. All Rights Reserved.
+© 2026 Philip B. Alipour. All Rights Reserved. | Quantum Field Lens Coding (QF-LC) Framework | 2xQuBABE™ Framework
