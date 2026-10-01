@@ -617,7 +617,7 @@ pip install numpy scipy matplotlib qiskit pandas scikit-learn</code></pre>
 
 ---  -->
 
-## 📚 Core Publications & Citations
+## 📚 Core Publications, Demos & Citations
 This dashboard is the practical implementation of research published at the **University of Victoria (UVic)**:
 *   **Methodology:** Quantum Field Lens Coding for Predicting State Transitions:
 1.   **QF-LC Base:** P.B. Alipour, Quantum Field Lens Coding, Ph.D. dissertation, Dept. Elect. Comput. Eng., Univ. Victoria, Victoria, BC (2026). [Online URI] Available: [https://hdl.handle.net/1828/23705](https://hdl.handle.net/1828/23705)
