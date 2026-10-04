@@ -415,7 +415,7 @@ How does this relate to the QF-LCA Hypercube? This Geometry Lab visualizes the f
 ### 🔬 About Researcher
 * **Dr. Philip Baback Alipour:** Earned his Ph.D. in Electrical Engineer with an Interdisciplinary R&D Focus from the University of Victoria.
 * **Interdisciplinary R&D Focus:** Quantum Physics, Computer Science, and Electrical Engineering.
-* **Core Core Expertise:** Merging Quantum Field Theory with Artificial Intelligence.
+* **Core Expertise:** Merging Quantum Field Theory with Artificial Intelligence.
 * **The QF-LC Framework:** Developed a predictive methodology for high-fidelity state classification.
 * **Hybrid Systems Architecture:** Optimized for $N$-qubit-cbit machines.
 * **Dissertation Work:** Introduced and explored [Quantum Field Lens Coding (QF-LC)]([https://github.io](https://hdl.handle.net/1828/23705)) framework to define quantum double-field (QDF) lensing method.
@@ -617,7 +617,7 @@ pip install numpy scipy matplotlib qiskit pandas scikit-learn</code></pre>
 
 ---  -->
 
-## 📚 Core Publications, Demos & Citations
+## 📚 Core Publications, Video Demos & Citations
 This dashboard is the practical implementation of research published at the **University of Victoria (UVic)**:
 *   **Methodology:** Quantum Field Lens Coding for Predicting State Transitions:
 1.   **QF-LC Base:** P.B. Alipour, Quantum Field Lens Coding, Ph.D. dissertation, Dept. Elect. Comput. Eng., Univ. Victoria, Victoria, BC (2026). [Online URI] Available: [https://hdl.handle.net/1828/23705](https://hdl.handle.net/1828/23705)
