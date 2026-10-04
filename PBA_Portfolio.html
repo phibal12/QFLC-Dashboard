@@ -1623,7 +1623,17 @@ body:not(.light-mode) #main_content span[style*="color: #ff7b72"] {
   }
 
   /* Swaps button styles when dark mode is enabled */
-  body.local-dark-mode #local-theme-toggle {
+    #local-theme-toggle {
+    background-color: black;
+    color: white;
+    border-color: #d0d7de;
+  }
+  
+   #local-theme-toggle:hover {
+    color: cyan;
+  }
+
+  body.local-dark-mode {
     background-color: #f0f6fc;
     color: #0d1117;
     border-color: #d0d7de;
@@ -1729,7 +1739,7 @@ body:not(.light-mode) #main_content span[style*="color: #ff7b72"] {
         <td colspan="2" style="padding-top: 30px; text-align: left;">	
 		<p style="font-size: 1.1em; line-height: 1.6; max-width: 1100px;"><span style="color: #ff7b72;">
         &bull; Focus: </span> Centered on scientific, practical, and analytical research developing hybrid/quantum algorithms with scalar fields mapping. Focus example is mapping single fields via a <span class="accent-cyan">particle interaction-based $\kappa$ scalar</span> and double them from a <span class="accent-cyan">Quantum Double-Field (QDF)</span> model. This model predicts system states (transitions) based on <span class="accent-cyan">Quantum Field Lens Coding (QF-LC)</span> and its algorithm as <span class="accent-cyan">QF-LCA</span>. <br>
-		<span style="color: #ff7b72;">&bull; Deliverables: </span> Design and optimize mainstream and next generation classical-quantum computers (2xQuBABE™), algorithms, and operational frameworks bridging industrial automation with pure quantum mechanics and classical-quantum (micro/macro) thermodynamics. <br>
+		<span style="color: #ff7b72;">&bull; Deliverables: </span> Design and optimize mainstream and <span style="color: cyan">next generation classical-quantum computers (2xQuBABE™)</span>, algorithms, and operational frameworks bridging industrial automation with pure quantum mechanics and classical-quantum (micro/macro) thermodynamics. <br>
 		<span style="color: #ff7b72;">&bull; Research Vision:</span>  Maintain the formal references to the QDF model, the <span class="accent-cyan"> Probability Doubling </span> effect (<span class="accent-cyan">$P \geq 1/3 \to P \geq 2/3$</span>), and the official University of Victoria's dissertation archive <span style="color: #a6e22e;">[URI Link]:</span>  <a href="https://hdl.handle.net/1828/23705" target="_blank">hdl.handle.net/1828/23705</a> to achieve higher SDG 7 scores $> 77\%$ in creating clean and sustainable systems for humanity by using targeted outreach of quantum computing and hybrid algorithmic methods. <br>
 		<span style="color: #ff7b72;">&bull; Research Bridge:</span> Bridge biological and AI enhancement for upgrading both human and industry 4.0 systems via quantum computers and hybrid classical-quantum systems. Product flow example: <a href="https://phibal12.github.io/QFLC-Dashboard/#quantum-field-lens-coding-framework-probability-doubling-by-qdf-modeling"> from DNA to clean energy.
             </p>
@@ -1815,17 +1825,17 @@ function secureEmail(event) {
   
   <div class="skill-category-block" style="border-left: 3px solid #00ffff; padding-left: 15px;">
     <h4 style="margin: 0 0 5px 0; color: #00ffff;">[01] ALGORITHM DESIGN</h4>
-    <p style="font-size: 0.9rem; color: #8b949e; margin: 0;">Development of QF-LCA for real-time state prediction via hybrid classical-quantum architectures.</p>
+    <p style="font-size: 0.9rem; color: #8b949e; margin: 0;">Development of QF-LCA for real-time state prediction via hybrid classical-quantum architectures: <span style="color: cyan">[02] HEAT ENGINE SIMULATION </span> via <span style="color: cyan">QF-LC simulator (QF-LCS)</span> and <span style="color: cyan"> [03] CORE SYSTEM SIMULATION</span> via <span style="color: cyan">2xQuBABE™ system</span>.</p>
   </div>
 
   <div class="skill-category-block" style="border-left: 3px solid #00ffff; padding-left: 15px;">
-    <h4 style="margin: 0 0 5px 0; color: #00ffff;">[02] SYSTEM SIMULATION</h4>
-    <p style="font-size: 0.9rem; color: #8b949e; margin: 0;">Architect of QF-LCS, a high-fidelity Python-based engine modeling thermodynamic quantum/hybrid systems and their evolution.</p>
+    <h4 style="margin: 0 0 5px 0; color: #00ffff;">[02] HEAT ENGINE SIMULATION</h4>
+    <p style="font-size: 0.9rem; color: #8b949e; margin: 0;">Updating QF-LCS which is a high-fidelity Python-based engine that models thermodynamic quantum/hybrid systems and their evolution. Their parent simulator is the core  2xQuBABE™ system architecture which simulates Doubled Quantum Bell-Alice-Bob-Eve Systems. </p>
   </div>
 
   <div class="skill-category-block" style="border-left: 3px solid #00ffff; padding-left: 15px;">
-    <h4 style="margin: 0 0 5px 0; color: #00ffff;">[04] TOPOLOGICAL MAPPING</h4>
-    <p style="font-size: 0.9rem; color: #8b949e; margin: 0;">Integrating the SF-QDFcircuit-based 2xQuBABE™ system into current mainstream systems to sample system states, and address high-dimensional design-space optimization by surrogate modelling with their strong state prediction and computational performance.</p>
+    <h4 style="margin: 0 0 5px 0; color: #00ffff;">[03] CORE SYSTEM SIMULATION</h4>
+    <p style="font-size: 0.9rem; color: #8b949e; margin: 0;">Integrating the SF-QDF circuit-based 2xQuBABE™ system into current mainstream systems to sample system states, and address high-dimensional design-space optimization by surrogate modelling with  strong state prediction and computational performance.</p>
   </div>
 
 
@@ -1934,16 +1944,19 @@ function secureEmail(event) {
                 This page operates directly as a nested, active component subdirectory. It allows incoming academic panels and industrial recruiters to pivot straight from analyzing structural resume histories into running active physical parameters via web-native simulation layers.
               </p>
             </td></a>
+            </td></a>
           </tr>
         </table>
       </div>
 
-      <table style="width:100%; border-spacing: 25px 0px; margin-top: 15px; margin-left: -25px;">
+      <table style="width:105% !important; border-spacing: 25px 0px; margin-top: 15px; margin-left: -25px;">
         <tr>
           <td style="width:50%; vertical-align: top;">
             <div class="interactive-card" style="margin-top:0;"><a href="https://phibal12.github.io/QFLC-Dashboard/#-visual-directory">
-              <strong class="accent-orange">QF-LCS Simulation Suite</strong><br>
-              <p style="font-size:0.9em; color:#8b949e; margin-top:5px; line-height:1.4;">Quantum Field Lens Coding Simulator mapping complex matrix system calculations and particle/system state prediction layers. Early simulation published via Software Impacts [Elsevier] available as <a href="https://www.sciencedirect.com/science/article/pii/S2665963824000915" target="blank"> doi.org/10.1016/j.simpa.2024.100703.</a> More simulations are available via the <a href="https://phibal12.github.io/QFLC-Dashboard/" target="blank"> QF-LC Dashboard Environment from here. </a> </p></a>
+              <strong class="accent-orange">QF-LCS & 2xQuBABE™ Simulation Suite</strong><br>
+              <p style="font-size:0.9em; color:#8b949e; margin-top:5px; line-height:1.4;">Quantum Field Lens Coding Simulator mapping complex matrix system calculations and particle/system state prediction layers.   
+			  Early simulation published via Software Impacts [Elsevier] available as <a href="https://www.sciencedirect.com/science/article/pii/S2665963824000915" target="blank"> doi.org/10.1016/j.simpa.2024.100703.</a> Latest is the <a href="https://phibal12.github.io/QFLC-Dashboard/systems/2xQuBABE/QuBABE_CNT-Lattice-QDF_Demo-v1" target="blank"> 2xQuBABE™ Matrix Simulator</a>.  
+			  All simulations are available via the <a href="https://phibal12.github.io/QFLC-Dashboard/" target="blank"> QF-LC Dashboard Environment from here. </a> </p></a>
 			  <!-- <p>Ready for input<span class="terminal-cursor"></span></p> -->
             </div>
           </td>
@@ -2033,7 +2046,7 @@ function secureEmail(event) {
               <ul class="tree-branch" style="list-style-type: none; padding-left: 20px;">
                 <li class="tree-item file computational-node" style="margin-top: 3px; margin-bottom: 3px;">
                   <span class="file-icon" style="color: #ffa500; margin-right: 5px;">⚡</span> 
-                  <a href="systems/2xQuBABE/QuBABE_CNT-Lattice-QDF_Demo-v1.html" target="_blank" style="color: #ffa500; text-decoration: none; border-bottom: 1px dashed rgba(255,165,0,0.4);">QuBABE_CNT-Lattice-QDF_Demo-v1.html (2xQuBABE Engine)</a>
+                  <a href="systems/2xQuBABE/QuBABE_CNT-Lattice-QDF_Demo-v1.html" target="_blank" style="color: #ffa500; text-decoration: none; border-bottom: 1px dashed rgba(255,165,0,0.4);">QuBABE_CNT-Lattice-QDF_Demo-v1.html (2xQuBABE™ Engine)</a>
                 </li>
               </ul>
             </li>
@@ -2085,8 +2098,12 @@ function secureEmail(event) {
         <h3 style="margin: 5px 0; color: cyan;">Decision Optimization Engine Systems (IDSS)</h3>
         <p style="margin: 0; font-size: 0.95em; line-height: 1.5;">
           Architectural engineering of Intelligent Decision-Based Systems (IDSS). <br> 
-		  <b>Examples:</b> In societal impacts, reaching <b><a href="https://sdgs.un.org/goals" target ="blank"> sutainable develiopment goals (SDGs)</a></b>, as in <br> • Algorithmic feedback networks and real-time parameter parsing systems for high-risk industrial deployment scenarios. This framework was previously built to resolve bottlenecking in international maritime shipping and trade connectivity, earning recognition from the UN-CTAD panels. Finding the most efficint energy path and rerouting it for a desired target state is the employment of the <a href="https://www.sciencedirect.com/science/article/pii/S221501612300362X"> UQFCM as a universal quantum field computation model</a> which employs QF-LCA as a QuSole algorithm alongside mainstream quantum algorithms; <br> • In medicine, reconstruct damaged DNA strands to predict a virus/cancer cell target, its spread and growth against healthy cells. <br> • In law, identify forged documents from genuine ones via QF-LC's Gen-Forge algorithm. <br> • In particle physics, simulate expected event outcomes in an experiment at CERN, or micro blackholes giverned by quantum mechanics; <br>  • In social media to see which presentation of information based on QDF entanglement between datasets observed by media reports promotes <a href="https://www.cyber.gc.ca/en/guidance/how-identify-misinformation-disinformation-and-malinformation-itsap00300">MDM (mis/dis/mal)-information</a>? This stenms from <br> • Within cybersecurity to propose a sustainable global environment by the QuSole application. Publishing via Societal Impacts [Elsevier], preprint at <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5427054" target="blank"> doi.org/10.2139/ssrn.5427054</a>.
-        </p>
+		  <b>Examples:</b> In societal impacts, reaching <b><a href="https://sdgs.un.org/goals" target ="blank"> sustainable development goals (SDGs)</a></b>, as in <br> 
+		  <details>
+		  <summary><span style="color: cyan">Click to Expand...</span></summary> <br>
+		  • Algorithmic feedback networks and real-time parameter parsing systems for high-risk industrial deployment scenarios. This framework was previously built to resolve bottlenecking in international maritime shipping and trade connectivity, earning recognition from the UN-CTAD panels. Finding the most efficient energy path and rerouteing it for a desired target state is the employment of the <a href="https://www.sciencedirect.com/science/article/pii/S221501612300362X"> UQFCM as a universal quantum field computation model</a> which employs QF-LCA as a QuSole algorithm alongside mainstream quantum algorithms; <br> • In medicine, reconstruct damaged DNA strands to predict a virus/cancer cell target, its spread and growth against healthy cells. <br> • In law, identify forged documents from genuine ones via QF-LC's Gen-Forge algorithm. <br> • In particle physics, simulate expected event outcomes in an experiment at CERN, or micro black holes governed by quantum mechanics; <br>  • In social media to see which presentation of information based on QDF entanglement between datasets observed by media reports promotes <a href="https://www.cyber.gc.ca/en/guidance/how-identify-misinformation-disinformation-and-malinformation-itsap00300">MDM (mis/dis/mal)-information</a>? This stems from <br> • Within cybersecurity to propose a sustainable global environment by the QuSole application. Publishing via Societal Impacts [Elsevier], preprint at <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5427054" target="blank"> doi.org/10.2139/ssrn.5427054</a>.
+        </details>
+		</p>
       </div>
 
       <div class="timeline-node" style="padding-bottom: 40px;">
@@ -2097,6 +2114,19 @@ function secureEmail(event) {
           <a href="https://hdl.handle.net/1828/23705" target="_blank">hdl.handle.net/1828/23705</a>.
         </p>
       </div>
+	  
+	  <div class="timeline-node" style="padding-bottom: 40px;">
+        <span class="meta-tag"><span style="color: #ff7b72;">CHAPTER 05 // NEXT GENERATION QUANTUM COMPUTERS & SUSTAINABILITY IMPACT</span></span>
+        <h3 style="margin: 5px 0; color: cyan;">Doubled Quantum Bell-Alice-Bob-Eve System Architecture [2xQuBABE™ Matrix Simulator]</h3>
+        <p style="margin: 0; font-size: 0.95em; line-height: 1.5;">
+          Currently presenting the architectural framework of QF-LC on hardware and software layers as a classical-quantum/hybrid system (2xQuBABE™) to simulate and predict system states, reroute them for an efficient Hamiltonian as the target state. 
+		  Input any real-world dataset to the 2xQuBABE™ predictive engine relative to the QF-LCA project development updates and QDF model integration which connect mainstream quantum systems. Accessible via QFLC-dashboard    
+          <a href="https://phibal12.github.io/QFLC-Dashboard/systems/2xQuBABE/QuBABE_CNT-Lattice-QDF_Demo-v1" target="_blank">.../QFLC-Dashboard/systems/2xQuBABE/QuBABE_CNT-Lattice-QDF_Demo-v1</a>.
+		  This system will deliver a minimum baseline of <span class="accent-cyan">75% alignment towards providing sustainable cities and communities (SDG 11)</span> across physical systems, networks and the global community.
+        </p>
+      </div>
+
+
 
 
 
@@ -2121,8 +2151,8 @@ function secureEmail(event) {
       </div>
 	  
 	    <div class="timeline-node">
-	  <span class="summary-tag"><span style="margin: 5px 0; color: cyan;">//TOP SDG (SUSTAINABLE DEVELOPMENT GOAL)</span></span>
-        <p>Dissertation content, goals and objectives scored 77% on SDG 7 (affordable and clean energy).
+	  <span class="summary-tag"><span style="margin: 5px 0; color: cyan;">//TOP SDGS (SUSTAINABLE DEVELOPMENT GOAL | SUSTAINABLE CITIES & COMMUNITIES)</span></span>
+        <p>Dissertation content, goals and objectives scored 77% on SDG 7 (affordable and clean energy). The 2xQuBABE™ predictive engine via QF-LCA and QDF model serves as a hardware and software engineering coordination, optimized computation and data visualization in modern areas of NetZero and SDG areas scoring 75% on SDG 11 (SUSTAINABLE CITIES & COMMUNITIES).
          </p>
       </div>
 	  
@@ -2150,7 +2180,7 @@ function secureEmail(event) {
   <div class="accordion-item interactive-card">
     <button class="accordion-trigger" aria-expanded="false">
       <span class="accordion-icon">&gt;</span>
-      <span class="publication-title">Quantum Field Lens Coding (QF-LC): <i> An Interdisciplinary Engineering Method for Strong State Predictions </i></span>
+      <span class="publication-title">Quantum Field Lens Coding (QF-LC) (<span style="color: orange">Ph.D. Dissertation</span>) <br><i> An Interdisciplinary Engineering Method for Strong State Predictions </i></span>
     </button>
     <div class="accordion-content">
       <div class="accordion-inner-text">
@@ -2235,12 +2265,50 @@ quantum field, scalar field, artificial intelligence, qubit, machine learning, l
 
 </div>
 
+  <!-- Accordion Item 2 -->
+  <div class="accordion-item interactive-card">
+    <button class="accordion-trigger" aria-expanded="false">
+      <span class="accordion-icon">&gt;</span>
+      <span class="publication-title">An Introduction and Evaluation of a Lossless Fuzzy Binary AND/OR Compressor (<span style="color: orange">M.Sc. Thesis</span>)</span>
+    </button>
+    <div class="accordion-content">
+      <div class="accordion-inner-text">
+	  <p style="margin-top: 10px;">
+          <span style="color: #a6e22e;">[URI/URN Link]:</span> 
+         <a href="https://urn.kb.se/resolve?urn=urn%3Anbn%3Ase%3Abth-6141" target="_blank">urn:nbn:se:bth-6141</a>
+        </p>
+		<b><span style="color: #ff7b72;">Files:</span></b><span>
+FULLTEXT01.pdf (2.74 MB)
+Date
+2010 | 
+<b><span style="color: #ff7b72;">Authors:</span></b><span> Alipour, Philip B. (<span style="color: #ff7b72; font-weight: bold;">Senior Author</span> in Computer Science and Software Engineering), Ali, M. (Software Engineering) 
+	  
+        <p><strong><span style="color: #ff7b72;">Abstract:</span></strong> This research is an Independent Thesis at Advanced level (degrees of M.Sc. in Computer Science, and M.Sc. in Software Engineering), presenting its FBAR/FQAR algorithm as a steppingstone to quantum information models solving complex negative entropies, giving double-efficient LDCs > 87.5% space savings ...</p>
 
+We report a new lossless data compression algorithm (LDC) for implementing predictably-fixed compression values. The fuzzy binary and-or algorithm (FBAR), primarily aims to introduce a new model for regular and superdense coding in classical and quantum information theory. Classical coding on x86 machines would not suffice techniques for maximum LDCs generating fixed values of Cr >= 2:1. However, the current model is evaluated to serve multidimensional LDCs with fixed value generations, contrasting the popular methods used in probabilistic LDCs, such as Shannon entropy. The currently introduced entropy is of ‘fuzzy binary’ in a 4D hypercube bit flag model, with a product value of at least 50% compression. We have implemented the compression and simulated the decompression phase for lossless versions of FBAR logic. We further compared our algorithm with the results obtained by other compressors. Our statistical test shows that, the presented algorithm mutably and significantly competes with other LDC algorithms on both, temporal and spatial factors of compression. The current algorithm is a steppingstone to quantum information models solving complex negative entropies, giving double-efficient LDCs > 87.5% space savings.
+
+
+<p><b><span style="color: #ff7b72;">Keywords:</span></b>
+Fuzzy Binary AND/OR, data compression/decompression, pairwise bits, double efficiency.</p></span>
+      </div>
+    </div>
+  </div>
+
+
+<div class="sdg-wheel" data-wheel-height="200" data-model="elsevier-sdg-multi" data-image-path="https://aurora-sdg.labs.vu.nl/resources/assets/" data-custom-uri="https://urn.kb.se/resolve?urn=urn%3Anbn%3Ase%3Abth-6141" data-text="An Introduction and Evaluation of a Lossless Fuzzy Binary AND/OR Compressor.
+
+Abstract
+We report a new lossless data compression algorithm (LDC) for implementing predictably-fixed compression values. The fuzzy binary and-or algorithm (FBAR), primarily aims to introduce a new model for regular and superdense coding in classical and quantum information theory. Classical coding on x86 machines would not suffice techniques for maximum LDCs generating fixed values of Cr >= 2:1. However, the current model is evaluated to serve multidimensional LDCs with fixed value generations, contrasting the popular methods used in probabilistic LDCs, such as Shannon entropy. The currently introduced entropy is of ‘fuzzy binary’ in a 4D hypercube bit flag model, with a product value of at least 50% compression. We have implemented the compression and simulated the decompression phase for lossless versions of FBAR logic. We further compared our algorithm with the results obtained by other compressors. Our statistical test shows that, the presented algorithm mutably and significantly competes with other LDC algorithms on both, temporal and spatial factors of compression. The current algorithm is a steppingstone to quantum information models solving complex negative entropies, giving double-efficient LDCs > 87.5% space savings.
+
+Keywords
+Fuzzy Binary AND/OR, data compression/decompression, pairwise bits, double efficiency
+National Category">
+</div>
 
 <div class="publication-container" style="margin-top: 30px;">
 
   
-  <!-- Accordion Item 2 -->
+  <!-- Accordion Item 3 -->
   <div class="accordion-item interactive-card">
     <button class="accordion-trigger" aria-expanded="false">
       <span class="accordion-icon">&gt;</span>
@@ -2295,7 +2363,7 @@ Quantum double-field (QDF), Quantum field lens coding, QDF Transformation, QDF L
 
   <h3 class="accent-cyan" style="margin-bottom: 15px; color: #00ffff;">[Latest Submitted Journal Publications &amp; Future Work]</h3>
   
-  <!-- Accordion Item 3 -->
+  <!-- Accordion Item 4 -->
   <div class="accordion-item interactive-card">
     <button class="accordion-trigger" aria-expanded="false">
       <span class="accordion-icon">&gt;</span>
@@ -2513,14 +2581,14 @@ This paper presents the construction and/or integration of the 2xQuBABE™ syste
 <p>The 2xQuBABE predictive engine via QF-LCA and QDF model can be directly adapted to accelerate the fitting of surrogate models for volatile urban energy grids. 
 It provides a robust, stochastic modelling framework that maps massive, fluctuating climate and occupancy data patterns into deterministic, high-probability convergence profiles P ≥ 2/3. </p>
 
-<p>This engine is proposed by the QFLCA system model where it hardware is patentable by integrating a Phase Inverter Gate in a cryostat and and a QDF circuit for reading out the CNTs that produce photonic probes to monitoring and classify system/particle states.  This classical-quantum machinery setup resolves the statistical approximations from complex simulation design spaces to clean, predictable classical datasets. </p>
+<p>This engine is proposed by the QFLCA system model where its hardware is patentable by integrating a Phase Inverter Gate in a cryostat and and a QDF circuit for reading out the CNTs that produce photonic probes to monitoring and classify system/particle states.  This classical-quantum machinery setup resolves the statistical approximations from complex simulation design spaces to clean, predictable classical datasets. </p>
 
 <p>This hybrid engine demonstrates multi-scale tri-core parsing: ingests large-scale data matrices and extracts localized signatures (like decoding hidden parameters such as Bell states from noise).
 
 This system demonstrates that the code can scale from a single building’s micro-meter reading up to macro-scale urban distribution grids.
 It proves a functional mathematical framework capable of handling chaotic, multi-variable environmental fluctuations more efficiently than mainstream standard black-box machine learning methods. </p>
 
-<p>Finally, such systems serve as a software engineering coordination, optimised computation and data visualization in modern areas of NetZero and SDG areas which can be projected as next generation efficient quantum computers.</p>
+<p>Finally, such systems serve as a hardware and software engineering coordination, optimised computation and data visualization in modern areas of NetZero and SDG areas which can be projected as next generation efficient quantum computers.</p>
 
 <p><b><span style="color: #ff7b72;">Keywords:</span></b>
 Doubled Quantum Bell-Alice-Bob-Eve (2xQuBABE), Sustainable Development Goals (SDGs), Quantum double-field (QDF) circuit, State transition (ST), ST probability, Target State (TS), Phase Inverter Gate (PIG), Cryostat.</p></span>
@@ -2541,7 +2609,7 @@ This paper presents the construction and/or integration of the 2xQuBABE™ syste
 The 2xQuBABE predictive engine via QF-LCA and QDF model can be directly adapted to accelerate the fitting of surrogate models for volatile urban energy grids. 
 It provides a robust, stochastic modelling framework that maps massive, fluctuating climate and occupancy data patterns into deterministic, high-probability convergence profiles P ≥ 2/3. 
 
-This engine is proposed by the QFLCA system model where it hardware is patentable by integrating a Phase Inverter Gate in a cryostat and and a QDF circuit for reading out the CNTs that produce photonic probes to monitoring and classify system/particle states.  This classical-quantum machinery setup resolves the statistical approximations from complex simulation design spaces to clean, predictable classical datasets. 
+This engine is proposed by the QFLCA system model where its hardware is patentable by integrating a Phase Inverter Gate in a cryostat and and a QDF circuit for reading out the CNTs that produce photonic probes to monitoring and classify system/particle states.  This classical-quantum machinery setup resolves the statistical approximations from complex simulation design spaces to clean, predictable classical datasets. 
 
 This hybrid engine demonstrates multi-scale tri-core parsing: ingests large-scale data matrices and extracts localized signatures (like decoding hidden parameters such as Bell states from noise).
 
