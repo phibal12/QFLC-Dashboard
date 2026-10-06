@@ -3,7 +3,7 @@
 <div class="top-nav">
   <a href="https://github.com/phibal12/QFLC-Dashboard/tree/main"><img src="./assets/github_icon03.png" 
             alt="License" 
-            style="display: inline-block !important; margin-left: 0 !important; width:2%; vertical-align: -4px;" />🏠 GitHub Home</a>
+            style="display: inline-block !important; margin-left: 0 !important; width:1%; vertical-align: -20px;" />🏠 GitHub Home</a>
   <a href="#core-objectives">📊 Features</a>
   <a href="#env-setup">🛠 Setup</a>
   <a href="#-repository-contents--widget-links">⊞ Widgets</a>
@@ -83,7 +83,10 @@ Math Mode:  <a href="https://www.mathjax.org" target="_blank">
 Welcome to the interactive portal for **Quantum Field Lens Coding (QF-LC)**. This dashboard demonstrates the implementation of the **Quantum Double-Field (QDF)** model, a novel framework for predicting state transitions (STs) and phase transitions (PTs) in quantum, classical and hybrid quantum-classical systems.
 This dashboard provides a robust, granular look into the mathematical, physical and micro/macro thermodynamic engine of the QF-LC system. 
 It allows users to control the baseline metrics of the complex/scalar field and observe the optimized hardware routing in real-time. 
-It acts as a direct visualizer for the ST probabilities and error rates discussed in the Ph.D. dissertation "Energy Paths" rerouted in any system on any scale and optimization chapters for sustainable global solutions in society <a href="https://hdl.handle.net/1828/23705" target="_blank">I--V</a>, and seminars at <a href="https://www.uvic.ca/ecs/ece/current/graduate/events/event.php?id=1360" target="_blank">https://www.uvic.ca/ecs/ece/current/graduate/events/event.php?id=1360</a>.
+It acts as a direct visualizer for the ST probabilities and error rates discussed in the Ph.D. dissertation "Energy Paths" rerouted in any system on any scale <a href="https://hdl.handle.net/1828/23705" target="_blank">I--V</a>, and optimization chapters for sustainable global solutions in society <a href="https://hdl.handle.net/1828/23705" target="_blank">VIII--X</a>, and seminars at <a href="https://www.uvic.ca/ecs/ece/current/graduate/events/event.php?id=1360" target="_blank">https://www.uvic.ca/ecs/ece/current/graduate/events/event.php?id=1360</a>. 
+
+<p>The QDF model and QF-LCA systems such as the <b>2xQuBABE™</b>  (Quantum Bell<i>-ABE</i> Field Lens Coding) 
+for <i>real-time quantum State emulation and multi-scale Telemetry monitoring</i> are currently being updated and finalized for real-world <b>QuSoLe</b> (quantum social lensing) datasets and SDG target states based on the QDF model. The top-most SDGs projected are <b>SDG 7 & SDG 11</b> as affordable, clean energy, sustainable cities and communities solutions projecting the dominant SDG factors with a baseline of > 75% according to their QF-LCA model and dataset simulations.</p>
 
 
 <details  markdown="block">
