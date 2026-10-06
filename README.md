@@ -1,9 +1,9 @@
 <!-- Top Menu -->
 <!-- Fixed Bottom Menu -->
 <div class="top-nav">
-  <a href="https://github.com/phibal12/QFLC-Dashboard/tree/main">🏠<img src="./assets/github_icon03.png" 
+  <a href="https://github.com/phibal12/QFLC-Dashboard/tree/main"><img src="./assets/github_icon03.png" 
             alt="License" 
-            style="display: inline-block !important; margin-left: 0 !important; width:3%" /> GitHub Home</a>
+            style="display: inline-block !important; margin-left: 0 !important; width:2%; vertical-align: -4px;" />🏠 GitHub Home</a>
   <a href="#core-objectives">📊 Features</a>
   <a href="#env-setup">🛠 Setup</a>
   <a href="#-repository-contents--widget-links">⊞ Widgets</a>
@@ -81,9 +81,9 @@ Math Mode:  <a href="https://www.mathjax.org" target="_blank">
 ### Predictive State Simulation for <i>N</i>-Qubit Machines
 
 Welcome to the interactive portal for **Quantum Field Lens Coding (QF-LC)**. This dashboard demonstrates the implementation of the **Quantum Double-Field (QDF)** model, a novel framework for predicting state transitions (STs) and phase transitions (PTs) in quantum, classical and hybrid quantum-classical systems.
-This dashboard provides a robust, granular look into the mathematical engine of the QF-LC system. 
+This dashboard provides a robust, granular look into the mathematical, physical and micro/macro thermodynamic engine of the QF-LC system. 
 It allows users to control the baseline metrics of the complex/scalar field and observe the optimized hardware routing in real-time. 
-It acts as a direct visualizer for the ST probabilities and error rates discussed in the Ph.D. dissertation "Energy Paths" rerouted in any system on any scale and optimization chapters <a href="https://hdl.handle.net/1828/23705" target="_blank">I--V</a>, and seminars at <a href="https://www.uvic.ca/ecs/ece/current/graduate/events/event.php?id=1360" target="_blank">https://www.uvic.ca/ecs/ece/current/graduate/events/event.php?id=1360</a>.
+It acts as a direct visualizer for the ST probabilities and error rates discussed in the Ph.D. dissertation "Energy Paths" rerouted in any system on any scale and optimization chapters for sustainable global solutions in society <a href="https://hdl.handle.net/1828/23705" target="_blank">I--V</a>, and seminars at <a href="https://www.uvic.ca/ecs/ece/current/graduate/events/event.php?id=1360" target="_blank">https://www.uvic.ca/ecs/ece/current/graduate/events/event.php?id=1360</a>.
 
 
 <details  markdown="block">
