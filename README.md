@@ -1,7 +1,9 @@
 <!-- Top Menu -->
 <!-- Fixed Bottom Menu -->
 <div class="top-nav">
-  <a href="https://github.com/phibal12/QFLC-Dashboard/tree/main">🏠 GitHub Home</a>
+  <a href="https://github.com/phibal12/QFLC-Dashboard/tree/main">🏠<img src="./assets/github_icon03.png" 
+            alt="License" 
+            style="display: inline-block !important; margin-left: 0 !important; width:3%" /> GitHub Home</a>
   <a href="#core-objectives">📊 Features</a>
   <a href="#env-setup">🛠 Setup</a>
   <a href="#-repository-contents--widget-links">⊞ Widgets</a>
