@@ -1,6 +1,6 @@
 <!-- Top Menu -->
 <!-- Fixed Bottom Menu -->
-<div class="top-nav">
+<div class="top-nav" style="z-index: 9998" >
   <a href="https://github.com/phibal12/QFLC-Dashboard/tree/main"><img src="./assets/github_icon03.png" 
             alt="License" 
             style="display: inline-block !important; margin-left: 0 !important; width:1.3%; vertical-align: -30px;" /> GitHub Home</a>
