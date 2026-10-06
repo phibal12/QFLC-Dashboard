@@ -3,7 +3,7 @@
 <div class="top-nav">
   <a href="https://github.com/phibal12/QFLC-Dashboard/tree/main"><img src="./assets/github_icon03.png" 
             alt="License" 
-            style="display: inline-block !important; margin-left: 0 !important; width:1%; vertical-align: -20px;" />🏠 GitHub Home</a>
+            style="display: inline-block !important; margin-left: 0 !important; width:1.5%; vertical-align: -40px;" />🏠 GitHub Home</a>
   <a href="#core-objectives">📊 Features</a>
   <a href="#env-setup">🛠 Setup</a>
   <a href="#-repository-contents--widget-links">⊞ Widgets</a>
