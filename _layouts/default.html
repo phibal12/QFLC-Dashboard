@@ -360,7 +360,7 @@ body.standalone-page #main_content td {
   body.light-mode #theme-toggle {
     background: #f6f8fa !important;
     color: #24292f !important;
-    border-color: #d0d7de !important;
+    border-color: teal !important;
   }
 
   html.light-mode, body.light-mode {
@@ -677,7 +677,7 @@ details code {
     btn.textContent = isLight ? "☾ | Switch to Dark Mode" : "☉ | Switch to Bright Mode";
     btn.style.background = isLight ? "#f6f8fa" : "#24292f";
     btn.style.color = isLight ? "#24292f" : "white";
-    btn.style.borderColor = isLight ? "#d0d7de" : "#444c56";
+    btn.style.borderColor = isLight ? "teal" : "teal";
   }
 
   if (localStorage.getItem("theme") === "light") {
