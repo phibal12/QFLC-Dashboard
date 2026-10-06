@@ -3,7 +3,7 @@
 <div class="top-nav" style="z-index: 999" > 
   <a href="https://github.com/phibal12/QFLC-Dashboard/tree/main"><img src="./assets/github_icon03.png" 
             alt="License" 
-            style="display: inline-block !important; margin-left: 0 !important; width:1.3%; vertical-align: -30px; z-index: 999;" /> GitHub Home</a>
+            style="display: inline-block !important; margin-left: 0 !important; width:1.3%; vertical-align: -30px; z-index: 999;" id="github-icon"/> GitHub Home</a>
   <a href="#core-objectives">📊 Features</a>
   <a href="#env-setup">🛠 Setup</a>
   <a href="#-repository-contents--widget-links">⊞ Widgets</a>
@@ -513,7 +513,9 @@ University of Victoria, V8W 2Y2, Canada.
 
 <!-- Fixed Bottom Menu -->
 <div class="bottom-nav">
-  <a href="https://github.com/phibal12/QFLC-Dashboard/tree/main">🏠 GitHub Home</a>
+  <a href="https://github.com/phibal12/QFLC-Dashboard/tree/main"><img src="./assets/github_icon03.png" 
+            alt="License" 
+            style="display: inline-block !important; margin-left: 0 !important; width:1.3%; vertical-align: -30px; z-index: 999;" id="github-icon"/> GitHub Home</a>
   <a href="#core-objectives">📊 Features</a>
   <a href="#env-setup">🛠 Setup</a>
   <a href="#-repository-contents--widget-links">⊞ Widgets</a>
