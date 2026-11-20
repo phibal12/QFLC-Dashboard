@@ -157,9 +157,9 @@ This collection serves as a unified portfolio, translating the theoretical frame
 **OR** <br>
 *- Click on any module text link below to jump to its detailed description and links.*
 
-| <a href="#1-qf-lc-2xqubabe-hardware-synthesis-engine-and-phase-simulator"><img src="./assets/2xQuBABE_Banner.png" alt="Synthesis Engine" width="350" style="border-radius:8px; border:2px solid #3b82f6;"></a> | <a href="#2-qdf-phase-and-game-theory-simulator"><img src="./assets/QDF_P_Screenshot01.jpg" alt="Game Theory Simulator" width="350" style="border-radius:8px; border:2px solid #10b981;"></a> |
+| <a href="#1-qf-lc-2xqubabe-hardware-synthesis-engine-and-phase-simulator"><img src="./assets/2xQuBABE_Banner.png" alt="Synthesis Engine" width="350" style="border-radius:8px; border:2px solid #3b82f6;"></a> | <a href="#1-qdf-phase-and-game-theory-simulator"><img src="./assets/QDF_P_Screenshot01.jpg" alt="Game Theory Simulator" width="350" style="border-radius:8px; border:2px solid #10b981;"></a> |
 |:---:|:---:|
-| **[1. 2xQuBABE™ Hardware Synthesis Engine](#1-qf-lc-hypercube-hardware-synthesis-engine-and-phase-simulator)** | **[2. QDF mains](#2-qdf-phase-and-game-theory-simulator)** |
+| **[1. 2xQuBABE™ Hardware Synthesis / Mathematical Engine](#1-qf-lc-2xqubabe-hardware-synthesis-engine-and-phase-simulator)** | **[2. QDF mains](#2-qdf-phase-and-game-theory-simulator)** |
 | <a href="#2-qf-lc-hypercube-hardware-synthesis-engine-and-phase-simulator"><img src="./assets/QFLCH_Poster.png" alt="Synthesis Engine" width="350" style="border-radius:8px; border:2px solid #3b82f6;"></a> | <a href="#3-qdf-phase-and-game-theory-simulator"><img src="./assets/QDF_P_Screenshot01.jpg" alt="Game Theory Simulator" width="350" style="border-radius:8px; border:2px solid #10b981;"></a> |
 | **[3. QF-LC Hypercube Hardware Synthesis Engine (Hypercube)](#1-qf-lc-hypercube-hardware-synthesis-engine-and-phase-simulator)** | **[4. QDF Phase and Game Theory Simulator](#2-qdf-phase-and-game-theory-simulator)** |
 
@@ -236,13 +236,13 @@ It provides a robust, stochastic modeling framework that maps massive, fluctuati
 ## 🖲️⊞ Interactive Widget Collection
 The QF-LCA software and hardware simulators discussed in the seminar have been synthesized into the following interactive dashboards and simulators. 
 
-### 1.🧮🧊 QF-LC Hypercube Hardware Synthesis Engine and Phase Simulator
+### 1.🧮🧊 2xQuBABE™ System Simulator and Architecture
 <a href="https://phibal12.github.io/QFLC-Dashboard/systems/2xQuBABE/QuBABE_CNT-Lattice-QDF_Demo-v1" target="_blank"><img src="assets/2xQuBABE_Banner.png" alt="QF-LC Hardware Synthesis 2xQuBABE System" style="width: 100% !important; max-width: none !important; border-radius: 8px; border: 2px solid teal; position: relative; left: 50%; transform: translateX(-50%);"></a><br> 
 
 ### 2.🧮🧊 QF-LC Hypercube Hardware Synthesis Engine and Phase Simulator
 <a href="https://phibal12.github.io/QFLC-Dashboard/labs/QFLCH" target="_blank"><img src="assets/QFLCH_Poster.png" alt="QF-LC Hardware Synthesis Engine (Hypercube)" style="width: 100% !important; max-width: none !important; border-radius: 8px; border: 2px solid teal; position: relative; left: 50%; transform: translateX(-50%);"></a><br> 
 
-This is the flagship of the hardware engineering dashboard. It bypasses the visual intractability of traditional Karnaugh maps (scaling up to 12D/4096 nodes) by applying global field evaluations. Beyond standard 2D/3D visualizations, this project utilizes the **QFLC Hypercube** (QFLCH) framework to map the evolution of $N$-qubit systems. As quantum systems scale, traditional Bloch sphere representations become insufficient; the QFLCH provides a scalable, topological map of the **Quantum Double-Field (QDF)** space.
+This is the hypercube hardware engineering dashboard. It bypasses the visual intractability of traditional Karnaugh maps (scaling up to 12D/4096 nodes) by applying global field evaluations. Beyond standard 2D/3D visualizations, this project utilizes the **QFLC Hypercube** (QFLCH) framework to map the evolution of $N$-qubit systems. As quantum systems scale, traditional Bloch sphere representations become insufficient; the QFLCH provides a scalable, topological map of the **Quantum Double-Field (QDF)** space.
 
 **Key Features:**
 * Live $N$-Dimensional Hypercube wave collapse visualization.
