@@ -503,16 +503,30 @@ body.standalone-page #main_content td {
     pointer-events: auto; 
   }
   
-  .b1 { animation-delay: 0s; }
-  .b2 { animation-delay: 8s; }
-  .b3 { animation-delay: 16s; }
-  .b4 { animation-delay: 40s; }
+ /* First 3 frames: 8 seconds each */
+  .b1 { animation: fadeShort 40s infinite ease-in-out 0s; }
+  .b2 { animation: fadeShort 40s infinite ease-in-out 8s; }
+  .b3 { animation: fadeShort 40s infinite ease-in-out 16s; }
 
-  @keyframes fadeFour {
-    0%, 100% { opacity: 0; }
-    4.1%, 29.1% { opacity: 1; }
-    33.3%, 66.6% { opacity: 0; }
-    33.3%, 95.8% { opacity: 1; }
+  /* Last frame: 16 seconds */
+  .b4 { animation: fadeLong 40s infinite ease-in-out 24s; }
+
+  /* 8s visible out of 40s total (20% of timeline + 1.5s crossfade) */
+  @keyframes fadeShort {
+    0% { opacity: 0; }
+    3.75% { opacity: 1; }   /* Fade in (1.5s) */
+    20% { opacity: 1; }     /* Hold until 8s mark */
+    23.75% { opacity: 0; }  /* Crossfade out (1.5s) */
+    100% { opacity: 0; }
+  }
+
+  /* 16s visible out of 40s total (40% of timeline + 1.5s crossfade) */
+  @keyframes fadeLong {
+    0% { opacity: 0; }
+    3.75% { opacity: 1; }   /* Fade in (1.5s) */
+    40% { opacity: 1; }     /* Hold until 16s mark */
+    43.75% { opacity: 0; }  /* Crossfade out (1.5s) */
+    100% { opacity: 0; }
   }
 
   .banner-container:hover .banner-3 {
@@ -636,9 +650,6 @@ details code {
     });
   });
 </script>
-
-
-
 
 
 <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.time | relative_url }}">
