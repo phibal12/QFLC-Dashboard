@@ -160,7 +160,7 @@ This collection serves as a unified portfolio, translating the theoretical frame
 | <a href="#1-2xqubabe-system-simulator-and-architecture"><img src="./assets/2xQuBABE_Banner.png" alt="Synthesis Engine" width="350" style="border-radius:8px; border:2px solid #3b82f6;"></a> | <a href="#2-qdf-phase-and-game-theory-simulator"><img src="./assets/QDF_P_Screenshot01.jpg" alt="Game Theory Simulator" width="350" style="border-radius:8px; border:2px solid #10b981;"></a> |
 |:---:|:---:|
 | **[1. 2xQuBABE™ Hardware Synthesis / Mathematical Engine](#1-2xqubabe-system-simulator-and-architecture)** | **[2. QDF Mains](#2-qdf-phase-and-game-theory-simulator)** |
-| <a href="#3-qf-lc-hypercube-hardware-synthesis-engine-and-phase-simulator"><img src="./assets/QFLCH_Poster.png" alt="Synthesis Engine" width="350" style="border-radius:8px; border:2px solid #3b82f6;"></a> | <a href="#4-qdf-phase-and-game-theory-simulator"><img src="./assets/QDF_P_Screenshot01.jpg" alt="Game Theory Simulator" width="350" style="border-radius:8px; border:2px solid #10b981;"></a> |
+| <a href="#3-qf-lc-hypercube-hardware-synthesis-engine-and-phase-simulator"><img src="./assets/QFLCH_Poster.png" alt="Synthesis Engine" width="350" style="border-radius:8px; border:2px solid #3b82f6;"></a> | <a href="#4-qdf-phase-and-game-theory-simulator"><img src="./assets/QDF_Strong_P2.png" alt="Game Theory Simulator" width="350" style="border-radius:8px; border:2px solid #10b981;"></a> |
 | **[3. QF-LC Hypercube Hardware Synthesis Engine](#3-qf-lc-hypercube-hardware-synthesis-engine-and-phase-simulator)** | **[4. QDF Phase and Game Theory Simulator](#4-qdf-phase-and-game-theory-simulator)** |
 
 | <a href="#5-qf-lcs-system-state-predictions-and-lens-coding-simulator"><img src="./assets/QDF_P_Screenshot01.jpg" alt="QDF Prediction Simulator" width="350" style="border-radius:8px; border:2px solid #f59e0b;"></a> | <a href="#6-qdf-lens-geometry-lab-and-particle-trap"><img src="./assets/QDF_Lens_Screenshot00.JPG" alt="Geometry Lab" width="350" style="border-radius:8px; border:2px solid #8b5cf6;"></a> |
@@ -286,7 +286,7 @@ When executing the interactive simulation above using a high-fidelity state comb
 
 
 ### 4.🎯🔄 QDF Phase and Game Theory Simulator
-<a href="https://phibal12.github.io/QFLC-Dashboard/labs/QDF_P_Engine" target="_blank"><img src="./assets/QDF_P_Screenshot00.JPG" alt="Geometry Lab" height="70%" width="70%" style="border-radius:8px;"></a><br> 
+<a href="https://phibal12.github.io/QFLC-Dashboard/labs/QDF_P_Engine" target="_blank"><img src="./assets/QDF_Strong_P2.png" alt="Geometry Lab" height="70%" width="70%" style="border-radius:8px;"></a><br> 
 *(Demonstrating Quantum Phase Transitions and Participant Decisions)*
 
 This widget translates the QDF model into a game theory environment. As discussed in the seminar's exploration of entanglement and Quantum Key Distribution (QKD), this simulator models scenarios where four or more participants interact on a quantum level. 
@@ -319,9 +319,12 @@ Directly correlating with the "Measurement" and "Lens Focus" sections of the sem
 How does this relate to the QF-LCA Hypercube? This Geometry Lab visualizes the fundamental thermodynamic engine required to "power" the hypercube's multidimensional nodes. Achieving the **Target Phase** visualized in the lens constitutes the physical verification required to successfully trigger a node's logical collapse in Module 1. The trapped particles in the lab act as the physical qubits executing the logic gates, demonstrating Module 4 serves as the critical 'logic fuel' for Module 1's hardware compiler.
 
 ### 7.🧮🧊 QuSoLe DB: Quantum Social Lensing Database and AI
-The QuSole (quantum social lensing) algorithm from [7-9] adapts the QF-LCA field lens to real-world, macro-scale datasets by modeling variables as human event distributions rather than isolated particle systems It projects an event space N onto a Social Lensing (SoLe) target state (TS) vector, given the generated real-time pairwise 2N datasets, with a possible entangled data points/three-way entangled qubits quantifying measured as $M ((2N∕3) ⟨P⟩)$ from the world/environment: 
+<a href="https://phibal12.github.io/QFLC-Dashboard/labs/QuSole_QDF_v1-14" target="_blank"><img src="./assets/QuSoLe_GAbstract_screen.JPEG" alt="QDF Lens Geometry Lab" height="70%" width="70%" style="border-radius:8px;"></a><br> 
+*(Interactive Graphical Abstract of QuSoLe Database and State Transition Predictions)*
 
-$$ P_{\text{ST}}\left(\mathrm{Societal}\right)\geq 1/N───\ [\text{QuSole\ Lensing]}\ \xrightarrow{yields}P_{\text{ST}}\left(\mathrm{Macro}\right)\geq \overset{\text{Measures}}{\overbrace{\mathfrak{M}}}((2N∕3)\ ⟨P_{\text{ST}}⟩)\ \geq 2/3 . $$
+The QuSole (quantum social lensing) algorithm from [7-9] adapts the QF-LCA field lens to real-world, macro-scale datasets by modeling variables as human event distributions rather than isolated particle systems It projects an event space $N$ onto a Social Lensing (SoLe) target state (TS) vector, given the generated real-time pairwise $2N$ datasets, with a possible entangled data points/three-way entangled qubits quantifying measured as $M ((2N∕3) ⟨P⟩)$ from the world/environment: 
+
+$$ P_{\text{ST}}\left(\mathrm{Societal}\right)\geq 1/N ──\ [\text{QuSole Lensing]}\ \xrightarrow{yields}P_{\text{ST}}\left(\mathrm{Macro}\right)\geq \overset{\text{Measures}}{\overbrace{\mathfrak{M}}}((2N∕3)\ ⟨P_{\text{ST}}⟩)\ \geq 2/3 . $$
 
 It employs asymmetric, fix-free social lensing codes that systematically focus/defocus the underlying probability distribution matrices. This algorithm isolates projecting anomalies across noisy macro-data structures without requiring complete matrix evaluation.
 
