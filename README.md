@@ -156,10 +156,10 @@ This collection serves as a unified portfolio, translating the theoretical frame
 *- Click on any module image below to jump to its interactive environment.* <br>
 **OR** <br>
 *- Click on any module text link below to jump to its detailed description and links.*
- 
-| <a href="#1-2xqubabe-system-simulator-and-architecture"><img src="./assets/2xQuBABE_Banner.png" alt="Synthesis Engine" width="350" style="border-radius:8px; border:2px solid #3b82f6;"></a> | <a href="#2-qdf-phase-and-game-theory-simulator"><img src="./assets/QDF_P_Screenshot01.jpg" alt="Game Theory Simulator" width="350" style="border-radius:8px; border:2px solid #10b981;"></a> |
+
+| <a href="#1-qflc-framework-probability-doubling-by-qdf-modelling"><img src="./assets/PhD-GAbstract.png" alt="Game Theory Simulator" width="350" style="border-radius:8px; border:2px solid #10b981;"></a> | <a href="#2-2xqubabe-system-simulator-and-architecture"><img src="./assets/2xQuBABE_Banner.png" alt="Synthesis Engine" width="350" style="border-radius:8px; border:2px solid #3b82f6;"></a> | 
 |:---:|:---:|
-| **[1. 2xQuBABE™ Hardware Synthesis / Mathematical Engine](#1-2xqubabe-system-simulator-and-architecture)** | **[2. QDF Mains](#2-qdf-phase-and-game-theory-simulator)** |
+**[1. QF-LCA and QDF Mains](#1-qdf-phase-and-game-theory-simulator)** | **[2. 2xQuBABE™ Hardware Synthesis / Mathematical Engine](#2-2xqubabe-system-simulator-and-architecture)** | 
 | <a href="#3-qf-lc-hypercube-hardware-synthesis-engine-and-phase-simulator"><img src="./assets/QFLCH_Poster.png" alt="Synthesis Engine" width="350" style="border-radius:8px; border:2px solid #3b82f6;"></a> | <a href="#4-qdf-phase-and-game-theory-simulator"><img src="./assets/QDF_Strong_P2.png" alt="Game Theory Simulator" width="350" style="border-radius:8px; border:2px solid #10b981;"></a> |
 | **[3. QF-LC Hypercube Hardware Synthesis Engine](#3-qf-lc-hypercube-hardware-synthesis-engine-and-phase-simulator)** | **[4. QDF Phase and Game Theory Simulator](#4-qdf-phase-and-game-theory-simulator)** |
 
@@ -172,7 +172,7 @@ This collection serves as a unified portfolio, translating the theoretical frame
 | **[7. QuSole DB: Quantum Social Lensing Database and AI](#7-qusole-db-quantum-social-lensing-database-and-ai)** | 
 
 ---
-## QFLC Framework: Probability Doubling by QDF modelling
+### 1.🧮🧊 QFLC Framework: Probability Doubling by QDF modelling
 
 <a href="assets/PhD-GAbstract.png" target="_blank"><img src="assets/PhD-GAbstract.png" alt="QF-LC Dissertation Framework" style="width: 100% !important; max-width: none !important; border-radius: 8px; border: 2px solid teal; position: relative; left: 50%; transform: translateX(-50%);"></a><br> 
 
@@ -240,7 +240,7 @@ It provides a robust, stochastic modeling framework that maps massive, fluctuati
 ## 🖲️⊞ Interactive Widget Collection
 The QF-LCA software and hardware simulators discussed in the seminar have been synthesized into the following interactive dashboards and simulators. 
 
-### 1.🧮🧊 2xQuBABE™ System Simulator and Architecture
+### 2.🧮🧊 2xQuBABE™ System Simulator and Architecture
 <a href="https://phibal12.github.io/QFLC-Dashboard/systems/2xQuBABE/QuBABE_CNT-Lattice-QDF_Demo-v1" target="_blank"><img src="assets/2xQuBABE_Banner.png" alt="QF-LC Hardware Synthesis 2xQuBABE System" style="width: 100% !important; max-width: none !important; border-radius: 8px; border: 2px solid teal; position: relative; left: 50%; transform: translateX(-50%);"></a><br> 
 
 ### 3.🧮🧊 QF-LC Hypercube Hardware Synthesis Engine and Phase Simulator
