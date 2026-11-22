@@ -157,9 +157,9 @@ This collection serves as a unified portfolio, translating the theoretical frame
 **OR** <br>
 *- Click on any module text link below to jump to its detailed description and links.*
 
-| <a href="#1-qflc-framework-probability-doubling-by-qdf-modelling"><img src="./assets/PhD-GAbstract.png" alt="Game Theory Simulator" width="350" style="border-radius:8px; border:2px solid #10b981;"></a> | <a href="#2-2xqubabe-system-simulator-and-architecture"><img src="./assets/2xQuBABE_Banner.png" alt="Synthesis Engine" width="350" style="border-radius:8px; border:2px solid #3b82f6;"></a> | 
+| <a href="#1-qflc-framework-probability-doubling-by-qdf-modelling"><img src="./assets/PhD-GAbstract.png" alt="Game Theory Simulator" width="350" style="border-radius:8px; border:2px solid #10b981;"></a> | <a href="#2-2xqubabe-system-simulator-and-architecture"><img src="./assets/2xQuBABE_Banner.png" alt="Synthesis Engine" width="370" style="border-radius:8px; border:2px solid #3b82f6;"></a> | 
 |:---:|:---:|
-**[1. QF-LCA and QDF Mains](#1-qdf-phase-and-game-theory-simulator)** | **[2. 2xQuBABE™ Hardware Synthesis / Mathematical Engine](#2-2xqubabe-system-simulator-and-architecture)** | 
+**[1. QF-LC Mains: QF-LCA/QDF and Benchmarking + PhD Summary](#1-qdf-phase-and-game-theory-simulator)** | **[2. 2xQuBABE™ Hardware Synthesis / Mathematical Engine](#2-2xqubabe-system-simulator-and-architecture)** | 
 | <a href="#3-qf-lc-hypercube-hardware-synthesis-engine-and-phase-simulator"><img src="./assets/QFLCH_Poster.png" alt="Synthesis Engine" width="350" style="border-radius:8px; border:2px solid #3b82f6;"></a> | <a href="#4-qdf-phase-and-game-theory-simulator"><img src="./assets/QDF_Strong_P2.png" alt="Game Theory Simulator" width="350" style="border-radius:8px; border:2px solid #10b981;"></a> |
 | **[3. QF-LC Hypercube Hardware Synthesis Engine](#3-qf-lc-hypercube-hardware-synthesis-engine-and-phase-simulator)** | **[4. QDF Phase and Game Theory Simulator](#4-qdf-phase-and-game-theory-simulator)** |
 
