@@ -41,7 +41,7 @@
       <a href="https://github.com/phibal12/QFLC-Dashboard">
 <img src="https://github-readme-stats.shion.dev/api/top-langs/?username=phibal12&langs_count=10&layout=compact&theme=tokyonight&hide=css,scss,notebook,ruby,json&show_icons=true&custom_title=QFLC+Project+Most+Used+Languages&card_width=400" 
        alt="Dr. Alipour's Repo Research Languages"  >
-  <img src="https://api.iconify.design/octicon:git-branch-24.svg?color=%23FFA500"
+  <img src="./assets/branch.png"
        alt="Branch" 
        width="35" style="vertical-align: middle; filter: invert(0.6) sepia(1) saturate(5) hue-rotate(150deg); margin-left: -10px; opacity: 0.8; display: inline-block; transform: rotate(-90deg);" ></a> 
   <a href="https://github.com/phibal12/QFLC-Dashboard">
@@ -156,16 +156,20 @@ This collection serves as a unified portfolio, translating the theoretical frame
 *- Click on any module image below to jump to its interactive environment.* <br>
 **OR** <br>
 *- Click on any module text link below to jump to its detailed description and links.*
-
-| <a href="#1-qf-lc-2xqubabe-hardware-synthesis-engine-and-phase-simulator"><img src="./assets/2xQuBABE_Banner.png" alt="Synthesis Engine" width="350" style="border-radius:8px; border:2px solid #3b82f6;"></a> | <a href="#2-qdf-phase-and-game-theory-simulator"><img src="./assets/QDF_P_Screenshot01.jpg" alt="Game Theory Simulator" width="350" style="border-radius:8px; border:2px solid #10b981;"></a> |
+ 
+| <a href="#1-2xqubabe-system-simulator-and-architecture"><img src="./assets/2xQuBABE_Banner.png" alt="Synthesis Engine" width="350" style="border-radius:8px; border:2px solid #3b82f6;"></a> | <a href="#2-qdf-phase-and-game-theory-simulator"><img src="./assets/QDF_P_Screenshot01.jpg" alt="Game Theory Simulator" width="350" style="border-radius:8px; border:2px solid #10b981;"></a> |
 |:---:|:---:|
-| **[1. 2xQuBABE™ Hardware Synthesis / Mathematical Engine](#1-qf-lc-2xqubabe-hardware-synthesis-engine-and-phase-simulator)** | **[2. QDF mains](#2-qdf-phase-and-game-theory-simulator)** |
+| **[1. 2xQuBABE™ Hardware Synthesis / Mathematical Engine](#1-2xqubabe-system-simulator-and-architecture)** | **[2. QDF Mains](#2-qdf-phase-and-game-theory-simulator)** |
 | <a href="#3-qf-lc-hypercube-hardware-synthesis-engine-and-phase-simulator"><img src="./assets/QFLCH_Poster.png" alt="Synthesis Engine" width="350" style="border-radius:8px; border:2px solid #3b82f6;"></a> | <a href="#4-qdf-phase-and-game-theory-simulator"><img src="./assets/QDF_P_Screenshot01.jpg" alt="Game Theory Simulator" width="350" style="border-radius:8px; border:2px solid #10b981;"></a> |
-| **[3. QF-LC Hypercube Hardware Synthesis Engine (Hypercube)](#3-qf-lc-hypercube-hardware-synthesis-engine-and-phase-simulator)** | **[4. QDF Phase and Game Theory Simulator](#4-qdf-phase-and-game-theory-simulator)** |
+| **[3. QF-LC Hypercube Hardware Synthesis Engine](#3-qf-lc-hypercube-hardware-synthesis-engine-and-phase-simulator)** | **[4. QDF Phase and Game Theory Simulator](#4-qdf-phase-and-game-theory-simulator)** |
 
 | <a href="#5-qf-lcs-system-state-predictions-and-lens-coding-simulator"><img src="./assets/QDF_P_Screenshot01.jpg" alt="QDF Prediction Simulator" width="350" style="border-radius:8px; border:2px solid #f59e0b;"></a> | <a href="#6-qdf-lens-geometry-lab-and-particle-trap"><img src="./assets/QDF_Lens_Screenshot00.JPG" alt="Geometry Lab" width="350" style="border-radius:8px; border:2px solid #8b5cf6;"></a> |
 |:---:|:---:|
 | **[5. System State Prediction Simulator](#5-qf-lcs-system-state-predictions--lens-coding-simulator)** | **[6. QDF Lens Geometry Lab and Particle Trap](#6-qdf-lens-geometry-lab-and-particle-trap)** |
+
+| <a href="#7-qusole-db-quantum-social-lensing-database-and-ai"><img src="./assets/QDF_P_Screenshot01.jpg" alt="QDF Prediction Simulator" width="350" style="border-radius:8px; border:2px solid #0aee0a;"></a> |
+|:-----:|
+| **[7. QuSole DB: Quantum Social Lensing Database and AI](#7-qusole-db-quantum-social-lensing-database-and-ai)** | 
 
 ---
 ## QFLC Framework: Probability Doubling by QDF modelling
@@ -189,7 +193,7 @@ This result is documented in Dr. Alipour's QF-LC dissertation and validated via 
 
 ## 🎓 Post-PhD Seminar Summary
 
-Based on the Post-Ph.D. Defence Seminar and the accompanying transcript, this collection is built upon several core theoretical pillars:
+Based on the Post-Ph.D. Defence Seminar entitled [Quantum Field Lens Coding: A New Way to Predict Particle States and System Events](https://www.uvic.ca/ecs/ece/current/graduate/events/event.php?id=1360) at UVic and the summarized transcript, this collection is built upon several core theoretical pillars:
 
 * **The SF-to-QDF Field Transform:** Transitioning systems from a Superfluid (SF) state to a Quantum Density Fluctuation (QDF) state. This involves utilizing the scalar $\kappa$ to adjust field interactions and focus the quantum "lens."
 * **Equation (53) and Thermodynamic Integration:** modelling the exact transition probability to a target state over time. Entanglement Entropy (EE) is mathematically defined as the "fuel" or cost of this operation, routing physical logic around thermal limits.
@@ -239,7 +243,7 @@ The QF-LCA software and hardware simulators discussed in the seminar have been s
 ### 1.🧮🧊 2xQuBABE™ System Simulator and Architecture
 <a href="https://phibal12.github.io/QFLC-Dashboard/systems/2xQuBABE/QuBABE_CNT-Lattice-QDF_Demo-v1" target="_blank"><img src="assets/2xQuBABE_Banner.png" alt="QF-LC Hardware Synthesis 2xQuBABE System" style="width: 100% !important; max-width: none !important; border-radius: 8px; border: 2px solid teal; position: relative; left: 50%; transform: translateX(-50%);"></a><br> 
 
-### 2.🧮🧊 QF-LC Hypercube Hardware Synthesis Engine and Phase Simulator
+### 3.🧮🧊 QF-LC Hypercube Hardware Synthesis Engine and Phase Simulator
 <a href="https://phibal12.github.io/QFLC-Dashboard/labs/QFLCH" target="_blank"><img src="assets/QFLCH_Poster.png" alt="QF-LC Hardware Synthesis Engine (Hypercube)" style="width: 100% !important; max-width: none !important; border-radius: 8px; border: 2px solid teal; position: relative; left: 50%; transform: translateX(-50%);"></a><br> 
 
 This is the hypercube hardware engineering dashboard. It bypasses the visual intractability of traditional Karnaugh maps (scaling up to 12D/4096 nodes) by applying global field evaluations. Beyond standard 2D/3D visualizations, this project utilizes the **QFLC Hypercube** (QFLCH) framework to map the evolution of $N$-qubit systems. As quantum systems scale, traditional Bloch sphere representations become insufficient; the QFLCH provides a scalable, topological map of the **Quantum Double-Field (QDF)** space.
@@ -281,7 +285,7 @@ When executing the interactive simulation above using a high-fidelity state comb
 - **Deterministic State Lock-In ($P \to 0.99$):** The real-time oscillation demonstrates the decoding of hidden Bell state information out of ambient background noise. This optimization effectively doubles the transition probability space, proving the system's ability to eliminate cryogenic processing bottlenecks in real time.
 
 
-### 2.🎯🔄 QDF Phase and Game Theory Simulator
+### 4.🎯🔄 QDF Phase and Game Theory Simulator
 <a href="https://phibal12.github.io/QFLC-Dashboard/labs/QDF_P_Engine" target="_blank"><img src="./assets/QDF_P_Screenshot00.JPG" alt="Geometry Lab" height="70%" width="70%" style="border-radius:8px;"></a><br> 
 *(Demonstrating Quantum Phase Transitions and Participant Decisions)*
 
@@ -289,15 +293,15 @@ This widget translates the QDF model into a game theory environment. As discusse
 * **Mechanics:** Users can observe how a "guest participant" (acting as the Ancilla/Eve) influences the network to force a Quantum Phase Transition (QPT). 
 * **Outcome:** It visualizes the probability doubling mechanism where information is safely received, and a decision state (the "prize") is resolved.
 
-### 3.🧮⚛ QF-LCS: System State Predictions and Lens Coding Simulator
-<a href="#4-qdf-lens-geometry-lab--particle-trap"><img src="./assets/QDF_P_Screenshot00.JPG" alt="Geometry Lab" height="70%" width="70%" style="border-radius:8px; border:2px solid #8b5cf6;"></a><br> 
+### 5.🧮⚛ QF-LCS: System State Predictions and Lens Coding Simulator
+<a href="#5-qdf-lens-geometry-lab--particle-trap"><img src="./assets/QDF_P_Screenshot00.JPG" alt="Geometry Lab" height="70%" width="70%" style="border-radius:8px; border:2px solid #8b5cf6;"></a><br> 
 *(The core simulation engine for strong predictions)*
 
 This widget simulates ...
 
-### 4.🔬⚛️ QDF Lens Geometry Lab and Particle Trap
-<!-- <a href="#4-qdf-lens-geometry-lab--particle-trap"> -->
-<a href="https://phibal12.github.io/QFLC-Dashboard/labs/QDF-Lens" target="_blank"><img src="./assets/QDF_Lens_Screenshot00.JPG" alt="Geometry Lab" height="70%" width="70%" style="border-radius:8px;"></a><br> 
+### 6.🔬⚛️ QDF Lens Geometry Lab and Particle Trap
+<!-- <a href="#6-qdf-lens-geometry-lab-and-particle-trap"> -->
+<a href="https://phibal12.github.io/QFLC-Dashboard/labs/QDF-Lens" target="_blank"><img src="./assets/QDF_Lens_Screenshot00.JPG" alt="QDF Lens Geometry Lab" height="70%" width="70%" style="border-radius:8px;"></a><br> 
 *(Live verification of Spatial Density and Lens Distance)*
 
 Directly correlating with the "Measurement" and "Lens Focus" sections of the seminar, this Geometry Lab visualizes the physical interaction length between the source and the target state. 
@@ -313,6 +317,14 @@ Directly correlating with the "Measurement" and "Lens Focus" sections of the sem
 
 **🛠️ Hardware Application (Addendum):**
 How does this relate to the QF-LCA Hypercube? This Geometry Lab visualizes the fundamental thermodynamic engine required to "power" the hypercube's multidimensional nodes. Achieving the **Target Phase** visualized in the lens constitutes the physical verification required to successfully trigger a node's logical collapse in Module 1. The trapped particles in the lab act as the physical qubits executing the logic gates, demonstrating Module 4 serves as the critical 'logic fuel' for Module 1's hardware compiler.
+
+### 7.🧮🧊 QuSoLe DB: Quantum Social Lensing Database and AI
+The QuSole (quantum social lensing) algorithm from [7-9] adapts the QF-LCA field lens to real-world, macro-scale datasets by modeling variables as human event distributions rather than isolated particle systems It projects an event space N onto a Social Lensing (SoLe) target state (TS) vector, given the generated real-time pairwise 2N datasets, with a possible entangled data points/three-way entangled qubits quantifying measured as $M ((2N∕3) ⟨P⟩)$ from the world/environment: 
+
+$$ P_{\text{ST}}\left(\mathrm{Societal}\right)\geq 1/N───\ [\text{QuSole\ Lensing]}\ \xrightarrow{yields}P_{\text{ST}}\left(\mathrm{Macro}\right)\geq \overset{\text{Measures}}{\overbrace{\mathfrak{M}}}((2N∕3)\ ⟨P_{\text{ST}}⟩)\ \geq 2/3 . $$
+
+It employs asymmetric, fix-free social lensing codes that systematically focus/defocus the underlying probability distribution matrices. This algorithm isolates projecting anomalies across noisy macro-data structures without requiring complete matrix evaluation.
+
 
 ---
 

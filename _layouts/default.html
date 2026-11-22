@@ -499,7 +499,7 @@ body.standalone-page #main_content td {
     padding: 0 !important; 
     object-fit: contain !important; 
     opacity: 0;
-    animation: fadeThree 24s infinite ease-in-out;
+    animation: fadeFour 48s infinite ease-in-out;
     pointer-events: auto; 
   }
   
@@ -508,10 +508,11 @@ body.standalone-page #main_content td {
   .b3 { animation-delay: 16s; }
   .b4 { animation-delay: 40s; }
 
-  @keyframes fadeThree {
+  @keyframes fadeFour {
     0%, 100% { opacity: 0; }
     4.1%, 29.1% { opacity: 1; }
-    33.3%, 95.8% { opacity: 0; }
+    33.3%, 66.6% { opacity: 0; }
+    33.3%, 95.8% { opacity: 1; }
   }
 
   .banner-container:hover .banner-3 {
