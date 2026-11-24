@@ -163,7 +163,7 @@ This collection serves as a unified portfolio, translating the theoretical frame
 | <a href="#3-qf-lc-hypercube-hardware-synthesis-engine-and-phase-simulator"><img src="./assets/QFLCH_Poster.png" alt="Synthesis Engine" width="350" style="border-radius:8px; border:2px solid #3b82f6;"></a> | <a href="#4-qdf-phase-pns-attack-and-game-theory-simulator"><img src="./assets/QDF_Strong_P2.png" alt="Game Theory Simulator" width="350" style="border-radius:8px; border:2px solid #10b981;"></a> |
 | **[3. QF-LC Hypercube Hardware Synthesis Engine](#3-qf-lc-hypercube-hardware-synthesis-engine-and-phase-simulator)** | **[4. QDF Phase, PNS Attack and Game Theory Simulator](#4-qdf-phase-and-game-theory-simulator)** |
 
-| <a href="#5-qf-lcs-system-state-predictions-and-lens-coding-simulator"><img src="./assets/QSIMPAC_GAbstract.jpg" alt="QDF Prediction Simulator" width="350" style="border-radius:8px; border:2px solid #f59e0b;"></a> | <a href="#6-qdf-lens-geometry-lab-and-particle-trap"><img src="./assets/QDF_Lens_Screenshot00.JPG" alt="Geometry Lab" width="350" style="border-radius:8px; border:2px solid #8b5cf6;"></a> |
+| <a href="#5-qf-lcs-system-state-predictions-and-lens-coding-simulator"><img src="./assets/SIMPAC_GAbstract.jpg" alt="QDF Prediction Simulator" width="350" style="border-radius:8px; border:2px solid #f59e0b;"></a> | <a href="#6-qdf-lens-geometry-lab-and-particle-trap"><img src="./assets/QDF_Lens_Screenshot00.JPG" alt="Geometry Lab" width="350" style="border-radius:8px; border:2px solid #8b5cf6;"></a> |
 |:---:|:---:|
 | **[5. System State Prediction Simulator](#5-qf-lcs-system-state-predictions--lens-coding-simulator)** | **[6. QDF Lens Geometry Lab and Particle Trap](#6-qdf-lens-geometry-lab-and-particle-trap)** |
 
@@ -320,7 +320,7 @@ This widget translates the QDF model into a game theory environment. As discusse
 A quantum field lens coding simulator (QF-LCS) is presented on a high-level end-user application software run by CLI 
 ⟷ GUI with custom commands input by the user to process, analyze, validate QF-LC algorithm (QF-LCA) datasets in a QF-LC Python game. On the low-level system software, measurement data are acquired from quantum computers. The datasets contain these measurement data, processed and classified according to QF-LCA circuit design and steps determining system states and their prediction. This software, impacts advances made in applied sciences, statistics, law and physics, where data validation of samples including system simulation projecting and predicting events are achieved. 
 
-The interactive widget is accessible with dataset circuit and transition probability results via <a href="https://codeocean.com/capsule/6853712/tree/v2" target="_blank">https://codeocean.com/capsule/6853712/tree/v2</a> and <a href="https://www.sciencedirect.com/science/article/pii/S2665963824000915"target="_blank">https://www.sciencedirect.com/science/article/pii/S2665963824000915</a> links. 
+The interactive widget is accessible with dataset circuit and transition probability results via <a href="https://codeocean.com/capsule/6853712/tree/v2" target="_blank">https://codeocean.com/capsule/6853712/tree/v2</a> and <a href="https://www.sciencedirect.com/science/article/pii/S2665963824000915" target="_blank">https://www.sciencedirect.com/science/article/pii/S2665963824000915</a> links. 
 
 ### 6.🔬⚛️ QDF Lens Geometry Lab and Particle Trap
 <!-- <a href="#6-qdf-lens-geometry-lab-and-particle-trap"> -->
