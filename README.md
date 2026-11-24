@@ -160,14 +160,14 @@ This collection serves as a unified portfolio, translating the theoretical frame
 | <a href="#1-qflc-framework-probability-doubling-by-qdf-modelling"><img src="./assets/PhD-GAbstract.png" alt="Game Theory Simulator" width="350" style="border-radius:8px; border:2px solid #10b981;"></a> | <a href="#2-2xqubabe-system-simulator-and-architecture"><img src="./assets/2xQuBABE_Banner.png" alt="Synthesis Engine" width="370" style="border-radius:8px; border:2px solid #3b82f6;"></a> | 
 |:---:|:---:|
 **[1. QF-LC Mains: QF-LCA/QDF and Benchmarking + PhD Summary](#1-qdf-phase-and-game-theory-simulator)** | **[2. 2xQuBABE™ Hardware Synthesis / Mathematical Engine](#2-2xqubabe-system-simulator-and-architecture)** | 
-| <a href="#3-qf-lc-hypercube-hardware-synthesis-engine-and-phase-simulator"><img src="./assets/QFLCH_Poster.png" alt="Synthesis Engine" width="350" style="border-radius:8px; border:2px solid #3b82f6;"></a> | <a href="#4-qdf-phase-and-game-theory-simulator"><img src="./assets/QDF_Strong_P2.png" alt="Game Theory Simulator" width="350" style="border-radius:8px; border:2px solid #10b981;"></a> |
-| **[3. QF-LC Hypercube Hardware Synthesis Engine](#3-qf-lc-hypercube-hardware-synthesis-engine-and-phase-simulator)** | **[4. QDF Phase and Game Theory Simulator](#4-qdf-phase-and-game-theory-simulator)** |
+| <a href="#3-qf-lc-hypercube-hardware-synthesis-engine-and-phase-simulator"><img src="./assets/QFLCH_Poster.png" alt="Synthesis Engine" width="350" style="border-radius:8px; border:2px solid #3b82f6;"></a> | <a href="#4-qdf-phase-pns-attack-and-game-theory-simulator"><img src="./assets/QDF_Strong_P2.png" alt="Game Theory Simulator" width="350" style="border-radius:8px; border:2px solid #10b981;"></a> |
+| **[3. QF-LC Hypercube Hardware Synthesis Engine](#3-qf-lc-hypercube-hardware-synthesis-engine-and-phase-simulator)** | **[4. QDF Phase, PNS Attack and Game Theory Simulator](#4-qdf-phase-and-game-theory-simulator)** |
 
 | <a href="#5-qf-lcs-system-state-predictions-and-lens-coding-simulator"><img src="./assets/QDF_P_Screenshot01.jpg" alt="QDF Prediction Simulator" width="350" style="border-radius:8px; border:2px solid #f59e0b;"></a> | <a href="#6-qdf-lens-geometry-lab-and-particle-trap"><img src="./assets/QDF_Lens_Screenshot00.JPG" alt="Geometry Lab" width="350" style="border-radius:8px; border:2px solid #8b5cf6;"></a> |
 |:---:|:---:|
 | **[5. System State Prediction Simulator](#5-qf-lcs-system-state-predictions--lens-coding-simulator)** | **[6. QDF Lens Geometry Lab and Particle Trap](#6-qdf-lens-geometry-lab-and-particle-trap)** |
 
-| <a href="#7-qusole-db-quantum-social-lensing-database-and-ai"><img src="./assets/QDF_P_Screenshot01.jpg" alt="QDF Prediction Simulator" width="350" style="border-radius:8px; border:2px solid #0aee0a;"></a> |
+| <a href="#7-qusole-db-quantum-social-lensing-database-and-ai"><img src="./assets/QuSoLe_GAbstract_screen.jpeg" alt="QDF Prediction Simulator" width="350" style="border-radius:8px; border:2px solid #0aee0a;"></a> |
 |:-----:|
 | **[7. QuSole DB: Quantum Social Lensing Database and AI](#7-qusole-db-quantum-social-lensing-database-and-ai)** | 
 
@@ -285,7 +285,7 @@ When executing the interactive simulation above using a high-fidelity state comb
 - **Deterministic State Lock-In ($P \to 0.99$):** The real-time oscillation demonstrates the decoding of hidden Bell state information out of ambient background noise. This optimization effectively doubles the transition probability space, proving the system's ability to eliminate cryogenic processing bottlenecks in real time.
 
 
-### 4.🎯🔄 QDF Phase and Game Theory Simulator
+### 4.🎯🔄 QDF Phase, PNS Attack and Game Theory Simulator
 <a href="https://phibal12.github.io/QFLC-Dashboard/labs/QDF_P_Engine" target="_blank"><img src="./assets/QDF_Strong_P2.png" alt="Geometry Lab" height="70%" width="70%" style="border-radius:8px;"></a><br> 
 *(Demonstrating Quantum Phase Transitions and Participant Decisions)*
 
