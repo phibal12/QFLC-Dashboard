@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QF-LC Interactive Research Poster</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #0d1117;
+      color: #e6edf3;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 16px;
+    }
+
+    .interaction-hint {
+      width: 100%;
+      max-width: 1100px;
+      background: rgba(0, 240, 255, 0.08);
+      border: 1px solid rgba(0, 240, 255, 0.4);
+      color: #a5f3fc;
+      padding: 10px 16px;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      font-size: 0.95rem;
+      text-align: center;
+    }
+
+    .interaction-hint strong {
+      color: #00f0ff;
+    }
+
+    .poster-widget {
+      position: relative;
+      width: 100%;
+      max-width: 1100px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 2px solid #00f0ff;
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.15);
+      background-color: #0d1117;
+    }
+
+    .poster-widget img {
+      display: block;
+      width: 100%;
+      height: auto;
+      user-select: none;
+    }
+
+    /* Base Hotspot Styling */
+    .hotspot {
+      position: absolute;
+      display: block;
+      border-radius: 6px;
+      border: 2px solid transparent;
+      overflow: hidden; /* Keeps internal light sweeps inside the panel */
+      transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .hotspot:hover,
+    .hotspot:focus-visible {
+      border-color: #00f0ff;
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.65), inset 0 0 15px rgba(0, 240, 255, 0.25);
+      outline: none;
+      z-index: 10;
+    }
+
+    /* Floating Label Badge */
+    .hotspot::after {
+      content: attr(data-label);
+      position: absolute;
+      bottom: 8px;
+      right: 8px;
+      background: rgba(13, 17, 23, 0.92);
+      color: #00f0ff;
+      border: 1px solid #00f0ff;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      opacity: 0;
+      transform: translateY(4px);
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    .hotspot:hover::after {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===================================================== */
+    /* CUSTOM HOVER ILLUSION ANIMATIONS PER PANEL            */
+    /* ===================================================== */
+
+    /* 1. TITLE: Diagonal Glass Shimmer Sweep */
+    .anim-title::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(120deg, transparent, rgba(0, 240, 255, 0.28), transparent);
+      transform: skewX(-25deg);
+    }
+    .anim-title:hover::before {
+      animation: shimmerSweep 1.6s infinite ease-in-out;
+    }
+    @keyframes shimmerSweep {
+      0% { left: -80%; }
+      100% { left: 140%; }
+    }
+
+    /* 2. PANEL 1 (Quantum Lens): Pulsing Lens Core + Left-to-Right Projection Beam */
+    .anim-lens::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      /* Layer 1: Left-to-right scanning beam | Layer 2: Radial glow over the glass lens */
+      background-image: 
+        linear-gradient(90deg, transparent 0%, rgba(0, 240, 255, 0.32) 50%, transparent 100%),
+        radial-gradient(circle at 38% 58%, rgba(0, 240, 255, 0.35) 0%, rgba(0, 240, 255, 0.08) 45%, transparent 70%);
+      background-size: 55% 100%, 100% 100%;
+      background-position: -120% 0, 0 0;
+      background-repeat: no-repeat;
+      opacity: 0;
+    }
+
+    .anim-lens:hover::before {
+      animation: 
+        lensPulse 1.8s infinite alternate ease-in-out,
+        lensProjection 2.2s infinite linear;
+    }
+
+    @keyframes lensPulse {
+      0% { opacity: 0.45; transform: scale(0.96); }
+      100% { opacity: 1; transform: scale(1.05); }
+    }
+
+    @keyframes lensProjection {
+      0% { background-position: -120% 0, 0 0; }
+      100% { background-position: 220% 0, 0 0; }
+    }
+
+
+    /* 3. PANEL 2 (Scalar Transformation): Left-to-Right Wave Amplification */
+    .anim-scalar::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -60%;
+      width: 56%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.25), rgba(168, 85, 247, 0.3), transparent);
+    }
+    .anim-scalar:hover::before {
+      animation: waveAmplify 1.8s infinite linear;
+    }
+    @keyframes waveAmplify {
+      0% { left: -60%; }
+      100% { left: 120%; }
+    }
+
+    /* 4. PANEL 3 (Three-Way Entanglement): Dual-Color Quantum Resonance */
+    .anim-entangle:hover {
+      border-color: #c084fc; /* Shifts border glow to purple-cyan */
+      box-shadow: 0 0 22px rgba(192, 132, 252, 0.7), inset 0 0 18px rgba(0, 240, 255, 0.25);
+    }
+    .anim-entangle::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(16, 185, 129, 0.18), rgba(0, 240, 255, 0.22), rgba(168, 85, 247, 0.25));
+      opacity: 0;
+    }
+    .anim-entangle:hover::before {
+      animation: quantumBridge 1.4s infinite alternate ease-in-out;
+    }
+    @keyframes quantumBridge {
+      0% { opacity: 0.3; filter: hue-rotate(0deg); }
+      100% { opacity: 0.9; filter: hue-rotate(35deg); }
+    }
+
+    /* 5. PANEL 4 (Real-World Impact): Vertical Holographic Scanline */
+    .anim-impact::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: -40%;
+      width: 100%;
+      height: 35%;
+      background: linear-gradient(180deg, transparent, rgba(0, 240, 255, 0.22), transparent);
+      border-bottom: 1px solid rgba(0, 240, 255, 0.5);
+    }
+    .anim-impact:hover::before {
+      animation: holoScan 2.2s infinite ease-in-out;
+    }
+    @keyframes holoScan {
+      0% { top: -35%; }
+      100% { top: 110%; }
+    }
+
+    /* Bottom Words Hover Glow */
+    .spot-word:hover {
+      background-color: rgba(0, 240, 255, 0.18);
+    }
+    .spot-word::after {
+      bottom: 120%;
+      right: auto;
+      left: 50%;
+      transform: translateX(-50%) translateY(4px);
+    }
+    .spot-word:hover::after {
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* ===================================================== */
+    /* COORDINATES, H, W, T, L                                           */
+    /* ===================================================== */
+    .spot-title   { top: 1.5%;  left: 2.2%;  width: 95.5%; height: 18.5%; }
+    .spot-panel-1 { top: 22.5%; left: 2.1%;  width: 47.4%; height: 36.2%; }
+    .spot-panel-2 { top: 22.5%; left: 50.2%; width: 47.8%; height: 36.2%; }
+    .spot-panel-3 { top: 59.8%; left: 2.1%;  width: 47.4%; height: 34.5%; }
+    .spot-panel-4 { top: 59.8%; left: 50.2%; width: 47.8%; height: 34.5%; }
+
+    .word-model     { top: 95.2%; left: 24.0%; width: 11.2%; height: 4.5%; }
+    .word-algorithm { top: 95.2%; left: 35.6%; width: 17.0%; height: 4.5%; }
+    .word-simulator { top: 95.2%; left: 53.0%; width: 16.2%; height: 4.5%; }
+    .word-dataset   { top: 95.2%; left: 69.6%; width: 12.2%; height: 4.5%; }
+	
+	
+	    /* Outer Wrapper Container */
+    .outer-widget-container {
+      position: relative !important;
+      width: 100%;
+      max-width: 1124px;
+      margin: 0 auto;
+      padding: 12px;
+      background-color: #090d13;
+      border: 1px solid rgba(0, 240, 255, 0.35);
+      border-radius: 12px;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+	
+    /* Interactive Citation Box */
+    .convocation-citation {
+      width: 100%;
+      max-width: 1100px;
+      margin-top: 14px;
+      padding: 14px 18px;
+      background: rgba(13, 17, 23, 0.85);
+      border: 1px solid rgba(0, 240, 255, 0.3);
+      border-left: 4px solid #00f0ff;
+      border-radius: 8px;
+      color: #c9d1d9;
+      font-size: 0.9rem;
+      line-height: 1.55;
+      cursor: pointer;
+      transition: all 0.25s ease-in-out;
+    }
+
+    .convocation-citation:hover {
+      background: rgba(0, 240, 255, 0.08);
+      border-color: #00f0ff;
+      box-shadow: 0 0 18px rgba(0, 240, 255, 0.35);
+      transform: translateY(-1px);
+    }
+
+    .convocation-citation blockquote {
+      font-style: italic;
+      color: #e6edf3;
+      margin-bottom: 8px;
+    }
+
+    .citation-source {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 0.82rem;
+      color: #79c0ff;
+    }
+	
+	/* Action Buttons Group in Bottom-Right of Citation */
+    .citation-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .watch-badge {
+      background: rgba(0, 240, 255, 0.12);
+      color: #00f0ff;
+      border: 1px solid rgba(0, 240, 255, 0.6);
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 0.78rem;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .watch-badge:hover {
+      background: rgba(0, 240, 255, 0.25);
+    }
+
+
+    /* Footer Canvas & Copyright Wrapper */
+    #canvas-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 1100px;
+      margin-top: 12px;
+      padding: 10px 16px;
+      text-align: center;
+      overflow: hidden;
+      border-radius: 8px;
+    }
+
+    #particleCanvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .copyright {
+      position: relative;
+      z-index: 1;
+      font-size: 0.82rem;
+      color: #8b949e;
+    }
+
+     /* Video Overlay Modal: Covers the full container on top (z-index: 99999) */
+    /* Full-Screen Viewport Overlay (Takes over entire screen until Closed) */
+    .video-overlay-modal {
+      display: none !important;
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      z-index: 99999 !important;
+      background: rgba(9, 13, 19, 0.96) !important;
+      backdrop-filter: blur(10px);
+      padding: 20px !important;
+      box-sizing: border-box !important;
+      flex-direction: column !important;
+      justify-content: center !important;
+      align-items: center !important;
+    }
+
+    .video-overlay-modal.active {
+      display: flex !important;
+    }
+
+     /* Header Bar Above Video */
+    .video-modal-header {
+      width: 100% !important;
+      max-width: 1120px !important;
+      display: flex !important;
+      justify-content: space-between !important;
+      align-items: center !important;
+      padding: 0 0 12px 0 !important;
+      color: #00f0ff;
+      font-size: 1rem;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+
+    .close-video-btn {
+      background: rgba(0, 240, 255, 0.15);
+      color: #00f0ff;
+      border: 1px solid #00f0ff;
+      border-radius: 6px;
+      padding: 4px 12px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.2s ease;
+    }
+
+    .close-video-btn:hover {
+      background: rgba(0, 240, 255, 0.35);
+    }
+
+    /* Full-Size Video Box Covering the Poster Area */
+    /* Large Video Container Taking Up the Screen Height */
+    .video-frame-box {
+      width: 100% !important;
+      max-width: 1120px !important;
+      height: 82vh !important; /* Takes up 82% of the screen height */
+      border: 2px solid #00f0ff !important;
+      border-radius: 10px !important;
+      overflow: hidden !important;
+      box-shadow: 0 0 40px rgba(0, 240, 255, 0.45) !important;
+      background: #000 !important;
+      display: flex !important;
+    }
+
+	
+	    .convocation-citation {
+      display: block;
+      text-decoration: none;
+      width: 100%;
+      max-width: 1100px;
+      margin-top: 14px;
+      padding: 14px 18px;
+      background: rgba(13, 17, 23, 0.85);
+      border: 1px solid rgba(0, 240, 255, 0.3);
+      border-left: 4px solid #00f0ff;
+      border-radius: 8px;
+      color: #c9d1d9;
+      font-size: 0.9rem;
+      line-height: 1.55;
+      cursor: pointer;
+      transition: all 0.25s ease-in-out;
+    }
+
+
+/* Highlighted Local Embedded Clip Button */
+    .embed-clip-btn {
+      background: #00f0ff;
+      color: #090d13;
+      border: 1px solid #00f0ff;
+      padding: 4px 12px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 0.78rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 0 10px rgba(0, 240, 255, 0.35);
+    }
+
+    .embed-clip-btn:hover {
+      background: #67f7ff;
+      box-shadow: 0 0 16px rgba(0, 240, 255, 0.75);
+      transform: translateY(-1px);
+    }
+
+    /* Local HTML5 Video Styling Inside Modal */
+     /* Video Element Filling the Frame */
+    .video-frame-box video {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: contain !important;
+      background: #000 !important;
+      outline: none !important;
+    }
+	
+	    /* ===================================================== */
+    /* INK-SAVING PRINT STYLES (White Background, Black Text)*/
+    /* ===================================================== */
+    @media print {
+      /* Force white background and black text across the entire page */
+      html,
+      body,
+      .outer-widget-container,
+      .poster-widget,
+      .interaction-hint,
+      .convocation-citation,
+      #canvas-wrapper {
+        background: #ffffff !important;
+        background-color: #ffffff !important;
+        color: #000000 !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+      }
+
+      /* Make all headings, quotes, spans, and copyright text solid black */
+      .interaction-hint strong,
+      .convocation-citation blockquote,
+      .citation-source,
+      .citation-source span,
+      .copyright {
+        color: #000000 !important;
+      }
+
+      /* Replace glowing teal borders with thin, crisp ink-saving black/gray borders */
+      .outer-widget-container,
+      .poster-widget,
+      .interaction-hint,
+      .convocation-citation {
+        border: 1px solid #333333 !important;
+      }
+
+      .convocation-citation {
+        border-left: 4px solid #000000 !important;
+      }
+
+      /* Hide interactive-only video buttons, overlays, and particle canvas when printing 
+      .citation-actions,
+      .video-overlay-modal,
+      #particleCanvas,
+      .hotspot::before,
+      .hotspot::after {
+        display: none !important;
+      } */
+
+      /* Prevent the poster or citation box from splitting awkwardly across pages */
+      .poster-widget,
+      .convocation-citation {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+    }
+	
+	    .citation-link {
+      color: #00f0ff;
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color 0.2s ease, text-shadow 0.2s ease;
+    }
+
+    .citation-link:hover {
+      color: #67f7ff;
+      text-shadow: 0 0 8px rgba(0, 240, 255, 0.65);
+    }
+
+    @media print {
+      .citation-link {
+        color: #000000 !important;
+        text-shadow: none !important;
+      }
+    }
+
+	
+
+	
+  </style>
+</head>
+<body>
+
+  <div class="interaction-hint">
+    <strong>Interactive Poster:</strong> Click on certain panels and words to interact with the textual information or simulation widget.
+  </div>
+
+  <div class="poster-widget">
+    <img src="PhD-GAbstract.png" alt="Focus on the Future: Quantum Field Lens Coding (QF-LC)" />
+
+    <!-- Main Panels with Custom Hover Animation Classes -->
+    <a href="https://hdl.handle.net/1828/23705" target="_blank" rel="noopener" class="hotspot spot-title anim-title" data-label="Open Dissertation ↗"></a>
+    <a href="QDF-Lens.html" target="_blank" rel="noopener" class="hotspot spot-panel-1 anim-lens" data-label="Launch Quantum Lens Widget ↗"></a>
+    <a href="QFLC_Gateway.html" target="_blank" rel="noopener" class="hotspot spot-panel-2 anim-scalar" data-label="Explore Scalar Transformation ↗"></a>
+    <a href="ABE_P_Range.html" target="_blank" rel="noopener" class="hotspot spot-panel-3 anim-entangle" data-label="Explore Three-Way Entanglement ↗"></a>
+    <a href="QuSole_GAbstract_v1.html" target="_blank" rel="noopener" class="hotspot spot-panel-4 anim-impact" data-label="Explore Real-World Impact ↗"></a>
+
+    <!-- Bottom Words -->
+    <a href="QDF_Prize.html" target="_blank" rel="noopener" class="hotspot spot-word word-model" data-label="View QDF Model ↗"></a>
+    <a href="QFLC_Gateway.html" target="_blank" rel="noopener" class="hotspot spot-word word-algorithm" data-label="View QF-LCA Algorithm ↗"></a>
+    <a href="https://phibal12.github.io/QFLCS" target="_blank" rel="noopener" class="hotspot spot-word word-simulator" data-label="Open QF-LCS Simulator ↗"></a>
+    <a href="QuSole_QDF_v1-14.html" target="_blank" rel="noopener" class="hotspot spot-word word-dataset" data-label="Access QDF Dataset ↗"></a>
+  </div>
+
+  <div class="outer-widget-container">
+
+    <!-- ================================================= -->
+    <!-- PLACE  EXISTING .interaction-hint AND         -->
+    <!-- .poster-widget CODE BLOCK RIGHT HERE              -->
+    <!-- ================================================= -->
+
+    <!-- Clickable Convocation Citation Block -->
+        <!-- Clickable Convocation Citation Link (Opens YouTube at 00:45:00 in New Tab) -->
+    <!-- Convocation Citation Block (Click Box = YouTube | Click Button = Embedded Local Clip) -->
+    <div class="convocation-citation" onclick="window.open('https://www.youtube.com/watch?v=wkdgkiXsrgQ&t=2700s', '_blank', 'noopener')" role="link" tabindex="0">
+      <blockquote>
+        “<a href="https://phibal12.github.io/QFLC-Dashboard/PBA_Portfolio.html" target="_blank" rel="noopener" class="citation-link" onclick="event.stopPropagation();">Dr. Alipour</a> studied how quantum computers can be used to model and simulate complex physical and thermal systems. He developed a new approach [<a href="https://phibal12.github.io/QFLC-Dashboard/labs/QDF-Lens" target="_blank" rel="noopener" class="citation-link" onclick="event.stopPropagation();">framing system interactions as data-focusing lenses</a>] that improves [<a href="https://phibal12.github.io/QFLC-Dashboard/systems/2xQuBABE/QuBABE_CNT-Lattice-QDF_Demo-v1" target="_blank" rel="noopener" class="citation-link" onclick="event.stopPropagation();">significantly</a>] the ability to predict how these systems behave. His work could help guide the design of <a href="https://phibal12.github.io/QFLC-Dashboard/labs/QFLCH" target="_blank" rel="noopener" class="citation-link" onclick="event.stopPropagation();">more energy-efficient quantum computers</a> and <a href="https://phibal12.github.io/QFLC-Dashboard/labs/QuSole_GAbstract_v1" target="_blank" rel="noopener" class="citation-link" onclick="event.stopPropagation();">reduce environmental impacts in large urban building networks</a>.”
+      </blockquote>
+      <div class="citation-source">
+        <span>Citation source: UVic Fall Convocation 2026, Official Webcast (Nov. 9), Timestamped [00:45:00 – 00:46:12]</span>
+        <div class="citation-actions">
+          <button type="button" class="embed-clip-btn" onclick="openLocalClip(event)">&#9654; Play Embedded Clip</button>
+          <span class="watch-badge">Citation on YouTube ↗</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Particle Canvas & Copyright Notice -->
+    <div id="canvas-wrapper">
+      <canvas id="particleCanvas"></canvas>
+      <div class="copyright">
+        &copy; 2026 Dr. Philip Baback Alipour. Quantum Double-Field (QDF) Model &amp; QF-LCA Framework. All Rights Reserved.
+      </div>
+    </div>
+
+    <!-- Local MP4 Video Overlay Modal (Covers Inner Container) -->
+    <div id="convocationModal" class="video-overlay-modal" onclick="closeLocalClip(event)">
+      <div class="video-modal-header">
+        <span>UVic Fall Convocation 2026 — Citation Clip [00:45:00 – 00:46:12]</span>
+        <button type="button" class="close-video-btn" onclick="closeLocalClip(event, true)">✕ Close Video</button>
+      </div>
+      <div class="video-frame-box">
+        <!-- Place convocation-clip.mp4 in the same GitHub directory as this HTML file -->
+        <video id="convocationVideo" controls playsinline preload="metadata">
+          <source src="PBA_Convocation_Citation.mp4" type="video/mp4" />
+          Your browser does not support HTML5 video.
+        </video>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Script to Control Local Clip Playback -->
+  <script>
+    function openLocalClip(event) {
+      event.stopPropagation(); // Prevents opening the YouTube link underneath
+      const modal = document.getElementById("convocationModal");
+      const video = document.getElementById("convocationVideo");
+      modal.classList.add("active");
+      video.currentTime = 0;
+      video.play().catch(() => {
+        // Fallback if browser blocks unmuted autoplay: user can press play on controls
+      });
+    }
+
+    function closeLocalClip(event, forceClose = false) {
+      if (forceClose || event.target.id === "convocationModal") {
+        const modal = document.getElementById("convocationModal");
+        const video = document.getElementById("convocationVideo");
+        video.pause();
+        modal.classList.remove("active");
+      }
+    }
+  </script>
+
+</body>
+</html>

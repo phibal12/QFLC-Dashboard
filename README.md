@@ -176,6 +176,25 @@ This collection serves as a unified portfolio, translating the theoretical frame
 
 <a href="assets/PhD-GAbstract.png" target="_blank"><img src="assets/PhD-GAbstract.png" alt="QF-LC Dissertation Framework" style="width: 100% !important; max-width: none !important; border-radius: 8px; border: 2px solid teal; position: relative; left: 50%; transform: translateX(-50%);"></a><br> 
 
+<details>
+<summary><strong>Click to expand: Interactive Widget Guide &amp; Official Citation</strong></summary>
+
+### How to Interact with the Dashboard Widget
+* **Header Banner (Dissertation):** Hover and click the top title area to access the full doctoral dissertation.
+* **Panel 1 (top-left) — A Quantum Lens for Energy:** Hover to preview the optical focal-beam projection, or click to launch the live **Quantum Lens Simulation Widget**.
+* **Panel 2 (top-right) — The Power-Up (Scalar Transformation):** Hover to visualize field-to-lens probability amplification, or click to explore the mathematical transformation notes.
+* **Panel 3 (bottom-left) — The Secret Sauce (Three-Way Entanglement):** Hover to view the quantum resonance state, or click to inspect the entanglement coupling model.
+* **Panel 4 (bottom-right) — Real-World Impact:** Hover to scan application domains (Healthcare, Security, Sustainability), or click to explore applied use cases.
+* **Project Components Bar (Bottom):** Click individual component keywords (**QDF Model**, **QF-LCA Algorithm**, **QF-LCS Simulator**, **QDF Dataset**) to open their respective repositories and interactive modules.
+* **Convocation Citation &amp; Video Clip:** Click **▶ Play Embedded Clip** to watch the convocation research summary in a full-screen overlay, or click the citation card to open the timestamped official webcast.
+
+---
+
+### Official Research Citation
+> “Dr. Alipour studied how quantum computers can be used to model and simulate complex physical and thermal systems. He developed a new approach [framing system interactions as data-focusing lenses] that improves [significantly] the ability to predict how these systems behave. His work could help guide the design of more energy-efficient quantum computers and reduce environmental impacts in large urban building networks.”
+>
+> **Citation Source:** University of Victoria (UVic) Fall Convocation 2026, Official Webcast (Nov. 9, 2026), Timestamped `[00:45:00 – 00:46:12]` — [Watch on YouTube](https://youtube.com)
+</details>
 ---
 
 ## 🎓🚀 The <i>Probability Doubling</i> Effect as the Core Research and Performance Breakthrough
@@ -441,7 +460,7 @@ It employs asymmetric, fix-free social lensing codes that systematically focus/d
 * **Core Expertise:** Merging Quantum Field Theory with Artificial Intelligence.
 * **The QF-LC Framework:** Developed a predictive methodology for high-fidelity state classification.
 * **Hybrid Systems Architecture:** Optimized for $N$-qubit-cbit machines.
-* **Dissertation Work:** Introduced and explored [Quantum Field Lens Coding (QF-LC)]([https://github.io](https://hdl.handle.net/1828/23705)) framework to define quantum double-field (QDF) lensing method.
+* **Dissertation Work:** Introduced and explored [Quantum Field Lens Coding (QF-LC)](https://hdl.handle.net/1828/23705) framework to define quantum double-field (QDF) lensing method.
 * **Lensing Discovery:** Invented quantum double-field (QDF) lensing method to double the probability of any system state (transition), and address critical limitations in real-time system state prediction, topological mapping, and error mitigation. 
 * **Probability Metrics:** Successfully doubles system state transition probabilities.
 * **Core Solutions:** Solves real-time system prediction and active error mitigation.
