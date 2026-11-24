@@ -314,7 +314,7 @@ This widget translates the QDF model into a game theory environment. As discusse
 * **Outcome:** It visualizes the probability doubling mechanism where information is safely received, and a decision state (the "prize") is resolved.
 
 ### 5.🧮⚛ QF-LCS: System State Predictions and Lens Coding Simulator
-<a href="#5-qdf-lens-geometry-lab--particle-trap"><img src="./assets/SIMPAC_GAbstract.jpg" alt="Geometry Lab" height="80%" width="70%" style="border-radius:8px; border:2px solid #8b5cf6;"></a><br> 
+<a href="https://phibal12.github.io/QFLCS" target="_blank"><img src="./assets/SIMPAC_GAbstract.jpg" alt="Geometry Lab" height="80%" width="70%" style="border-radius:8px; border:2px solid #8b5cf6;"></a><br> 
 *(The core simulation engine for strong predictions)*
 
 A quantum field lens coding simulator (QF-LCS) is presented on a high-level end-user application software run by CLI 
