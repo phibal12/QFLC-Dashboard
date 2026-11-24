@@ -174,10 +174,11 @@ This collection serves as a unified portfolio, translating the theoretical frame
 ---
 ### 1.🧮🧊 QFLC Framework: Probability Doubling by QDF modelling
 
-<a href="assets/PhD-GAbstract.png" target="_blank"><img src="assets/PhD-GAbstract.png" alt="QF-LC Dissertation Framework" style="width: 100% !important; max-width: none !important; border-radius: 8px; border: 2px solid teal; position: relative; left: 50%; transform: translateX(-50%);"></a><br> 
+<a href="labs/QFLC_Framework.html" target="_blank"><img src="assets/PhD-GAbstract.png" alt="QF-LC Dissertation Framework" style="width: 100% !important; max-width: none !important; border-radius: 8px; border: 2px solid teal; position: relative; left: 50%; transform: translateX(-50%);"></a><br> 
 
-<details>
-<summary><strong>Click to expand: Interactive Widget Guide &amp; Official Citation</strong></summary>
+<details  markdown="block">
+
+<summary style="font-weight: bold; cursor: pointer;">Click to expand: Interactive Widget Guide and the Official Citation</strong></summary>
 
 ### How to Interact with the Dashboard Widget
 * **Header Banner (Dissertation):** Hover and click the top title area to access the full doctoral dissertation.
