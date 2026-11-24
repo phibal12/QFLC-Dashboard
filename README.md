@@ -443,7 +443,8 @@ It employs asymmetric, fix-free social lensing codes that systematically focus/d
     Access Research Portfolio & CV/Résumé →
   </a>
 </nav>
-  
+  Research Work Summary Citation Source: University of Victoria, <a href=https://www.youtube.com/watch?v=wkdgkiXsrgQ&t=2700s> Fall Convocation 2026 [Nov. 9th], Official Webcast, Timestamped [00:45:00 – 00:46:12]</a> — 
+  “<i>Dr. Alipour studied how quantum computers can be used to model and simulate complex physical and thermal systems. He developed a new approach [framing system interactions as data-focusing lenses] that improves [significantly] the ability to predict how these systems behave. His work could help guide the design of more energy-efficient quantum computers and reduce environmental impacts in large urban building networks.</i>”
   </div>
 
 </div>
