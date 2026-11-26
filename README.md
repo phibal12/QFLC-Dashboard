@@ -342,8 +342,11 @@ Directly correlating with the "Measurement" and "Lens Focus" sections of the sem
 How does this relate to the QF-LCA Hypercube? This Geometry Lab visualizes the fundamental thermodynamic engine required to "power" the hypercube's multidimensional nodes. Achieving the **Target Phase** visualized in the lens constitutes the physical verification required to successfully trigger a node's logical collapse in Module 1. The trapped particles in the lab act as the physical qubits executing the logic gates, demonstrating Module 4 serves as the critical 'logic fuel' for Module 1's hardware compiler.
 
 ### 7.🧮🧊 QuSoLe DB: Quantum Social Lensing Database and AI
-<a href="https://phibal12.github.io/QFLC-Dashboard/labs/QuSole_QDF_v1-14" target="_blank"><img src="./assets/QuSoLe_GAbstract_screen.jpeg" alt="QuSoLe DB and AI" height="70%" width="70%" style="border-radius:8px;"></a><br> 
+<a href="https://phibal12.github.io/QFLC-Dashboard/labs/QuSole_GAbstract_v1" target="_blank"><img src="./assets/QuSoLe_GAbstract_screen.jpeg" alt="QuSoLe DB and AI" height="70%" width="70%" style="border-radius:8px;"></a><br> 
 *(Interactive Graphical Abstract of QuSoLe Database and State Transition Predictions via Quantum (QDF) AI)*
+
+<a href="https://phibal12.github.io/QFLC-Dashboard/labs/QuSole_QDF_v1-14" target="_blank"><img src="./assets/QuSoLeDataScreenshot01.jpeg" alt="QuSoLe DB and AI" height="70%" width="70%" style="border-radius:8px;"></a><br> 
+*(QuSoLe Database via QDF AI Engine, Mainstream AI, and QF-LCA)*
 
 The QuSole (quantum social lensing) algorithm from [7-9] adapts the QF-LCA field lens to real-world, macro-scale datasets by modeling variables as human event distributions rather than isolated particle systems It projects an event space $N$ onto a Social Lensing (SoLe) target state (TS) vector, given the generated real-time pairwise $2N$ datasets, with a possible entangled data points/three-way entangled qubits quantifying measured as $M ((2N∕3) ⟨P⟩)$ from the world/environment: 
 
