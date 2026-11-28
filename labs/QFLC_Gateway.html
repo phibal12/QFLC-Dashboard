@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QF-LCA: Quantum Field Lens Coding Algorithm — Interactive Gateway</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #090d13;
+      color: #e6edf3;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 16px;
+    }
+
+    /* Outer Container */
+    .outer-widget-container {
+      position: relative;
+      width: 100%;
+      max-width: 1124px;
+      margin: 0 auto;
+      padding: 12px;
+      background-color: #090d13;
+      border: 1px solid rgba(0, 240, 255, 0.35);
+      border-radius: 12px;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Top Return Navigation Bar */
+    .top-nav-bar {
+      width: 100%;
+      max-width: 1100px;
+      background: rgba(11, 17, 30, 0.95);
+      border: 1px solid rgba(0, 229, 255, 0.3);
+      border-radius: 8px;
+      padding: 8px 14px;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.88rem;
+    }
+
+    .top-nav-bar a {
+      color: #00e5ff;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.2s ease, text-shadow 0.2s ease;
+    }
+
+    .top-nav-bar a:hover {
+      color: #67f7ff;
+      text-shadow: 0 0 8px rgba(0, 240, 255, 0.65);
+    }
+
+    /* Top Instruction Hint */
+    .interaction-hint {
+      width: 100%;
+      max-width: 1100px;
+      background: rgba(0, 240, 255, 0.08);
+      border: 1px solid rgba(0, 240, 255, 0.4);
+      color: #a5f3fc;
+      padding: 10px 16px;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      font-size: 0.95rem;
+      text-align: center;
+    }
+
+    .interaction-hint strong {
+      color: #00f0ff;
+    }
+
+    /* Main Diagram Wrapper */
+    .gateway-widget {
+      position: relative;
+      width: 100%;
+      max-width: 1100px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 2px solid #00f0ff;
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.15);
+      background-color: #0d1117;
+    }
+
+    .gateway-widget img {
+      display: block;
+      width: 100%;
+      height: auto;
+      user-select: none;
+    }
+
+    /* ===================================================== */
+    /* BASE INTERACTIVE HOTSPOT STYLING                      */
+    /* ===================================================== */
+    .hotspot {
+      position: absolute !important;
+      display: block !important;
+      border-radius: 6px;
+      border: 2px solid transparent;
+      overflow: hidden;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+      cursor: pointer;
+      text-decoration: none;
+      z-index: 5;
+    }
+
+    .hotspot:hover,
+    .hotspot:focus-visible {
+      outline: none;
+      z-index: 15;
+    }
+
+    /* Focused Sub-Hotspots Sit Above the Left/Right Half Zones */
+    .sub-hotspot {
+      z-index: 20 !important;
+    }
+    .sub-hotspot:hover,
+    .sub-hotspot:focus-visible {
+      z-index: 30 !important;
+    }
+
+    /* Floating Label Badge on Hover */
+    .hotspot::after {
+      content: attr(data-label);
+      position: absolute;
+      bottom: 8px;
+      right: 8px;
+      background: rgba(13, 17, 23, 0.94);
+      color: #00f0ff;
+      border: 1px solid #00f0ff;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      opacity: 0;
+      transform: translateY(4px);
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      pointer-events: none;
+      z-index: 40;
+      white-space: nowrap;
+    }
+
+    .hotspot:hover::after {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===================================================== */
+    /* HOVER SCAN & GLOW ANIMATIONS                          */
+    /* ===================================================== */
+
+    /* 1. TITLE ZONE: Left-to-Right Beam Scan + Teal Glow */
+    .anim-title-scan:hover {
+      border-color: #00f0ff;
+      box-shadow: 0 0 22px rgba(0, 240, 255, 0.7), inset 0 0 14px rgba(0, 240, 255, 0.25);
+    }
+    .anim-title-scan::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -60%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent 0%, rgba(0, 240, 255, 0.35) 50%, transparent 100%);
+    }
+    .anim-title-scan:hover::before {
+      animation: scanLeftToRight 1.8s infinite linear;
+    }
+
+    /* 2. LEFT ZONE (Concave Input: SF State) */
+    .anim-left-concave:hover {
+      border-color: #38bdf8;
+      box-shadow: 0 0 22px rgba(56, 189, 248, 0.7), inset 0 0 18px rgba(0, 240, 255, 0.2);
+    }
+    .anim-left-concave::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(90deg, transparent 0%, rgba(56, 189, 248, 0.3) 50%, transparent 100%),
+        radial-gradient(circle at 60% 54%, rgba(0, 240, 255, 0.28) 0%, transparent 65%);
+      background-size: 55% 100%, 100% 100%;
+      background-position: -120% 0, 0 0;
+      background-repeat: no-repeat;
+      opacity: 0;
+    }
+    .anim-left-concave:hover::before {
+      opacity: 1;
+      animation: scanMultiLeftToRight 2.0s infinite linear;
+    }
+
+    /* 3. RIGHT ZONE (Convex Output: QDF State) */
+    .anim-right-convex:hover {
+      border-color: #fbbf24;
+      box-shadow: 0 0 24px rgba(251, 191, 36, 0.65), inset 0 0 18px rgba(251, 191, 36, 0.18);
+    }
+    .anim-right-convex::after {
+      color: #fbbf24;
+      border-color: #fbbf24;
+    }
+    .anim-right-convex::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(90deg, transparent 0%, rgba(251, 191, 36, 0.28) 50%, transparent 100%),
+        radial-gradient(circle at 68% 52%, rgba(251, 191, 36, 0.3) 0%, transparent 65%);
+      background-size: 55% 100%, 100% 100%;
+      background-position: -120% 0, 0 0;
+      background-repeat: no-repeat;
+      opacity: 0;
+    }
+    .anim-right-convex:hover::before {
+      opacity: 1;
+      animation: scanMultiLeftToRight 2.0s infinite linear;
+    }
+
+    /* 4. FOCUSED SUB-ZONE: Bright Yellow Peak Probability Curve */
+    .anim-yellow-peak:hover {
+      border-color: #fde047;
+      background-color: rgba(250, 204, 21, 0.14);
+      box-shadow: 0 0 28px rgba(253, 224, 71, 0.9), inset 0 0 20px rgba(250, 204, 21, 0.35);
+    }
+    .anim-yellow-peak::after {
+      color: #fde047;
+      border-color: #fde047;
+      top: 8px;
+      bottom: auto;
+    }
+    .anim-yellow-peak::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 50%, rgba(254, 240, 138, 0.48) 0%, rgba(250, 204, 21, 0.15) 55%, transparent 80%);
+      opacity: 0;
+    }
+    .anim-yellow-peak:hover::before {
+      animation: peakPulse 1.3s infinite alternate ease-in-out;
+    }
+
+    @keyframes peakPulse {
+      0% { opacity: 0.4; transform: scale(0.95); }
+      100% { opacity: 1; transform: scale(1.06); }
+    }
+
+    /* 5. FOCUSED SUB-ZONES: Formula & Circuit Boxes (Teal Scan + Crisp Border) */
+    .anim-sub-teal:hover {
+      border-color: #00f0ff;
+      background-color: rgba(0, 240, 255, 0.14);
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.8), inset 0 0 12px rgba(0, 240, 255, 0.3);
+    }
+    .anim-sub-teal::after {
+      top: -30px;
+      bottom: auto;
+      right: auto;
+      left: 50%;
+      transform: translateX(-50%) translateY(4px);
+    }
+    .anim-sub-teal:hover::after {
+      transform: translateX(-50%) translateY(0);
+    }
+    .anim-sub-teal::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -80%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.4), transparent);
+    }
+    .anim-sub-teal:hover::before {
+      animation: scanLeftToRight 1.4s infinite linear;
+    }
+
+    @keyframes scanLeftToRight {
+      0% { left: -60%; }
+      100% { left: 120%; }
+    }
+
+    @keyframes scanMultiLeftToRight {
+      0% { background-position: -120% 0, 0 0; }
+      100% { background-position: 220% 0, 0 0; }
+    }
+
+    /* ===================================================== */
+    /* COORDINATES (Main Zones + Focused Sub-Zones)          */
+    /* ===================================================== */
+
+    /* Main Top Title Bar */
+    .spot-title {
+      top: 2.5% !important;
+      left: 3.5% !important;
+      width: 93.0% !important;
+      height: 11.5% !important;
+    }
+
+    /* Main Left Half up to Vertical Dotted Line (Concave Input) */
+    .spot-left-section {
+      top: 14.8% !important;
+      left: 3.5% !important;
+      width: 47.3% !important;
+      height: 75.5% !important;
+    }
+
+    /* Main Right Half after Vertical Dotted Line (Convex Output) */
+    .spot-right-section {
+      top: 14.8% !important;
+      left: 51.0% !important;
+      width: 45.5% !important;
+      height: 75.5% !important;
+    }
+
+    /* Focused Sub-Zone 1: Bright Yellow Focused Peak Probability Curve */
+    .spot-yellow-peak {
+      top: 30.5% !important;
+      left: 69.0% !important;
+      width: 24.5% !important;
+      height: 36.0% !important;
+      border-radius: 10px;
+    }
+
+    /* Focused Sub-Zone 2: Bottom Left Transformation (SF -> kΦ -> QDF) */
+    .spot-formula-transform {
+      top: 76.5% !important;
+      left: 7.5% !important;
+      width: 24.5% !important;
+      height: 11.5% !important;
+    }
+
+    /* Focused Sub-Zone 3: Bottom Center P_QDF Equation Box */
+    .spot-formula-pqdf {
+      top: 63.0% !important;
+      left: 42.8% !important;
+      width: 16.0% !important;
+      height: 19.5% !important;
+    }
+	
+	
+
+ .tripartite-simulator { top: 95.2%; left: 53.0%; width: 0.2%; height: 4.5%;  }
+  /* Bottom Words Hover Glow */
+    .spot-left-lower-left:hover {
+      background-color: rgba(20, 40, 155, 0.18);
+	  border-color: orange;
+    border-radius: 8px;
+	}
+
+	.spot-left-lower-left {
+      top: 71.0% !important;
+      left: 61.8% !important;
+      width: 16.5% !important;
+      height: 14% !important;
+	  z-index: 40 !important; /* Highest layer above left/right sections */
+      border-radius: 8px;
+    }
+
+    /* Focused Sub-Zone 4: Bottom Right Qiskit Quantum Circuit */
+spot-qiskit-circuit {
+top: 69.5% !important;
+left: 78.5% !important;
+width: 16.5% !important;
+height: 19.0% !important;
+}
+
+/* Ink-Saving Print Styles */
+@media print {
+html, body, .outer-widget-container, .gateway-widget, .interaction-hint, .top-nav-bar {
+background: #ffffff !important;
+color: #000000 !important;
+box-shadow: none !important;
+}
+.interaction-hint strong, .top-nav-bar a {
+color: #000000 !important;
+}
+.outer-widget-container, .gateway-widget, .interaction-hint, .top-nav-bar {
+border: 1px solid #333333 !important;
+}
+.hotspot::before, .hotspot::after {
+display: none !important;
+}
+}
+
+
+    /* Highest Z-Order Central Field Transform Arrow (Bridges Left to Right) */
+    .spot-transform-arrow {
+      top: 46% !important;
+      left: 33.5% !important;
+      width: 33.0% !important;
+      height: 15.0% !important;
+      z-index: 40 !important; /* Highest layer above left/right sections */
+      border-radius: 8px;
+    }
+
+    .spot-transform-arrow:hover,
+    .spot-transform-arrow:focus-visible {
+      z-index: 50 !important;
+      border-color: #00f0ff;
+      background-color: rgba(0, 240, 255, 0.14);
+      box-shadow: 0 0 24px rgba(0, 240, 255, 0.85), inset 0 0 14px rgba(251, 191, 36, 0.3);
+    }
+
+    /* Cyan-to-Gold Energy Surge Following the Arrow Direction (Left -> Right) */
+    .spot-transform-arrow::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -80%;
+      width: 75%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.45), rgba(251, 191, 36, 0.45), transparent);
+    }
+
+    .spot-transform-arrow:hover::before {
+      animation: scanLeftToRight 1.2s infinite linear;
+    }
+
+    .spot-transform-arrow::after {
+      top: -32px;
+      bottom: auto;
+      right: auto;
+      left: 50%;
+      transform: translateX(-50%) translateY(4px);
+    }
+
+    .spot-transform-arrow:hover::after {
+      transform: translateX(-50%) translateY(0);
+    }
+
+
+    /* Runtime / PyScript Loading Disclaimer Notice */
+    .pyscript-disclaimer {
+      width: 100%;
+      max-width: 1100px;
+      margin-top: 12px;
+      padding: 10px 16px;
+      background: rgba(251, 191, 36, 0.08);
+      border: 1px solid rgba(251, 191, 36, 0.45);
+      border-left: 4px solid #fbbf24;
+      border-radius: 8px;
+      color: #fde68a;
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+
+    .pyscript-disclaimer strong {
+      color: #fbbf24;
+    }
+
+    /* Ink-Saving Print Override */
+    @media print {
+      .pyscript-disclaimer {
+        background: #ffffff !important;
+        color: #000000 !important;
+        border: 1px solid #333333 !important;
+        border-left: 4px solid #000000 !important;
+      }
+      .pyscript-disclaimer strong {
+        color: #000000 !important;
+      }
+    }
+
+    /* Optional: Subtle Steady Glow Pulse (Text stays 100% readable) */
+    .pyscript-disclaimer {
+      animation: noticeGlow 4s infinite alternate ease-in-out;
+    }
+
+    @keyframes noticeGlow {
+      0% { box-shadow: 0 0 6px rgba(251, 191, 36, 0.12); }
+      100% { box-shadow: 0 0 16px rgba(251, 191, 36, 0.35); }
+    }
+
+
+</style>
+</head>
+<body>
+
+  <div class="outer-widget-container">
+
+    <div class="interaction-hint">
+      <strong>QF-LCA Interactive Gateway:</strong> Hover and click the title banner or either side of the vertical dotted field boundary to explore simulations and algorithms.
+    </div>
+
+    <div class="gateway-widget">
+      <!-- Update src to your exact image filename in GitHub -->
+      <img src="QFLCACodingBanner.png" alt="QF-LCA: Quantum Field Lens Coding Algorithm" />
+
+      <!-- Zone 1: Title Bar -->
+      <a href="https://github.com/phibal12/QFLCS/blob/main/README.md" target="_blank" rel="noopener" 
+         class="hotspot spot-title anim-title-scan" 
+         data-label="Explore QF-LCA Overview ↗"></a>
+
+      <!-- Zone 2: Left of Vertical Dotted Line (Concave Input: SF State) -->
+      <a href="QDF-Lens.html" target="_blank" rel="noopener" 
+         class="hotspot spot-left-section anim-left-concave" 
+         data-label="Launch Concave SF Input Gateway ↗"></a>
+
+      <!-- Zone 3: Right of Vertical Dotted Line (Convex Output: QDF State) -->
+      <a href="QDF-Lens.html" target="_blank" rel="noopener" 
+         class="hotspot spot-right-section anim-right-convex" 
+         data-label="Launch Convex QDF Output Gateway ↗"></a>
+		 
+		       <!-- Highest Z-Order Hotspot: Central Field Transform Arrow -->
+      <a href="QDF_PSpace_Singulaity_py.html" target="_blank" rel="noopener" 
+         class="hotspot spot-transform-arrow" 
+         data-label="Launch Field Transform (κ) Widget ↗"></a>
+		 
+		 <!-- Highest Z-Order Hotspot: Lower-left Tripartite Triangle -->
+      <a href="ABE_P_Range.html" target="_blank" rel="noopener" 
+         class="hotspot spot-left-lower-left tripartite-simulator" 
+         data-label="ABE Lensing Widget ↗"></a>
+
+    </div>
+
+
+    <!-- Simulation Loading Disclaimer -->
+    <div class="pyscript-disclaimer" role="note">
+      <strong>Simulation Runtime Notice:</strong> Certain interactive modules run native Python/PyScript quantum state engines directly in your browser. Please allow a brief initialization moment (typically 5–15 seconds on first load) for the computational kernel and parameter matrices to compile before interacting.
+    </div>
+
+
+
+  </div>
+
+</body>
+</html>
